@@ -36,5 +36,10 @@ namespace DSInternals.Win32.RpcFilters
         {
             this.Type = permit ? FWP_ACTION_TYPE.FWP_ACTION_PERMIT : FWP_ACTION_TYPE.FWP_ACTION_BLOCK;
         }
+
+        public FWPM_ACTION0(RpcFilterAction action)
+        {
+            this.Type = (FWP_ACTION_TYPE)action;
+        }
     }
 }

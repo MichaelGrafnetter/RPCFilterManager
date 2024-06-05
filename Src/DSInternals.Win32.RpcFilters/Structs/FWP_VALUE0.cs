@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Security.AccessControl;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
 namespace DSInternals.Win32.RpcFilters
@@ -7,17 +8,17 @@ namespace DSInternals.Win32.RpcFilters
     /// Defines a data value that can be one of a number of different data types.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct FWP_VALUE0
+    internal readonly struct FWP_VALUE0
     {
         /// <summary>
         /// The type of data for this value.
         /// </summary>
-        public FWP_DATA_TYPE Type;
+        public readonly FWP_DATA_TYPE Type;
 
         /// <summary>
         /// Data value.
         /// </summary>
-        public FWP_VALUE0_UNION Value;
+        private readonly FWP_VALUE0_UNION Value;
 
         [StructLayout(LayoutKind.Explicit)]
         public struct FWP_VALUE0_UNION
@@ -82,59 +83,184 @@ namespace DSInternals.Win32.RpcFilters
             [FieldOffset(0)]
             public IntPtr double64;
 
-
-            /// <summary>
-            /// A pointer to an array of exactly 16 bytes.
-            /// </summary>
-            [FieldOffset(0)]
-            public IntPtr byteArray16;
-
-            /*
             /// <summary>
             /// A pointer to an array containing a variable number of bytes.
             /// </summary>
             [FieldOffset(0)]
-            [MarshalAs(UnmanagedType.LPStruct)]
-            public FWP_BYTE_BLOB byteBlob;
+            public IntPtr byteBlob;
 
             /// <summary>
-            /// /// A pointer to a SID blob.
+            /// A pointer to a byte array of constant length.
             /// </summary>
             [FieldOffset(0)]
-            [MarshalAs(UnmanagedType.LPStruct)]
-            public FWP_BYTE_BLOB sid;
+            public IntPtr byteArray16;
 
             /// <summary>
-            /// A pointer to a security descriptor blob.
-            /// </summary>
-            [FieldOffset(0)]
-            [MarshalAs(UnmanagedType.LPStruct)]
-            public FWP_BYTE_BLOB sd;
-
-            /// <summary>
-            /// A pointer to a token information.
-            /// </summary>
-            [FieldOffset(0)]
-            public IntPtr tokenInformation;
-
-            /// <summary>
-            /// A pointer to a token access information.
-            /// </summary>
-            [FieldOffset(0)]
-            public IntPtr tokenAccessInformation;
-
-            /// <summary>
-            /// A pointer to a null-terminated unicode string.
-            /// </summary>
-            [FieldOffset(0)]
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string unicodeString;
-            */
-            /// <summary>
-            /// Reserved.
+            /// A pointer to a byte array of constant length.
             /// </summary>
             [FieldOffset(0)]
             public IntPtr byteArray6;
+
+            /// <summary>
+            /// A pointer to a security descriptor.
+            /// </summary>
+            [FieldOffset(0)]
+            public IntPtr sd;
+        }
+
+        public readonly ulong? UIntValue => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_UINT8 => this.Value.uint8,
+            FWP_DATA_TYPE.FWP_UINT16 => this.Value.uint16,
+            FWP_DATA_TYPE.FWP_UINT32 => this.Value.uint32,
+            FWP_DATA_TYPE.FWP_UINT64 => unchecked((ulong)Marshal.ReadInt64(this.Value.uint64)),
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly byte? UInt8Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_UINT8 => this.Value.uint8,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly ushort? UInt16Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_UINT16 => this.Value.uint16,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly uint? UInt32Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_UINT32 => this.Value.uint32,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly ulong? UInt64Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_UINT64 => unchecked((ulong)Marshal.ReadInt64(this.Value.uint64)),
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly long? IntValue => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_INT8 => this.Value.int8,
+            FWP_DATA_TYPE.FWP_INT16 => this.Value.int16,
+            FWP_DATA_TYPE.FWP_INT32 => this.Value.int32,
+            FWP_DATA_TYPE.FWP_INT64 => Marshal.ReadInt64(this.Value.int64),
+            // Shorter unsigned values will fit into 64-bit signed integer
+            FWP_DATA_TYPE.FWP_UINT8 => this.Value.uint8,
+            FWP_DATA_TYPE.FWP_UINT16 => this.Value.uint16,
+            FWP_DATA_TYPE.FWP_UINT32 => this.Value.uint32,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly sbyte? Int8Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_INT8 => this.Value.int8,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly short? Int16Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_INT16 => this.Value.int16,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly int? Int32Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_INT32  => this.Value.int32,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly long? Int64Value => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_INT64 => Marshal.ReadInt64(this.Value.int64),
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly float? FloatValue => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_FLOAT => this.Value.float32,
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly Guid? GuidValue => this.Type switch
+        {
+            FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE => Marshal.PtrToStructure<Guid>(this.Value.byteArray16),
+            FWP_DATA_TYPE.FWP_EMPTY => null,
+            _ => null,
+        };
+
+        public readonly byte[]? ByteArrayValue
+        {
+            get
+            {
+                if (this.Type == FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE)
+                {
+                    byte[] byteArray = new byte[16];
+                    Marshal.Copy(this.Value.byteArray16, byteArray, 0, 16);
+                    return byteArray;
+                }
+                else if (this.Type == FWP_DATA_TYPE.FWP_BYTE_ARRAY6_TYPE)
+                {
+                    byte[] byteArray = new byte[6];
+                    Marshal.Copy(this.Value.byteArray6, byteArray, 0, 6);
+                    return byteArray;
+                }
+                else if (this.Type == FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE)
+                {
+                    return Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.byteBlob).Data;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public readonly RawSecurityDescriptor? SecurityDescriptorValue
+        {
+            get
+            {
+                if (this.Type == FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE)
+                {
+                    var binaryForm = Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.sd);
+                    return new RawSecurityDescriptor(binaryForm.Data, 0);
+                }
+
+                return null;
+            }
+        }
+
+        public readonly string? StringValue
+        {
+            get
+            {
+                if (this.Type == FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE)
+                {
+                    byte[]? data = this.ByteArrayValue;
+
+                    if(data != null)
+                    {
+                       // Remover the trailing null character
+                       return System.Text.Encoding.Unicode.GetString(data, 0, data.Length - sizeof(char));
+                    }
+                }
+
+                // In all other cases
+                return null;
+            }
         }
 
         public FWP_VALUE0()
@@ -148,117 +274,56 @@ namespace DSInternals.Win32.RpcFilters
             this.Value.uint8 = value;
         }
 
-        public ulong? UIntValue => this.Type switch
+        public FWP_VALUE0(ushort value)
         {
-            FWP_DATA_TYPE.FWP_UINT8 => this.Value.uint8,
-            FWP_DATA_TYPE.FWP_UINT16 => this.Value.uint16,
-            FWP_DATA_TYPE.FWP_UINT32 => this.Value.uint32,
-            FWP_DATA_TYPE.FWP_UINT64 => unchecked((ulong)Marshal.ReadInt64(this.Value.uint64)),
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            this.Type = FWP_DATA_TYPE.FWP_UINT16;
+            this.Value.uint16 = value;
+        }
 
-        public byte? UInt8Value => this.Type switch
+        public FWP_VALUE0(uint value)
         {
-            FWP_DATA_TYPE.FWP_UINT8 => this.Value.uint8,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            this.Type = FWP_DATA_TYPE.FWP_UINT32;
+            this.Value.uint32 = value;
+        }
 
-        public ushort? UInt16Value => this.Type switch
+        private FWP_VALUE0(FWP_DATA_TYPE pointerType, SafeHandle memoryHandle)
         {
-            FWP_DATA_TYPE.FWP_UINT16 => this.Value.uint16,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            this.Type = pointerType;
+            this.Value.byteBlob = memoryHandle.DangerousGetHandle();
+        }
 
-        public uint? UInt32Value => this.Type switch
+        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(Guid value)
         {
-            FWP_DATA_TYPE.FWP_UINT32 => this.Value.uint32,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            var memoryHandle = new SafeStructHandle<Guid>(value);
+            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE, memoryHandle);
 
-        public ulong? UInt64Value => this.Type switch
-        {
-            FWP_DATA_TYPE.FWP_UINT64 => unchecked((ulong)Marshal.ReadInt64(this.Value.uint64)),
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            return (valueWrapper, memoryHandle);
+        }
 
-        public long? IntValue => this.Type switch
+        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(string value)
         {
-            FWP_DATA_TYPE.FWP_INT8 => this.Value.int8,
-            FWP_DATA_TYPE.FWP_INT16 => this.Value.int16,
-            FWP_DATA_TYPE.FWP_INT32 => this.Value.int32,
-            FWP_DATA_TYPE.FWP_INT64 => Marshal.ReadInt64(this.Value.int64),
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            var blob = new FWP_BYTE_BLOB_STRING(value);
+            var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB_STRING>(blob);
+            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, memoryHandle);
 
-        public sbyte? Int8Value => this.Type switch
+            return (valueWrapper, memoryHandle);
+        }
+        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(RawSecurityDescriptor value)
         {
-            FWP_DATA_TYPE.FWP_INT8 => this.Value.int8,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            // Convert the string to binary
+            byte[] binaryValue = new byte[value.BinaryLength];
+            value.GetBinaryForm(binaryValue, 0);
 
-        public short? Int16Value => this.Type switch
-        {
-            FWP_DATA_TYPE.FWP_INT16 => this.Value.int16,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            return Allocate(binaryValue);
+        }
 
-        public int? Int32Value => this.Type switch
+        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(byte[] value)
         {
-            FWP_DATA_TYPE.FWP_INT32 => this.Value.int32,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
+            var blob = new FWP_BYTE_BLOB(value);
+            var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB>(blob);
+            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, memoryHandle);
 
-        public long? Int64Value => this.Type switch
-        {
-            FWP_DATA_TYPE.FWP_INT64 => Marshal.ReadInt64(this.Value.int64),
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
-
-        public float? FloatValue => this.Type switch
-        {
-            FWP_DATA_TYPE.FWP_FLOAT => this.Value.float32,
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
-
-        public Guid? GuidValue => this.Type switch
-        {
-            FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE => Marshal.PtrToStructure<Guid>(this.Value.byteArray16),
-            FWP_DATA_TYPE.FWP_EMPTY => null,
-            _ => null,
-        };
-
-        public byte[]? ByteArrayValue
-        {
-            get
-            {
-                if(this.Type == FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE)
-                {
-                    byte[] byteArray = new byte[16];
-                    Marshal.Copy(this.Value.byteArray16, byteArray, 0, 16);
-                    return byteArray;
-                }
-                else if (this.Type == FWP_DATA_TYPE.FWP_BYTE_ARRAY6_TYPE)
-                {
-                    byte[] byteArray = new byte[6];
-                    Marshal.Copy(this.Value.byteArray16, byteArray, 0, 6);
-                    return byteArray;
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            return (valueWrapper, memoryHandle);
         }
     }
 }

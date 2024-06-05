@@ -42,7 +42,7 @@ namespace DSInternals.Win32.RpcFilters
         /// Optional provider-specific data used by providers to store additional context information with the object.
         /// </summary>
         [MarshalAs(UnmanagedType.Struct)]
-        public FWP_BYTE_BLOB ProviderData;
+        public FWP_BYTE_BLOB_PTR ProviderData;
 
         /// <summary>
         /// GUID of the layer where the filter resides.

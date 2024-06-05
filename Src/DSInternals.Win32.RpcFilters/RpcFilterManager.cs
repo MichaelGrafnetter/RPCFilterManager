@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Net;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -12,12 +11,14 @@ namespace DSInternals.Win32.RpcFilters
         private const int DefaultWaitTimeoutInMSec = 10000;
         private const uint FilterEnumBatchSize = 100;
 
-        private SafeFwpmEngineHandle engineHandle;
+        private SafeFwpmEngineHandle? engineHandle;
 
         public RpcFilterManager()
         {
-            var session = new FWPM_SESSION0();
-            session.TxnWaitTimeoutInMSec = DefaultWaitTimeoutInMSec;
+            var session = new FWPM_SESSION0
+            {
+                TxnWaitTimeoutInMSec = DefaultWaitTimeoutInMSec
+            };
 
             WIN32_ERROR result = NativeMethods.FwpmEngineOpen0(null, RpcAuthenticationType.Default, null, session, out this.engineHandle);
             ValidateResult(result);
@@ -31,7 +32,8 @@ namespace DSInternals.Win32.RpcFilters
                 LayerKey = PInvoke.FWPM_LAYER_RPC_UM,
                 EnumType = FWP_FILTER_ENUM_TYPE.FWP_FILTER_ENUM_OVERLAPPING,
                 Flags = FWP_FILTER_ENUM_FLAGS.FWP_FILTER_ENUM_FLAG_SORTED | FWP_FILTER_ENUM_FLAGS.FWP_FILTER_ENUM_FLAG_INCLUDE_DISABLED,
-                ActionMask = FWP_ACTION_TYPE.FWP_ACTION_PERMIT | FWP_ACTION_TYPE.FWP_ACTION_BLOCK | FWP_ACTION_TYPE.FWP_ACTION_CONTINUE
+                // Ignore the filter's action type when enumerating. 
+                ActionMask = (FWP_ACTION_TYPE)uint.MaxValue
             };
 
             var result = NativeMethods.FwpmFilterCreateEnumHandle0(this.engineHandle, enumTemplate, out SafeFwpmFilterEnumHandle enumHandle);
@@ -88,55 +90,53 @@ namespace DSInternals.Win32.RpcFilters
             }
         }
 
-        ulong AddTcpFilter(
-            string name,
-            string description,
-            Guid? filterKey,
-            Guid interfaceUUID,
-            bool permit,
-            int? operationNumber,
-            byte? weight,
-            IPAddress? remoteAddress,
-            bool audit = false
-
-            )
+        public ulong AddFilter(RpcFilter filter)
         {
-            // Weight must be in the range [0, 15]
-            FWP_VALUE0 nativeWeight = weight.HasValue ? new FWP_VALUE0(weight.Value) : new FWP_VALUE0();
-            Guid subLayer = audit ? PInvoke.FWPM_SUBLAYER_RPC_AUDIT : PInvoke.FWPM_SUBLAYER_UNIVERSAL;
-            FWPM_ACTION0 action = new FWPM_ACTION0(permit);
-            filterKey ??= Guid.NewGuid();
+            if(filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-            var filter = new FWPM_FILTER0()
+            // Weight must be in the range [0, 15]
+            if(filter.Weight.HasValue && filter.Weight.Value > 15)
+            {
+                throw new ArgumentOutOfRangeException(nameof(filter.Weight), filter.Weight.Value, "The weight must be in the range [0, 15].");
+            }
+
+            FWP_VALUE0 nativeWeight = filter.Weight.HasValue ? new FWP_VALUE0((byte)filter.Weight.Value) : new FWP_VALUE0();
+            Guid subLayer = filter.Audit ? PInvoke.FWPM_SUBLAYER_RPC_AUDIT : PInvoke.FWPM_SUBLAYER_UNIVERSAL;
+            FWPM_ACTION0 action = new(filter.Action);
+            FWPM_FILTER_FLAGS flags = FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_NONE;
+
+            if(filter.IsPersistent)
+            {
+                flags |= FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT;
+            }
+
+            if(filter.IsBootTimeEnforced)
+            {
+                flags |= FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME;
+            }
+
+            
+
+            var nativeFilter = new FWPM_FILTER0()
             {
                 LayerKey = PInvoke.FWPM_LAYER_RPC_UM,
                 SubLayerKey = subLayer,
                 Weight = nativeWeight,
                 Action = action,
-                DisplayData = new FWPM_DISPLAY_DATA0(name, description),
-                FilterKey = filterKey.Value,
-                Flags = FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT,
+                DisplayData = new FWPM_DISPLAY_DATA0(filter.Name, filter.Description),
+                FilterKey = filter.FilterKey,
+                Flags = flags,
                 //NumFilterConditions = 0,
                 // FilterCondition
             };
 
-            WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, filter, null, out ulong id);
+            WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, nativeFilter, null, out ulong id);
             ValidateResult(result);
             
             return id;
-        }
-
-        void AddNamedPipeFilter(
-            Guid interfaceUUID,
-            int protocol,
-            int operationNumber,
-            int weight,
-            string namedPipe,
-
-            int action
-            )
-        {
-
         }
 
         public void RemoveFilter(ulong id)
@@ -148,6 +148,7 @@ namespace DSInternals.Win32.RpcFilters
         public void Dispose()
         {
             this.engineHandle?.Dispose();
+            this.engineHandle = null;
         }
 
         private static void ValidateResult(WIN32_ERROR code)
@@ -158,27 +159,15 @@ namespace DSInternals.Win32.RpcFilters
             }
 
             var genericException = new Win32Exception((int)code);
-            Exception exceptionToThrow;
-
-            switch (code)
+            Exception exceptionToThrow = code switch
             {
-                case WIN32_ERROR.ERROR_INVALID_PARAMETER:
-                    exceptionToThrow = new ArgumentException(genericException.Message, genericException);
-                    break;
-                case WIN32_ERROR.ERROR_ACCESS_DENIED:
-                    exceptionToThrow = new UnauthorizedAccessException(genericException.Message, genericException);
-                    break;
-                case WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY:
-                case WIN32_ERROR.ERROR_OUTOFMEMORY:
-                    exceptionToThrow = new OutOfMemoryException(genericException.Message, genericException);
-                    break;
-                default:
-                    // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
-                    // We were not able to translate the Win32Exception to a more specific type.
-                    exceptionToThrow = genericException;
-                    break;
-            }
-
+                WIN32_ERROR.ERROR_INVALID_PARAMETER => new ArgumentException(genericException.Message, genericException),
+                WIN32_ERROR.ERROR_ACCESS_DENIED => new UnauthorizedAccessException(genericException.Message, genericException),
+                WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY or WIN32_ERROR.ERROR_OUTOFMEMORY => new OutOfMemoryException(genericException.Message, genericException),
+                _ => genericException,
+                // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
+                // We were not able to translate the Win32Exception to a more specific type.
+            };
             throw exceptionToThrow;
         }
     }
