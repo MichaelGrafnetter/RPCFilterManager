@@ -13,7 +13,8 @@ namespace DSInternals.Win32.RpcFilters
 
         public SafeStructHandle(T value) : base(true)
         {
-            // Copy the Guid to unmanaged memory
+            // Copy the struct to unmanaged memory
+            this.handle = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
             Marshal.StructureToPtr<T>(value, this.handle, false);
         }
 

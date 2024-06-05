@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Security.AccessControl;
+using Windows.Win32;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
 namespace DSInternals.Win32.RpcFilters
@@ -314,16 +315,39 @@ namespace DSInternals.Win32.RpcFilters
             byte[] binaryValue = new byte[value.BinaryLength];
             value.GetBinaryForm(binaryValue, 0);
 
-            return Allocate(binaryValue);
+            var blob = new FWP_BYTE_BLOB(binaryValue);
+            var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB>(blob);
+            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE, memoryHandle);
+
+            return (valueWrapper, memoryHandle);
         }
 
         public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(byte[] value)
         {
-            var blob = new FWP_BYTE_BLOB(value);
-            var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB>(blob);
-            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, memoryHandle);
+            if(value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
-            return (valueWrapper, memoryHandle);
+            if(value.Length == 6)
+            {
+                var array6Handle = new SafeByteArrayHandle(value);
+                var array6Value = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_ARRAY6_TYPE, array6Handle);
+                return (array6Value, array6Handle);
+            }
+            else if(value.Length == 16)
+            {
+                var array16Handle = new SafeByteArrayHandle(value);
+                var array16Value = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE, array16Handle);
+                return (array16Value, array16Handle);
+            }
+            else
+            {
+                var blob = new FWP_BYTE_BLOB(value);
+                var blobHandle = new SafeStructHandle<FWP_BYTE_BLOB>(blob);
+                var blobValue = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, blobHandle);
+                return (blobValue, blobHandle);
+            }
         }
     }
 }

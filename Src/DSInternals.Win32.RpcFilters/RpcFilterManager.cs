@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -11,7 +12,19 @@ namespace DSInternals.Win32.RpcFilters
         private const int DefaultWaitTimeoutInMSec = 10000;
         private const uint FilterEnumBatchSize = 100;
 
+        /// <summary>
+        /// The RPC OpNum for an RPC call made to an RPC listener.
+        /// </summary>
+        [Obsolete("Switch to the FWPM_CONDITION_RPC_OPNUM system constant once it gets into the API.")]
+        internal static readonly Guid FWPM_CONDITION_RPC_OPNUM = Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9");
+
         private SafeFwpmEngineHandle? engineHandle;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 (10.0.26100).</remarks>
+        public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
 
         public RpcFilterManager()
         {
@@ -24,7 +37,7 @@ namespace DSInternals.Win32.RpcFilters
             ValidateResult(result);
         }
 
-        public IList<RpcFilter> GetFilters(Guid? providerKey = null)
+        public IReadOnlyList<RpcFilter> GetFilters(Guid? providerKey = null)
         {
             var enumTemplate = new FWPM_FILTER_ENUM_TEMPLATE0()
             {
@@ -118,6 +131,101 @@ namespace DSInternals.Win32.RpcFilters
                 flags |= FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME;
             }
 
+            var conditions = new List<FWPM_FILTER_CONDITION0>();
+            var handles = new Stack<SafeHandle>();
+
+            if(filter.AuthenticationLevel.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationLevel.Value));
+            }
+            if(filter.AuthenticationType.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationType.Value));
+            }
+            if (filter.Protocol.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(filter.Protocol.Value));
+            }
+            
+            if (filter.LocalPort.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_IP_LOCAL_PORT, filter.LocalPort.Value));
+            }
+            if (filter.InterfaceVersion.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_RPC_IF_VERSION, filter.InterfaceVersion.Value));
+            }
+            if (filter.InterfaceFlag.HasValue)
+            {
+                conditions.Add(new FWPM_FILTER_CONDITION0(filter.InterfaceFlag.Value));
+            }
+            
+            if (filter.InterfaceUUID.HasValue)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_RPC_IF_UUID, filter.InterfaceUUID.Value);
+                handles.Push(handle);
+                conditions.Add(condition);
+            }
+
+            if (filter.DcomAppId.HasValue)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_DCOM_APP_ID, filter.DcomAppId.Value);
+                handles.Push(handle);
+                conditions.Add(condition);
+            }
+            if (filter.OperationNumber.HasValue)
+            {
+                if(!IsOpnumFilterSupported)
+                {
+                    throw new PlatformNotSupportedException("The FWPM_CONDITION_RPC_OPNUM filter condition is only supported on Windows 11 24H2 or newer operating systems.");
+                }
+
+                conditions.Add(new FWPM_FILTER_CONDITION0(RpcFilterManager.FWPM_CONDITION_RPC_OPNUM, filter.OperationNumber.Value));
+            }
+            
+            if (filter.NamedPipe != null)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_PIPE, filter.NamedPipe);
+                handles.Push(handle);
+                conditions.Add(condition);
+            }
+            if (filter.ImageName != null)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_IMAGE_NAME, filter.ImageName);
+                handles.Push(handle);
+                conditions.Add(condition);
+            }
+
+            if (filter.SecurityDescriptor != null)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.SecurityDescriptor);
+                handles.Push(handle);
+                // TODO: Receiving exception 'The security descriptor structure is invalid'
+                // conditions.Add(condition);
+            }
+
+            if (filter.LocalAddress != null)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.LocalAddress, false);
+
+                if (handle != null)
+                {
+                    handles.Push(handle);
+                }
+
+                conditions.Add(condition);
+            }
+            if (filter.RemoteAddress != null)
+            {
+                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, true);
+
+                if (handle != null)
+                {
+                    handles.Push(handle);
+                }
+
+                conditions.Add(condition);
+            }
             
 
             var nativeFilter = new FWPM_FILTER0()
@@ -128,14 +236,28 @@ namespace DSInternals.Win32.RpcFilters
                 Action = action,
                 DisplayData = new FWPM_DISPLAY_DATA0(filter.Name, filter.Description),
                 FilterKey = filter.FilterKey,
-                Flags = flags,
-                //NumFilterConditions = 0,
-                // FilterCondition
+                Flags = flags
             };
 
-            WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, nativeFilter, null, out ulong id);
+            var conditionsHandle = new GCHandle();
+
+            if(conditions.Count > 0)
+            {
+                conditionsHandle = nativeFilter.SetFilterConditions(conditions);
+            }
+
+            WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, nativeFilter, IntPtr.Zero, out ulong id);
             ValidateResult(result);
-            
+
+
+            // Free the memory
+            // TODO: Free in a safer way
+            conditionsHandle.Free();
+
+            foreach(var handle in handles)
+            {
+                handle.Dispose();
+            }
             return id;
         }
 

@@ -155,8 +155,7 @@ namespace DSInternals.Win32.RpcFilters
         /// The RPC OpNum for an RPC call made to an RPC listener.
         /// </summary>
         public readonly ushort? OperationNumber =>
-                // TODO: Use the FWPM_CONDITION_RPC_OPNUM constant once it gets into the API.
-                this.FieldKey == Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9") ? this.ConditionValue.UInt16Value : null;
+                this.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM ? this.ConditionValue.UInt16Value : null;
 
         /// <summary>
         /// The name of the remote named pipe.
@@ -175,7 +174,7 @@ namespace DSInternals.Win32.RpcFilters
             this.ConditionValue = new FWP_CONDITION_VALUE0((byte)protocol);
         }
 
-        public FWPM_FILTER_CONDITION0(AuthenticationLevel authenticationLevel)
+        public FWPM_FILTER_CONDITION0(RpcAuthenticationLevel authenticationLevel)
         {
             this.FieldKey = PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL;
             this.MatchType = FWP_MATCH_TYPE.FWP_MATCH_EQUAL;
@@ -191,10 +190,9 @@ namespace DSInternals.Win32.RpcFilters
 
         public FWPM_FILTER_CONDITION0(Guid fieldKey, ushort value)
         {
-            // TODO: Use the FWPM_CONDITION_RPC_OPNUM constant once it gets into the API.
-            if (fieldKey != PInvoke.FWPM_CONDITION_RPC_SERVER_PORT &&
+            if (fieldKey != PInvoke.FWPM_CONDITION_IP_LOCAL_PORT &&
                fieldKey != PInvoke.FWPM_CONDITION_RPC_IF_VERSION &&
-               fieldKey != Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9"))
+               fieldKey != RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
             {
                 throw new ArgumentOutOfRangeException(nameof(fieldKey), fieldKey, "The field key must be one of the predefined RPC conditions.");
             }
@@ -218,7 +216,7 @@ namespace DSInternals.Win32.RpcFilters
             this.ConditionValue = conditionValue;
         }
 
-        public (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, Guid value)
+        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, Guid value)
         {
             if (fieldKey != PInvoke.FWPM_CONDITION_RPC_IF_UUID &&
                 fieldKey != PInvoke.FWPM_CONDITION_DCOM_APP_ID)
@@ -231,7 +229,7 @@ namespace DSInternals.Win32.RpcFilters
             return (condition, memoryHandle);
         }
 
-        public (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, String value)
+        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, String value)
         {
             if (fieldKey != PInvoke.FWPM_CONDITION_IMAGE_NAME &&
                 fieldKey != PInvoke.FWPM_CONDITION_PIPE)
@@ -244,14 +242,14 @@ namespace DSInternals.Win32.RpcFilters
             return (condition, memoryHandle);
         }
 
-        public (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(RawSecurityDescriptor sd)
+        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(RawSecurityDescriptor sd)
         {
             (var conditionValue, var memoryHandle) = FWP_CONDITION_VALUE0.Allocate(sd);
             var condition = new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
             return (condition, memoryHandle);
         }
 
-        public (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, bool isRemote = true)
+        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, bool isRemote = true)
         {
             // Validate the input
             if(address == null) throw new ArgumentNullException(nameof(address));

@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections;
+using System.Runtime.InteropServices;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
 
@@ -25,12 +26,12 @@ namespace DSInternals.Win32.RpcFilters
         /// </summary>
         public FWPM_FILTER_FLAGS Flags;
 
-        private IntPtr providerKey;
+        private readonly IntPtr providerKey;
 
         /// <summary>
         /// Optional GUID of the policy provider that manages this filter.
         /// </summary>
-        public Guid? ProviderKey
+        public readonly Guid? ProviderKey
         {
             get
             {
@@ -69,13 +70,13 @@ namespace DSInternals.Win32.RpcFilters
         /// </summary>
         private IntPtr filterCondition;
 
-        public IList<FWPM_FILTER_CONDITION0> FilterCondition
+        public readonly IReadOnlyList<FWPM_FILTER_CONDITION0> FilterCondition
         {
             get
             {
                 if (this.filterCondition == IntPtr.Zero || this.numFilterConditions <= 0)
                 {
-                    return new List<FWPM_FILTER_CONDITION0>();
+                    return [];
                 }
 
                 int structSize = Marshal.SizeOf<FWPM_FILTER_CONDITION0>();
@@ -121,7 +122,7 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Reserved for system use.
         /// </summary>
-        private IntPtr Reserved;
+        private readonly IntPtr Reserved;
 
         /// <summary>
         /// LUID identifying the filter.
@@ -132,5 +133,21 @@ namespace DSInternals.Win32.RpcFilters
         /// Contains the weight assigned to the filter.
         /// </summary>
         public FWP_VALUE0 EffectiveWeight;
+
+        public GCHandle SetFilterConditions(IReadOnlyList<FWPM_FILTER_CONDITION0> conditions)
+        {
+            if (conditions == null)
+            {
+                throw new ArgumentNullException(nameof(conditions));
+            }
+
+            this.numFilterConditions = conditions.Count;
+
+            var conditionsArray = conditions.ToArray();
+            var conditionsHandle = GCHandle.Alloc(conditionsArray, GCHandleType.Pinned);
+            this.filterCondition = conditionsHandle.AddrOfPinnedObject();
+
+            return conditionsHandle;
+        }
     }
 }

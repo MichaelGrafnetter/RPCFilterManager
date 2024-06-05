@@ -103,7 +103,7 @@ namespace DSInternals.Win32.RpcFilters
         internal static extern WIN32_ERROR FwpmFilterAdd0(
             SafeFwpmEngineHandle engineHandle,
             FWPM_FILTER0 filter,
-            SafeBuffer? sd,
+            IntPtr sd,
             out ulong id
         );
 

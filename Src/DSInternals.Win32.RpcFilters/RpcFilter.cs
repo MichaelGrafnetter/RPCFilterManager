@@ -174,7 +174,7 @@ namespace DSInternals.Win32.RpcFilters
                 IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
                 Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
                 ProviderKey = nativeFilter.ProviderKey,
-                Weight = nativeFilter.Weight.UInt64Value,
+                Weight = nativeFilter.Weight.UIntValue,
                 Action = (RpcFilterAction)nativeFilter.Action.Type,
                 EffectiveWeight = nativeFilter.EffectiveWeight.UInt64Value,
             };
@@ -202,9 +202,8 @@ namespace DSInternals.Win32.RpcFilters
                 {
                     filter.InterfaceFlag = condition.InterfaceFlag;
                 }
-                else if (condition.FieldKey == Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9"))
+                else if (condition.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
                 {
-                    // TODO: Use the FWPM_CONDITION_RPC_OPNUM constant once it gets into the API.
                     filter.OperationNumber = condition.OperationNumber;
                 }
                 else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL) {
@@ -217,7 +216,7 @@ namespace DSInternals.Win32.RpcFilters
                 {
                     filter.SecurityDescriptor = condition.SecurityDescriptor;
                 }
-                else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_SERVER_PORT)
+                else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_PORT)
                 {
                     filter.LocalPort = condition.LocalPort;
                 }
