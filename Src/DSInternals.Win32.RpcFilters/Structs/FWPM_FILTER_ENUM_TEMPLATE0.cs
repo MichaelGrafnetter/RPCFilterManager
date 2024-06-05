@@ -58,7 +58,7 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Used to limit the number of filters enumerated.
         /// </summary>
-        public IntPtr ProviderContextTemplate;
+        private IntPtr ProviderContextTemplate;
 
         /// <summary>
         /// Number of filter conditions.
@@ -78,6 +78,35 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Uniquely identifies the callout.
         /// </summary>
-        public byte[]? calloutKey;
+        private byte[]? calloutKey;
+
+        /// <summary>
+        /// Uniquely identifies the callout.
+        /// </summary>
+        public Guid? CalloutKey
+        {
+            get
+            {
+                if (calloutKey != null)
+                {
+                    return new Guid(calloutKey);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (value.HasValue)
+                {
+                    this.calloutKey = value.Value.ToByteArray();
+                }
+                else
+                {
+                    this.calloutKey = null;
+                }
+            }
+        }
     }
 }

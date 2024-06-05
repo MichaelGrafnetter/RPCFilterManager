@@ -62,13 +62,36 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Number of filter conditions.
         /// </summary>
-        public int NumFilterConditions;
+        private int numFilterConditions;
 
         /// <summary>
         /// Array of all the filtering conditions.
         /// </summary>
-        public IntPtr FilterCondition;
-        
+        private IntPtr filterCondition;
+
+        public IList<FWPM_FILTER_CONDITION0> FilterCondition
+        {
+            get
+            {
+                if (this.filterCondition == IntPtr.Zero || this.numFilterConditions <= 0)
+                {
+                    return new List<FWPM_FILTER_CONDITION0>();
+                }
+
+                int structSize = Marshal.SizeOf<FWPM_FILTER_CONDITION0>();
+                var conditions = new List<FWPM_FILTER_CONDITION0>(this.numFilterConditions);
+
+                for (int i = 0; i < this.numFilterConditions; i++)
+                {
+                    IntPtr conditionPtr = IntPtr.Add(this.filterCondition, i * structSize);
+                    var condition = Marshal.PtrToStructure<FWPM_FILTER_CONDITION0>(conditionPtr);
+                    conditions.Add(condition);
+                }
+
+                return conditions;
+            }
+        }
+
         /// <summary>
         /// Specifies the action to be performed if all the filter conditions are true.
         /// </summary>
@@ -98,7 +121,7 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Reserved for system use.
         /// </summary>
-        public IntPtr Reserved;
+        private IntPtr Reserved;
 
         /// <summary>
         /// LUID identifying the filter.

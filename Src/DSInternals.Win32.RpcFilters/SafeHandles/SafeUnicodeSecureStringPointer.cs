@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
 
 namespace DSInternals.Win32.RpcFilters
 {

@@ -21,7 +21,7 @@ namespace DSInternals.Win32.RpcFilters
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         internal static extern WIN32_ERROR FwpmEngineOpen0(
             string? serverName,
-            RPC_C_AUTHN authnService,
+            RpcAuthenticationType authnService,
             SEC_WINNT_AUTH_IDENTITY_W? authIdentity,
             FWPM_SESSION0? session,
             out SafeFwpmEngineHandle engineHandle
@@ -45,12 +45,31 @@ namespace DSInternals.Win32.RpcFilters
         /// <returns>Code indicating whether the enumerator was created successfully. </returns>
         [DllImport(FwpuClnt, CharSet = CharSet.Unicode)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-        internal static extern WIN32_ERROR FwpmFilterCreateEnumHandle0(
+        private static extern WIN32_ERROR FwpmFilterCreateEnumHandle0(
             SafeFwpmEngineHandle engineHandle,
             [MarshalAs(UnmanagedType.LPStruct)]
             FWPM_FILTER_ENUM_TEMPLATE0 enumTemplate,
             out HANDLE enumHandle
         );
+
+        /// <summary>
+        /// Creates a handle used to enumerate a set of filter objects.
+        /// </summary>
+        /// <param name="engineHandle">Handle for an open session to the filter engine.</param>
+        /// <param name="enumTemplate">Template to selectively restrict the enumeration.</param>
+        /// <param name="enumHandle">The handle for filter enumeration.</param>
+        /// <returns>Code indicating whether the enumerator was created successfully. </returns>
+        internal static WIN32_ERROR FwpmFilterCreateEnumHandle0(
+            SafeFwpmEngineHandle engineHandle,
+            [MarshalAs(UnmanagedType.LPStruct)]
+            FWPM_FILTER_ENUM_TEMPLATE0 enumTemplate,
+            out SafeFwpmFilterEnumHandle enumHandle
+        )
+        {
+            var result = FwpmFilterCreateEnumHandle0(engineHandle, enumTemplate, out HANDLE enumHandleNative);
+            enumHandle = new SafeFwpmFilterEnumHandle(engineHandle, enumHandleNative);
+            return result;
+        }
 
         /// <summary>
         /// Returns the next page of results from the filter enumerator.
@@ -65,7 +84,7 @@ namespace DSInternals.Win32.RpcFilters
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         internal static extern WIN32_ERROR FwpmFilterEnum0(
            SafeFwpmEngineHandle engineHandle,
-           HANDLE enumHandle,
+           SafeFwpmFilterEnumHandle enumHandle,
            uint numEntriesRequested,
            out SafeFwpmBuffer entries,
            out uint numEntriesReturned

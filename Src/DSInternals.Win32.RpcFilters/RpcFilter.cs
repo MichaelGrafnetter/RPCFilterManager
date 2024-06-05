@@ -66,23 +66,40 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Contains the weight assigned to the filter.
         /// </summary>
-        public ulong EffectiveWeight { get; internal set; }
+        public ulong? EffectiveWeight { get; internal set; }
 
-        public int? Protocol { get; set; }
+        /// <summary>
+        /// Protocol family used by the RPC endpoint.
+        /// </summary>
+        public RpcProtocolSequence? Protocol { get; set; }
 
-        public int? AuthenticationLevel { get; set; }
+        /// <summary>
+        /// The authentication level controls how much security a client or server wants from its SSP.
+        /// </summary>
+        public RpcAuthenticationLevel? AuthenticationLevel { get; set; }
 
-        public int? AuthenticationType { get; set; }
+        /// <summary>
+        /// Authentication service used for RPC connections.
+        /// </summary>
+        public RpcAuthenticationType? AuthenticationType { get; set; }
 
         public string? NamedPipe { get; set; }
 
         public IPAddress? RemoteAddress { get; set; }
 
-        public int? OperationNumber { get; set; }
+        /// <summary>
+        /// The RPC OpNum for an RPC call made to an RPC listener.
+        /// </summary>
+        public ushort? OperationNumber { get; set; }
+
+        /// <summary>
+        /// The local transport protocol port number.
+        /// </summary>
+        public ushort? LocalPort { get; set; }
 
         public Guid? InterfaceUUID { get; set; }
 
-        public SecurityIdentifier Principal { get; set; }
+        public SecurityIdentifier? Principal { get; set; }
 
         public RpcFilter()
         {
@@ -93,6 +110,12 @@ namespace DSInternals.Win32.RpcFilters
 
         internal static RpcFilter Create(FWPM_FILTER0 nativeFilter)
         {
+            var conditions = nativeFilter.FilterCondition;
+
+            foreach (var condition in conditions)
+            {
+
+            }
             return new RpcFilter()
             {
                 FilterKey = nativeFilter.FilterKey,
@@ -103,9 +126,10 @@ namespace DSInternals.Win32.RpcFilters
                 IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
                 Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
                 ProviderKey = nativeFilter.ProviderKey,
-                Weight = nativeFilter.Weight.ToUInt64(),
+                Weight = nativeFilter.Weight.UInt64Value,
                 Action = (RpcFilterAction)nativeFilter.Action.Type,
-                EffectiveWeight = nativeFilter.EffectiveWeight.ToUInt64().Value,
+                EffectiveWeight = nativeFilter.EffectiveWeight.UInt64Value,
+                
             };
         }
     }

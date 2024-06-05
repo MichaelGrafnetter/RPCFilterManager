@@ -19,7 +19,7 @@ namespace DSInternals.Win32.RpcFilters
             var session = new FWPM_SESSION0();
             session.TxnWaitTimeoutInMSec = DefaultWaitTimeoutInMSec;
 
-            WIN32_ERROR result = NativeMethods.FwpmEngineOpen0(null, RPC_C_AUTHN.RPC_C_AUTHN_DEFAULT, null, session, out this.engineHandle);
+            WIN32_ERROR result = NativeMethods.FwpmEngineOpen0(null, RpcAuthenticationType.Default, null, session, out this.engineHandle);
             ValidateResult(result);
         }
 
@@ -34,7 +34,7 @@ namespace DSInternals.Win32.RpcFilters
                 ActionMask = FWP_ACTION_TYPE.FWP_ACTION_PERMIT | FWP_ACTION_TYPE.FWP_ACTION_BLOCK | FWP_ACTION_TYPE.FWP_ACTION_CONTINUE
             };
 
-            WIN32_ERROR result = NativeMethods.FwpmFilterCreateEnumHandle0(this.engineHandle, enumTemplate, out HANDLE enumHandle);
+            var result = NativeMethods.FwpmFilterCreateEnumHandle0(this.engineHandle, enumTemplate, out SafeFwpmFilterEnumHandle enumHandle);
 
             try
             {
@@ -48,7 +48,7 @@ namespace DSInternals.Win32.RpcFilters
                 {
                     try
                     {
-                        WIN32_ERROR result2 = NativeMethods.FwpmFilterEnum0(this.engineHandle, enumHandle, FilterEnumBatchSize, out entries, out numReturned);
+                        var result2 = NativeMethods.FwpmFilterEnum0(this.engineHandle, enumHandle, FilterEnumBatchSize, out entries, out numReturned);
                         ValidateResult(result2);
 
                         if(numReturned == 0 || entries == null)
@@ -84,7 +84,7 @@ namespace DSInternals.Win32.RpcFilters
             finally
             {
                 // Ignore any errors during cleanup.
-                NativeMethods.FwpmFilterDestroyEnumHandle0(this.engineHandle, enumHandle);
+                enumHandle.Dispose();
             }
         }
 
@@ -116,7 +116,7 @@ namespace DSInternals.Win32.RpcFilters
                 DisplayData = new FWPM_DISPLAY_DATA0(name, description),
                 FilterKey = filterKey.Value,
                 Flags = FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT,
-                NumFilterConditions = 0,
+                //NumFilterConditions = 0,
                 // FilterCondition
             };
 
