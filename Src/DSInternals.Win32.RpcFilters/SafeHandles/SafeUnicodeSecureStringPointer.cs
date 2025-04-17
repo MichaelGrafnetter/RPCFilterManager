@@ -2,50 +2,49 @@
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace DSInternals.Win32.RpcFilters
+namespace DSInternals.Win32.RpcFilters;
+
+internal sealed class SafeUnicodeSecureStringPointer : SafeHandleZeroOrMinusOneIsInvalid
 {
-    internal sealed class SafeUnicodeSecureStringPointer : SafeHandleZeroOrMinusOneIsInvalid
+    public SafeUnicodeSecureStringPointer(SecureString password)
+        : base(true)
     {
-        public SafeUnicodeSecureStringPointer(SecureString password)
-            : base(true)
+        if (password != null)
         {
-            if (password != null)
+            IntPtr pointer = Marshal.SecureStringToGlobalAllocUnicode(password);
+            this.SetHandle(pointer);
+        }
+    }
+
+    public SafeUnicodeSecureStringPointer(byte[] password)
+        : base(true)
+    {
+        if (password != null)
+        {
+            if (password.Length % sizeof(char) == 1)
             {
-                IntPtr pointer = Marshal.SecureStringToGlobalAllocUnicode(password);
-                this.SetHandle(pointer);
+                // Unicode strings must have even number of bytes
+                new ArgumentOutOfRangeException(nameof(password));
             }
+
+            IntPtr buffer = Marshal.AllocHGlobal(password.Length + sizeof(char));
+            Marshal.Copy(password, 0, buffer, password.Length);
+
+            // Add the trailing zero
+            Marshal.WriteInt16(buffer, password.Length, 0);
+
+            this.SetHandle(buffer);
         }
+    }
 
-        public SafeUnicodeSecureStringPointer(byte[] password)
-            : base(true)
-        {
-            if (password != null)
-            {
-                if (password.Length % sizeof(char) == 1)
-                {
-                    // Unicode strings must have even number of bytes
-                    new ArgumentOutOfRangeException(nameof(password));
-                }
+    protected override bool ReleaseHandle()
+    {
+        Marshal.ZeroFreeGlobalAllocUnicode(handle);
+        return true;
+    }
 
-                IntPtr buffer = Marshal.AllocHGlobal(password.Length + sizeof(char));
-                Marshal.Copy(password, 0, buffer, password.Length);
-
-                // Add the trailing zero
-                Marshal.WriteInt16(buffer, password.Length, 0);
-
-                this.SetHandle(buffer);
-            }
-        }
-
-        protected override bool ReleaseHandle()
-        {
-            Marshal.ZeroFreeGlobalAllocUnicode(handle);
-            return true;
-        }
-
-        public override string? ToString()
-        {
-            return Marshal.PtrToStringUni(this.handle);
-        }
+    public override string? ToString()
+    {
+        return Marshal.PtrToStringUni(this.handle);
     }
 }

@@ -1,34 +1,33 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
 
-namespace DSInternals.Win32.RpcFilters
+namespace DSInternals.Win32.RpcFilters;
+
+internal class SafeByteArrayHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
-    internal class SafeByteArrayHandle : SafeHandleZeroOrMinusOneIsInvalid
+    public SafeByteArrayHandle(byte[] value) : base(true)
     {
-        public SafeByteArrayHandle(byte[] value) : base(true)
+        if(value == null)
         {
-            if(value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            this.handle = Marshal.AllocHGlobal(value.Length);
-            GCHandle pinnedArray = GCHandle.Alloc(value, GCHandleType.Pinned);
-
-            try
-            {
-                Marshal.Copy(value, 0, this.handle, value.Length);
-            }
-            finally
-            {
-                pinnedArray.Free();
-            }
+            throw new ArgumentNullException(nameof(value));
         }
 
-        protected override bool ReleaseHandle()
+        this.handle = Marshal.AllocHGlobal(value.Length);
+        GCHandle pinnedArray = GCHandle.Alloc(value, GCHandleType.Pinned);
+
+        try
         {
-            Marshal.FreeHGlobal(this.handle);
-            return true;
+            Marshal.Copy(value, 0, this.handle, value.Length);
+        }
+        finally
+        {
+            pinnedArray.Free();
         }
     }
- }
+
+    protected override bool ReleaseHandle()
+    {
+        Marshal.FreeHGlobal(this.handle);
+        return true;
+    }
+}

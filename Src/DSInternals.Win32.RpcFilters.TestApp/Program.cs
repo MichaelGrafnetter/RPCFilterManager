@@ -22,7 +22,7 @@ using (var fw = new RpcFilterManager())
         Weight = 3,
         ImageName = "svchost.exe",
         LocalPort = 56345,
-        RemoteAddress = IPAddress.Parse("fe80::bf1c:8c8e:f09d:c074"), //("192.168.0.1"),
+        RemoteAddress = IPAddress.Parse("fe80::bf1c:8c8e:f09d:c074"),
         OperationNumber = 25,
         LocalAddress = IPAddress.Parse("127.0.0.1"),
         InterfaceVersion = 1,
@@ -33,4 +33,5 @@ using (var fw = new RpcFilterManager())
     ulong id = fw.AddFilter(filter);
     fw.RemoveFilter(id);
     filters = fw.GetFilters().ToList();
+    fw.RemoveFilter(257);
 }

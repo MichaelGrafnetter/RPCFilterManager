@@ -1,29 +1,29 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
 
-namespace DSInternals.Win32.RpcFilters
+namespace DSInternals.Win32.RpcFilters;
+
+internal class SafeStructHandle<T> : SafeHandleZeroOrMinusOneIsInvalid where T : struct
 {
-    internal class SafeStructHandle<T> : SafeHandleZeroOrMinusOneIsInvalid where T : struct
+    private SafeStructHandle(IntPtr handle) : base(false)
     {
-        private SafeStructHandle(IntPtr handle) : base(false)
-        {
-            // The value was allocated by someone else.
-            this.handle = handle;
-        }
-
-        public SafeStructHandle(T value) : base(true)
-        {
-            // Copy the struct to unmanaged memory
-            this.handle = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
-            Marshal.StructureToPtr<T>(value, this.handle, false);
-        }
-
-        public T? Value => this.IsInvalid ? null : Marshal.PtrToStructure<T>(this.handle);
-
-        protected override bool ReleaseHandle()
-        {
-            Marshal.DestroyStructure<T>(handle);
-            return true;
-        }
+        // The value was allocated by someone else.
+        this.handle = handle;
     }
- }
+
+    public SafeStructHandle(T value) : base(true)
+    {
+        // Copy the struct to unmanaged memory
+        this.handle = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+        Marshal.StructureToPtr<T>(value, this.handle, false);
+    }
+
+    public T? Value => this.IsInvalid ? null : Marshal.PtrToStructure<T>(this.handle);
+
+    protected override bool ReleaseHandle()
+    {
+        Marshal.DestroyStructure<T>(handle);
+        return true;
+    }
+}
+

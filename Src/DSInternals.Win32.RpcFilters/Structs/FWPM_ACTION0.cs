@@ -1,45 +1,44 @@
 ﻿using System.Runtime.InteropServices;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
-namespace DSInternals.Win32.RpcFilters
+namespace DSInternals.Win32.RpcFilters;
+
+/// <summary>
+/// Specifies the action taken if all the filter conditions are true.
+/// </summary>
+[StructLayout(LayoutKind.Sequential)]
+internal struct FWPM_ACTION0
 {
     /// <summary>
-    /// Specifies the action taken if all the filter conditions are true.
+    /// Action to be performed.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct FWPM_ACTION0
+    public FWP_ACTION_TYPE Type;
+
+    public FWPM_ACTION0_UNION Reference;
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct FWPM_ACTION0_UNION
     {
         /// <summary>
-        /// Action to be performed.
+        /// An arbitrary GUID chosen by the policy provider.
         /// </summary>
-        public FWP_ACTION_TYPE Type;
+        [FieldOffset(0)]
+        public Guid FilterType;
 
-        public FWPM_ACTION0_UNION Reference;
+        /// <summary>
+        /// The GUID for a valid callout in the layer.
+        /// </summary>
+        [FieldOffset(0)]
+        public Guid CalloutKey;
+    }
 
-        [StructLayout(LayoutKind.Explicit)]
-        public struct FWPM_ACTION0_UNION
-        {
-            /// <summary>
-            /// An arbitrary GUID chosen by the policy provider.
-            /// </summary>
-            [FieldOffset(0)]
-            public Guid FilterType;
+    public FWPM_ACTION0(bool permit)
+    {
+        this.Type = permit ? FWP_ACTION_TYPE.FWP_ACTION_PERMIT : FWP_ACTION_TYPE.FWP_ACTION_BLOCK;
+    }
 
-            /// <summary>
-            /// The GUID for a valid callout in the layer.
-            /// </summary>
-            [FieldOffset(0)]
-            public Guid CalloutKey;
-        }
-
-        public FWPM_ACTION0(bool permit)
-        {
-            this.Type = permit ? FWP_ACTION_TYPE.FWP_ACTION_PERMIT : FWP_ACTION_TYPE.FWP_ACTION_BLOCK;
-        }
-
-        public FWPM_ACTION0(RpcFilterAction action)
-        {
-            this.Type = (FWP_ACTION_TYPE)action;
-        }
+    public FWPM_ACTION0(RpcFilterAction action)
+    {
+        this.Type = (FWP_ACTION_TYPE)action;
     }
 }
