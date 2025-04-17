@@ -17,7 +17,7 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Unique identifier of the filter.
         /// </summary>
-        public Guid FilterKey;
+        public Guid FilterKey { get; set; }
 
         /// <summary>
         /// Locally unique identifier of the filter.

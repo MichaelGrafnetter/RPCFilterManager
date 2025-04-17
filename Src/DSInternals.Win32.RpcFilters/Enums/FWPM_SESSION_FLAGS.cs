@@ -4,7 +4,7 @@
     /// Settings to control session behavior.
     /// </summary>
     [Flags]
-    public enum FWPM_SESSION_FLAGS : uint
+    internal enum FWPM_SESSION_FLAGS : uint
     {
         None = 0,
 

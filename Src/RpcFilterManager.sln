@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSInternals.Win32.RpcFilters", "DSInternals.Win32.RpcFilters\DSInternals.Win32.RpcFilters.csproj", "{E38ECD31-5393-4BEC-B814-ECCE675D170D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSInternals.Win32.RpcFilters.TestApp", "DSInternals.Win32.RpcFilters.TestApp\DSInternals.Win32.RpcFilters.TestApp.csproj", "{B828EFCE-755A-466B-9F1C-4F8297F66ADE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E38ECD31-5393-4BEC-B814-ECCE675D170D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E38ECD31-5393-4BEC-B814-ECCE675D170D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E38ECD31-5393-4BEC-B814-ECCE675D170D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B828EFCE-755A-466B-9F1C-4F8297F66ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B828EFCE-755A-466B-9F1C-4F8297F66ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B828EFCE-755A-466B-9F1C-4F8297F66ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B828EFCE-755A-466B-9F1C-4F8297F66ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

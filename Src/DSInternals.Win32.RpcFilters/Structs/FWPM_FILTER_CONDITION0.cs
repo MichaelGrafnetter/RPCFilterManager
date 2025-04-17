@@ -242,11 +242,11 @@ namespace DSInternals.Win32.RpcFilters
             return (condition, memoryHandle);
         }
 
-        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(RawSecurityDescriptor sd)
+        public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandleOuter, SafeHandle memoryHandleInner) Create(RawSecurityDescriptor sd)
         {
-            (var conditionValue, var memoryHandle) = FWP_CONDITION_VALUE0.Allocate(sd);
+            (var conditionValue, var memoryHandleOuter, var memoryHandleInner) = FWP_CONDITION_VALUE0.Allocate(sd);
             var condition = new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
-            return (condition, memoryHandle);
+            return (condition, memoryHandleOuter, memoryHandleInner);
         }
 
         public static (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, bool isRemote = true)

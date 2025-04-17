@@ -309,17 +309,18 @@ namespace DSInternals.Win32.RpcFilters
 
             return (valueWrapper, memoryHandle);
         }
-        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(RawSecurityDescriptor value)
+        public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandleOuter, SafeHandle memoryHandleInner) Allocate(RawSecurityDescriptor value)
         {
             // Convert the string to binary
             byte[] binaryValue = new byte[value.BinaryLength];
             value.GetBinaryForm(binaryValue, 0);
+            var securityDescriptorHandle = new SafeByteArrayHandle(binaryValue);
 
-            var blob = new FWP_BYTE_BLOB(binaryValue);
-            var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB>(blob);
-            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE, memoryHandle);
+            var blob = new FWP_BYTE_BLOB_PTR(securityDescriptorHandle, (uint)binaryValue.Length);
+            var blobHandle = new SafeStructHandle<FWP_BYTE_BLOB_PTR>(blob);
+            var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE, blobHandle);
 
-            return (valueWrapper, memoryHandle);
+            return (valueWrapper, blobHandle, securityDescriptorHandle);
         }
 
         public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(byte[] value)

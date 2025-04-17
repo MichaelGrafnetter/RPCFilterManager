@@ -189,6 +189,7 @@ namespace DSInternals.Win32.RpcFilters
                 handles.Push(handle);
                 conditions.Add(condition);
             }
+
             if (filter.ImageName != null)
             {
                 (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_IMAGE_NAME, filter.ImageName);
@@ -198,10 +199,10 @@ namespace DSInternals.Win32.RpcFilters
 
             if (filter.SecurityDescriptor != null)
             {
-                (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.SecurityDescriptor);
-                handles.Push(handle);
-                // TODO: Receiving exception 'The security descriptor structure is invalid'
-                // conditions.Add(condition);
+                (var condition, var handle1, var handle2) = FWPM_FILTER_CONDITION0.Create(filter.SecurityDescriptor);
+                handles.Push(handle1);
+                handles.Push(handle2);
+                conditions.Add(condition);
             }
 
             if (filter.LocalAddress != null)
@@ -215,6 +216,7 @@ namespace DSInternals.Win32.RpcFilters
 
                 conditions.Add(condition);
             }
+
             if (filter.RemoteAddress != null)
             {
                 (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, true);
@@ -226,7 +228,6 @@ namespace DSInternals.Win32.RpcFilters
 
                 conditions.Add(condition);
             }
-            
 
             var nativeFilter = new FWPM_FILTER0()
             {

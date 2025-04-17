@@ -32,6 +32,15 @@ namespace DSInternals.Win32.RpcFilters
                 return array;
             }
         }
+
+        public FWP_BYTE_BLOB_PTR(SafeByteArrayHandle data, uint size)
+        {
+            if (data != null && size > 0)
+            {
+                this.data = data.DangerousGetHandle();
+                this.size = size;
+            }
+        }
     }
 
     /// <summary>
@@ -48,7 +57,7 @@ namespace DSInternals.Win32.RpcFilters
         /// <summary>
         /// Pointer to the array.
         /// </summary>
-        public readonly byte[] Data;
+        public readonly byte[]? Data;
 
         public FWP_BYTE_BLOB(byte[] data)
         {

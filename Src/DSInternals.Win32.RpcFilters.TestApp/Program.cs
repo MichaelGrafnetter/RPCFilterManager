@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using DSInternals.Win32.RpcFilters;
+﻿using DSInternals.Win32.RpcFilters;
 using System.Net;
 
 using (var fw = new RpcFilterManager())
@@ -8,7 +7,7 @@ using (var fw = new RpcFilterManager())
     {
         Name = "TestFilter",
         Description = "Test filter description",
-        FilterKey = Guid.Parse("98a1836e-06b0-4bf9-bb1b-0dd2e994a865"),
+        FilterKey = Guid.Parse("98a1836e-06b0-4bf9-bb1b-0dd2e994a863"),
         InterfaceUUID = Guid.Parse("338CD001-2244-31F1-AAAA-900038001003"),
         DcomAppId = Guid.Parse("10000000-0000-0000-0000-000000000002"),
         Protocol = RpcProtocolSequence.ncacn_ip_tcp,
@@ -24,9 +23,14 @@ using (var fw = new RpcFilterManager())
         ImageName = "svchost.exe",
         LocalPort = 56345,
         RemoteAddress = IPAddress.Parse("fe80::bf1c:8c8e:f09d:c074"), //("192.168.0.1"),
+        OperationNumber = 25,
+        LocalAddress = IPAddress.Parse("127.0.0.1"),
         InterfaceVersion = 1,
         InterfaceFlag = 2
     };
-    ulong id = fw.AddFilter(filter);
+
     var filters = fw.GetFilters().ToList();
+    ulong id = fw.AddFilter(filter);
+    fw.RemoveFilter(id);
+    filters = fw.GetFilters().ToList();
 }
