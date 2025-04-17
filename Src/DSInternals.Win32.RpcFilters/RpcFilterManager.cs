@@ -14,7 +14,7 @@ public class RpcFilterManager : IDisposable
     /// <summary>
     /// The RPC OpNum for an RPC call made to an RPC listener.
     /// </summary>
-    [Obsolete("Switch to the FWPM_CONDITION_RPC_OPNUM system constant once it gets into the API.")]
+    // TODO: [Obsolete("Switch to the FWPM_CONDITION_RPC_OPNUM system constant once it gets into the API.")]
     internal static readonly Guid FWPM_CONDITION_RPC_OPNUM = Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9");
 
     private SafeFwpmEngineHandle? engineHandle;

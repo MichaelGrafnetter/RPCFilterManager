@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace DSInternals.Win32.RpcFilters;
 
+// TODO: Try changing SafeHandleZeroOrMinusOneIsInvalid to SafeBuffer.
 internal class SafeByteArrayHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
     public SafeByteArrayHandle(byte[] value) : base(true)
