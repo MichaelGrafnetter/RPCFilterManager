@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Net;
+using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
@@ -106,6 +107,18 @@ internal readonly struct FWP_VALUE0
         /// </summary>
         [FieldOffset(0)]
         public IntPtr sd;
+
+        /// <summary>
+        /// A pointer to an IPv4 address structure.
+        /// </summary>
+        [FieldOffset(0)]
+        public IntPtr v4AddrMask;
+
+        /// <summary>
+        /// A pointer to an IPv6 address structure.
+        /// </summary>
+        [FieldOffset(0)]
+        public IntPtr v6AddrMask;
     }
 
     public readonly ulong? UIntValue => this.Type switch
@@ -201,6 +214,27 @@ internal readonly struct FWP_VALUE0
         FWP_DATA_TYPE.FWP_EMPTY => null,
         _ => null,
     };
+
+    public readonly (IPAddress? address, byte? prefixLength) IPAddressAndMaskValue
+    {
+        get
+        {
+            if (this.Type == FWP_DATA_TYPE.FWP_V4_ADDR_MASK)
+            {
+                var addrAndMask = Marshal.PtrToStructure<FWP_V4_ADDR_AND_MASK>(this.Value.v4AddrMask);
+                return (addrAndMask.Address, addrAndMask.PrefixLength);
+            }
+            else if (this.Type == FWP_DATA_TYPE.FWP_V6_ADDR_MASK)
+            {
+                var addrAndMask = Marshal.PtrToStructure<FWP_V6_ADDR_AND_MASK>(this.Value.v6AddrMask);
+                return (addrAndMask.Address, addrAndMask.PrefixLength);
+            }
+            else
+            {
+                return (null, null);
+            }
+        }
+    }
 
     public readonly byte[]? ByteArrayValue
     {

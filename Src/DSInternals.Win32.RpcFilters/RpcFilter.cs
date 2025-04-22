@@ -124,9 +124,19 @@ public class RpcFilter
     public IPAddress? RemoteAddress { get; set; }
 
     /// <summary>
+    /// The remote IP address mask.
+    /// </summary>
+    public byte? RemoteAddressMask { get; set; }
+
+    /// <summary>
     /// The local IP address. 
     /// </summary>
     public IPAddress? LocalAddress { get; set; }
+
+    /// <summary>
+    /// The local IP address mask.
+    /// </summary>
+    public byte? LocalAddressMask { get; set; }
 
     /// <summary>
     /// The local transport protocol port number.
@@ -222,10 +232,12 @@ public class RpcFilter
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
             {
                 filter.RemoteAddress = condition.RemoteAddress;
+                filter.RemoteAddressMask = condition.RemoteAddressMask;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
             {
                 filter.LocalAddress = condition.LocalAddress;
+                filter.LocalAddressMask = condition.LocalAddressMask;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_DCOM_APP_ID)
             {

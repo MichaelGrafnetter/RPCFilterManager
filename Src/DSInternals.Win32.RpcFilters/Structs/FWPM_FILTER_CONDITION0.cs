@@ -50,7 +50,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
         {
             if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4)
             {
-                if ( this.ConditionValue.Type == FWP_DATA_TYPE.FWP_UINT32)
+                if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_UINT32)
                 {
 #pragma warning disable CS8629 // Nullable value type may be null.
                     return new IPAddress(this.ConditionValue.IntValue.Value);
@@ -58,8 +58,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 }
                 else if(this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V4_ADDR_MASK)
                 {
-                    // TODO: Parse the mask (ranges do not work yet in Windows)
-                    return null;
+                    return this.ConditionValue.IPAddressAndMaskValue.address;
                 }
             }
             else if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
@@ -70,8 +69,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 }
                 else if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V6_ADDR_MASK)
                 {
-                    // TODO: Parse the IPv6 address mask (ranges do not work yet in Windows)
-                    return null;
+                    return this.ConditionValue.IPAddressAndMaskValue.address;
                 }
             }
         
@@ -79,9 +77,43 @@ internal readonly struct FWPM_FILTER_CONDITION0
             return null;
         }
     }
+    // TODO: Combine RemoteAddress+RemoteAddressMask into a single property.
+    public readonly byte? RemoteAddressMask
+    {
+        get
+        {
+            if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4)
+            {
+                if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V4_ADDR_MASK)
+                {
+                    return this.ConditionValue.IPAddressAndMaskValue.prefixLength;
+                }
+                else
+                {
+                    // Defaults to a single IPv4 address.
+                    return FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength;
+                }
+            }
+            else if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
+            {
+                if(this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V6_ADDR_MASK)
+                {
+                    return this.ConditionValue.IPAddressAndMaskValue.prefixLength;
+                }
+                else
+                {
+                    // Defaults to a single IPv6 address.
+                    return FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength;
+                }
+            }
+
+            // The condition does not contain a valid IP address and mask.
+            return null;
+        }
+    }
 
     /// <summary>
-    /// The local IP address. 
+    /// The local IP address.
     /// </summary>
     public readonly IPAddress? LocalAddress
     {
@@ -97,8 +129,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 }
                 else if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V4_ADDR_MASK)
                 {
-                    // TODO: Parse the mask (ranges do not work yet in Windows)
-                    return null;
+                    return this.ConditionValue.IPAddressAndMaskValue.address;
                 }
             }
             else if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
@@ -109,12 +140,45 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 }
                 else if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V6_ADDR_MASK)
                 {
-                    // TODO: Parse the IPv6 address mask (ranges do not work yet in Windows)
-                    return null;
+                    return this.ConditionValue.IPAddressAndMaskValue.address;
                 }
             }
 
             // The condition does not contain a valid IP address.
+            return null;
+        }
+    }
+
+    public readonly byte? LocalAddressMask
+    {
+        get
+        {
+            if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4)
+            {
+                if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V4_ADDR_MASK)
+                {
+                    return this.ConditionValue.IPAddressAndMaskValue.prefixLength;
+                }
+                else
+                {
+                    // Defaults to a single IPv4 address.
+                    return FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength;
+                }
+            }
+            else if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
+            {
+                if (this.ConditionValue.Type == FWP_DATA_TYPE.FWP_V6_ADDR_MASK)
+                {
+                    return this.ConditionValue.IPAddressAndMaskValue.prefixLength;
+                }
+                else
+                {
+                    // Defaults to a single IPv6 address.
+                    return FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength;
+                }
+            }
+
+            // The condition does not contain a valid IP address and mask.
             return null;
         }
     }
@@ -247,7 +311,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
         return (condition, memoryHandleOuter, memoryHandleInner);
     }
 
-    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, bool isRemote = true)
+    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, bool isRemote = true,)
     {
         // Validate the input
         if(address == null) throw new ArgumentNullException(nameof(address));
