@@ -53,7 +53,7 @@ public class RpcFilterManager : IDisposable
     /// <param name="providerKey">Unique identifier of the provider associated with the filters to be returned.</param>
     /// <returns>List of RPC filters.</returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public IReadOnlyList<RpcFilter> GetFilters(Guid? providerKey = null)
+    public IEnumerable<RpcFilter> GetFilters(Guid? providerKey = null)
     {
         if (this.engineHandle == null || this.engineHandle.IsInvalid)
         {
@@ -78,7 +78,6 @@ public class RpcFilterManager : IDisposable
 
             uint numReturned = 0;
             SafeFwpmBuffer? entries = null;
-            var filters = new List<RpcFilter>();
 
             do
             {
@@ -105,7 +104,7 @@ public class RpcFilterManager : IDisposable
 
                         var nativeFilter = Marshal.PtrToStructure<FWPM_FILTER0>(entryPointer);
                         var filter = RpcFilter.Create(nativeFilter);
-                        filters.Add(filter);
+                        yield return filter;
                     }
                 }
                 finally
@@ -114,8 +113,6 @@ public class RpcFilterManager : IDisposable
                     entries?.Dispose();
                 }
             } while(true);
-
-            return filters;
         }
         finally
         {
@@ -296,6 +293,10 @@ public class RpcFilterManager : IDisposable
         {
             handle.Dispose();
         }
+
+        // Augment the input object with the runtime identifier.
+        filter.FilterId = id;
+
         return id;
     }
 

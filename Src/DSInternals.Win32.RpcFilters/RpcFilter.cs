@@ -14,8 +14,15 @@ namespace DSInternals.Win32.RpcFilters;
 /// </summary>
 public class RpcFilter
 {
-    private const string DefaultName = "RPCFilter";
-    private const string DefaultDescription = "RPC Filter";
+    /// <summary>
+    /// Default name of a newly created filter.
+    /// </summary>
+    public const string DefaultName = "RPCFilter";
+
+    /// <summary>
+    /// Default description of a newly created filter.
+    /// </summary>
+    public const string DefaultDescription = "RPC Filter";
 
     /// <summary>
     /// Unique identifier of the filter.
@@ -68,7 +75,9 @@ public class RpcFilter
         }
         set
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             this.SecurityDescriptor = string.IsNullOrEmpty(value) ? null : new RawSecurityDescriptor(value);
+#pragma warning restore CS8604 // Possible null reference argument.
         }
     }
 
