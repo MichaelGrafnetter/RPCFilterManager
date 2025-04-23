@@ -3,15 +3,42 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net480;net8.0;netstandard2.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyTitle>DSInternals RPC Filter Manager Assembly</AssemblyTitle>
+    <Authors>Michael Grafnetter</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/MichaelGrafnetter/RpcFilterManager</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MichaelGrafnetter/RpcFilterManager.git</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageTags>RPC;Filter;WFP;Firewall;Windows;Interop</PackageTags>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <Description>TODO</Description>
+    <PackageReleaseNotes>
+      - Initial version.
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(Configuration)' == 'Release'">
+    <!-- Enable Source Link on CI builds -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <!-- DLLs need to be digitally signed first before a NuGet package is created. -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' AND '$(Configuration)' == 'Debug'">
+    <AnalysisMode>All</AnalysisMode>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +46,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="System.Security.AccessControl" Version="6.0.1" />
+    <PackageReference Include="System.Memory" Version="4.6.3" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageReference Include="System.Security.AccessControl" Version="6.0.1" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(Configuration)' == 'Release'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Additional files to include in the NuGet package -->
+    <None Include="$(MSBuildThisFileDirectory)../Icons/package_black.png" Pack="true" PackagePath="/icon.png" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../../LICENSE" Pack="true" PackagePath="/" Visible="false" />
   </ItemGroup>
 
 </Project>

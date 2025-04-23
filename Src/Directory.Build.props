@@ -1,0 +1,37 @@
+<Project>
+  <PropertyGroup>
+    <!-- Configure the supported C# language version -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platform>windows</Platform>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+
+    <!-- Set assembly properties -->
+    <Copyright>Copyright (c) 2024-2025 Michael Grafnetter. All rights reserved.</Copyright>
+    <Product>DSInternals RPC Filter Manager</Product>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+
+    <!-- Do not generate NuGet packages by default -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
+    <!-- Redirect output directories -->
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <ArtifactsPath>$(MSBuildThisFileDirectory)..\Build</ArtifactsPath>
+    <VSTestResultsDirectory>$(MSBuildThisFileDirectory)..\Build\TestResults</VSTestResultsDirectory>
+
+    <!-- Configure MSTest properties -->
+    <VSTestLogger>html;trx</VSTestLogger>
+    <VSTestCollect>XPlat Code Coverage;Code Coverage</VSTestCollect>
+    <VSTestVerbosity>normal</VSTestVerbosity>
+  </PropertyGroup>
+
+  <!-- Enable strong name signing -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' AND Exists('..\Keys\DSInternals.Private.snk')">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\Keys\DSInternals.Private.snk</AssemblyOriginatorKeyFile>
+    <StrongNamePublicKey>002400000480000094000000060200000024000052534131000400000100010077154b93d8084f0f30c52174d6c93d25ffdc65e11ba1b125383e55c6095061df3c2f765401c21434aa413aa264b6eb3039d95c5f33a9d4eb7deb695b55e434d8dd9b42e0e86f3287498732d3a30d0ee22d8d58b2361f033351d5c1a64a16324ac6c42b5a4b14c12483b52a98a43f7e934df86b92cc8a9c4ee0f408d7b6d987e3</StrongNamePublicKey>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
+</Project>

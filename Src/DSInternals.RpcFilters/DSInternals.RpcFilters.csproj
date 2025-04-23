@@ -2,13 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <IncludeSymbols>False</IncludeSymbols>
+    <AssemblyName>DSInternals.Win32.RpcFilters.PowerShell</AssemblyName>
+    <RootNamespace>DSInternals.Win32.RpcFilters.PowerShell</RootNamespace>
+    <PublishRelease>true</PublishRelease>
+    <Version>1.0</Version>
+    <AssemblyVersion>1.0</AssemblyVersion>
+    <ProductVersion>1.0</ProductVersion>
+    <FileVersion>1.0</FileVersion>
+    <AssemblyTitle>DSInternals.RpcFilters PowerShell Module</AssemblyTitle>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System.Management.Automation;
 using System.Net;
+using System.Security.AccessControl;
 
 namespace DSInternals.Win32.RpcFilters.PowerShell;
 
@@ -10,6 +11,13 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     [Parameter()]
     public SwitchParameter PassThrough { get; set; } = default;
 
+    [Parameter()]
+    [Alias("Boot")]
+    public SwitchParameter BootTimeEnforced { get; set; } = default;
+
+    [Parameter()]
+    public SwitchParameter Persistent { get; set; } = default;
+
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [ValidateNotNullOrEmpty()]
     public string? Name { get; set; }
@@ -19,8 +27,29 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public string? Description { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
+    public string? ImageName { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
+    public string? NamedPipe { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [ValidateNotNull()]
     public Guid? FilterKey { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
+    public Guid? DcomAppId { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Alias("RpcProtocol", "Protocol", "ProtocolUUID")]
+    [ValidateNotNull()]
+    public Guid? InterfaceUUID { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
+    public Guid? ProviderKey { get; set; }
 
     [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true)]
     public RpcFilterAction Action { get; set; }
@@ -36,9 +65,15 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     [ValidateNotNull()]
     public RpcAuthenticationType? AuthenticationType { get; set; }
 
+    [Parameter(ValueFromPipelineByPropertyName = true)]
+    [Alias("ProtSeq", "Binding")]
+    [ValidateNotNull()]
+    public RpcProtocolSequence? ProtocolSequence { get; set; }
+
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNullOrEmpty()]
-    public string? SecurityDescriptor { get; set; }
+    [Alias("SDDL", "Permissions", "DACL")]
+    [ValidateNotNull()]
+    public RawSecurityDescriptor? SecurityDescriptor { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [ValidateNotNull()]
@@ -58,6 +93,20 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     [ValidateRange(1, 128)]
     public byte? LocalAddressMask { get; set; }
 
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
+    [ValidateRange(1, UInt16.MaxValue)]
+    public ushort? LocalPort { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
+    public ulong? Weight { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Alias("OpNum")]
+    [ValidateNotNull()]
+    public ushort? OperationNumber { get; set; }
+
     protected override void ProcessRecord()
     {
         base.ProcessRecord();
@@ -73,19 +122,22 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 Audit = this.Audit.IsPresent,
                 AuthenticationLevel = this.AuthenticationLevel,
                 AuthenticationType = this.AuthenticationType,
-                // DcomAppId
-                // ImageName
-                // InterfaceUUID
-                // IsBootTimeEnforced
-                // IsPersistent
+                DcomAppId = this.DcomAppId,
+                ImageName = this.ImageName,
+                InterfaceUUID = this.InterfaceUUID,
+                IsBootTimeEnforced = this.BootTimeEnforced.IsPresent,
+                IsPersistent = this.Persistent.IsPresent,
                 LocalAddress = this.LocalAddress,
                 LocalAddressMask = this.LocalAddressMask,
-                // LocalPort
-                // Protocol
+                LocalPort = this.LocalPort,
+                Protocol = this.ProtocolSequence,
                 RemoteAddress = this.RemoteAddress,
                 RemoteAddressMask = this.RemoteAddressMask,
-                SDDL = this.SecurityDescriptor,
-                // Weight
+                SecurityDescriptor = this.SecurityDescriptor,
+                Weight = this.Weight,
+                OperationNumber = this.OperationNumber,
+                NamedPipe = this.NamedPipe,
+                ProviderKey = this.ProviderKey
             };
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.

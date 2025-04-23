@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net8.0": {
+      "dsinternals.win32.rpcfilters": {
+        "type": "Project"
+      }
+    }
+  }
+}
