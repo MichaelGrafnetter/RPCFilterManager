@@ -30,6 +30,8 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
 
         if (filterId.HasValue)
         {
+            // TODO: Verbose message
+
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             this.RpcFilterManager.RemoveFilter(filterId.Value);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.

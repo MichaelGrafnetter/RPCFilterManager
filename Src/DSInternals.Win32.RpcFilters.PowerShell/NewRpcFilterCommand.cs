@@ -140,6 +140,8 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 ProviderKey = this.ProviderKey
             };
 
+            // TODO: Verbose message
+
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             ulong filterId = this.RpcFilterManager.AddFilter(filter);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
