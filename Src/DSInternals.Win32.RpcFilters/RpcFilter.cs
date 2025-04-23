@@ -3,6 +3,10 @@ using System.Security.AccessControl;
 using Windows.Win32;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
+#if NET8_0_OR_GREATER
+using System.Net.Sockets;
+#endif
+
 namespace DSInternals.Win32.RpcFilters;
 
 /// <summary>
@@ -64,7 +68,7 @@ public class RpcFilter
         }
         set
         {
-            this.SecurityDescriptor = new RawSecurityDescriptor(value);
+            this.SecurityDescriptor = string.IsNullOrEmpty(value) ? null : new RawSecurityDescriptor(value);
         }
     }
 
@@ -138,6 +142,82 @@ public class RpcFilter
     /// </summary>
     public byte? LocalAddressMask { get; set; }
 
+#if NET8_0_OR_GREATER
+    // The IPNetwork class is only available in .NET 8.0 and later.
+
+    /// <summary>
+    /// The remote IP address and mask.
+    /// </summary>
+    public IPNetwork? RemoteNetwork
+    {
+        get
+        {
+            if(this.RemoteAddress == null)
+            {
+                return null;
+            }
+
+            int prefixLength = this.RemoteAddressMask ?? this.RemoteAddress.AddressFamily switch
+            {
+                AddressFamily.InterNetwork => FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength,
+                AddressFamily.InterNetworkV6 => FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength,
+                _ => 0
+            };
+
+            return new IPNetwork(this.RemoteAddress, prefixLength);
+        }
+        set
+        {
+            if (value.HasValue)
+            {
+                this.RemoteAddress = value.Value.BaseAddress;
+                this.RemoteAddressMask = (byte) value.Value.PrefixLength;
+            }
+            else
+            {
+                this.RemoteAddress = null;
+                this.RemoteAddressMask = null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// The local IP address and mask.
+    /// </summary>
+    public IPNetwork? LocalNetwork
+    {
+        get
+        {
+            if (this.LocalAddress == null)
+            {
+                return null;
+            }
+
+            int prefixLength = this.LocalAddressMask ?? this.LocalAddress.AddressFamily switch
+            {
+                AddressFamily.InterNetwork => FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength,
+                AddressFamily.InterNetworkV6 => FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength,
+                _ => 0
+            };
+
+            return new IPNetwork(this.LocalAddress, prefixLength);
+        }
+        set
+        {
+            if (value.HasValue)
+            {
+                this.LocalAddress = value.Value.BaseAddress;
+                this.LocalAddressMask = (byte)value.Value.PrefixLength;
+            }
+            else
+            {
+                this.LocalAddress = null;
+                this.LocalAddressMask = null;
+            }
+        }
+    }
+#endif
+
     /// <summary>
     /// The local transport protocol port number.
     /// </summary>
@@ -163,6 +243,9 @@ public class RpcFilter
     /// </summary>
     public Guid? DcomAppId { get; set; }
 
+    /// <summary>
+    /// Constructs a new instance of the <see cref="RpcFilter"/> class with default values.
+    /// </summary>
     public RpcFilter()
     {
         this.FilterKey = Guid.NewGuid();
@@ -231,13 +314,15 @@ public class RpcFilter
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
             {
-                filter.RemoteAddress = condition.RemoteAddress;
-                filter.RemoteAddressMask = condition.RemoteAddressMask;
+                (IPAddress? ipAddress, byte? mask) = condition.RemoteAddressAndMask;
+                filter.RemoteAddress = ipAddress;
+                filter.RemoteAddressMask = mask;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
             {
-                filter.LocalAddress = condition.LocalAddress;
-                filter.LocalAddressMask = condition.LocalAddressMask;
+                (IPAddress? ipAddress, byte? mask) = condition.LocalAddressAndMask;
+                filter.LocalAddress = ipAddress;
+                filter.LocalAddressMask = mask;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_DCOM_APP_ID)
             {

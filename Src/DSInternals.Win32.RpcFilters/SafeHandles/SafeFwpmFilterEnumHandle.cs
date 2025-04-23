@@ -5,7 +5,7 @@ namespace DSInternals.Win32.RpcFilters;
 
 internal class SafeFwpmFilterEnumHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
-    private SafeFwpmEngineHandle engineHandle;
+    private readonly SafeFwpmEngineHandle engineHandle;
 
     internal SafeFwpmFilterEnumHandle(SafeFwpmEngineHandle engineHandle, HANDLE enumHandle) : base(true)
     {

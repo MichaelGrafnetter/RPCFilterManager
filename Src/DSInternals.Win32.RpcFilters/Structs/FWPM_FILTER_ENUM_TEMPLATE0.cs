@@ -63,12 +63,12 @@ internal class FWPM_FILTER_ENUM_TEMPLATE0
     /// <summary>
     /// Number of filter conditions.
     /// </summary>
-    public int NumFilterConditions;
+    private int NumFilterConditions;
 
     /// <summary>
     /// Distinct filter conditions.
     /// </summary>
-    public IntPtr FilterCondition;
+    private IntPtr FilterCondition;
 
     /// <summary>
     /// Only filters whose action type contains at least one of the bits in actionMask will be returned. 

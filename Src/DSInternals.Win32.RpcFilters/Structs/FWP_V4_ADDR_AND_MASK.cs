@@ -10,6 +10,7 @@ namespace DSInternals.Win32.RpcFilters;
 [StructLayout(LayoutKind.Sequential)]
 internal struct FWP_V4_ADDR_AND_MASK
 {
+    internal const int MinIpv4PrefixLength = 1;
     internal const int MaxIpv4PrefixLength = sizeof(int) * 8;
 
     /// <summary>
@@ -22,9 +23,12 @@ internal struct FWP_V4_ADDR_AND_MASK
     /// </summary>
     private uint mask;
 
+    /// <summary>
+    /// Specifies an IPv4 address.
+    /// </summary>
     public IPAddress Address
     {
-        get => new IPAddress(this.addr);
+        readonly get => new(this.addr);
         set
         {
             if (value == null)
@@ -42,17 +46,40 @@ internal struct FWP_V4_ADDR_AND_MASK
         } 
     }
 
+    /// <summary>
+    /// Specifies an IPv4 mask length.
+    /// </summary>
     public byte PrefixLength
     {
-        get => (byte)this.mask;
-        set
+        readonly get
         {
-            if (value > MaxIpv4PrefixLength)
+            byte result = 0;
+            uint maskCopy = this.mask;
+
+            // Count the number of leading 1 bits in the mask
+            while (maskCopy != 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(value), $"Mask must be between 0 and {MaxIpv4PrefixLength}.");
+                result++;
+                maskCopy <<= 1;
             }
 
-            this.mask = value;
+            return result;
         }
+        set
+        {
+            if (value < MinIpv4PrefixLength || value > MaxIpv4PrefixLength)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), $"Mask must be between 1 and {MaxIpv4PrefixLength}.");
+            }
+
+            // Convert the prefix length to mask
+            this.mask = ~(uint.MaxValue >>> value);
+        }
+    }
+
+    public FWP_V4_ADDR_AND_MASK(IPAddress address, byte prefixLength)
+    {
+        this.Address = address;
+        this.PrefixLength = prefixLength;
     }
 }

@@ -6,21 +6,15 @@ namespace DSInternals.Win32.RpcFilters;
 /// Stores an optional friendly name and an optional description for an object.
 /// </summary>
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-internal struct FWPM_DISPLAY_DATA0
+internal struct FWPM_DISPLAY_DATA0(string? name, string? description)
 {
     /// <summary>
     /// Optional friendly name.
     /// </summary>
-    public string? Name;
+    public string? Name = name;
 
     /// <summary>
     /// Optional description.
     /// </summary>
-    public string? Description;
-
-    public FWPM_DISPLAY_DATA0(string? name, string? description)
-    {
-        Name = name;
-        Description = description;
-    }
+    public string? Description = description;
 }

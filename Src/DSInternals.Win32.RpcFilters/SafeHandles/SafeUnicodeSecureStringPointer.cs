@@ -24,7 +24,7 @@ internal sealed class SafeUnicodeSecureStringPointer : SafeHandleZeroOrMinusOneI
             if (password.Length % sizeof(char) == 1)
             {
                 // Unicode strings must have even number of bytes
-                new ArgumentOutOfRangeException(nameof(password));
+                throw new FormatException(nameof(password));
             }
 
             IntPtr buffer = Marshal.AllocHGlobal(password.Length + sizeof(char));

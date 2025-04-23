@@ -1,6 +1,11 @@
 ﻿using DSInternals.Win32.RpcFilters;
 using System.Net;
 
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+[assembly: SupportedOSPlatform("windows")]
+#endif
+
 using (var fw = new RpcFilterManager())
 {
     var filter = new RpcFilter()
@@ -24,14 +29,15 @@ using (var fw = new RpcFilterManager())
         LocalPort = 56345,
         RemoteAddress = IPAddress.Parse("fe80::bf1c:8c8e:f09d:c074"),
         OperationNumber = 25,
-        LocalAddress = IPAddress.Parse("127.0.0.1"),
+        LocalAddress = IPAddress.Parse("10.255.255.0"),
+        LocalAddressMask = 24,
         InterfaceVersion = 1,
         InterfaceFlag = 2
     };
 
-    var filters = fw.GetFilters().ToList();
+    var filters = fw.GetFilters();
     ulong id = fw.AddFilter(filter);
     fw.RemoveFilter(id);
-    filters = fw.GetFilters().ToList();
+    filters = fw.GetFilters();
     fw.RemoveFilter(257);
 }

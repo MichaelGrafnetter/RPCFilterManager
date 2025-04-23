@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
@@ -269,10 +270,16 @@ internal readonly struct FWP_VALUE0
         {
             if (this.Type == FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE)
             {
-                var binaryForm = Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.sd);
-                return new RawSecurityDescriptor(binaryForm.Data, 0);
+                var blob = Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.sd);
+                byte[]? binaryForm = blob.Data;
+
+                if (binaryForm != null)
+                {
+                    return new RawSecurityDescriptor(binaryForm, 0);
+                }
             }
 
+            // In all other cases
             return null;
         }
     }
@@ -356,7 +363,52 @@ internal readonly struct FWP_VALUE0
         return (valueWrapper, blobHandle, securityDescriptorHandle);
     }
 
-    public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle1, SafeHandle memoryHandle2) Allocate(byte[] value)
+    public static (FWP_VALUE0 nativeValue, SafeHandle? memoryHandle) Allocate(IPAddress address, byte? mask)
+    {
+        if (address.AddressFamily == AddressFamily.InterNetwork)
+        {
+            if (mask.HasValue && mask.Value != FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength)
+            {
+                // IPV4 address and mask
+                var v4AddrMask = new FWP_V4_ADDR_AND_MASK(address, mask.Value);
+                var v4AddrMaskHandle = new SafeStructHandle<FWP_V4_ADDR_AND_MASK>(v4AddrMask);
+                var nativeValue = new FWP_VALUE0(FWP_DATA_TYPE.FWP_V4_ADDR_MASK, v4AddrMaskHandle);
+                return (nativeValue, v4AddrMaskHandle);
+            }
+            else
+            {
+                // IPV4 address only
+                byte[] binaryAddress = address.GetAddressBytes();
+                uint byteAddress = BitConverter.ToUInt32(binaryAddress, 0);
+                var nativeValue = new FWP_VALUE0(byteAddress);
+                return (nativeValue, null);
+            }
+        }
+        else if (address.AddressFamily == AddressFamily.InterNetworkV6)
+        {
+            if (mask.HasValue && mask.Value != FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength)
+            {
+                // IPV6 address and mask
+                var v6AddrMask = new FWP_V6_ADDR_AND_MASK(address, mask.Value);
+                var v6AddrMaskHandle = new SafeStructHandle<FWP_V6_ADDR_AND_MASK>(v6AddrMask);
+                var nativeValue = new FWP_VALUE0(FWP_DATA_TYPE.FWP_V6_ADDR_MASK, v6AddrMaskHandle);
+                return (nativeValue, v6AddrMaskHandle);
+            }
+            else
+            {
+                // IPV6 address only
+                byte[] binaryAddress = address.GetAddressBytes();
+                (var nativeValue, var memoryHandle, _) = FWP_VALUE0.Allocate(binaryAddress);
+                return (nativeValue, memoryHandle);
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Address must be IPv4 or IPv6.", nameof(address));
+        }
+    }
+
+    public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle1, SafeHandle? memoryHandle2) Allocate(byte[] value)
     {
         if(value == null)
         {

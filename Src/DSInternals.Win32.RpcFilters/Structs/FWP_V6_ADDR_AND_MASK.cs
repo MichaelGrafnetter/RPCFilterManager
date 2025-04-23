@@ -11,6 +11,7 @@ namespace DSInternals.Win32.RpcFilters;
 [StructLayout(LayoutKind.Sequential)]
 internal struct FWP_V6_ADDR_AND_MASK
 {
+    internal const int MinIpv6PrefixLength = 1;
     internal const int MaxIpv6PrefixLength = (int)PInvoke.FWP_V6_ADDR_SIZE * 8;
 
     /// <summary>
@@ -24,9 +25,12 @@ internal struct FWP_V6_ADDR_AND_MASK
     /// </summary>
     private byte prefixLength;
 
+    /// <summary>
+    /// Specifies an IPv6 address.
+    /// </summary>
     public IPAddress Address
     {
-        get => new IPAddress(this.addr);
+        readonly get => new(this.addr);
         set
         {
             if (value == null)
@@ -43,17 +47,28 @@ internal struct FWP_V6_ADDR_AND_MASK
         } 
     }
 
+    /// <summary>
+    /// Specifies the prefix length of the IPv6 address.
+    /// </summary>
     public byte PrefixLength
     {
-        get => this.prefixLength;
+        readonly get => this.prefixLength;
         set
         {
-            if (value > MaxIpv6PrefixLength)
+            if (value < MinIpv6PrefixLength || value > MaxIpv6PrefixLength)
             {
-                throw new ArgumentOutOfRangeException(nameof(value), "Prefix length must be between 0 and 128.");
+                throw new ArgumentOutOfRangeException(nameof(value), "Prefix length must be between 1 and 128.");
             }
 
             this.prefixLength = value;
         }
+    }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    public FWP_V6_ADDR_AND_MASK(IPAddress address, byte prefixLength)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+        this.Address = address;
+        this.PrefixLength = prefixLength;
     }
 }

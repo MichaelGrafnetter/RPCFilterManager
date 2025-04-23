@@ -4,8 +4,16 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+[assembly: SupportedOSPlatform("windows")]
+#endif
+
 namespace DSInternals.Win32.RpcFilters;
 
+/// <summary>
+/// Manages RPC filters in the Windows Filtering Platform (WFP).
+/// </summary>
 public class RpcFilterManager : IDisposable
 {
     private const int DefaultWaitTimeoutInMSec = 10000;
@@ -20,11 +28,14 @@ public class RpcFilterManager : IDisposable
     private SafeFwpmEngineHandle? engineHandle;
 
     /// <summary>
-    /// 
+    /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
     /// </summary>
     /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 (10.0.26100).</remarks>
     public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
 
+    /// <summary>
+    /// Opens a session to the filter engine.
+    /// </summary>
     public RpcFilterManager()
     {
         var session = new FWPM_SESSION0
@@ -36,8 +47,19 @@ public class RpcFilterManager : IDisposable
         ValidateResult(result);
     }
 
+    /// <summary>
+    /// Retrieves a list of RPC filters from the system.
+    /// </summary>
+    /// <param name="providerKey">Unique identifier of the provider associated with the filters to be returned.</param>
+    /// <returns>List of RPC filters.</returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public IReadOnlyList<RpcFilter> GetFilters(Guid? providerKey = null)
     {
+        if (this.engineHandle == null || this.engineHandle.IsInvalid)
+        {
+            throw new InvalidOperationException("The filter engine handle is invalid.");
+        }
+
         var enumTemplate = new FWPM_FILTER_ENUM_TEMPLATE0()
         {
             ProviderKey = providerKey,
@@ -102,15 +124,31 @@ public class RpcFilterManager : IDisposable
         }
     }
 
+    // TODO: Add additional exceptions for specific error codes.
+
+    /// <summary>
+    /// Adds a new filter object to the system.
+    /// </summary>
+    /// <param name="filter">The filter object to be added.</param>
+    /// <returns>The runtime identifier for the newly created filter.</returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="PlatformNotSupportedException"></exception>
     public ulong AddFilter(RpcFilter filter)
     {
-        if(filter == null)
+        if (this.engineHandle == null || this.engineHandle.IsInvalid)
+        {
+            throw new InvalidOperationException("The filter engine handle is invalid.");
+        }
+
+        if (filter == null)
         {
             throw new ArgumentNullException(nameof(filter));
         }
 
         // Weight must be in the range [0, 15]
-        if(filter.Weight.HasValue && filter.Weight.Value > 15)
+        if (filter.Weight.HasValue && filter.Weight.Value > 15)
         {
             throw new ArgumentOutOfRangeException(nameof(filter.Weight), filter.Weight.Value, "The weight must be in the range [0, 15].");
         }
@@ -206,7 +244,7 @@ public class RpcFilterManager : IDisposable
 
         if (filter.LocalAddress != null)
         {
-            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.LocalAddress, false);
+            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.LocalAddress, filter.LocalAddressMask, false);
 
             if (handle != null)
             {
@@ -218,7 +256,7 @@ public class RpcFilterManager : IDisposable
 
         if (filter.RemoteAddress != null)
         {
-            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, true);
+            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, filter.RemoteAddressMask, true);
 
             if (handle != null)
             {
@@ -261,16 +299,30 @@ public class RpcFilterManager : IDisposable
         return id;
     }
 
+    /// <summary>
+    /// Removes a filter object from the system.
+    /// </summary>
+    /// <param name="id">Runtime identifier for the object being removed from the system.</param>
+    /// <exception cref="InvalidOperationException"></exception>
     public void RemoveFilter(ulong id)
     {
+        if (this.engineHandle == null || this.engineHandle.IsInvalid)
+        {
+            throw new InvalidOperationException("The filter engine handle is invalid.");
+        }
+
         WIN32_ERROR result = NativeMethods.FwpmFilterDeleteById0(this.engineHandle, id);
         ValidateResult(result);
     }
 
+    /// <summary>
+    /// Closes the session to the filter engine.
+    /// </summary>
     public void Dispose()
     {
         this.engineHandle?.Dispose();
         this.engineHandle = null;
+        GC.SuppressFinalize(this);
     }
 
     private static void ValidateResult(WIN32_ERROR code)
@@ -286,10 +338,13 @@ public class RpcFilterManager : IDisposable
             WIN32_ERROR.ERROR_INVALID_PARAMETER => new ArgumentException(genericException.Message, genericException),
             WIN32_ERROR.ERROR_ACCESS_DENIED => new UnauthorizedAccessException(genericException.Message, genericException),
             WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY or WIN32_ERROR.ERROR_OUTOFMEMORY => new OutOfMemoryException(genericException.Message, genericException),
-            _ => genericException,
             // TODO: Handle HRESULT.FWP_E_FILTER_NOT_FOUND
             // TODO: Handle HRESULT.FWP_E_ALREADY_EXISTS
             // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
+            // TODO: Handle FWP_E_INVALID_NET_MASK
+            // TODO: Handle FWP_E_CONDITION_NOT_FOUND / FWP_E_FILTER_NOT_FOUND
+            // TODO: Handle FWP_E_INVALID_WEIGHT
+            _ => genericException,
             // We were not able to translate the Win32Exception to a more specific type.
         };
         throw exceptionToThrow;

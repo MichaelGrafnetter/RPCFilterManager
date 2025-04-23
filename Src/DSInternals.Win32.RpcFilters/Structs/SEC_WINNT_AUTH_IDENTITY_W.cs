@@ -7,13 +7,14 @@ namespace DSInternals.Win32.RpcFilters;
 /// <summary>
 /// Enables passing a particular user name and password to the run-time library for the purpose of authentication.
 /// </summary>
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
 internal class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
 {
     /// <summary>
     /// String containing the user name.
     /// </summary>
     [MarshalAs(UnmanagedType.LPWStr)]
-    public string? User;
+    public readonly string? User;
 
     /// <summary>
     /// Number of characters in User, excluding the terminating NULL.
@@ -24,7 +25,7 @@ internal class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
     /// String containing the domain or workgroup name.
     /// </summary>
     [MarshalAs(UnmanagedType.LPWStr)]
-    public string? Domain;
+    public readonly string? Domain;
 
     /// <summary>
     /// Number of characters in Domain, excluding the terminating NULL.
@@ -34,7 +35,7 @@ internal class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
     /// <summary>
     /// String containing the user's password in the domain or workgroup.
     /// </summary>
-    public SafeUnicodeSecureStringPointer? Password;
+    public readonly SafeUnicodeSecureStringPointer? Password;
 
     /// <summary>
     /// Number of characters in Password, excluding the terminating NULL.
@@ -66,6 +67,6 @@ internal class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
     public void Dispose()
     {
         this.Password?.Dispose();
-        this.Password = null;
+        this.PasswordLength = 0;
     }
 }
