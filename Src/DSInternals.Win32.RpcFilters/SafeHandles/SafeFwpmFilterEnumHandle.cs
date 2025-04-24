@@ -3,7 +3,7 @@ using Windows.Win32.Foundation;
 
 namespace DSInternals.Win32.RpcFilters;
 
-internal class SafeFwpmFilterEnumHandle : SafeHandleZeroOrMinusOneIsInvalid
+internal sealed class SafeFwpmFilterEnumHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
     private readonly SafeFwpmEngineHandle engineHandle;
 

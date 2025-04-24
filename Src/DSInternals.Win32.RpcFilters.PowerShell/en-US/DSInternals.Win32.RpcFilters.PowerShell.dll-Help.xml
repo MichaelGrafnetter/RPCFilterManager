@@ -15,6 +15,21 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-RpcFilter</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Provider, ProviderId, RpcFilterProvider, RpcFilterProviderId">
+          <maml:name>ProviderKey</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-RpcFilter</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="RpcFirewall">
           <maml:name>ZeroNetworks</maml:name>
           <maml:description>
@@ -29,6 +44,18 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Provider, ProviderId, RpcFilterProvider, RpcFilterProviderId">
+        <maml:name>ProviderKey</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="RpcFirewall">
         <maml:name>ZeroNetworks</maml:name>
         <maml:description>
@@ -93,13 +120,705 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>New-RpcFilter</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Action</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Action Description }}</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Block</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Permit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CalloutUnknown</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CalloutTerminating</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CalloutInspection</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RpcFilterAction</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcFilterAction</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Audit</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Audit Description }}</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>AuthenticationLevel</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Connect</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Call</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Packet</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">PacketIntegrity</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">PacketPrivacy</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcAuthenticationLevel</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>AuthenticationType</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Negotiate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">NTLM</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SChannel</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Kerberos</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Digest</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RpcAuthenticationType</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcAuthenticationType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
+          <maml:name>BootTimeEnforced</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>DcomAppId</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Description Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>FilterKey</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill FilterKey Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>ImageName</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill ImageName Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="RpcProtocol, Protocol, ProtocolUUID">
+          <maml:name>InterfaceUUID</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill InterfaceUUID Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>LocalAddress</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
+          <dev:type>
+            <maml:name>IPAddress</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>LocalAddressMask</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
+          <dev:type>
+            <maml:name>Byte</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>LocalPort</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill LocalPort Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Name Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>NamedPipe</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="OpNum">
+          <maml:name>OperationNumber</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill OperationNumber Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThrough</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Persistent</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Persistent Description }}</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding">
+          <maml:name>ProtocolSequence</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ncacn_np</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ncalrpc</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ncacn_http</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcProtocolSequence</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>ProviderKey</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>RemoteAddress</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
+          <dev:type>
+            <maml:name>IPAddress</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>RemoteAddressMask</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
+          <dev:type>
+            <maml:name>Byte</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
+          <maml:name>SecurityDescriptor</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
+          <dev:type>
+            <maml:name>RawSecurityDescriptor</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Weight</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Weight Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt64</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
-    <command:parameters />
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Action</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Action Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RpcFilterAction</command:parameterValue>
+        <dev:type>
+          <maml:name>RpcFilterAction</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Audit</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Audit Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>AuthenticationLevel</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
+        <dev:type>
+          <maml:name>RpcAuthenticationLevel</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>AuthenticationType</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RpcAuthenticationType</command:parameterValue>
+        <dev:type>
+          <maml:name>RpcAuthenticationType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
+        <maml:name>BootTimeEnforced</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>DcomAppId</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Description Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>FilterKey</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill FilterKey Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>ImageName</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill ImageName Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="RpcProtocol, Protocol, ProtocolUUID">
+        <maml:name>InterfaceUUID</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill InterfaceUUID Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>LocalAddress</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
+        <dev:type>
+          <maml:name>IPAddress</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>LocalAddressMask</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
+        <dev:type>
+          <maml:name>Byte</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>LocalPort</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill LocalPort Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Name Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>NamedPipe</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="OpNum">
+        <maml:name>OperationNumber</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill OperationNumber Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThrough</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill PassThrough Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Persistent</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Persistent Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding">
+        <maml:name>ProtocolSequence</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+        <dev:type>
+          <maml:name>RpcProtocolSequence</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>ProviderKey</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>RemoteAddress</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
+        <dev:type>
+          <maml:name>IPAddress</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>RemoteAddressMask</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
+        <dev:type>
+          <maml:name>Byte</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
+        <maml:name>SecurityDescriptor</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
+        <dev:type>
+          <maml:name>RawSecurityDescriptor</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Weight</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Weight Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt64</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>DSInternals.Win32.RpcFilters.RpcFilterAction</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[DSInternals.Win32.RpcFilters.RpcAuthenticationLevel, DSInternals.Win32.RpcFilters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=af7e77ba04a3c166]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[DSInternals.Win32.RpcFilters.RpcAuthenticationType, DSInternals.Win32.RpcFilters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=af7e77ba04a3c166]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[DSInternals.Win32.RpcFilters.RpcProtocolSequence, DSInternals.Win32.RpcFilters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=af7e77ba04a3c166]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Security.AccessControl.RawSecurityDescriptor</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Net.IPAddress</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[System.UInt16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Nullable`1[[System.UInt64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>

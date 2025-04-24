@@ -6,7 +6,7 @@ namespace DSInternals.Win32.RpcFilters;
 /// Stores the state associated with a client session.
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-internal class FWPM_SESSION0
+internal sealed class FWPM_SESSION0
 {
     /// <summary>
     /// Uniquely identifies the session.

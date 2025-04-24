@@ -1,4 +1,8 @@
-﻿using Windows.Win32;
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+#pragma warning disable CA1028 // Enum Storage should be Int32
+#pragma warning disable CA1008 // Enums should have zero value
+
+using Windows.Win32;
 
 namespace DSInternals.Win32.RpcFilters;
 
@@ -20,6 +24,7 @@ public enum RpcProtocolSequence : uint
     /// <summary>
     /// Connection-oriented TCP/IP using Microsoft Internet Information Server as HTTP proxy.
     /// </summary>
+
     ncacn_http = PInvoke.RPC_PROTSEQ_HTTP,
 
     /// <summary>

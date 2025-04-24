@@ -2,7 +2,7 @@
 
 namespace DSInternals.Win32.RpcFilters;
 
-internal class SafeFwpmBuffer : SafeBuffer
+internal sealed class SafeFwpmBuffer : SafeBuffer
 {
     internal SafeFwpmBuffer()
         : base(true)

@@ -14,7 +14,7 @@ namespace DSInternals.Win32.RpcFilters;
 /// <summary>
 /// Manages RPC filters in the Windows Filtering Platform (WFP).
 /// </summary>
-public class RpcFilterManager : IDisposable
+public sealed class RpcFilterManager : IDisposable
 {
     private const int DefaultWaitTimeoutInMSec = 10000;
     private const uint FilterEnumBatchSize = 100;

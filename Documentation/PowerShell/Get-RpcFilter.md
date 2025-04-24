@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ### Default (Default)
 ```
-Get-RpcFilter [<CommonParameters>]
+Get-RpcFilter [[-ProviderKey] <Guid>] [<CommonParameters>]
 ```
 
 ### ZeroNetworks
@@ -35,6 +35,21 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 
 ## PARAMETERS
+
+### -ProviderKey
+{{ Fill ProviderKey Description }}
+
+```yaml
+Type: Guid
+Parameter Sets: Default
+Aliases: Provider, ProviderId, RpcFilterProvider, RpcFilterProviderId
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -ZeroNetworks
 {{ Fill ZeroNetworks Description }}

@@ -3,7 +3,7 @@ using Windows.Win32.Foundation;
 
 namespace DSInternals.Win32.RpcFilters;
 
-internal class NativeMethods
+internal static class NativeMethods
 {
     private const string FwpuClnt = "Fwpuclnt.dll";
 

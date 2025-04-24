@@ -1,4 +1,7 @@
-﻿using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
+﻿#pragma warning disable CA1028 // Enum Storage should be Int32
+#pragma warning disable CA1008 // Enums should have zero value
+
+using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
 namespace DSInternals.Win32.RpcFilters;
 

@@ -7,7 +7,7 @@ namespace DSInternals.Win32.RpcFilters;
 /// Filter enumeration template.
 /// </summary>
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-internal class FWPM_FILTER_ENUM_TEMPLATE0
+internal sealed class FWPM_FILTER_ENUM_TEMPLATE0
 {
     private byte[]? providerKey;
 

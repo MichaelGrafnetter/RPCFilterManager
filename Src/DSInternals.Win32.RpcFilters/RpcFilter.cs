@@ -12,7 +12,7 @@ namespace DSInternals.Win32.RpcFilters;
 /// <summary>
 /// Stores the state associated with a RPC filter.
 /// </summary>
-public class RpcFilter
+public sealed class RpcFilter
 {
     /// <summary>
     /// Default name of a newly created filter.

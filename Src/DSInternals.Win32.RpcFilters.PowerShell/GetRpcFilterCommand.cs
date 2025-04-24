@@ -12,7 +12,7 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
 
     [Parameter(Mandatory = false, Position = 0, ParameterSetName = ParameterSetByProviderKey)]
     [Alias("Provider", "ProviderId", "RpcFilterProvider", "RpcFilterProviderId")]
-    Guid? ProviderKey { get; set; }
+    public Guid? ProviderKey { get; set; }
 
     [Parameter(Mandatory = true, Position = 0, ParameterSetName = ParameterSetZeroNetworks)]
     [Alias("RpcFirewall")]

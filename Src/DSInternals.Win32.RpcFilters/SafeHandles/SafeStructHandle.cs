@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace DSInternals.Win32.RpcFilters;
 
-internal class SafeStructHandle<T> : SafeHandleZeroOrMinusOneIsInvalid where T : struct
+internal sealed class SafeStructHandle<T> : SafeHandleZeroOrMinusOneIsInvalid where T : struct
 {
     private SafeStructHandle(IntPtr handle) : base(false)
     {

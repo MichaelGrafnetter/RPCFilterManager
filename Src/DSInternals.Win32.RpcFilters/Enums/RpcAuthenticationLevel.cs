@@ -1,4 +1,6 @@
-﻿using Windows.Win32.System.Com;
+﻿#pragma warning disable CA1028 // Enum Storage should be Int32
+
+using Windows.Win32.System.Com;
 
 namespace DSInternals.Win32.RpcFilters;
 
