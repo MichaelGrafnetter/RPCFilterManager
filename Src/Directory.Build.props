@@ -4,7 +4,6 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Platform>windows</Platform>
     <PlatformTarget>AnyCPU</PlatformTarget>
 
     <!-- Set assembly properties -->

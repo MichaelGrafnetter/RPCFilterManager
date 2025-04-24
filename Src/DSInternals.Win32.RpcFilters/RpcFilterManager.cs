@@ -4,11 +4,6 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
-#if NET5_0_OR_GREATER
-using System.Runtime.Versioning;
-[assembly: SupportedOSPlatform("windows")]
-#endif
-
 namespace DSInternals.Win32.RpcFilters;
 
 /// <summary>

@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net480;net8.0-windows</TargetFrameworks>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <IncludeSymbols>False</IncludeSymbols>
-    <ArtifactsPivots>$(Configuration)/DSInternals.RpcFilters</ArtifactsPivots>
+    <ArtifactsPivots>$(Configuration)/DSInternals.RpcFilters/$(TargetFramework)</ArtifactsPivots>
     <PublishRelease>true</PublishRelease>
     <Version>1.0</Version>
     <AssemblyVersion>1.0</AssemblyVersion>
@@ -14,18 +14,24 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
+  <!-- Include platform-independent module files -->
+  <ItemGroup>
+    <Content Include="*.psd1;*.psm1;*.ps1xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>../%(Filename)%(Extension)</TargetPath>
+    </Content>
+    <Content Include="en-US\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>../en-US/%(Filename)%(Extension)</TargetPath>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" IncludeAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DSInternals.Win32.RpcFilters\DSInternals.Win32.RpcFilters.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DSInternals.RpcFilters.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

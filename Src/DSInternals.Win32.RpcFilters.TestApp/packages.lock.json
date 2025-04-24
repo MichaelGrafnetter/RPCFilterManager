@@ -2,8 +2,16 @@
   "version": 1,
   "dependencies": {
     "net8.0": {
+      "System.Memory": {
+        "type": "Transitive",
+        "resolved": "4.6.3",
+        "contentHash": "qdcDOgnFZY40+Q9876JUHnlHu7bosOHX8XISRoH94fwk6hgaeQGSgfZd8srWRZNt5bV9ZW2TljcegDNxsf+96A=="
+      },
       "dsinternals.win32.rpcfilters": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "System.Memory": "[4.6.3, )"
+        }
       }
     }
   }

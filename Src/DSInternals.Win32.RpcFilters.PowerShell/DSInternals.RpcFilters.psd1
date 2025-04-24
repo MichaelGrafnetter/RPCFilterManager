@@ -5,7 +5,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'DSInternals.Win32.RpcFilters.PowerShell.dll'
+RootModule = 'DSInternals.RpcFilters.Bootstrap.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0'
@@ -35,7 +35,7 @@ PowerShellVersion = '5.1'
 ProcessorArchitecture = 'MSIL'
 
 # Assemblies that must be loaded prior to importing this module
-RequiredAssemblies = @('DSInternals.Win32.RpcFilters.dll')
+RequiredAssemblies = @()
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -68,11 +68,16 @@ ModuleList = @()
 
 # List of all files packaged with this module
 FileList = @(
-    'System.Buffers.dll',
-    'System.Numerics.Vectors.dll',
-    'System.Runtime.CompilerServices.Unsafe.dll',
-    'System.Security.AccessControl.dll',
-    'System.Security.Principal.Windows.dll'
+    'net8.0-windows\DSInternals.Win32.RpcFilters.dll',
+    'net8.0-windows\DSInternals.Win32.RpcFilters.PowerShell.dll'
+    'net480\DSInternals.Win32.RpcFilters.dll',
+    'net480\DSInternals.Win32.RpcFilters.PowerShell.dll'
+    'net480\System.Runtime.CompilerServices.Unsafe.dll',
+    'net480\System.Numerics.Vectors.dll',
+    'net480\System.Buffers.dll',
+    'net480\System.Memory.dll',
+    'en-US\about_DSInternals.RpcFilters.help.txt',
+    'en-US\DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml'
 )
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
