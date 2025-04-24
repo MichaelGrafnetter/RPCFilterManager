@@ -29,13 +29,13 @@ Copyright = '(c) Michael Grafnetter. All rights reserved.'
 # Description = ''
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.0'
+PowerShellVersion = '5.1'
 
 # Processor architecture (None, X86, Amd64) required by this module
 ProcessorArchitecture = 'MSIL'
 
 # Assemblies that must be loaded prior to importing this module
-RequiredAssemblies = 'DSInternals.Win32.RpcFilters.dll'
+RequiredAssemblies = @('DSInternals.Win32.RpcFilters.dll')
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -47,7 +47,12 @@ RequiredAssemblies = 'DSInternals.Win32.RpcFilters.dll'
 FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = 'Get-RpcFilter', 'New-RpcFilter', 'Remove-RpcFilter', 'Test-RpcFilterOpNumSupport'
+CmdletsToExport = @(
+    'Get-RpcFilter',
+    'New-RpcFilter',
+    'Remove-RpcFilter',
+    'Test-RpcFilterOpNumSupport'
+)
 
 # Variables to export from this module
 VariablesToExport = @()
@@ -62,7 +67,13 @@ DscResourcesToExport = @()
 ModuleList = @()
 
 # List of all files packaged with this module
-FileList = @()
+FileList = @(
+    'System.Buffers.dll',
+    'System.Numerics.Vectors.dll',
+    'System.Runtime.CompilerServices.Unsafe.dll',
+    'System.Security.AccessControl.dll',
+    'System.Security.Principal.Windows.dll'
+)
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{

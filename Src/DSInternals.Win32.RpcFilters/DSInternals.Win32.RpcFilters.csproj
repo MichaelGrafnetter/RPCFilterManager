@@ -20,6 +20,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>TODO</Description>
     <PackageReleaseNotes>
       - Initial version.
@@ -54,7 +55,7 @@
   <ItemGroup>
     <!-- Additional files to include in the NuGet package -->
     <None Include="$(MSBuildThisFileDirectory)../Icons/package_black.png" Pack="true" PackagePath="/icon.png" Visible="false" />
-    <None Include="$(MSBuildThisFileDirectory)../../LICENSE" Pack="true" PackagePath="/" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)PACKAGE.md" Pack="true" PackagePath="/README.md" Visible="false" />
   </ItemGroup>
 
 </Project>

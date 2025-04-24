@@ -11,10 +11,11 @@
     <ProductVersion>1.0</ProductVersion>
     <FileVersion>1.0</FileVersion>
     <AssemblyTitle>DSInternals.RpcFilters PowerShell Module</AssemblyTitle>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" />
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" IncludeAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>
