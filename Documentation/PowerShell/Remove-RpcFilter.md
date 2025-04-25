@@ -72,13 +72,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.UInt64
-
 ### DSInternals.Win32.RpcFilters.RpcFilter
-
 ## OUTPUTS
 
 ### None
-
 ## NOTES
 
 ## RELATED LINKS

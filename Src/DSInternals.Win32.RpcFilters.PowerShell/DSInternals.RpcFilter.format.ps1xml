@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ViewDefinitions>
+    <View>
+      <Name>RpcFilterTable</Name>
+      <ViewSelectedBy>
+        <TypeName>DSInternals.Win32.RpcFilters.RpcFilter</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <!--
+                        Name = this.Name ?? RpcFilter.DefaultName,
+                Description = this.Description ?? RpcFilter.DefaultDescription,
+                FilterKey = this.FilterKey ?? Guid.NewGuid(),
+                Action = this.Action,
+                Audit = this.Audit.IsPresent,
+                AuthenticationLevel = this.AuthenticationLevel,
+                AuthenticationType = this.AuthenticationType,
+                DcomAppId = this.DcomAppId,
+                ImageName = this.ImageName,
+                InterfaceUUID = this.InterfaceUUID,
+                IsBootTimeEnforced = this.BootTimeEnforced.IsPresent,
+                IsPersistent = this.Persistent.IsPresent,
+                LocalAddress = this.LocalAddress,
+                LocalAddressMask = this.LocalAddressMask,
+                LocalPort = this.LocalPort,
+                Protocol = this.ProtocolSequence,
+                RemoteAddress = this.RemoteAddress,
+                RemoteAddressMask = this.RemoteAddressMask,
+                SecurityDescriptor = this.SecurityDescriptor,
+                Weight = this.Weight,
+                OperationNumber = this.OperationNumber,
+                NamedPipe = this.NamedPipe,
+                ProviderKey = this.ProviderKey-->
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Weight</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Name</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Action</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Audit</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Protocol</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Transport</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>OpNum</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>AuthLevel</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>AuthType</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>RemoteAddress</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>SecurityDescriptor</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>FilterKey</Label>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>ComputerName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Account</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Password</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ExpirationTimestamp</PropertyName>
+                <FormatString>d</FormatString>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>RpcFilterList</Name>
+      <ViewSelectedBy></ViewSelectedBy>
+      <ListControl>
+        
+      </ListControl>
+    </View>
+    <View>
+      <Name></Name>
+      <ViewSelectedBy></ViewSelectedBy>
+      <GroupBy>
+        <PropertyName>string</PropertyName>
+        <Label></Label>
+        <CustomControl>
+          <CustomEntries>
+            <CustomEntry>
+              <EntrySelectedBy>
+                <TypeName></TypeName>
+              </EntrySelectedBy>
+              <CustomItem>
+                <
+              </CustomItem>
+            </CustomEntry>
+          </CustomEntries>
+        </CustomControl>
+      </GroupBy>
+    </View>
+  </ViewDefinitions>
+</Configuration>

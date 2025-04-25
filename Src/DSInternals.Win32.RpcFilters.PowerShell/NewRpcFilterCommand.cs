@@ -4,10 +4,14 @@ using System.Security.AccessControl;
 
 namespace DSInternals.Win32.RpcFilters.PowerShell;
 
-[Cmdlet(VerbsCommon.New, "RpcFilter")]
+[Cmdlet(VerbsCommon.New, "RpcFilter", DefaultParameterSetName = CustomProtocolParameterSet)]
 [OutputType(typeof(RpcFilter))]
 public class NewRpcFilterCommand : RpcFilterCommandBase
 {
+    private const string CustomProtocolParameterSet = "CustomProtocol";
+    private const string WellKnownProtocolParameterSet = "WellKnownProtocol";
+    private const string WellKnownOperationParameterSet = "WellKnownOperation";
+
     [Parameter()]
     public SwitchParameter PassThrough { get; set; } = default;
 
@@ -19,36 +23,35 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public SwitchParameter Persistent { get; set; } = default;
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNullOrEmpty()]
     public string? Name { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNullOrEmpty()]
     public string? Description { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNullOrEmpty()]
     public string? ImageName { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNullOrEmpty()]
     public string? NamedPipe { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public Guid? FilterKey { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public Guid? DcomAppId { get; set; }
 
-    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Parameter(Mandatory = false, ParameterSetName = CustomProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
     [Alias("RpcProtocol", "Protocol", "ProtocolUUID")]
-    [ValidateNotNull()]
     public Guid? InterfaceUUID { get; set; }
 
+    [Parameter(Mandatory = true, ParameterSetName = WellKnownProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
+    [Alias("WellKnownInterface")]
+    public WellKnownProtocol? WellKnownProtocol { get; set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = WellKnownOperationParameterSet, ValueFromPipelineByPropertyName = true)]
+    public WellKnownOperation? WellKnownOperation { get; set; }
+
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public Guid? ProviderKey { get; set; }
 
     [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true)]
@@ -57,54 +60,44 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     [Parameter(ValueFromPipelineByPropertyName = true)]
     public SwitchParameter Audit { get; set; } = default;
 
-    [Parameter(ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     public RpcAuthenticationLevel? AuthenticationLevel { get; set; }
 
-    [Parameter(ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     public RpcAuthenticationType? AuthenticationType { get; set; }
 
-    [Parameter(ValueFromPipelineByPropertyName = true)]
-    [Alias("ProtSeq", "Binding")]
-    [ValidateNotNull()]
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Alias("ProtSeq", "Binding", "Transport")]
     public RpcProtocolSequence? ProtocolSequence { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [Alias("SDDL", "Permissions", "DACL")]
-    [ValidateNotNull()]
     public RawSecurityDescriptor? SecurityDescriptor { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public IPAddress? RemoteAddress { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     [ValidateRange(1, 128)]
     public byte? RemoteAddressMask { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public IPAddress? LocalAddress { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     [ValidateRange(1, 128)]
     public byte? LocalAddressMask { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     [ValidateRange(1, UInt16.MaxValue)]
     public ushort? LocalPort { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateNotNull()]
     public ulong? Weight { get; set; }
 
-    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Parameter(Mandatory = false, ParameterSetName = CustomProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
+    [Parameter(Mandatory = false, ParameterSetName = WellKnownProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
     [Alias("OpNum")]
-    [ValidateNotNull()]
     public ushort? OperationNumber { get; set; }
 
     protected override void ProcessRecord()
@@ -113,6 +106,18 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
 
         try
         {
+            // Translate the well-known protocol and operation names first.
+            if (this.WellKnownProtocol.HasValue)
+            {
+                this.InterfaceUUID = this.WellKnownProtocol.Value.Translate();
+            }
+
+            if (this.WellKnownOperation.HasValue)
+            {
+                (this.InterfaceUUID, this.OperationNumber) = this.WellKnownOperation.Value.Translate();
+            }
+
+            // Create and save the filter.
             var filter = new RpcFilter()
             {
                 Name = this.Name ?? RpcFilter.DefaultName,

@@ -1,0 +1,55 @@
+name: 'CI Build'
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'Src/**'
+    - '.github/workflows/autobuild.yml'
+
+jobs:
+  build:
+    name: 'Build'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+          cache: true
+          cache-dependency-path: 'Src/*/packages.lock.json'
+
+    - name: Restore NuGet Packages
+      working-directory: Src
+      run: dotnet restore --locked-mode
+
+    - name: Build Binaries
+      working-directory: Src
+      run: |
+        dotnet build --configuration Release --no-restore
+        dotnet build --configuration Debug --no-restore
+
+    - name: Upload PowerShell Module as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PowerShell
+        path: Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release/*
+
+    - name: Create NuGet Packages
+      working-directory: Src
+      run: dotnet pack --configuration Release --no-build
+
+    - name: Upload NuGet Packages as Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: NuGet
+        path: Build/package/release/*nupkg
