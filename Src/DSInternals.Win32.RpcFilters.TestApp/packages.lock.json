@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net8.0": {
+    "net8.0-windows7.0": {
       "System.Memory": {
         "type": "Transitive",
         "resolved": "4.6.3",
