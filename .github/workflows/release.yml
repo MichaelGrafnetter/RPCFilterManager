@@ -1,0 +1,245 @@
+name: 'Build and Release'
+run-name: 'Build and Release v${{ inputs.release_version }}'
+
+on:
+  workflow_dispatch:
+    inputs:
+      certificate_sign:
+        description: 'Sign the binaries and packages using a certificate stored in Azure Key Vault?'
+        required: true
+        type: boolean
+        default: false
+      strong_name_sign:
+        description: 'Sign the assemblies using a strong name key stored in GitHub Secrets?'
+        required: true
+        type: boolean
+        default: false
+      create_github_release:
+        description: 'Create a GitHub Release?'
+        required: true
+        type: boolean
+        default: false
+      publish_nuget:
+        description: 'Publish packages to NuGet Gallery?'
+        required: true
+        type: boolean
+        default: false
+      publish_powershell:
+        description: 'Publish module to PowerShell Gallery?'
+        required: true
+        type: boolean
+        default: false
+      release_version:
+        description: 'Version'
+        required: true
+        type: string
+        default: '1.x'
+
+permissions:
+      id-token: write
+      contents: write
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:
+    name: 'Build'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Restore Strong Name Key
+      if: ${{ inputs.strong_name_sign }}
+      working-directory: Keys
+      shell: powershell
+      env:
+        STRONG_NAME_KEY: ${{ secrets.STRONG_NAME_KEY }}
+      run: |
+        if($null -ne $env:STRONG_NAME_KEY)
+        {
+            Write-Host 'Creating file Keys/DSInternals.Private.snk...'
+            [byte[]] $privateKey = [System.Convert]::FromBase64String($env:STRONG_NAME_KEY)
+            [System.IO.File]::WriteAllBytes('DSInternals.Private.snk', $privateKey)
+        }
+        else
+        {
+            Write-Warning 'The STRONG_NAME_KEY secret is not available. Skipping SNK file creation.'
+        }
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+          cache: true
+          cache-dependency-path: 'Src/*/packages.lock.json'
+
+    - name: Restore NuGet Packages
+      working-directory: Src
+      run: dotnet restore --locked-mode
+
+    - name: Build Binaries
+      working-directory: Src
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Cache DotNet Global Tools
+      id: cache-dotnet-globaltools
+      uses: actions/cache@v4
+      if: ${{ inputs.certificate_sign }}
+      with:
+        path: ~/.dotnet/tools
+        # Heuristics: The current list of required global tools is defined in this workflow file.
+        key: ${{ runner.os }}-DotNET-GlobalTools-Release-${{ hashFiles('.github/workflows/release.yml') }}
+
+    - name: Install Code Signing Tools
+      if: ${{ inputs.certificate_sign && steps.cache-dotnet-globaltools.outputs.cache-hit != 'true' }}
+      run: |
+        dotnet tool install --global --prerelease sign
+
+    - name: Azure Login
+      uses: azure/login@v2
+      if: ${{ inputs.certificate_sign }}
+      with:
+        client-id: ${{ secrets.SIGNING_CLIENT_ID }}
+        tenant-id: ${{ secrets.SIGNING_TENANT_ID }}
+        allow-no-subscriptions: true
+
+    - name: Sign PowerShell Module
+      shell: cmd
+      if: ${{ inputs.certificate_sign }}
+      run: >
+        sign code trusted-signing
+        DSInternals.*
+        --base-directory "${{ github.workspace }}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters"
+        --trusted-signing-endpoint "${{ vars.SIGNING_ENDPOINT }}"
+        --trusted-signing-account "${{ vars.SIGNING_ACCOUNT_NAME }}"
+        --trusted-signing-certificate-profile "${{ vars.SIGNING_PROFILE_NAME }}"
+        --file-digest SHA256
+        --timestamp-digest SHA256
+        --timestamp-url "http://timestamp.acs.microsoft.com"
+        --verbosity Information
+
+    - name: Sign DSInternals.Win32.RpcFilters Libraries
+      shell: cmd
+      if: ${{ inputs.certificate_sign }}
+      run: >
+        sign code trusted-signing
+        release_*/DSInternals.Win32.RpcFilters.dll
+        --base-directory "${{ github.workspace }}/Build/bin/DSInternals.Win32.RpcFilters"
+        --trusted-signing-endpoint "${{ vars.SIGNING_ENDPOINT }}"
+        --trusted-signing-account "${{ vars.SIGNING_ACCOUNT_NAME }}"
+        --trusted-signing-certificate-profile "${{ vars.SIGNING_PROFILE_NAME }}"
+        --file-digest SHA256
+        --timestamp-digest SHA256
+        --timestamp-url "http://timestamp.acs.microsoft.com"
+        --verbosity Information
+
+    - name: Upload PowerShell Module as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PowerShell
+        path: Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release
+
+    - name: Create NuGet Packages
+      working-directory: Src
+      run: dotnet pack --configuration Release --no-build
+
+    - name: Sign NuGet Packages
+      shell: cmd
+      if: ${{ inputs.certificate_sign }}
+      run: >
+        sign code trusted-signing
+        *.*nupkg
+        --base-directory "${{ github.workspace }}/Build/package/release"
+        --trusted-signing-endpoint "${{ vars.SIGNING_ENDPOINT }}"
+        --trusted-signing-account "${{ vars.SIGNING_ACCOUNT_NAME }}"
+        --trusted-signing-certificate-profile "${{ vars.SIGNING_PROFILE_NAME }}"
+        --file-digest SHA256
+        --timestamp-digest SHA256
+        --timestamp-url "http://timestamp.acs.microsoft.com"
+        --verbosity Information
+
+    - name: Upload NuGet Packages as Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: NuGet
+        path: Build/package/release/*nupkg
+
+  nuget:
+    name: 'Publish to NuGet Gallery'
+    if: ${{ inputs.publish_nuget }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download NuGet Packages
+        uses: actions/download-artifact@v4
+        with:
+          name: NuGet
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: Publish NuGet Packages
+        run: |
+          dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_GALLERY_APIKEY }} --skip-duplicate
+
+  psgallery:
+    name: 'Publish to PowerShell Gallery'
+    if: ${{ inputs.publish_powershell }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download PowerShell Module
+        uses: actions/download-artifact@v4
+        with:
+          name: PowerShell
+
+      - name: Publish PowerShell Module
+        shell: pwsh
+        run: |
+          Publish-Module -Path .\DSInternals.RpcFilters -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_APIKEY }} -Repository PSGallery -Force
+
+  release:
+    name: 'Create GitHub Release Draft'
+    if: ${{ inputs.create_github_release }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Download PowerShell Module
+      uses: actions/download-artifact@v4
+      with:
+        name: PowerShell
+        path: GitHub/Module
+
+    - name: Create Module ZIP for GitHub Release
+      shell: pwsh
+      working-directory: GitHub
+      run: Compress-Archive -Path ./Module/* -DestinationPath ./DSInternals.RpcFilters_v${{ inputs.release_version }}.zip -CompressionLevel Optimal -Force
+
+    - name: Create GitHub Release
+      shell: pwsh
+      working-directory: GitHub
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        @'
+        ## Notable Changes
+        TODO
+
+        ## DSInternals.RpcFilters PowerShell Module
+
+        - The module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/DSInternals.RpcFilters).
+        - As an alternative, the attached `DSInternals.RpcFilters_v${{ inputs.release_version }}.zip` file can be used for offline module installation.
+
+        ## NuGet Packages
+
+        - Packages are [published in the NuGet Gallery](https://www.nuget.org/packages?q=DSInternals.Win32.RpcFilters).
+        '@ > release-notes.md
+        gh release create v${{ inputs.release_version }} ./*.zip --draft --latest --title "DSInternals.RpcFilters PowerShell Module ${{ inputs.release_version }}" --notes-file release-notes.md
