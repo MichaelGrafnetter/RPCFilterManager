@@ -25,6 +25,7 @@
     <PackageReleaseNotes>
       - Initial version.
     </PackageReleaseNotes>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">

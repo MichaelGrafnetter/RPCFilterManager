@@ -13,6 +13,7 @@
 
     <!-- Do not generate NuGet packages by default -->
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
     
     <!-- Redirect output directories -->
     <UseArtifactsOutput>true</UseArtifactsOutput>
