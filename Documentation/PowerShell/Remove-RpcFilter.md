@@ -1,14 +1,14 @@
 ---
 external help file: DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml
 Module Name: DSInternals.RpcFilters
-online version:
+online version: https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Remove-RpcFilter.md
 schema: 2.0.0
 ---
 
 # Remove-RpcFilter
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Removes an existing remote procedure call (RPC) filter.
 
 ## SYNTAX
 
@@ -37,7 +37,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the identifier of the RPC filter to delete.
 
 ```yaml
 Type: UInt64
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
-{{ Fill InputObject Description }}
+Specifies the RPC filter object to delete.
 
 ```yaml
 Type: RpcFilter

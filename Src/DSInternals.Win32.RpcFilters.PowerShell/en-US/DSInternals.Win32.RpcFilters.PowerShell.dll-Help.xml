@@ -6,7 +6,7 @@
       <command:verb>Get</command:verb>
       <command:noun>RpcFilter</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>Gets a list of RPC filters that match the specified criteria.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -103,7 +103,20 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Get-RpcFilter.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>New-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
@@ -111,7 +124,7 @@
       <command:verb>New</command:verb>
       <command:noun>RpcFilter</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>Creates a new RPC filter for managing remote procedure call (RPC) traffic based on specified criteria.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -123,7 +136,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Action</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Action Description }}</maml:para>
+            <maml:para>Specifies the action to be performed if all the filter conditions are true.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Block</command:parameterValue>
@@ -142,7 +155,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Audit Description }}</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -153,7 +166,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+            <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
@@ -174,7 +187,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+            <maml:para>Authentication service used for RPC connections.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
@@ -195,7 +208,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
           <maml:name>BootTimeEnforced</maml:name>
           <maml:description>
-            <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+            <maml:para>Indicates whether the filter is enforced at boot-time, even before BFE starts.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -206,7 +219,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>DcomAppId</maml:name>
           <maml:description>
-            <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+            <maml:para>The identification of the COM application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -218,7 +231,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Description</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Description Description }}</maml:para>
+            <maml:para>Optional filter description.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -230,7 +243,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>FilterKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill FilterKey Description }}</maml:para>
+            <maml:para>Unique identifier of the filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -242,7 +255,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ImageName</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ImageName Description }}</maml:para>
+            <maml:para>The name of the application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -254,7 +267,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="RpcProtocol, Protocol, ProtocolUUID">
           <maml:name>InterfaceUUID</maml:name>
           <maml:description>
-            <maml:para>{{ Fill InterfaceUUID Description }}</maml:para>
+            <maml:para>The UUID of the RPC interface.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -266,7 +279,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+            <maml:para>The local IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -278,7 +291,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+            <maml:para>The local IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -290,7 +303,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalPort</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalPort Description }}</maml:para>
+            <maml:para>The local transport protocol port number.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
           <dev:type>
@@ -302,7 +315,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Name Description }}</maml:para>
+            <maml:para>Human-readable RPC filter name.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -314,7 +327,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
-            <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+            <maml:para>The name of the remote named pipe.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -326,7 +339,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="OpNum">
           <maml:name>OperationNumber</maml:name>
           <maml:description>
-            <maml:para>{{ Fill OperationNumber Description }}</maml:para>
+            <maml:para>The RPC operation number for an RPC call made to an RPC listener.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
           <dev:type>
@@ -338,7 +351,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThrough</maml:name>
           <maml:description>
-            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+            <maml:para>Indicates whether to return the object that was created by the cmdlet.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -349,7 +362,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Persistent</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Persistent Description }}</maml:para>
+            <maml:para>Indicates whether the filter is persistent, that is, it survives across BFE stop/start.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -360,7 +373,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
           <maml:name>ProtocolSequence</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
@@ -378,7 +391,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -390,7 +403,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+            <maml:para>The remote IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -402,7 +415,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+            <maml:para>The remote IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -414,7 +427,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
           <maml:name>SecurityDescriptor</maml:name>
           <maml:description>
-            <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+            <maml:para>The identification of the remote user in SDDL form.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
           <dev:type>
@@ -426,7 +439,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Weight</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Weight Description }}</maml:para>
+            <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
@@ -441,7 +454,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Action</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Action Description }}</maml:para>
+            <maml:para>Specifies the action to be performed if all the filter conditions are true.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Block</command:parameterValue>
@@ -460,7 +473,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Audit Description }}</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -471,7 +484,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+            <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
@@ -492,7 +505,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+            <maml:para>Authentication service used for RPC connections.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
@@ -513,7 +526,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
           <maml:name>BootTimeEnforced</maml:name>
           <maml:description>
-            <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+            <maml:para>Indicates whether the filter is enforced at boot-time, even before BFE starts.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -524,7 +537,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>DcomAppId</maml:name>
           <maml:description>
-            <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+            <maml:para>The identification of the COM application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -536,7 +549,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Description</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Description Description }}</maml:para>
+            <maml:para>Optional filter description.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -548,7 +561,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>FilterKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill FilterKey Description }}</maml:para>
+            <maml:para>Unique identifier of the filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -560,7 +573,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ImageName</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ImageName Description }}</maml:para>
+            <maml:para>The name of the application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -572,7 +585,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+            <maml:para>The local IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -584,7 +597,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+            <maml:para>The local IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -596,7 +609,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalPort</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalPort Description }}</maml:para>
+            <maml:para>The local transport protocol port number.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
           <dev:type>
@@ -608,7 +621,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Name Description }}</maml:para>
+            <maml:para>Human-readable RPC filter name.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -620,7 +633,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
-            <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+            <maml:para>The name of the remote named pipe.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -632,7 +645,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="OpNum">
           <maml:name>OperationNumber</maml:name>
           <maml:description>
-            <maml:para>{{ Fill OperationNumber Description }}</maml:para>
+            <maml:para>The RPC operation number for an RPC call made to an RPC listener.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
           <dev:type>
@@ -644,7 +657,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThrough</maml:name>
           <maml:description>
-            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+            <maml:para>Indicates whether to return the object that was created by the cmdlet.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -655,7 +668,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Persistent</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Persistent Description }}</maml:para>
+            <maml:para>Indicates whether the filter is persistent, that is, it survives across BFE stop/start.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -666,7 +679,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
           <maml:name>ProtocolSequence</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
@@ -684,7 +697,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -696,7 +709,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+            <maml:para>The remote IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -708,7 +721,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+            <maml:para>The remote IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -720,7 +733,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
           <maml:name>SecurityDescriptor</maml:name>
           <maml:description>
-            <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+            <maml:para>The identification of the remote user in SDDL form.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
           <dev:type>
@@ -732,7 +745,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Weight</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Weight Description }}</maml:para>
+            <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
@@ -759,7 +772,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Action</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Action Description }}</maml:para>
+            <maml:para>Specifies the action to be performed if all the filter conditions are true.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Block</command:parameterValue>
@@ -778,7 +791,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Audit Description }}</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -789,7 +802,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+            <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
@@ -810,7 +823,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
-            <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+            <maml:para>Authentication service used for RPC connections.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
@@ -831,7 +844,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
           <maml:name>BootTimeEnforced</maml:name>
           <maml:description>
-            <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+            <maml:para>Indicates whether the filter is enforced at boot-time, even before BFE starts.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -842,7 +855,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>DcomAppId</maml:name>
           <maml:description>
-            <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+            <maml:para>The identification of the COM application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -854,7 +867,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Description</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Description Description }}</maml:para>
+            <maml:para>Optional filter description.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -866,7 +879,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>FilterKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill FilterKey Description }}</maml:para>
+            <maml:para>Unique identifier of the filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -878,7 +891,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ImageName</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ImageName Description }}</maml:para>
+            <maml:para>The name of the application.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -890,7 +903,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+            <maml:para>The local IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -902,7 +915,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+            <maml:para>The local IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -914,7 +927,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>LocalPort</maml:name>
           <maml:description>
-            <maml:para>{{ Fill LocalPort Description }}</maml:para>
+            <maml:para>The local transport protocol port number.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
           <dev:type>
@@ -926,7 +939,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Name Description }}</maml:para>
+            <maml:para>Human-readable RPC filter name.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -938,7 +951,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
-            <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+            <maml:para>The name of the remote named pipe.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -950,7 +963,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThrough</maml:name>
           <maml:description>
-            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+            <maml:para>Indicates whether to return the object that was created by the cmdlet.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -961,7 +974,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Persistent</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Persistent Description }}</maml:para>
+            <maml:para>Indicates whether the filter is persistent, that is, it survives across BFE stop/start.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -972,7 +985,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
           <maml:name>ProtocolSequence</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
@@ -990,7 +1003,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -1002,7 +1015,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+            <maml:para>The remote IP address.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
           <dev:type>
@@ -1014,7 +1027,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
-            <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+            <maml:para>The remote IP address mask.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
           <dev:type>
@@ -1026,7 +1039,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
           <maml:name>SecurityDescriptor</maml:name>
           <maml:description>
-            <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+            <maml:para>The identification of the remote user in SDDL form.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
           <dev:type>
@@ -1038,7 +1051,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Weight</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Weight Description }}</maml:para>
+            <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
@@ -1065,7 +1078,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Action</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Action Description }}</maml:para>
+          <maml:para>Specifies the action to be performed if all the filter conditions are true.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RpcFilterAction</command:parameterValue>
         <dev:type>
@@ -1077,7 +1090,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Audit</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Audit Description }}</maml:para>
+          <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1089,7 +1102,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>AuthenticationLevel</maml:name>
         <maml:description>
-          <maml:para>{{ Fill AuthenticationLevel Description }}</maml:para>
+          <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
         <dev:type>
@@ -1101,7 +1114,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>AuthenticationType</maml:name>
         <maml:description>
-          <maml:para>{{ Fill AuthenticationType Description }}</maml:para>
+          <maml:para>Authentication service used for RPC connections.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RpcAuthenticationType</command:parameterValue>
         <dev:type>
@@ -1113,7 +1126,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="Boot">
         <maml:name>BootTimeEnforced</maml:name>
         <maml:description>
-          <maml:para>{{ Fill BootTimeEnforced Description }}</maml:para>
+          <maml:para>Indicates whether the filter is enforced at boot-time, even before BFE starts.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1125,7 +1138,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>DcomAppId</maml:name>
         <maml:description>
-          <maml:para>{{ Fill DcomAppId Description }}</maml:para>
+          <maml:para>The identification of the COM application.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
         <dev:type>
@@ -1137,7 +1150,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Description</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Description Description }}</maml:para>
+          <maml:para>Optional filter description.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1149,7 +1162,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>FilterKey</maml:name>
         <maml:description>
-          <maml:para>{{ Fill FilterKey Description }}</maml:para>
+          <maml:para>Unique identifier of the filter.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
         <dev:type>
@@ -1161,7 +1174,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ImageName</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ImageName Description }}</maml:para>
+          <maml:para>The name of the application.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1173,7 +1186,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="RpcProtocol, Protocol, ProtocolUUID">
         <maml:name>InterfaceUUID</maml:name>
         <maml:description>
-          <maml:para>{{ Fill InterfaceUUID Description }}</maml:para>
+          <maml:para>The UUID of the RPC interface.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
         <dev:type>
@@ -1185,7 +1198,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>LocalAddress</maml:name>
         <maml:description>
-          <maml:para>{{ Fill LocalAddress Description }}</maml:para>
+          <maml:para>The local IP address.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
         <dev:type>
@@ -1197,7 +1210,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>LocalAddressMask</maml:name>
         <maml:description>
-          <maml:para>{{ Fill LocalAddressMask Description }}</maml:para>
+          <maml:para>The local IP address mask.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
         <dev:type>
@@ -1209,7 +1222,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>LocalPort</maml:name>
         <maml:description>
-          <maml:para>{{ Fill LocalPort Description }}</maml:para>
+          <maml:para>The local transport protocol port number.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
         <dev:type>
@@ -1221,7 +1234,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Name Description }}</maml:para>
+          <maml:para>Human-readable RPC filter name.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1233,7 +1246,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>NamedPipe</maml:name>
         <maml:description>
-          <maml:para>{{ Fill NamedPipe Description }}</maml:para>
+          <maml:para>The name of the remote named pipe.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1245,7 +1258,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="OpNum">
         <maml:name>OperationNumber</maml:name>
         <maml:description>
-          <maml:para>{{ Fill OperationNumber Description }}</maml:para>
+          <maml:para>The RPC operation number for an RPC call made to an RPC listener.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">UInt16</command:parameterValue>
         <dev:type>
@@ -1257,7 +1270,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>PassThrough</maml:name>
         <maml:description>
-          <maml:para>{{ Fill PassThrough Description }}</maml:para>
+          <maml:para>Indicates whether to return the object that was created by the cmdlet.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1269,7 +1282,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Persistent</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Persistent Description }}</maml:para>
+          <maml:para>Indicates whether the filter is persistent, that is, it survives across BFE stop/start.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1281,7 +1294,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
         <maml:name>ProtocolSequence</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ProtocolSequence Description }}</maml:para>
+          <maml:para>Protocol family used by the RPC endpoint.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
         <dev:type>
@@ -1293,7 +1306,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ProviderKey</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+          <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
         <dev:type>
@@ -1305,7 +1318,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>RemoteAddress</maml:name>
         <maml:description>
-          <maml:para>{{ Fill RemoteAddress Description }}</maml:para>
+          <maml:para>The remote IP address.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">IPAddress</command:parameterValue>
         <dev:type>
@@ -1317,7 +1330,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>RemoteAddressMask</maml:name>
         <maml:description>
-          <maml:para>{{ Fill RemoteAddressMask Description }}</maml:para>
+          <maml:para>The remote IP address mask.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Byte</command:parameterValue>
         <dev:type>
@@ -1329,7 +1342,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SDDL, Permissions, DACL">
         <maml:name>SecurityDescriptor</maml:name>
         <maml:description>
-          <maml:para>{{ Fill SecurityDescriptor Description }}</maml:para>
+          <maml:para>The identification of the remote user in SDDL form.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RawSecurityDescriptor</command:parameterValue>
         <dev:type>
@@ -1341,7 +1354,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Weight</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Weight Description }}</maml:para>
+          <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
         <dev:type>
@@ -1497,7 +1510,24 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/New-RpcFilter.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-RpcFilterOpNumSupport</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
@@ -1505,7 +1535,7 @@
       <command:verb>Remove</command:verb>
       <command:noun>RpcFilter</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>Removes an existing remote procedure call (RPC) filter.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -1517,7 +1547,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="FilterId, RpcFilter">
           <maml:name>Id</maml:name>
           <maml:description>
-            <maml:para>{{ Fill Id Description }}</maml:para>
+            <maml:para>Specifies the identifier of the RPC filter to delete.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
@@ -1532,7 +1562,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="Filter">
           <maml:name>InputObject</maml:name>
           <maml:description>
-            <maml:para>{{ Fill InputObject Description }}</maml:para>
+            <maml:para>Specifies the RPC filter object to delete.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">RpcFilter</command:parameterValue>
           <dev:type>
@@ -1547,7 +1577,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="0" aliases="FilterId, RpcFilter">
         <maml:name>Id</maml:name>
         <maml:description>
-          <maml:para>{{ Fill Id Description }}</maml:para>
+          <maml:para>Specifies the identifier of the RPC filter to delete.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
         <dev:type>
@@ -1559,7 +1589,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="Filter">
         <maml:name>InputObject</maml:name>
         <maml:description>
-          <maml:para>{{ Fill InputObject Description }}</maml:para>
+          <maml:para>Specifies the RPC filter object to delete.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">RpcFilter</command:parameterValue>
         <dev:type>
@@ -1611,7 +1641,12 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Remove-RpcFilter.md</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
@@ -1619,7 +1654,7 @@
       <command:verb>Test</command:verb>
       <command:noun>RpcFilterOpNumSupport</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>Checks if filtering based on RPC operation numbers is supported by the OS.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -1665,6 +1700,15 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks />
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShellTest-RpcFilterOpNumSupport.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>New-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
   </command:command>
 </helpItems>

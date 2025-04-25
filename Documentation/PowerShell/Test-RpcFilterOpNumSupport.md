@@ -1,14 +1,14 @@
 ---
 external help file: DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml
 Module Name: DSInternals.RpcFilters
-online version:
+online version: https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShellTest-RpcFilterOpNumSupport.md
 schema: 2.0.0
 ---
 
 # Test-RpcFilterOpNumSupport
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Checks if filtering based on RPC operation numbers is supported by the OS.
 
 ## SYNTAX
 
@@ -42,3 +42,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[New-RpcFilter](New-RpcFilter.md)

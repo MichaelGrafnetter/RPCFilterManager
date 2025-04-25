@@ -1,14 +1,14 @@
 ---
 external help file: DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml
 Module Name: DSInternals.RpcFilters
-online version:
+online version: https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Get-RpcFilter.md
 schema: 2.0.0
 ---
 
 # Get-RpcFilter
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets a list of RPC filters that match the specified criteria.
 
 ## SYNTAX
 
@@ -78,3 +78,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Remove-RpcFilter](Remove-RpcFilter.md)
+[New-RpcFilter](New-RpcFilter.md)

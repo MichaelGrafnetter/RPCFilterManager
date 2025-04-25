@@ -1,6 +1,6 @@
 ﻿using System.Management.Automation;
 
-namespace DSInternals.Win32.RpcFilters.PowerShell;
+namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Remove, "RpcFilter", DefaultParameterSetName = ParameterSetById)]
 [OutputType("None")]
@@ -21,10 +21,10 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
     {
         base.ProcessRecord();
 
-        ulong? filterId = this.ParameterSetName switch
+        ulong? filterId = ParameterSetName switch
         {
-            ParameterSetById => this.Id,
-            ParameterSetByInputObject => this.InputObject?.FilterId,
+            ParameterSetById => Id,
+            ParameterSetByInputObject => InputObject?.FilterId,
             _ => null // This should never happen
         };
 
@@ -33,12 +33,12 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
             // TODO: Verbose message
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            this.RpcFilterManager.RemoveFilter(filterId.Value);
+            RpcFilterManager.RemoveFilter(filterId.Value);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
         else
         {
-            this.WriteError(new ErrorRecord(new ArgumentNullException(nameof(RpcFilter.FilterId), "Could not determine the filter identifier."), "FilterIdIsNull", ErrorCategory.InvalidArgument, this.InputObject));
+            WriteError(new ErrorRecord(new ArgumentNullException(nameof(RpcFilter.FilterId), "Could not determine the filter identifier."), "FilterIdIsNull", ErrorCategory.InvalidArgument, InputObject));
         }
     }
 }

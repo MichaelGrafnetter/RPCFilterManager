@@ -2,7 +2,7 @@
 using System.Net;
 using System.Security.AccessControl;
 
-namespace DSInternals.Win32.RpcFilters.PowerShell;
+namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.New, "RpcFilter", DefaultParameterSetName = CustomProtocolParameterSet)]
 [OutputType(typeof(RpcFilter))]
@@ -89,7 +89,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public byte? LocalAddressMask { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidateRange(1, UInt16.MaxValue)]
+    [ValidateRange(1, ushort.MaxValue)]
     public ushort? LocalPort { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
@@ -107,59 +107,59 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
         try
         {
             // Translate the well-known protocol and operation names first.
-            if (this.WellKnownProtocol.HasValue)
+            if (WellKnownProtocol.HasValue)
             {
-                this.InterfaceUUID = this.WellKnownProtocol.Value.Translate();
+                InterfaceUUID = WellKnownProtocol.Value.Translate();
             }
 
-            if (this.WellKnownOperation.HasValue)
+            if (WellKnownOperation.HasValue)
             {
-                (this.InterfaceUUID, this.OperationNumber) = this.WellKnownOperation.Value.Translate();
+                (InterfaceUUID, OperationNumber) = WellKnownOperation.Value.Translate();
             }
 
             // Create and save the filter.
             var filter = new RpcFilter()
             {
-                Name = this.Name ?? RpcFilter.DefaultName,
-                Description = this.Description ?? RpcFilter.DefaultDescription,
-                FilterKey = this.FilterKey ?? Guid.NewGuid(),
-                Action = this.Action,
-                Audit = this.Audit.IsPresent,
-                AuthenticationLevel = this.AuthenticationLevel,
-                AuthenticationType = this.AuthenticationType,
-                DcomAppId = this.DcomAppId,
-                ImageName = this.ImageName,
-                InterfaceUUID = this.InterfaceUUID,
-                IsBootTimeEnforced = this.BootTimeEnforced.IsPresent,
-                IsPersistent = this.Persistent.IsPresent,
-                LocalAddress = this.LocalAddress,
-                LocalAddressMask = this.LocalAddressMask,
-                LocalPort = this.LocalPort,
-                Protocol = this.ProtocolSequence,
-                RemoteAddress = this.RemoteAddress,
-                RemoteAddressMask = this.RemoteAddressMask,
-                SecurityDescriptor = this.SecurityDescriptor,
-                Weight = this.Weight,
-                OperationNumber = this.OperationNumber,
-                NamedPipe = this.NamedPipe,
-                ProviderKey = this.ProviderKey
+                Name = Name ?? RpcFilter.DefaultName,
+                Description = Description ?? RpcFilter.DefaultDescription,
+                FilterKey = FilterKey ?? Guid.NewGuid(),
+                Action = Action,
+                Audit = Audit.IsPresent,
+                AuthenticationLevel = AuthenticationLevel,
+                AuthenticationType = AuthenticationType,
+                DcomAppId = DcomAppId,
+                ImageName = ImageName,
+                InterfaceUUID = InterfaceUUID,
+                IsBootTimeEnforced = BootTimeEnforced.IsPresent,
+                IsPersistent = Persistent.IsPresent,
+                LocalAddress = LocalAddress,
+                LocalAddressMask = LocalAddressMask,
+                LocalPort = LocalPort,
+                Protocol = ProtocolSequence,
+                RemoteAddress = RemoteAddress,
+                RemoteAddressMask = RemoteAddressMask,
+                SecurityDescriptor = SecurityDescriptor,
+                Weight = Weight,
+                OperationNumber = OperationNumber,
+                NamedPipe = NamedPipe,
+                ProviderKey = ProviderKey
             };
 
             // TODO: Verbose message
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            ulong filterId = this.RpcFilterManager.AddFilter(filter);
+            ulong filterId = RpcFilterManager.AddFilter(filter);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-            if (this.PassThrough.IsPresent)
+            if (PassThrough.IsPresent)
             {
-                this.WriteObject(filter);
+                WriteObject(filter);
             }
         }
         catch (Exception ex)
         {
             // TODO: Improve this error report
-            this.WriteError(new ErrorRecord(ex, "RpcFilterCreationFailed", ErrorCategory.InvalidOperation, null));
+            WriteError(new ErrorRecord(ex, "RpcFilterCreationFailed", ErrorCategory.InvalidOperation, null));
         }
     }
 }

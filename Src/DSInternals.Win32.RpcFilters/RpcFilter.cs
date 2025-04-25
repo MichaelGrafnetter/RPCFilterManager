@@ -132,7 +132,7 @@ public sealed class RpcFilter
     public string? NamedPipe { get; set; }
 
     /// <summary>
-    /// The remote IP address. 
+    /// The remote IP address.
     /// </summary>
     public IPAddress? RemoteAddress { get; set; }
 
@@ -142,7 +142,7 @@ public sealed class RpcFilter
     public byte? RemoteAddressMask { get; set; }
 
     /// <summary>
-    /// The local IP address. 
+    /// The local IP address.
     /// </summary>
     public IPAddress? LocalAddress { get; set; }
 

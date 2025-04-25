@@ -1,6 +1,6 @@
 ﻿using System.Management.Automation;
 
-namespace DSInternals.Win32.RpcFilters.PowerShell;
+namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "RpcFilter", DefaultParameterSetName = ParameterSetByProviderKey)]
 [OutputType(typeof(RpcFilter))]
@@ -8,7 +8,7 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
 {
     private const string ParameterSetByProviderKey = "Default";
     private const string ParameterSetZeroNetworks = "ZeroNetworks";
-    private static readonly Guid ZeroNetworksRpcFirewallProviderKey = new(0x17171717, 0x1717, 0x1717, [0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17]); 
+    private static readonly Guid ZeroNetworksRpcFirewallProviderKey = new(0x17171717, 0x1717, 0x1717, [0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17]);
 
     [Parameter(Mandatory = false, Position = 0, ParameterSetName = ParameterSetByProviderKey)]
     [Alias("Provider", "ProviderId", "RpcFilterProvider", "RpcFilterProviderId")]
@@ -22,20 +22,20 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
     {
         base.ProcessRecord();
 
-        if (this.ZeroNetworks.IsPresent)
+        if (ZeroNetworks.IsPresent)
         {
-            this.ProviderKey = ZeroNetworksRpcFirewallProviderKey;
+            ProviderKey = ZeroNetworksRpcFirewallProviderKey;
         }
 
         // TODO: Exception handling
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-        var filterEnumerator = this.RpcFilterManager.GetFilters(this.ProviderKey);
+        var filterEnumerator = RpcFilterManager.GetFilters(ProviderKey);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         foreach (var filter in filterEnumerator)
         {
-            this.WriteObject(filter);
+            WriteObject(filter);
         }
 
     }

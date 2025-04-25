@@ -1,14 +1,14 @@
 ---
 external help file: DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml
 Module Name: DSInternals.RpcFilters
-online version:
+online version: https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/New-RpcFilter.md
 schema: 2.0.0
 ---
 
 # New-RpcFilter
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new RPC filter for managing remote procedure call (RPC) traffic based on specified criteria.
 
 ## SYNTAX
 
@@ -61,7 +61,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Action
-{{ Fill Action Description }}
+Specifies the action to be performed if all the filter conditions are true.
 
 ```yaml
 Type: RpcFilterAction
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Audit
-{{ Fill Audit Description }}
+Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.
 
 ```yaml
 Type: SwitchParameter
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthenticationLevel
-{{ Fill AuthenticationLevel Description }}
+The authentication level controls how much security a client or server wants from its SSP.
 
 ```yaml
 Type: RpcAuthenticationLevel
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthenticationType
-{{ Fill AuthenticationType Description }}
+Authentication service used for RPC connections.
 
 ```yaml
 Type: RpcAuthenticationType
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -BootTimeEnforced
-{{ Fill BootTimeEnforced Description }}
+Indicates whether the filter is enforced at boot-time, even before BFE starts.
 
 ```yaml
 Type: SwitchParameter
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -DcomAppId
-{{ Fill DcomAppId Description }}
+The identification of the COM application.
 
 ```yaml
 Type: Guid
@@ -154,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Optional filter description.
 
 ```yaml
 Type: String
@@ -169,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -FilterKey
-{{ Fill FilterKey Description }}
+Unique identifier of the filter.
 
 ```yaml
 Type: Guid
@@ -184,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageName
-{{ Fill ImageName Description }}
+The name of the application.
 
 ```yaml
 Type: String
@@ -199,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -InterfaceUUID
-{{ Fill InterfaceUUID Description }}
+The UUID of the RPC interface.
 
 ```yaml
 Type: Guid
@@ -214,7 +214,7 @@ Accept wildcard characters: False
 ```
 
 ### -LocalAddress
-{{ Fill LocalAddress Description }}
+The local IP address.
 
 ```yaml
 Type: IPAddress
@@ -229,7 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -LocalAddressMask
-{{ Fill LocalAddressMask Description }}
+The local IP address mask.
 
 ```yaml
 Type: Byte
@@ -244,7 +244,7 @@ Accept wildcard characters: False
 ```
 
 ### -LocalPort
-{{ Fill LocalPort Description }}
+The local transport protocol port number.
 
 ```yaml
 Type: UInt16
@@ -259,7 +259,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Human-readable RPC filter name.
 
 ```yaml
 Type: String
@@ -274,7 +274,7 @@ Accept wildcard characters: False
 ```
 
 ### -NamedPipe
-{{ Fill NamedPipe Description }}
+The name of the remote named pipe.
 
 ```yaml
 Type: String
@@ -289,7 +289,7 @@ Accept wildcard characters: False
 ```
 
 ### -OperationNumber
-{{ Fill OperationNumber Description }}
+The RPC operation number for an RPC call made to an RPC listener.
 
 ```yaml
 Type: UInt16
@@ -304,7 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThrough
-{{ Fill PassThrough Description }}
+Indicates whether to return the object that was created by the cmdlet.
 
 ```yaml
 Type: SwitchParameter
@@ -319,7 +319,7 @@ Accept wildcard characters: False
 ```
 
 ### -Persistent
-{{ Fill Persistent Description }}
+Indicates whether the filter is persistent, that is, it survives across BFE stop/start.
 
 ```yaml
 Type: SwitchParameter
@@ -334,7 +334,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProtocolSequence
-{{ Fill ProtocolSequence Description }}
+Protocol family used by the RPC endpoint.
 
 ```yaml
 Type: RpcProtocolSequence
@@ -350,7 +350,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProviderKey
-{{ Fill ProviderKey Description }}
+Optional identifier of the policy provider that manages this filter.
 
 ```yaml
 Type: Guid
@@ -365,7 +365,7 @@ Accept wildcard characters: False
 ```
 
 ### -RemoteAddress
-{{ Fill RemoteAddress Description }}
+The remote IP address.
 
 ```yaml
 Type: IPAddress
@@ -380,7 +380,7 @@ Accept wildcard characters: False
 ```
 
 ### -RemoteAddressMask
-{{ Fill RemoteAddressMask Description }}
+The remote IP address mask.
 
 ```yaml
 Type: Byte
@@ -395,7 +395,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityDescriptor
-{{ Fill SecurityDescriptor Description }}
+The identification of the remote user in SDDL form.
 
 ```yaml
 Type: RawSecurityDescriptor
@@ -410,7 +410,7 @@ Accept wildcard characters: False
 ```
 
 ### -Weight
-{{ Fill Weight Description }}
+The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.
 
 ```yaml
 Type: UInt64
@@ -477,3 +477,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Test-RpcFilterOpNumSupport](Test-RpcFilterOpNumSupport.md)
+[Get-RpcFilter](Get-RpcFilter.md)
+[Remove-RpcFilter](Remove-RpcFilter.md)

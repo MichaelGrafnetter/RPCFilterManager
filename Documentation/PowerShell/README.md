@@ -1,7 +1,7 @@
 ---
 Module Name: DSInternals.RpcFilters
 Module Guid: 1f8db900-dbb8-4332-971e-5e529e9ea3ae
-Download Help Link: {{ Update Download Link }}
+Download Help Link:
 Help Version: 1.0
 Locale: en-US
 ---
@@ -12,14 +12,13 @@ Locale: en-US
 
 ## DSInternals.RpcFilters Cmdlets
 ### [Get-RpcFilter](Get-RpcFilter.md)
-{{ Fill in the Description }}
+Gets a list of RPC filters that match the specified criteria.
 
 ### [New-RpcFilter](New-RpcFilter.md)
-{{ Fill in the Description }}
+Creates a new RPC filter for managing remote procedure call (RPC) traffic based on specified criteria.
 
 ### [Remove-RpcFilter](Remove-RpcFilter.md)
-{{ Fill in the Description }}
+Removes an existing remote procedure call (RPC) filter.
 
 ### [Test-RpcFilterOpNumSupport](Test-RpcFilterOpNumSupport.md)
-{{ Fill in the Description }}
-
+Checks if filtering based on RPC operation numbers is supported by the OS.
