@@ -1,11 +1,8 @@
 ﻿using System.Net;
+using System.Net.Sockets;
 using System.Security.AccessControl;
 using Windows.Win32;
 using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
-
-#if NET8_0_OR_GREATER
-using System.Net.Sockets;
-#endif
 
 namespace DSInternals.Win32.RpcFilters;
 
@@ -50,14 +47,24 @@ public sealed class RpcFilter
     public Guid? InterfaceUUID { get; set; }
 
     /// <summary>
+    /// The name of the RPC interface.
+    /// </summary>
+    public string? InterfaceName => this.InterfaceUUID.ToProtocolName();
+
+    /// <summary>
     /// Protocol family used by the RPC endpoint.
     /// </summary>
-    public RpcProtocolSequence? Protocol { get; set; }
+    public RpcProtocolSequence? Transport { get; set; }
 
     /// <summary>
     /// The RPC OpNum for an RPC call made to an RPC listener.
     /// </summary>
     public ushort? OperationNumber { get; set; }
+
+    /// <summary>
+    /// The name of the RPC operation.
+    /// </summary>
+    public string? OperationName => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber);
 
     /// <summary>
     /// The identification of the remote user.
@@ -225,6 +232,52 @@ public sealed class RpcFilter
             }
         }
     }
+#else
+    /// <summary>
+    /// The remote IP address and mask.
+    /// </summary>
+    public string? RemoteNetwork
+    {
+        get
+        {
+            if(this.RemoteAddress == null)
+            {
+                return null;
+            }
+
+            byte prefixLength = this.RemoteAddressMask ?? this.RemoteAddress.AddressFamily switch
+            {
+                AddressFamily.InterNetwork => FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength,
+                AddressFamily.InterNetworkV6 => FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength,
+                _ => 0
+            };
+
+            return $"{this.RemoteAddress}/{prefixLength}";
+        }
+    }
+
+    /// <summary>
+    /// The local IP address and mask.
+    /// </summary>
+    public string? LocalNetwork
+    {
+        get
+        {
+            if (this.LocalAddress == null)
+            {
+                return null;
+            }
+
+            int prefixLength = this.LocalAddressMask ?? this.LocalAddress.AddressFamily switch
+            {
+                AddressFamily.InterNetwork => FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength,
+                AddressFamily.InterNetworkV6 => FWP_V6_ADDR_AND_MASK.MaxIpv6PrefixLength,
+                _ => 0
+            };
+
+            return $"{this.LocalAddress}/{prefixLength}";
+        }
+    }
 #endif
 
     /// <summary>
@@ -285,7 +338,7 @@ public sealed class RpcFilter
         foreach (var condition in nativeFilter.FilterCondition)
         {
             if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_PROTOCOL) {
-                filter.Protocol = condition.Protocol;
+                filter.Transport = condition.Protocol;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_PIPE)
             {

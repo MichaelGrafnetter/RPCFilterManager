@@ -41,9 +41,68 @@ public enum WellKnownOperation
     RCreateServiceWOW64W,
 
     /// <summary>
+    /// The RCreateWowService (MS-SCMR) method creates a service whose binary is compiled for a specified computer architecture.
+    /// </summary>
+    RCreateWowService,
+
+    /// <summary>
     /// The IDL_DRSGetNCChanges (MS-DRSR) method replicates updates from an NC replica on the server.
     /// </summary>
     IDL_DRSGetNCChanges,
 
-    // TODO: Add support for more operations
+    IDL_DRSAddEntry,
+
+    IDL_DRSReplicaAdd,
+
+    BaseRegCreateKey,
+
+    BaseRegSetValue,
+
+    SchRpcRegisterTask,
+
+    NetrJobAdd,
+
+    NetrFileEnum,
+
+    NetrSessionEnum,
+
+    NetrShareEnum,
+
+    NetrConnectionEnum,
+
+    RpcAsyncAddPrinterDriver,
+
+    RpcAddPrinterDriverEx,
+
+    RpcRemoteFindFirstPrinterChangeNotification,
+
+    RpcRemoteFindFirstPrinterChangeNotificationEx,
+
+    SamrEnumerateGroupsInDomain,
+
+    SamrEnumerateUsersInDomain,
+
+    LsarRetrievePrivateData,
+
+    EfsRpcOpenFileRaw,
+
+    EfsRpcEncryptFileSrv,
+
+    EfsRpcDecryptFileSrv,
+
+    EfsRpcQueryUsersOnFile,
+
+    EfsRpcQueryRecoveryAgents,
+
+    EfsRpcRemoveUsersFromFile,
+
+    EfsRpcAddUsersToFile,
+
+    IsPathSupported,
+
+    IsPathShadowCopied,
+
+    NetrDfsAddStdRoot,
+
+    NetrDfsRemoveStdRoot
 }

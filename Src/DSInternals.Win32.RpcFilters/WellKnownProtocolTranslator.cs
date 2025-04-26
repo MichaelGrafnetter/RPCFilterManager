@@ -53,17 +53,22 @@ public static class WellKnownProtocolTranslator
     /// <summary>
     /// MS-RSP: Remote Shutdown Protocol (InitShutdown)
     /// </summary>
-    public static readonly Guid RRP_NP = new("894DE0C0-0D55-11D3-A322-00C04FA321A1");
+    public static readonly Guid RSP_NP = new("894DE0C0-0D55-11D3-A322-00C04FA321A1");
 
     /// <summary>
     /// MS-RSP: Remote Shutdown Protocol (WindowsShutdown)
     /// </summary>
-    public static readonly Guid RRP_TCP = new("D95AFE70-A6D5-4259-822E-2C84DA1DDB0D");
+    public static readonly Guid RSP_TCP = new("D95AFE70-A6D5-4259-822E-2C84DA1DDB0D");
 
     /// <summary>
     /// MS-RPRN: Print Spooler Remote Protocol
     /// </summary>
     public static readonly Guid RPRN = new("12345678-1234-ABCD-EF00-0123456789AB");
+
+    /// <summary>
+    /// MS-PAR: Print System Asynchronous Remote Protocol
+    /// </summary>
+    public static readonly Guid PAR = new("76F03F96-CDFD-44fc-A22C-64950A001209");
 
     /// <summary>
     /// MS-DFS: Distributed File System Namespace Management Protocol
@@ -124,7 +129,44 @@ public static class WellKnownProtocolTranslator
     /// MS-LSAD: Local Security Authority (LSA) Remote Protocol
     /// </summary>
     public static readonly Guid LSAD = new("12345778-1234-ABCD-EF00-0123456789AB");
+
+    /// <summary>
+    /// MS-DNSP: Domain Name Service (DNS) Server Management Protocol
+    /// </summary>
+    public static readonly Guid DNSP = new("50abc2a4-574d-40b3-9d66-ee4fd5fba076");
+
     // TODO: Add support for more protocols
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetNCChanges
+    /// </summary>
+    public const ushort IDL_DRSGetNCChanges = 3;
+
+    /// <summary>
+    /// MS-EVEN6: EvtRpcClearLog
+    /// </summary>
+    public const ushort EvtRpcClearLog = 6;
+
+    /// <summary>
+    /// MS-EVEN: ElfrClearELFW
+    /// </summary>
+    public const ushort ElfrClearELFW = 0;
+
+    /// <summary>
+    /// MS-EVEN: ElfrClearELFA
+    /// </summary>
+    public const ushort ElfrClearELFA = 12;
+
+    /// <summary>
+    /// MS-SCMR: RCreateServiceW
+    /// </summary>
+    public const ushort RCreateServiceW = 12;
+
+    /// <summary>
+    /// MS-SCMR: RCreateWowService
+    /// </summary>
+    public const ushort RCreateWowService = 60;
+    // TODO: Add support for more operations
 
     /// <summary>
     /// Translates a well-known RPC protocol to its corresponding interface UUID.
@@ -132,7 +174,7 @@ public static class WellKnownProtocolTranslator
     /// <param name="protocol">RPC protocol enumeration</param>
     /// <returns>Interface UUID</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static Guid Translate(this WellKnownProtocol protocol)
+    public static Guid ToInterfaceUUID(this WellKnownProtocol protocol)
     {
         return protocol switch
         {
@@ -145,8 +187,8 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.EventLogV6 => EVEN6,
             WellKnownProtocol.MimiCom => KIWI,
             WellKnownProtocol.Registry => RRP,
-            WellKnownProtocol.InitShutdown => RRP_NP,
-            WellKnownProtocol.WindowsShutdown => RRP_TCP,
+            WellKnownProtocol.InitShutdown => RSP_NP,
+            WellKnownProtocol.WindowsShutdown => RSP_TCP,
             WellKnownProtocol.SecurityAccountManager => SAMR,
             WellKnownProtocol.PrintSpooler => RPRN,
             WellKnownProtocol.NamespaceManagement => DFSNM,
@@ -160,6 +202,7 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.WorkstationService => WKSSVC,
             WellKnownProtocol.BackupKey => BKRP,
             WellKnownProtocol.LocalSecurityAuthority => LSAD,
+            WellKnownProtocol.DnsManagement => DNSP,
             _ => throw new ArgumentOutOfRangeException(nameof(protocol), protocol, "This protocol is not yet supported.")
         };
     }
@@ -170,16 +213,93 @@ public static class WellKnownProtocolTranslator
     /// <param name="operation">RPC protocol operation enumeration</param>
     /// <returns>Interface UUID and operation number</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static (Guid InterfaceUUID, ushort OperationNumber) Translate(this WellKnownOperation operation)
+    public static (Guid InterfaceUUID, ushort OperationNumber) ToOperationNumber(this WellKnownOperation operation)
     {
         return operation switch
         {
-            WellKnownOperation.IDL_DRSGetNCChanges => (DRSR, 3),
-            WellKnownOperation.EvtRpcClearLog => (EVEN6, 6),
-            WellKnownOperation.ElfrClearELFW => (EVEN, 0),
-            WellKnownOperation.ElfrClearELFA => (EVEN, 12),
-            WellKnownOperation.RCreateServiceW => (SCMR, 12),
+            WellKnownOperation.IDL_DRSGetNCChanges => (DRSR, IDL_DRSGetNCChanges),
+            WellKnownOperation.EvtRpcClearLog => (EVEN6, EvtRpcClearLog),
+            WellKnownOperation.ElfrClearELFW => (EVEN, ElfrClearELFW),
+            WellKnownOperation.ElfrClearELFA => (EVEN, ElfrClearELFA),
+            WellKnownOperation.RCreateServiceW => (SCMR, RCreateServiceW),
             _ => throw new ArgumentOutOfRangeException(nameof(operation), operation, "This operation is not yet supported.")
+        };
+    }
+
+    /// <summary>
+    /// Translates a well-known RPC interface UUID to its corresponding protocol name.
+    /// </summary>
+    /// <param name="interfaceUUID">RPC interface UUID</param>
+    /// <returns>Protocol name</returns>
+    public static string? ToProtocolName(this Guid? interfaceUUID)
+    {
+        if(interfaceUUID == null)
+        {
+            // No interface UUID is configured in the filter
+            return null;
+        }
+
+        return interfaceUUID switch
+        {
+            { } when interfaceUUID == DRSR =>     "MS-DRSR",
+            { } when interfaceUUID == SCMR =>     "MS-SCMR",
+            { } when interfaceUUID == SASec =>    "MS-TSCH (SASec)",
+            { } when interfaceUUID == ATSvc =>    "MS-TSCH (ATSvc)",
+            { } when interfaceUUID == TSCH =>     "MS-TSCH (ITaskSchedulerService)",
+            { } when interfaceUUID == EVEN =>     "MS-EVEN",
+            { } when interfaceUUID == EVEN6 =>    "MS-EVEN6",
+            { } when interfaceUUID == KIWI =>     "MimiCom",
+            { } when interfaceUUID == RRP =>      "MS-RRP",
+            { } when interfaceUUID == RSP_NP =>   "MS-RSP (InitShutdown)",
+            { } when interfaceUUID == RSP_TCP =>  "MS-RSP (WindowsShutdown)",
+            { } when interfaceUUID == RPRN =>     "MS-RPRN",
+            { } when interfaceUUID == PAR =>      "MS-PAR",
+            { } when interfaceUUID == DFSNM =>    "MS-DFSNM",
+            { } when interfaceUUID == FRS1 =>     "MS-FRS1",
+            { } when interfaceUUID == FRS2 =>     "MS-FRS2",
+            { } when interfaceUUID == FSRVP =>    "MS-FSRP",
+            { } when interfaceUUID == NRPC =>     "MS-NRPC",
+            { } when interfaceUUID == EFSR =>     "MS-EFSR (\\pipe\\efsrpc)",
+            { } when interfaceUUID == EFSR_LSA => "MS-EFSR (\\pipe\\lsarpc)",
+            { } when interfaceUUID == SRVSVC =>   "MS-SRVSVC",
+            { } when interfaceUUID == WKSSVC =>   "MS-WKSSVC",
+            { } when interfaceUUID == BKRP =>     "MS-BKRP",
+            { } when interfaceUUID == DNSP =>     "MS-DNSP",
+            { } when interfaceUUID == SAMR =>     "MS-SAMR",
+            // Return the original GUID if no match is found
+            _ => interfaceUUID.ToString()
+        };
+    }
+
+    /// <summary>
+    /// Translates a well-known RPC operation number to its name.
+    /// </summary>
+    /// <param name="interfaceUUID">RPC interface UUID</param>
+    /// <param name="operationNumber">Interface-specific operation number</param>
+    /// <returns>Operation name</returns>
+    public static string? ToOperationName(Guid? interfaceUUID, ushort? operationNumber)
+    {
+        if(operationNumber == null)
+        {
+            // No operation number is configured in the filter
+            return null;
+        }
+        else if(interfaceUUID == null)
+        {
+            // Although the operation number is defined, it cannot be translated without the corresponding interface UUID
+            return operationNumber.ToString();
+        }
+
+        // Both interface UUID and operation number are configured in the filter
+        return (interfaceUUID, operationNumber) switch
+        {
+            { } when interfaceUUID == DRSR && operationNumber == IDL_DRSGetNCChanges => nameof(IDL_DRSGetNCChanges),
+            { } when interfaceUUID == EVEN6 && operationNumber == EvtRpcClearLog => nameof(EvtRpcClearLog),
+            { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFW => nameof(ElfrClearELFW),
+            { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFA => nameof(ElfrClearELFA),
+            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceW => nameof(RCreateServiceW),
+            // Return the original operation number if no match is found
+            _ => operationNumber.ToString()
         };
     }
 }

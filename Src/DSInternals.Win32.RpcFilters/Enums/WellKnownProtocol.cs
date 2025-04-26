@@ -106,12 +106,12 @@ public enum WellKnownProtocol
     EncryptingFileSystemLSA,
 
     /// <summary>
-    /// 
+    /// MS-SRVSVC: Server Service Remote Protocol
     /// </summary>
     ServerService,
 
     /// <summary>
-    /// 
+    /// MS-WKSSVC: Workstation Service Remote Protocol
     /// </summary>
     WorkstationService,
 
@@ -124,4 +124,9 @@ public enum WellKnownProtocol
     /// MS-LSAD: Local Security Authority (LSA) Remote Protocol
     /// </summary>
     LocalSecurityAuthority,
+
+    /// <summary>
+    /// MS-DNSP: Domain Name Service (DNS) Server Management Protocol
+    /// </summary>
+    DnsManagement
 }

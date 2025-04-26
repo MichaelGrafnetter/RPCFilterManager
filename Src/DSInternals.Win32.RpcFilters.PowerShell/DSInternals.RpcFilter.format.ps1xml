@@ -1,42 +1,127 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Configuration xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Configuration><!--xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PowerShell/PowerShell/master/src/Schemas/Format.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">-->
   <ViewDefinitions>
+    <View>
+      <Name>RpcFilter</Name>
+      <ViewSelectedBy>
+        <TypeName>DSInternals.Win32.RpcFilters.RpcFilter</TypeName>
+      </ViewSelectedBy>
+      <CustomControl>
+        <CustomEntries>
+          <CustomEntry>
+            <CustomItem>
+              <Text>Name: </Text>
+              <ExpressionBinding>
+                <PropertyName>Name</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>Description: </Text>
+              <ExpressionBinding>
+                <PropertyName>Description</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>FilterId: </Text>
+              <ExpressionBinding>
+                <PropertyName>FilterId</PropertyName>
+              </ExpressionBinding>
+              <Text>, FilterKey: </Text>
+              <ExpressionBinding>
+                <PropertyName>FilterKey</PropertyName>
+              </ExpressionBinding>
+              <Text>, ProviderKey: </Text>
+              <ExpressionBinding>
+                <PropertyName>ProviderKey</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>Action: </Text>
+              <ExpressionBinding>
+                <PropertyName>Action</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>Audit: </Text>
+              <ExpressionBinding>
+                <PropertyName>Audit</PropertyName>
+              </ExpressionBinding>
+              <Text>, Persistent: </Text>
+              <ExpressionBinding>
+                <PropertyName>IsPersistent</PropertyName>
+              </ExpressionBinding>
+              <Text>, BootTimeEnforced: </Text>
+              <ExpressionBinding>
+                <PropertyName>IsBootTimeEnforced</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>EffectiveWeight: </Text>
+              <ExpressionBinding>
+                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
+              </ExpressionBinding>
+              <Text>, Weight: </Text>
+              <ExpressionBinding>
+                <PropertyName>Weight</PropertyName>
+              </ExpressionBinding>
+              <NewLine />
+              <Text>Conditions:</Text>
+              <NewLine />
+              <Frame>
+                <LeftIndent>2</LeftIndent>
+                <CustomItem>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.InterfaceUUID) { "Protocol = {0}`n" -f $PSItem.InterfaceName }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.Operation) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.Transport) { "Transport = {0}`n" -f $PSItem.Transport }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.LocalPort) { "LocalPort = {0}`n" -f $PSItem.LocalPort }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.NamedPipe) { "NamedPipe = {0}`n" -f $PSItem.NamedPipe }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.SecurityDescriptor) { "SecurityDescriptor = {0}`n" -f $PSItem.SDDL }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.RemoteAddress) { "RemoteAddress = {0}`n" -f $PSItem.RemoteNetwork }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.LocalAddress) { "LocalAddress = {0}`n" -f $PSItem.LocalNetwork }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.AuthenticationLevel) { "AuthenticationLevel = {0}`n" -f $PSItem.AuthenticationLevel }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.AuthenticationType) { "AuthenticationType = {0}`n" -f $PSItem.AuthenticationType }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.ImageName) { "ImageName = {0}`n" -f $PSItem.ImageName }</ScriptBlock>
+                  </ExpressionBinding>
+                  <ExpressionBinding>
+                    <ScriptBlock>if ($PSItem.DcomAppId) { "DcomAppId = {0}`n" -f $PSItem.DcomAppId }</ScriptBlock>
+                  </ExpressionBinding>
+                  <NewLine />
+                </CustomItem>
+              </Frame>
+            </CustomItem>
+          </CustomEntry>
+        </CustomEntries>
+      </CustomControl>
+    </View>
     <View>
       <Name>RpcFilterTable</Name>
       <ViewSelectedBy>
         <TypeName>DSInternals.Win32.RpcFilters.RpcFilter</TypeName>
       </ViewSelectedBy>
       <TableControl>
-        <!--
-                        Name = this.Name ?? RpcFilter.DefaultName,
-                Description = this.Description ?? RpcFilter.DefaultDescription,
-                FilterKey = this.FilterKey ?? Guid.NewGuid(),
-                Action = this.Action,
-                Audit = this.Audit.IsPresent,
-                AuthenticationLevel = this.AuthenticationLevel,
-                AuthenticationType = this.AuthenticationType,
-                DcomAppId = this.DcomAppId,
-                ImageName = this.ImageName,
-                InterfaceUUID = this.InterfaceUUID,
-                IsBootTimeEnforced = this.BootTimeEnforced.IsPresent,
-                IsPersistent = this.Persistent.IsPresent,
-                LocalAddress = this.LocalAddress,
-                LocalAddressMask = this.LocalAddressMask,
-                LocalPort = this.LocalPort,
-                Protocol = this.ProtocolSequence,
-                RemoteAddress = this.RemoteAddress,
-                RemoteAddressMask = this.RemoteAddressMask,
-                SecurityDescriptor = this.SecurityDescriptor,
-                Weight = this.Weight,
-                OperationNumber = this.OperationNumber,
-                NamedPipe = this.NamedPipe,
-                ProviderKey = this.ProviderKey-->
         <TableHeaders>
           <TableColumnHeader>
-            <Label>Weight</Label>
+            <Label>Name</Label>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>Name</Label>
+            <Label>Id</Label>
+            <Alignment>Right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Action</Label>
@@ -45,13 +130,23 @@
             <Label>Audit</Label>
           </TableColumnHeader>
           <TableColumnHeader>
+            <Label>Persistent</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
             <Label>Protocol</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Operation</Label>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Transport</Label>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>OpNum</Label>
+            <Label>LocalPort</Label>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>NamedPipe</Label>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>AuthLevel</Label>
@@ -68,22 +163,68 @@
           <TableColumnHeader>
             <Label>FilterKey</Label>
           </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Weight</Label>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>EffectiveWeight</Label>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
         </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>ComputerName</PropertyName>
+                <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Account</PropertyName>
+                <PropertyName>FilterId</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Password</PropertyName>
+                <PropertyName>Action</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>ExpirationTimestamp</PropertyName>
-                <FormatString>d</FormatString>
+                <PropertyName>Audit</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IsPersistent</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>InterfaceName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>OperationName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Transport</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>LocalPort</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>NamedPipe</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>AuthenticationLevel</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>AuthenticationType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>RemoteNetwork</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>SDDL</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>FilterKey</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Weight</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -92,30 +233,109 @@
     </View>
     <View>
       <Name>RpcFilterList</Name>
-      <ViewSelectedBy></ViewSelectedBy>
+      <ViewSelectedBy>
+        <TypeName>DSInternals.Win32.RpcFilters.RpcFilter</TypeName>
+      </ViewSelectedBy>
       <ListControl>
-        
+        <ListEntries>
+          <ListEntry>
+            <ListItems>
+              <ListItem>
+                <Label>Name</Label>
+                <PropertyName>Name</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Description</Label>
+                <PropertyName>Description</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>FilterKey</Label>
+                <PropertyName>FilterKey</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>FilterId</Label>
+                <PropertyName>FilterId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>ProviderKey</Label>
+                <PropertyName>ProviderKey</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Action</Label>
+                <PropertyName>Action</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Audit</Label>
+                <PropertyName>Audit</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Persistent</Label>
+                <PropertyName>IsPersistent</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>BootTimeEnforced</Label>
+                <PropertyName>IsBootTimeEnforced</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Protocol</Label>
+                <PropertyName>InterfaceName</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Operation</Label>
+                <PropertyName>OperationName</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Transport</Label>
+                <PropertyName>Transport</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>LocalPort</Label>
+                <PropertyName>LocalPort</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>NamedPipe</Label>
+                <PropertyName>NamedPipe</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>SecurityDescriptor</Label>
+                <PropertyName>SDDL</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>RemoteAddress</Label>
+                <PropertyName>RemoteNetwork</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>LocalAddress</Label>
+                <PropertyName>LocalNetwork</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>AuthenticationLevel</Label>
+                <PropertyName>AuthenticationLevel</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>AuthenticationType</Label>
+                <PropertyName>AuthenticationType</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>ImageName</Label>
+                <PropertyName>ImageName</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>DcomAppId</Label>
+                <PropertyName>DcomAppId</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Weight</Label>
+                <PropertyName>Weight</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>EffectiveWeight</Label>
+                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
+              </ListItem>
+            </ListItems>
+          </ListEntry>
+        </ListEntries>
       </ListControl>
-    </View>
-    <View>
-      <Name></Name>
-      <ViewSelectedBy></ViewSelectedBy>
-      <GroupBy>
-        <PropertyName>string</PropertyName>
-        <Label></Label>
-        <CustomControl>
-          <CustomEntries>
-            <CustomEntry>
-              <EntrySelectedBy>
-                <TypeName></TypeName>
-              </EntrySelectedBy>
-              <CustomItem>
-                <
-              </CustomItem>
-            </CustomEntry>
-          </CustomEntries>
-        </CustomControl>
-      </GroupBy>
     </View>
   </ViewDefinitions>
 </Configuration>

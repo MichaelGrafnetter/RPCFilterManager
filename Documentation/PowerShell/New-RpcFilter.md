@@ -333,13 +333,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ProtocolSequence
+### -Transport
 Protocol family used by the RPC endpoint.
 
 ```yaml
 Type: RpcProtocolSequence
 Parameter Sets: (All)
-Aliases: ProtSeq, Binding, Transport
+Aliases: ProtSeq, Binding, ProtocolSequence
 Accepted values: ncacn_ip_tcp, ncacn_np, ncalrpc, ncacn_http
 
 Required: False
@@ -478,6 +478,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Test-RpcFilterOpNumSupport](Test-RpcFilterOpNumSupport.md)
 [Get-RpcFilter](Get-RpcFilter.md)
 [Remove-RpcFilter](Remove-RpcFilter.md)

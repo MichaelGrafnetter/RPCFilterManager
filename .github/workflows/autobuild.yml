@@ -53,3 +53,8 @@ jobs:
       with:
         name: NuGet
         path: Build/package/release/*nupkg
+
+    - name: Run Pester Tests
+      shell: pwsh
+      working-directory: Src
+      run: Invoke-Pester -Passthru

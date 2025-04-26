@@ -19,6 +19,3 @@ Creates a new RPC filter for managing remote procedure call (RPC) traffic based 
 
 ### [Remove-RpcFilter](Remove-RpcFilter.md)
 Removes an existing remote procedure call (RPC) filter.
-
-### [Test-RpcFilterOpNumSupport](Test-RpcFilterOpNumSupport.md)
-Checks if filtering based on RPC operation numbers is supported by the OS.

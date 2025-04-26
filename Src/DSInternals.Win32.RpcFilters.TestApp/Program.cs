@@ -1,11 +1,6 @@
 ﻿using DSInternals.Win32.RpcFilters;
 using System.Net;
 
-#if NET5_0_OR_GREATER
-using System.Runtime.Versioning;
-[assembly: SupportedOSPlatform("windows")]
-#endif
-
 using (var fw = new RpcFilterManager())
 {
     var filter = new RpcFilter()
@@ -15,7 +10,7 @@ using (var fw = new RpcFilterManager())
         FilterKey = Guid.Parse("98a1836e-06b0-4bf9-bb1b-0dd2e994a863"),
         InterfaceUUID = Guid.Parse("338CD001-2244-31F1-AAAA-900038001003"),
         DcomAppId = Guid.Parse("10000000-0000-0000-0000-000000000002"),
-        Protocol = RpcProtocolSequence.ncacn_ip_tcp,
+        Transport = RpcProtocolSequence.ncacn_ip_tcp,
         NamedPipe = "winreg",
         SDDL = "D:(A;;CC;;;BA)",
         Action = RpcFilterAction.Block,

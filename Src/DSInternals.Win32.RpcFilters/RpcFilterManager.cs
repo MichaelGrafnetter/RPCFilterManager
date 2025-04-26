@@ -22,13 +22,6 @@ public sealed class RpcFilterManager : IDisposable
 
     private SafeFwpmEngineHandle? engineHandle;
 
-    // TODO: The documentation is incorrect. The FWPM_CONDITION_RPC_OPNUM filter condition has been backported to downlevel Windows versions.
-    /// <summary>
-    /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
-    /// </summary>
-    /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 (10.0.26100).</remarks>
-    public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
-
     /// <summary>
     /// Opens a session to the filter engine.
     /// </summary>
@@ -172,9 +165,9 @@ public sealed class RpcFilterManager : IDisposable
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationType.Value));
         }
-        if (filter.Protocol.HasValue)
+        if (filter.Transport.HasValue)
         {
-            conditions.Add(new FWPM_FILTER_CONDITION0(filter.Protocol.Value));
+            conditions.Add(new FWPM_FILTER_CONDITION0(filter.Transport.Value));
         }
         
         if (filter.LocalPort.HasValue)

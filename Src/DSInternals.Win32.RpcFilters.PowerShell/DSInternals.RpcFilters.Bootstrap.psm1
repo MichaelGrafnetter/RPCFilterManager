@@ -22,5 +22,5 @@ else {
     Import-Module -Name $desktopModulePath -ErrorAction Stop
 }
 
-# Export cmdlets and aliases
-Export-ModuleMember -Alias * -Cmdlet *
+# Export cmdlets
+Export-ModuleMember -Cmdlet 'Get-RpcFilter','New-RpcFilter','Remove-RpcFilter'

@@ -67,8 +67,8 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public RpcAuthenticationType? AuthenticationType { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [Alias("ProtSeq", "Binding", "Transport")]
-    public RpcProtocolSequence? ProtocolSequence { get; set; }
+    [Alias("ProtSeq", "Binding", "ProtocolSequence")]
+    public RpcProtocolSequence? Transport { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [Alias("SDDL", "Permissions", "DACL")]
@@ -109,12 +109,12 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
             // Translate the well-known protocol and operation names first.
             if (WellKnownProtocol.HasValue)
             {
-                InterfaceUUID = WellKnownProtocol.Value.Translate();
+                InterfaceUUID = WellKnownProtocol.Value.ToInterfaceUUID();
             }
 
             if (WellKnownOperation.HasValue)
             {
-                (InterfaceUUID, OperationNumber) = WellKnownOperation.Value.Translate();
+                (InterfaceUUID, OperationNumber) = WellKnownOperation.Value.ToOperationNumber();
             }
 
             // Create and save the filter.
@@ -135,7 +135,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 LocalAddress = LocalAddress,
                 LocalAddressMask = LocalAddressMask,
                 LocalPort = LocalPort,
-                Protocol = ProtocolSequence,
+                Transport = Transport,
                 RemoteAddress = RemoteAddress,
                 RemoteAddressMask = RemoteAddressMask,
                 SecurityDescriptor = SecurityDescriptor,
