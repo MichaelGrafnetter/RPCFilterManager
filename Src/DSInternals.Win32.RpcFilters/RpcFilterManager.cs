@@ -22,6 +22,7 @@ public sealed class RpcFilterManager : IDisposable
 
     private SafeFwpmEngineHandle? engineHandle;
 
+    // TODO: The documentation is incorrect. The FWPM_CONDITION_RPC_OPNUM filter condition has been backported to downlevel Windows versions.
     /// <summary>
     /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
     /// </summary>
@@ -204,11 +205,7 @@ public sealed class RpcFilterManager : IDisposable
         }
         if (filter.OperationNumber.HasValue)
         {
-            if(!IsOpnumFilterSupported)
-            {
-                throw new PlatformNotSupportedException("The FWPM_CONDITION_RPC_OPNUM filter condition is only supported on Windows 11 24H2 or newer operating systems.");
-            }
-
+            // This filter condition is not supported on older OS version.
             conditions.Add(new FWPM_FILTER_CONDITION0(RpcFilterManager.FWPM_CONDITION_RPC_OPNUM, filter.OperationNumber.Value));
         }
         
@@ -338,7 +335,8 @@ public sealed class RpcFilterManager : IDisposable
             // TODO: Handle HRESULT.FWP_E_ALREADY_EXISTS
             // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
             // TODO: Handle FWP_E_INVALID_NET_MASK
-            // TODO: Handle FWP_E_CONDITION_NOT_FOUND / FWP_E_FILTER_NOT_FOUND
+            // TODO: Handle FWP_E_CONDITION_NOT_FOUND => PlatformNotSupportedException
+            // TODO: FWP_E_FILTER_NOT_FOUND
             // TODO: Handle FWP_E_INVALID_WEIGHT
             _ => genericException,
             // We were not able to translate the Win32Exception to a more specific type.

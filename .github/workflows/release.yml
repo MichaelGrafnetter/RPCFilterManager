@@ -111,7 +111,7 @@ jobs:
       if: ${{ inputs.certificate_sign }}
       run: >
         sign code trusted-signing
-        DSInternals.*
+        **/DSInternals.*
         --base-directory "${{ github.workspace }}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters"
         --trusted-signing-endpoint "${{ vars.SIGNING_ENDPOINT }}"
         --trusted-signing-account "${{ vars.SIGNING_ACCOUNT_NAME }}"
