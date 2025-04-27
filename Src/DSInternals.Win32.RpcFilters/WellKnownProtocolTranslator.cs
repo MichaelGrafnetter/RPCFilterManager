@@ -135,7 +135,20 @@ public static class WellKnownProtocolTranslator
     /// </summary>
     public static readonly Guid DNSP = new("50abc2a4-574d-40b3-9d66-ee4fd5fba076");
 
-    // TODO: Add support for more protocols
+    /// <summary>
+    /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD)
+    /// </summary>
+    public static readonly Guid CSRA_ICertAdminD =  new("d99e6e71-fc88-11d0-b498-00a0c90312f3");
+
+    /// <summary>
+    /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD2)
+    /// </summary>
+    public static readonly Guid CSRA_ICertAdminD2 = new("7fe0d935-dda6-443f-85d0-1cfb58fe41dd");
+
+    /// <summary>
+    /// MS-ICPR: ICertPassage Remote Protocol
+    /// </summary>
+    public static readonly Guid ICPR = new("91ae6020-9e3c-11cf-8d7c-00aa00c091be");
 
     /// <summary>
     /// MS-DRSR: IDL_DRSGetNCChanges
@@ -166,7 +179,88 @@ public static class WellKnownProtocolTranslator
     /// MS-SCMR: RCreateWowService
     /// </summary>
     public const ushort RCreateWowService = 60;
-    // TODO: Add support for more operations
+
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaAdd
+    /// </summary>
+    public const ushort IDL_DRSReplicaAdd = 5;
+
+    /// <summary>
+    /// MS-RRP: BaseRegCreateKey
+    /// </summary>
+    public const ushort BaseRegCreateKey = 6;
+
+    /// <summary>
+    /// MS-RRP: BaseRegSetValue
+    /// </summary>
+    public const ushort BaseRegSetValue = 22;
+
+    /// <summary>
+    /// MS-TSCH: SchRpcRegisterTask
+    /// </summary>
+    public const ushort SchRpcRegisterTask = 1;
+
+    /// <summary>
+    /// MS-TSCH: NetrJobAdd
+    /// </summary>
+    public const ushort NetrJobAdd = 0;
+
+    /// <summary>
+    /// MS-SRVS: NetrFileEnum
+    /// </summary>
+    public const ushort NetrFileEnum = 9;
+
+    /// <summary>
+    /// MS-SRVS: NetrSessionEnum
+    /// </summary>
+    public const ushort NetrSessionEnum = 12;
+
+    /// <summary>
+    /// MS-SRVS: NetrShareEnum
+    /// </summary>
+    public const ushort NetrShareEnum = 15;
+
+    /// <summary>
+    /// MS-SRVS: NetrConnectionEnum
+    /// </summary>
+    public const ushort NetrConnectionEnum = 8;
+
+    /// <summary>
+    /// MS-PAR: RpcAsyncAddPrinterDriver
+    /// </summary>
+    public const ushort RpcAsyncAddPrinterDriver = 39;
+
+    /// <summary>
+    /// MS-RPRN: RpcAddPrinterDriverEx
+    /// </summary>
+    public const ushort RpcAddPrinterDriverEx = 89;
+
+    /// <summary>
+    /// MS-RPRN: RpcRemoteFindFirstPrinterChangeNotification
+    /// </summary>
+    public const ushort RpcRemoteFindFirstPrinterChangeNotification = 62;
+
+    /// <summary>
+    /// MS-RPRN: RpcRemoteFindFirstPrinterChangeNotification
+    /// </summary>
+    public const ushort RpcRemoteFindFirstPrinterChangeNotificationEx = 65;
+
+    /// <summary>
+    /// MS-SAMR: SamrEnumerateGroupsInDomain
+    /// </summary>
+    public const ushort SamrEnumerateGroupsInDomain = 11;
+
+    /// <summary>
+    /// MS-SAMR: SamrEnumerateUsersInDomain
+    /// </summary>
+    public const ushort SamrEnumerateUsersInDomain = 13;
+
+    /// <summary>
+    /// MS-LSAD: LsarRetrievePrivateData
+    /// </summary>
+    public const ushort LsarRetrievePrivateData = 43;
+
 
     /// <summary>
     /// Translates a well-known RPC protocol to its corresponding interface UUID.
@@ -178,15 +272,15 @@ public static class WellKnownProtocolTranslator
     {
         return protocol switch
         {
-            WellKnownProtocol.DirectoryReplication => DRSR,
-            WellKnownProtocol.ServiceControl => SCMR,
+            WellKnownProtocol.DirectoryReplicationService => DRSR,
+            WellKnownProtocol.ServiceControlManager => SCMR,
             WellKnownProtocol.TaskSchedulerAgent => SASec,
             WellKnownProtocol.NetSchedule => ATSvc,
             WellKnownProtocol.TaskSchedulerService => TSCH,
             WellKnownProtocol.EventLog => EVEN,
             WellKnownProtocol.EventLogV6 => EVEN6,
             WellKnownProtocol.MimiCom => KIWI,
-            WellKnownProtocol.Registry => RRP,
+            WellKnownProtocol.RemoteRegistry => RRP,
             WellKnownProtocol.InitShutdown => RSP_NP,
             WellKnownProtocol.WindowsShutdown => RSP_TCP,
             WellKnownProtocol.SecurityAccountManager => SAMR,

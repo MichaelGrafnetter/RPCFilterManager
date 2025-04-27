@@ -50,59 +50,148 @@ public enum WellKnownOperation
     /// </summary>
     IDL_DRSGetNCChanges,
 
-    IDL_DRSAddEntry,
-
+    /// <summary>
+    /// The IDL_DRSReplicaAdd (MS-DRSR) method adds a replication source reference for the specified NC.
+    /// </summary>
     IDL_DRSReplicaAdd,
 
+    /// <summary>
+    /// The BaseRegCreateKey (MS-RRP) method creates the specified registry key.
+    /// </summary>
     BaseRegCreateKey,
 
+    /// <summary>
+    /// The BaseRegSetValue (MS-RRP) method sets the data for the specified value of a registry key.
+    /// </summary>
     BaseRegSetValue,
 
+    /// <summary>
+    /// The SchRpcRegisterTask (MS-TSCH) method registers a task in the Task Scheduler service.
+    /// </summary>
     SchRpcRegisterTask,
 
+    /// <summary>
+    /// The NetrJobAdd (MS-TSCH) method add a single AT task to the server's task store.
+    /// </summary>
     NetrJobAdd,
 
+    /// <summary>
+    /// The NetrFileEnum (MS-SRVS) method returns information about open files on a server.
+    /// </summary>
     NetrFileEnum,
 
+    /// <summary>
+    /// The NetrSessionEnum (MS-SRVS) method returns information about sessions that are established on a server.
+    /// </summary>
     NetrSessionEnum,
 
+    /// <summary>
+    /// The NetrShareEnum (MS-SRVS) method retrieves information about each shared resource on a server.
+    /// </summary>
     NetrShareEnum,
 
+    /// <summary>
+    /// The NetrConnectionEnum (MS-SRVS) method lists the treeconnects made to a shared resource on the server.
+    /// </summary>
     NetrConnectionEnum,
 
+    /// <summary>
+    /// The RpcAsyncAddPrinterDriver (MS-PAR) method installs a specified local or a remote printer driver on a specified print server.
+    /// </summary>
     RpcAsyncAddPrinterDriver,
 
+    /// <summary>
+    /// The RpcAddPrinterDriverEx (MS-RPRN) method installs a printer driver on the print server.
+    /// </summary>
     RpcAddPrinterDriverEx,
 
+    /// <summary>
+    /// The RpcRemoteFindFirstPrinterChangeNotification (MS-RPRN) method creates a remote change notification object that monitors changes to printer objects and sends change notifications to a print client.
+    /// </summary>
     RpcRemoteFindFirstPrinterChangeNotification,
 
+    /// <summary>
+    /// The RpcRemoteFindFirstPrinterChangeNotification (MS-RPRN) method creates a remote change notification object that monitors changes to printer objects and sends change notifications to a print client.
+    /// </summary>
     RpcRemoteFindFirstPrinterChangeNotificationEx,
 
+    /// <summary>
+    /// The SamrEnumerateGroupsInDomain (MS-SAMR) method enumerates all groups.
+    /// </summary>
     SamrEnumerateGroupsInDomain,
 
+    /// <summary>
+    /// The SamrEnumerateUsersInDomain (MS-SAMR) method enumerates all users.
+    /// </summary>
     SamrEnumerateUsersInDomain,
 
+    /// <summary>
+    /// The LsarRetrievePrivateData (MS-LSAD) method is invoked to retrieve a secret value.
+    /// </summary>
     LsarRetrievePrivateData,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcOpenFileRaw,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcEncryptFileSrv,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcDecryptFileSrv,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcQueryUsersOnFile,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcQueryRecoveryAgents,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcRemoveUsersFromFile,
 
+    /// <summary>
+    /// 
+    /// </summary>
     EfsRpcAddUsersToFile,
 
+    /// <summary>
+    /// 
+    /// </summary>
     IsPathSupported,
 
+    /// <summary>
+    /// 
+    /// </summary>
     IsPathShadowCopied,
 
+    /// <summary>
+    /// 
+    /// </summary>
     NetrDfsAddStdRoot,
 
-    NetrDfsRemoveStdRoot
+    /// <summary>
+    /// 
+    /// </summary>
+    NetrDfsRemoveStdRoot,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    NetrDfsAddRootTarget,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    NetrDfsRemoveRootTarget
 }

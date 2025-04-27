@@ -145,7 +145,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 ProviderKey = ProviderKey
             };
 
-            // TODO: Verbose message
+            WriteVerbose($"Creating filter {filter.Name} with key {filter.FilterKey}.");
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             ulong filterId = RpcFilterManager.AddFilter(filter);
@@ -156,10 +156,17 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 WriteObject(filter);
             }
         }
+        catch (UnauthorizedAccessException ex)
+        {
+            WriteError(new ErrorRecord(ex, "RpcFilterAccessDenied", ErrorCategory.PermissionDenied, null));
+        }
+        catch (ArgumentException ex)
+        {
+            WriteError(new ErrorRecord(ex, "RpcFilterInvalidArgument", ErrorCategory.InvalidArgument, null));
+        }
         catch (Exception ex)
         {
-            // TODO: Improve this error report
-            WriteError(new ErrorRecord(ex, "RpcFilterCreationFailed", ErrorCategory.InvalidOperation, null));
+            WriteError(new ErrorRecord(ex, "RpcFilterCreationFailed", ErrorCategory.WriteError, null));
         }
     }
 }

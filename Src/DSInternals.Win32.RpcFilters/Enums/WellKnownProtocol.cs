@@ -8,12 +8,12 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-DRSR: Directory Replication Service Remote Protocol
     /// </summary>
-    DirectoryReplication,
+    DirectoryReplicationService,
 
     /// <summary>
     /// MS-SCMR: Service Control Manager Remote Protocol
     /// </summary>
-    ServiceControl,
+    ServiceControlManager,
 
     /// <summary>
     /// MS-TSCH: Task Scheduler Service Remoting Protocol (SASec)
@@ -48,7 +48,7 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-RRP: Windows Remote Registry Protocol
     /// </summary>
-    Registry,
+    RemoteRegistry,
 
     /// <summary>
     /// MS-RSP: Remote Shutdown Protocol

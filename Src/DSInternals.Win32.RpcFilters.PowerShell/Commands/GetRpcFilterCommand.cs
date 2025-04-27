@@ -27,16 +27,24 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
             ProviderKey = ZeroNetworksRpcFirewallProviderKey;
         }
 
-        // TODO: Exception handling
-
+        try
+        {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-        var filterEnumerator = RpcFilterManager.GetFilters(ProviderKey);
+            var filterEnumerator = RpcFilterManager.GetFilters(ProviderKey);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-        foreach (var filter in filterEnumerator)
-        {
-            WriteObject(filter);
+            foreach (var filter in filterEnumerator)
+            {
+                WriteObject(filter);
+            }
         }
-
+        catch (UnauthorizedAccessException ex)
+        {
+            ThrowTerminatingError(new ErrorRecord(ex, "RpcFilterAccessDenied", ErrorCategory.PermissionDenied, null));
+        }
+        catch (Exception ex)
+        {
+            ThrowTerminatingError(new ErrorRecord(ex, "RpcFilterRetrievalFailed", ErrorCategory.ReadError, null));
+        }
     }
 }

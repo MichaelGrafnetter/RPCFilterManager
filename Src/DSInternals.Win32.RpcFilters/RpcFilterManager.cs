@@ -55,7 +55,7 @@ public sealed class RpcFilterManager : IDisposable
             LayerKey = PInvoke.FWPM_LAYER_RPC_UM,
             EnumType = FWP_FILTER_ENUM_TYPE.FWP_FILTER_ENUM_OVERLAPPING,
             Flags = FWP_FILTER_ENUM_FLAGS.FWP_FILTER_ENUM_FLAG_SORTED | FWP_FILTER_ENUM_FLAGS.FWP_FILTER_ENUM_FLAG_INCLUDE_DISABLED,
-            // Ignore the filter's action type when enumerating. 
+            // Ignore the filter's action type when enumerating.
             ActionMask = (FWP_ACTION_TYPE)uint.MaxValue
         };
 
@@ -109,8 +109,6 @@ public sealed class RpcFilterManager : IDisposable
             enumHandle.Dispose();
         }
     }
-
-    // TODO: Add additional exceptions for specific error codes.
 
     /// <summary>
     /// Adds a new filter object to the system.
@@ -169,7 +167,7 @@ public sealed class RpcFilterManager : IDisposable
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.Transport.Value));
         }
-        
+
         if (filter.LocalPort.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_IP_LOCAL_PORT, filter.LocalPort.Value));
@@ -182,7 +180,7 @@ public sealed class RpcFilterManager : IDisposable
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.InterfaceFlag.Value));
         }
-        
+
         if (filter.InterfaceUUID.HasValue)
         {
             (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_RPC_IF_UUID, filter.InterfaceUUID.Value);
@@ -201,7 +199,7 @@ public sealed class RpcFilterManager : IDisposable
             // This filter condition is not supported on older OS version.
             conditions.Add(new FWPM_FILTER_CONDITION0(RpcFilterManager.FWPM_CONDITION_RPC_OPNUM, filter.OperationNumber.Value));
         }
-        
+
         if (filter.NamedPipe != null)
         {
             (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(PInvoke.FWPM_CONDITION_PIPE, filter.NamedPipe);
@@ -266,23 +264,27 @@ public sealed class RpcFilterManager : IDisposable
             conditionsHandle = nativeFilter.SetFilterConditions(conditions);
         }
 
-        WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, nativeFilter, IntPtr.Zero, out ulong id);
-        ValidateResult(result);
+        ulong newFilterId;
 
-
-        // Free the memory
-        // TODO: Free in a safer way
-        conditionsHandle.Free();
-
-        foreach(var handle in handles)
+        try
         {
-            handle.Dispose();
+            WIN32_ERROR result = NativeMethods.FwpmFilterAdd0(this.engineHandle, nativeFilter, IntPtr.Zero, out newFilterId);
+            ValidateResult(result);
+        }
+        finally
+        {
+            // Free the unmanaged memory
+            conditionsHandle.Free();
+
+            foreach(var handle in handles)
+            {
+                handle.Dispose();
+            }
         }
 
-        // Augment the input object with the runtime identifier.
-        filter.FilterId = id;
-
-        return id;
+        // Augment the input object with the runtime identifier and return it.
+        filter.FilterId = newFilterId;
+        return newFilterId;
     }
 
     /// <summary>
@@ -329,7 +331,7 @@ public sealed class RpcFilterManager : IDisposable
             // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
             // TODO: Handle FWP_E_INVALID_NET_MASK
             // TODO: Handle FWP_E_CONDITION_NOT_FOUND => PlatformNotSupportedException
-            // TODO: FWP_E_FILTER_NOT_FOUND
+            // TODO: Handle FWP_E_FILTER_NOT_FOUND
             // TODO: Handle FWP_E_INVALID_WEIGHT
             _ => genericException,
             // We were not able to translate the Win32Exception to a more specific type.

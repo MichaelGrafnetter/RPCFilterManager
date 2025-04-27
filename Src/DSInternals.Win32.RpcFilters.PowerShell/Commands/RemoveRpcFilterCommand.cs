@@ -3,7 +3,7 @@
 namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Remove, "RpcFilter", DefaultParameterSetName = ParameterSetById)]
-[OutputType("None")]
+[OutputType(typeof(RpcFilter))]
 public class RemoveRpcFilterCommand : RpcFilterCommandBase
 {
     private const string ParameterSetById = "Id";
@@ -16,6 +16,9 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
     [Parameter(Mandatory = true, Position = 0, ParameterSetName = ParameterSetByInputObject, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
     [Alias("Filter")]
     public RpcFilter? InputObject { get; set; }
+
+    [Parameter(ParameterSetName = ParameterSetByInputObject)]
+    public SwitchParameter PassThrough { get; set; } = default;
 
     protected override void ProcessRecord()
     {
@@ -30,11 +33,29 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
 
         if (filterId.HasValue)
         {
-            // TODO: Verbose message
+            WriteVerbose($"Removing RPC filter with ID {filterId.Value}...");
 
+            try
+            {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            RpcFilterManager.RemoveFilter(filterId.Value);
+                RpcFilterManager.RemoveFilter(filterId.Value);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                WriteError(new ErrorRecord(ex, "RpcFilterRemovalUnauthorized", ErrorCategory.PermissionDenied, filterId));
+                return;
+            }
+            catch (Exception ex)
+            {
+                WriteError(new ErrorRecord(ex, "RpcFilterRemovalFailed", ErrorCategory.WriteError, filterId));
+                return;
+            }
+
+            if (this.PassThrough.IsPresent)
+            {
+                WriteObject(InputObject);
+            }
         }
         else
         {
