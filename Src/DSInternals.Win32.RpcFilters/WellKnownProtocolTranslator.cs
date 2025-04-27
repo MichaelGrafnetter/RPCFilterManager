@@ -151,6 +151,16 @@ public static class WellKnownProtocolTranslator
     public static readonly Guid ICPR = new("91ae6020-9e3c-11cf-8d7c-00aa00c091be");
 
     /// <summary>
+    /// MS-PAN: Print System Asynchronous Notification Protocol (IRPCAsyncNotify)
+    /// </summary>
+    public static readonly Guid PAN_IRPCAsyncNotify = new("0b6edbfa-4a24-4fc6-8a23-942b1eca65d1");
+
+    /// <summary>
+    /// MS-PAN: Print System Asynchronous Notification Protocol (IRPCRemoteObject)
+    /// </summary>
+    public static readonly Guid PAN_IRPCRemoteObject = new("ae33069b-a2a8-46ee-a235-ddfd339be281");
+
+    /// <summary>
     /// MS-DRSR: IDL_DRSGetNCChanges
     /// </summary>
     public const ushort IDL_DRSGetNCChanges = 3;
@@ -385,15 +395,25 @@ public static class WellKnownProtocolTranslator
         }
 
         // Both interface UUID and operation number are configured in the filter
-        return (interfaceUUID, operationNumber) switch
+        string? operationName = (interfaceUUID, operationNumber) switch
         {
             { } when interfaceUUID == DRSR && operationNumber == IDL_DRSGetNCChanges => nameof(IDL_DRSGetNCChanges),
             { } when interfaceUUID == EVEN6 && operationNumber == EvtRpcClearLog => nameof(EvtRpcClearLog),
             { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFW => nameof(ElfrClearELFW),
             { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFA => nameof(ElfrClearELFA),
             { } when interfaceUUID == SCMR && operationNumber == RCreateServiceW => nameof(RCreateServiceW),
-            // Return the original operation number if no match is found
-            _ => operationNumber.ToString()
+            _ => null
         };
+
+        if (operationName != null)
+        {
+            // Return the operation name and number if a match is found
+            return $"{operationName} ({operationNumber})";
+        }
+        else
+        {
+            // Return the original operation number if no match is found
+            return operationNumber.ToString();
+        }
     }
 }

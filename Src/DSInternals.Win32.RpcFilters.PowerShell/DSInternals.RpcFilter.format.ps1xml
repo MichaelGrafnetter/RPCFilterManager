@@ -69,7 +69,7 @@
                     <ScriptBlock>if ($PSItem.InterfaceUUID) { "Protocol = {0}`n" -f $PSItem.InterfaceName }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.Operation) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
+                    <ScriptBlock>if ($PSItem.OperationNumber) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
                     <ScriptBlock>if ($PSItem.Transport) { "Transport = {0}`n" -f $PSItem.Transport }</ScriptBlock>

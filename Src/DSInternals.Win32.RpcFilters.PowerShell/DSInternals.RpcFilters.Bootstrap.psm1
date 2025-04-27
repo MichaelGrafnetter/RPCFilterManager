@@ -22,5 +22,8 @@ else {
     Import-Module -Name $desktopModulePath -ErrorAction Stop
 }
 
+# Define cmdlet aliases
+New-Alias -Name 'Add-RpcFilter' -Value 'New-RpcFilter' -Force
+
 # Export cmdlets
-Export-ModuleMember -Cmdlet 'Get-RpcFilter','New-RpcFilter','Remove-RpcFilter'
+Export-ModuleMember -Cmdlet @('Get-RpcFilter', 'New-RpcFilter', 'Remove-RpcFilter') -Alias @('Add-RpcFilter')
