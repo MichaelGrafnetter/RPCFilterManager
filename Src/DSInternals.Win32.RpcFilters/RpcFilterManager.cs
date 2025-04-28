@@ -21,6 +21,12 @@ public sealed class RpcFilterManager : IDisposable
     internal static readonly Guid FWPM_CONDITION_RPC_OPNUM = Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9");
 
     /// <summary>
+    /// Context used in the RPC audit sublayer.
+    /// </summary>
+    // TODO: [Obsolete("Switch to the FWPM_CONTEXT_RPC_AUDIT_ENABLED system constant once it gets into the API.")]
+    private const ulong FWPM_CONTEXT_RPC_AUDIT_ENABLED = 1;
+
+    /// <summary>
     /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
     /// </summary>
     /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 or Windows Server 2025 (10.0.26100).</remarks>
@@ -263,9 +269,15 @@ public sealed class RpcFilterManager : IDisposable
             Flags = flags
         };
 
+        if (filter.Audit)
+        {
+            // Context is required to be set in addition to the sub-layer key.
+            nativeFilter.Context.rawContext = FWPM_CONTEXT_RPC_AUDIT_ENABLED;
+        }
+
         var conditionsHandle = new GCHandle();
 
-        if(conditions.Count > 0)
+        if (conditions.Count > 0)
         {
             conditionsHandle = nativeFilter.SetFilterConditions(conditions);
         }

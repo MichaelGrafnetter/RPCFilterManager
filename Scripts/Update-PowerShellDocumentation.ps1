@@ -25,7 +25,7 @@ Import-Module -Name $modulePath -ErrorAction Stop
 # New-MarkdownAboutHelp -AboutName 'DSInternals.RpcFilters' -OutputFolder $mdHelpPath
 
 # Update MD files
-Update-MarkdownHelpModule -Path $mdHelpPath -ModulePagePath $modulePagePath -RefreshModulePage:$false -AlphabeticParamsOrder -UpdateInputOutput
+Update-MarkdownHelpModule -Path $mdHelpPath -ModulePagePath $modulePagePath -RefreshModulePage:$true -AlphabeticParamsOrder -UpdateInputOutput
 
 # Generate the MAML file
 New-ExternalHelp -Path $mdHelpPath -OutputPath $xmlHelpPath -Force -ShowProgress

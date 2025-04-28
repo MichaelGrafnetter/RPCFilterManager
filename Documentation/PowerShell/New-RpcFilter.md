@@ -478,3 +478,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-RpcFilter](Get-RpcFilter.md)
 [Remove-RpcFilter](Remove-RpcFilter.md)
+[Get-RpcFilterEvent](Get-RpcFilterEvent.md)
