@@ -128,5 +128,20 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-DNSP: Domain Name Service (DNS) Server Management Protocol
     /// </summary>
-    DnsManagement
+    DnsManagement,
+
+    /// <summary>
+    /// DCERPC Endpoint Mapper
+    /// </summary>
+    EndpointMapper,
+
+    /// <summary>
+    /// MS-DSSP: Directory Services Setup Remote Protocol
+    /// </summary>
+    DirectoryServicesSetup,
+
+    /// <summary>
+    /// MS-BRWSA: Common Internet File System (CIFS) Browser Auxiliary Protocol
+    /// </summary>
+    MasterBrowser
 }

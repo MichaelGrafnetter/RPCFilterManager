@@ -166,6 +166,31 @@ public static class WellKnownProtocolTranslator
     public static readonly Guid NSPI = new ("F5CC5A18-4264-101A-8C59-08002B2F8426");
 
     /// <summary>
+    /// DCERPC Endpoint Mapper
+    /// </summary>
+    public static readonly Guid EPM = new("e1af8308-5d1f-11c9-91a4-08002b14a0fa");
+
+    /// <summary>
+    /// MS-DSSP: Directory Services Setup Remote Protocol
+    /// </summary>
+    public static readonly Guid DSSP = new("3919286a-b10c-11d0-9ba8-00c04fd92ef5");
+
+    /// <summary>
+    /// MS-BRWSA: Common Internet File System (CIFS) Browser Auxiliary Protocol
+    /// </summary>
+    public static readonly Guid BRWSA = new("6BFFD098-A112-3610-9833-012892020162");
+
+    /// <summary>
+    /// MS-DHCPM: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol (dhcpsrv)
+    /// </summary>
+    public static readonly Guid DHCPM_dhcpsrv = new("6BFFD098-A112-3610-9833-46C3F874532D");
+
+    /// <summary>
+    /// MS-DHCPM: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol (dhcpsrv2)
+    /// </summary>
+    public static readonly Guid DHCPM_dhcpsrv2 = new ("5b821720-f63b-11d0-aad2-00c04fc324db");
+
+    /// <summary>
     /// MS-EVEN6: EvtRpcClearLog
     /// </summary>
     public const ushort EvtRpcClearLog = 6;
@@ -439,6 +464,9 @@ public static class WellKnownProtocolTranslator
             case WellKnownProtocol.BackupKey:
             case WellKnownProtocol.LocalSecurityAuthority:
             case WellKnownProtocol.DnsManagement:
+            case WellKnownProtocol.EndpointMapper:
+            case WellKnownProtocol.DirectoryServicesSetup:
+            case WellKnownProtocol.MasterBrowser:
                 return true;
             case WellKnownProtocol.DirectoryReplicationService:
             case WellKnownProtocol.FileReplicationService:
