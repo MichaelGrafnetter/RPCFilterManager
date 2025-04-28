@@ -17,7 +17,7 @@ Creates a new RPC filter for managing remote procedure call (RPC) traffic based 
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>] [-InterfaceUUID <Guid>]
  [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit] [-AuthenticationLevel <RpcAuthenticationLevel>]
- [-AuthenticationType <RpcAuthenticationType>] [-ProtocolSequence <RpcProtocolSequence>]
+ [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
  [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>]
  [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>] [-Weight <UInt64>]
  [-OperationNumber <UInt16>] [<CommonParameters>]
@@ -29,10 +29,9 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
  -WellKnownProtocol <WellKnownProtocol> [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
- [-ProtocolSequence <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>]
- [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>]
- [-LocalAddressMask <Byte>] [-LocalPort <UInt16>] [-Weight <UInt64>] [-OperationNumber <UInt16>]
- [<CommonParameters>]
+ [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
+ [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
+ [-Weight <UInt64>] [-OperationNumber <UInt16>] [<CommonParameters>]
 ```
 
 ### WellKnownOperation
@@ -41,9 +40,9 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
  -WellKnownOperation <WellKnownOperation> [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
- [-ProtocolSequence <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>]
- [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>]
- [-LocalAddressMask <Byte>] [-LocalPort <UInt16>] [-Weight <UInt64>] [<CommonParameters>]
+ [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
+ [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
+ [-Weight <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -279,7 +278,7 @@ The name of the remote named pipe.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Pipe, PipeName
 
 Required: False
 Position: Named
@@ -333,22 +332,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Transport
-Protocol family used by the RPC endpoint.
-
-```yaml
-Type: RpcProtocolSequence
-Parameter Sets: (All)
-Aliases: ProtSeq, Binding, ProtocolSequence
-Accepted values: ncacn_ip_tcp, ncacn_np, ncalrpc, ncacn_http
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### -ProviderKey
 Optional identifier of the policy provider that manages this filter.
 
@@ -370,7 +353,7 @@ The remote IP address.
 ```yaml
 Type: IPAddress
 Parameter Sets: (All)
-Aliases:
+Aliases: IPAddress, Address
 
 Required: False
 Position: Named
@@ -385,7 +368,7 @@ The remote IP address mask.
 ```yaml
 Type: Byte
 Parameter Sets: (All)
-Aliases:
+Aliases: Mask, PrefixLength, Prefix, RemoteAddressPrefix, RemoteAddressPrefixLength
 
 Required: False
 Position: Named
@@ -409,13 +392,28 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -Transport
+Protocol family used by the RPC endpoint.
+
+```yaml
+Type: RpcProtocolSequence
+Parameter Sets: (All)
+Aliases: ProtSeq, Binding, ProtocolSequence
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -Weight
 The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.
 
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases:
+Aliases: WeightRange
 
 Required: False
 Position: Named

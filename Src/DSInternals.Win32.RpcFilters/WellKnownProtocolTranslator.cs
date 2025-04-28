@@ -161,9 +161,9 @@ public static class WellKnownProtocolTranslator
     public static readonly Guid PAN_IRPCRemoteObject = new("ae33069b-a2a8-46ee-a235-ddfd339be281");
 
     /// <summary>
-    /// MS-DRSR: IDL_DRSGetNCChanges
+    /// MS-NSPI: Name Service Provider Interface (NSPI) Remote Protocol
     /// </summary>
-    public const ushort IDL_DRSGetNCChanges = 3;
+    public static readonly Guid NSPI = new ("F5CC5A18-4264-101A-8C59-08002B2F8426");
 
     /// <summary>
     /// MS-EVEN6: EvtRpcClearLog
@@ -186,10 +186,29 @@ public static class WellKnownProtocolTranslator
     public const ushort RCreateServiceW = 12;
 
     /// <summary>
+    /// MS-SCMR: RCreateServiceA
+    /// </summary>
+    public const ushort RCreateServiceA = 24;
+
+    /// <summary>
+    /// MS-SCMR: RCreateServiceWOW64A
+    /// </summary>
+    public const ushort RCreateServiceWOW64A = 44;
+
+    /// <summary>
+    /// MS-SCMR: RCreateServiceWOW64W
+    /// </summary>
+    public const ushort RCreateServiceWOW64W = 45;
+
+    /// <summary>
     /// MS-SCMR: RCreateWowService
     /// </summary>
     public const ushort RCreateWowService = 60;
 
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetNCChanges
+    /// </summary>
+    public const ushort IDL_DRSGetNCChanges = 3;
 
     /// <summary>
     /// MS-DRSR: IDL_DRSReplicaAdd
@@ -271,6 +290,70 @@ public static class WellKnownProtocolTranslator
     /// </summary>
     public const ushort LsarRetrievePrivateData = 43;
 
+    /// <summary>
+    /// MS-EFSR: EfsRpcOpenFileRaw
+    /// </summary>
+    public const ushort EfsRpcOpenFileRaw = 0;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcEncryptFileSrv
+    /// </summary>
+    public const ushort EfsRpcEncryptFileSrv = 4;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcDecryptFileSrv
+    /// </summary>
+    public const ushort EfsRpcDecryptFileSrv = 5;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcQueryUsersOnFile
+    /// </summary>
+    public const ushort EfsRpcQueryUsersOnFile = 6;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcQueryRecoveryAgents
+    /// </summary>
+    public const ushort EfsRpcQueryRecoveryAgents = 7;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcRemoveUsersFromFile
+    /// </summary>
+    public const ushort EfsRpcRemoveUsersFromFile = 8;
+
+    /// <summary>
+    /// MS-EFSR: EfsRpcAddUsersToFile
+    /// </summary>
+    public const ushort EfsRpcAddUsersToFile = 9;
+
+    /// <summary>
+    /// MS-FSRVP: IsPathSupported
+    /// </summary>
+    public const ushort IsPathSupported = 8;
+
+    /// <summary>
+    /// MS-FSRVP: IsPathShadowCopied
+    /// </summary>
+    public const ushort IsPathShadowCopied = 9;
+
+    /// <summary>
+    /// MS-DFSNM: NetrDfsAddStdRoot
+    /// </summary>
+    public const ushort NetrDfsAddStdRoot = 12;
+
+    /// <summary>
+    /// MS-DFSNM: NetrDfsRemoveStdRoot
+    /// </summary>
+    public const ushort NetrDfsRemoveStdRoot = 13;
+
+    /// <summary>
+    /// MS-DFSNM: NetrDfsAddRootTarget
+    /// </summary>
+    public const ushort NetrDfsAddRootTarget = 23;
+
+    /// <summary>
+    /// MS-DFSNM: NetrDfsRemoveRootTarget
+    /// </summary>
+    public const ushort NetrDfsRemoveRootTarget = 24;
 
     /// <summary>
     /// Translates a well-known RPC protocol to its corresponding interface UUID.
@@ -296,7 +379,7 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.SecurityAccountManager => SAMR,
             WellKnownProtocol.PrintSpooler => RPRN,
             WellKnownProtocol.NamespaceManagement => DFSNM,
-            WellKnownProtocol.FileReplication => FRS1,
+            WellKnownProtocol.FileReplicationService => FRS1,
             WellKnownProtocol.DistributedFileReplication => FRS2,
             WellKnownProtocol.VolumeShadowCopy => FSRVP,
             WellKnownProtocol.Netlogon => NRPC,
@@ -312,22 +395,59 @@ public static class WellKnownProtocolTranslator
     }
 
     /// <summary>
-    /// Translates a well-known RPC operation to its corresponding interface UUID and operation number.
+    /// Translates a well-known RPC operation to its corresponding protocol and operation number.
     /// </summary>
     /// <param name="operation">RPC protocol operation enumeration</param>
-    /// <returns>Interface UUID and operation number</returns>
+    /// <returns>Well-known protocol and operation number</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static (Guid InterfaceUUID, ushort OperationNumber) ToOperationNumber(this WellKnownOperation operation)
+    public static (WellKnownProtocol protocol, ushort OperationNumber) ToOperationNumber(this WellKnownOperation operation)
     {
         return operation switch
         {
-            WellKnownOperation.IDL_DRSGetNCChanges => (DRSR, IDL_DRSGetNCChanges),
-            WellKnownOperation.EvtRpcClearLog => (EVEN6, EvtRpcClearLog),
-            WellKnownOperation.ElfrClearELFW => (EVEN, ElfrClearELFW),
-            WellKnownOperation.ElfrClearELFA => (EVEN, ElfrClearELFA),
-            WellKnownOperation.RCreateServiceW => (SCMR, RCreateServiceW),
+            WellKnownOperation.IDL_DRSGetNCChanges => (WellKnownProtocol.DirectoryReplicationService, IDL_DRSGetNCChanges),
+            WellKnownOperation.EvtRpcClearLog => (WellKnownProtocol.EventLogV6, EvtRpcClearLog),
+            WellKnownOperation.ElfrClearELFW => (WellKnownProtocol.EventLog, ElfrClearELFW),
+            WellKnownOperation.ElfrClearELFA => (WellKnownProtocol.EventLog, ElfrClearELFA),
+            WellKnownOperation.RCreateServiceW => (WellKnownProtocol.ServiceControlManager, RCreateServiceW),
             _ => throw new ArgumentOutOfRangeException(nameof(operation), operation, "This operation is not yet supported.")
         };
+    }
+
+    /// <summary>
+    /// Checks if the specified protocol supports RPC over named pipes by default.
+    /// </summary>
+    public static bool SupportsNamedPipes(this WellKnownProtocol? protocol)
+    {
+        switch (protocol)
+        {
+            case WellKnownProtocol.ServiceControlManager:
+            case WellKnownProtocol.TaskSchedulerAgent:
+            case WellKnownProtocol.NetSchedule:
+            case WellKnownProtocol.TaskSchedulerService:
+            case WellKnownProtocol.EventLog:
+            case WellKnownProtocol.EventLogV6:
+            case WellKnownProtocol.RemoteRegistry:
+            case WellKnownProtocol.InitShutdown:
+            case WellKnownProtocol.SecurityAccountManager:
+            case WellKnownProtocol.PrintSpooler:
+            case WellKnownProtocol.NamespaceManagement:
+            case WellKnownProtocol.EncryptingFileSystem:
+            case WellKnownProtocol.EncryptingFileSystemLSA:
+            case WellKnownProtocol.ServerService:
+            case WellKnownProtocol.WorkstationService:
+            case WellKnownProtocol.VolumeShadowCopy:
+            case WellKnownProtocol.BackupKey:
+            case WellKnownProtocol.LocalSecurityAuthority:
+            case WellKnownProtocol.DnsManagement:
+                return true;
+            case WellKnownProtocol.DirectoryReplicationService:
+            case WellKnownProtocol.FileReplicationService:
+            case WellKnownProtocol.DistributedFileReplication:
+            case WellKnownProtocol.Netlogon:
+            default:
+                // We either do not know the protocol or it does not use named pipes.
+                return false;
+        }
     }
 
     /// <summary>

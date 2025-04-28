@@ -19,7 +19,7 @@ Remove-RpcFilter [-Id] <UInt64> [<CommonParameters>]
 
 ### InputObject
 ```
-Remove-RpcFilter [-InputObject] <RpcFilter> [<CommonParameters>]
+Remove-RpcFilter [-InputObject] <RpcFilter> [-PassThrough] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,6 +63,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThrough
+{{ Fill PassThrough Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: InputObject
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

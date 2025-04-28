@@ -78,7 +78,7 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-FRS1: File Replication Service Protocol
     /// </summary>
-    FileReplication,
+    FileReplicationService,
 
     /// <summary>
     /// MS-FRS2: Distributed File System Replication Protocol

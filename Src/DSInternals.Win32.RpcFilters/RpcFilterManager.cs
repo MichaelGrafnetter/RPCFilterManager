@@ -20,6 +20,12 @@ public sealed class RpcFilterManager : IDisposable
     // TODO: [Obsolete("Switch to the FWPM_CONDITION_RPC_OPNUM system constant once it gets into the API.")]
     internal static readonly Guid FWPM_CONDITION_RPC_OPNUM = Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9");
 
+    /// <summary>
+    /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
+    /// </summary>
+    /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 or Windows Server 2025 (10.0.26100).</remarks>
+    public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
+
     private SafeFwpmEngineHandle? engineHandle;
 
     /// <summary>
@@ -326,11 +332,11 @@ public sealed class RpcFilterManager : IDisposable
             WIN32_ERROR.ERROR_INVALID_PARAMETER => new ArgumentException(genericException.Message, genericException),
             WIN32_ERROR.ERROR_ACCESS_DENIED => new UnauthorizedAccessException(genericException.Message, genericException),
             WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY or WIN32_ERROR.ERROR_OUTOFMEMORY => new OutOfMemoryException(genericException.Message, genericException),
+            { } when (int)code == HRESULT.FWP_E_CONDITION_NOT_FOUND.Value => new PlatformNotSupportedException(genericException.Message, genericException),
             // TODO: Handle HRESULT.FWP_E_FILTER_NOT_FOUND
             // TODO: Handle HRESULT.FWP_E_ALREADY_EXISTS
             // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
             // TODO: Handle FWP_E_INVALID_NET_MASK
-            // TODO: Handle FWP_E_CONDITION_NOT_FOUND => PlatformNotSupportedException
             // TODO: Handle FWP_E_FILTER_NOT_FOUND
             // TODO: Handle FWP_E_INVALID_WEIGHT
             _ => genericException,

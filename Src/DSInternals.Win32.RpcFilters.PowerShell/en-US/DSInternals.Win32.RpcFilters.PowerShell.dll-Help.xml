@@ -324,7 +324,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Pipe, PipeName">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
             <maml:para>The name of the remote named pipe.</maml:para>
@@ -370,24 +370,6 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
-          <maml:name>ProtocolSequence</maml:name>
-          <maml:description>
-            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
-          </maml:description>
-          <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_np</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncalrpc</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_http</command:parameterValue>
-          </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
-          <dev:type>
-            <maml:name>RpcProtocolSequence</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
@@ -400,7 +382,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
             <maml:para>The remote IP address.</maml:para>
@@ -412,7 +394,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Mask, PrefixLength, Prefix, RemoteAddressPrefix, RemoteAddressPrefixLength">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
             <maml:para>The remote IP address mask.</maml:para>
@@ -436,7 +418,19 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
+          <maml:name>Transport</maml:name>
+          <maml:description>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcProtocolSequence</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WeightRange">
           <maml:name>Weight</maml:name>
           <maml:description>
             <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
@@ -630,7 +624,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Pipe, PipeName">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
             <maml:para>The name of the remote named pipe.</maml:para>
@@ -676,24 +670,6 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
-          <maml:name>ProtocolSequence</maml:name>
-          <maml:description>
-            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
-          </maml:description>
-          <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_np</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncalrpc</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_http</command:parameterValue>
-          </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
-          <dev:type>
-            <maml:name>RpcProtocolSequence</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
@@ -706,7 +682,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
             <maml:para>The remote IP address.</maml:para>
@@ -718,7 +694,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Mask, PrefixLength, Prefix, RemoteAddressPrefix, RemoteAddressPrefixLength">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
             <maml:para>The remote IP address mask.</maml:para>
@@ -742,7 +718,19 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
+          <maml:name>Transport</maml:name>
+          <maml:description>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcProtocolSequence</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WeightRange">
           <maml:name>Weight</maml:name>
           <maml:description>
             <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
@@ -948,7 +936,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Pipe, PipeName">
           <maml:name>NamedPipe</maml:name>
           <maml:description>
             <maml:para>The name of the remote named pipe.</maml:para>
@@ -982,24 +970,6 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
-          <maml:name>ProtocolSequence</maml:name>
-          <maml:description>
-            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
-          </maml:description>
-          <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_ip_tcp</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_np</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncalrpc</command:parameterValue>
-            <command:parameterValue required="false" command:variableLength="false">ncacn_http</command:parameterValue>
-          </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
-          <dev:type>
-            <maml:name>RpcProtocolSequence</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
@@ -1012,7 +982,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
             <maml:para>The remote IP address.</maml:para>
@@ -1024,7 +994,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Mask, PrefixLength, Prefix, RemoteAddressPrefix, RemoteAddressPrefixLength">
           <maml:name>RemoteAddressMask</maml:name>
           <maml:description>
             <maml:para>The remote IP address mask.</maml:para>
@@ -1048,7 +1018,19 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
+          <maml:name>Transport</maml:name>
+          <maml:description>
+            <maml:para>Protocol family used by the RPC endpoint.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+          <dev:type>
+            <maml:name>RpcProtocolSequence</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WeightRange">
           <maml:name>Weight</maml:name>
           <maml:description>
             <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
@@ -1243,7 +1225,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Pipe, PipeName">
         <maml:name>NamedPipe</maml:name>
         <maml:description>
           <maml:para>The name of the remote named pipe.</maml:para>
@@ -1291,18 +1273,6 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, Transport">
-        <maml:name>ProtocolSequence</maml:name>
-        <maml:description>
-          <maml:para>Protocol family used by the RPC endpoint.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
-        <dev:type>
-          <maml:name>RpcProtocolSequence</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ProviderKey</maml:name>
         <maml:description>
@@ -1315,7 +1285,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
         <maml:name>RemoteAddress</maml:name>
         <maml:description>
           <maml:para>The remote IP address.</maml:para>
@@ -1327,7 +1297,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Mask, PrefixLength, Prefix, RemoteAddressPrefix, RemoteAddressPrefixLength">
         <maml:name>RemoteAddressMask</maml:name>
         <maml:description>
           <maml:para>The remote IP address mask.</maml:para>
@@ -1351,7 +1321,19 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
+        <maml:name>Transport</maml:name>
+        <maml:description>
+          <maml:para>Protocol family used by the RPC endpoint.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RpcProtocolSequence</command:parameterValue>
+        <dev:type>
+          <maml:name>RpcProtocolSequence</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WeightRange">
         <maml:name>Weight</maml:name>
         <maml:description>
           <maml:para>The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.</maml:para>
@@ -1516,10 +1498,6 @@
         <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/New-RpcFilter.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>Test-RpcFilterOpNumSupport</maml:linkText>
-        <maml:uri></maml:uri>
-      </maml:navigationLink>
-      <maml:navigationLink>
         <maml:linkText>Get-RpcFilter</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -1571,6 +1549,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThrough</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
@@ -1597,6 +1586,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThrough</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill PassThrough Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -1645,69 +1646,6 @@
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Remove-RpcFilter.md</maml:uri>
-      </maml:navigationLink>
-    </command:relatedLinks>
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>Test-RpcFilterOpNumSupport</command:name>
-      <command:verb>Test</command:verb>
-      <command:noun>RpcFilterOpNumSupport</command:noun>
-      <maml:description>
-        <maml:para>Checks if filtering based on RPC operation numbers is supported by the OS.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Test-RpcFilterOpNumSupport</maml:name>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters />
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>System.Boolean</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-        <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks>
-      <maml:navigationLink>
-        <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShellTest-RpcFilterOpNumSupport.md</maml:uri>
-      </maml:navigationLink>
-      <maml:navigationLink>
-        <maml:linkText>New-RpcFilter</maml:linkText>
-        <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>

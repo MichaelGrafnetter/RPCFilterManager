@@ -248,6 +248,8 @@ internal readonly struct FWPM_FILTER_CONDITION0
         }
 
         (var conditionValue, var memoryHandle) = FWP_CONDITION_VALUE0.Allocate(value);
+        // TODO: String matching should be case insensitive, but FWP_MATCH_TYPE.FWP_MATCH_EQUAL_CASE_INSENSITIVE is not accepted by the system here.
+        // Example: Named pipe == "\PIPE\winreg" vs. "\pipe\winreg"
         var condition = new FWPM_FILTER_CONDITION0(fieldKey, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
         return (condition, memoryHandle);
     }

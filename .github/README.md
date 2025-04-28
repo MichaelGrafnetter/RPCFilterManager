@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
 [![.NET Framework 4.8+](https://img.shields.io/badge/.NET%20Framework-4.8%2B-007FFF.svg)](#)
 [![.NET 8+](https://img.shields.io/badge/.NET-8%2B-007FFF.svg)](#)
-[![Continuous Integration Status](https://github.com/MichaelGrafnetter/RPCFilterManager/actions/workflows/autobuild.yml/badge.svg)](https://github.com/RPCFilterManager/webauthn-interop/actions)
+[![Continuous Integration Status](https://github.com/MichaelGrafnetter/RPCFilterManager/actions/workflows/autobuild.yml/badge.svg)](https://github.com/MichaelGrafnetter/RPCFilterManager/actions)
 
 **A .NET Library and PowerShell Module for managing Windows RPC Filters**
 
@@ -52,7 +52,7 @@ using (var fw = new RpcFilterManager())
         Name = "TestFilter",
         Description = "Test filter description",
         Action = RpcFilterAction.Permit,
-        InterfaceUUID = WellKnownProtocols.Registry.ToInterfaceUUID(),
+        InterfaceUUID = WellKnownProtocols.RemoteRegistry.ToInterfaceUUID(),
         OperationNumber = 25,
         Transport = RpcProtocolSequence.ncacn_ip_tcp,
         NamedPipe = "winreg",
