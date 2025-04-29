@@ -41,7 +41,10 @@ RequiredAssemblies = @()
 TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = @('DSInternals.RpcFilter.format.ps1xml')
+FormatsToProcess = @(
+    'DSInternals.RpcFilter.format.ps1xml',
+    'DSInternals.RpcEventLogRecord.format.ps1xml'
+)
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(

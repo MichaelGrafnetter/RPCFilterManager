@@ -27,7 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Reference assemblies that are bundled with PowerShell -->
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" IncludeAssets="compile" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="9.0.4" IncludeAssets="compile" Condition="'$(TargetFramework)' == 'net8.0-windows'" />
   </ItemGroup>
 
   <ItemGroup>
