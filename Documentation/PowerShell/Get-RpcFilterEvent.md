@@ -67,6 +67,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### DSInternals.Win32.RpcFilters.PowerShell.RpcEventLogRecord
 ## NOTES
 
 ## RELATED LINKS

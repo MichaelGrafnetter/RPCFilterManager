@@ -64,7 +64,7 @@ function Get-RpcFilterEvent {
 #>
 function Enable-RpcFilterAuditing {
     [CmdletBinding()]
-    [OutputType([void])]
+    [OutputType('None')]
     param()
 
     # Run the native command and drop the output
@@ -78,7 +78,7 @@ function Enable-RpcFilterAuditing {
 #>
 function Disable-RpcFilterAuditing {
     [CmdletBinding()]
-    [OutputType([void])]
+    [OutputType('None')]
     param()
 
     # Run the native command and drop the output

@@ -4,6 +4,9 @@ using System.Security.Principal;
 
 namespace DSInternals.Win32.RpcFilters.PowerShell;
 
+/// <summary>
+/// Represents a single event log record for an RPC filter event with ID 5712.
+/// </summary>
 public class RpcEventLogRecord
 {
     /// <summary>
@@ -11,29 +14,100 @@ public class RpcEventLogRecord
     /// </summary>
     private const int RpcEventId = 5712;
 
+    /// <summary>
+    /// Gets the time that the event was created.
+    /// </summary>
     public DateTime? TimeCreated { get; private set; }
 
     public bool Allowed { get; private set; }
+
+    /// <summary>
+    /// Gets the name of the computer on which this event was logged.
+    /// </summary>
     public string MachineName { get; private set; }
 
+    /// <summary>
+    /// Gets the security identifier (SID) of the user who attempted the RPC call.
+    /// </summary>
     public SecurityIdentifier UserSid { get; private set; }
+
+    /// <summary>
+    /// Gets the name of the user who attempted the RPC call.
+    /// </summary>
     public string UserName { get; private set; }
+
+    /// <summary>
+    /// Gets the domain of the user who attempted the RPC call.
+    /// </summary>
     public string UserDomain { get; private set; }
+
+    /// <summary>
+    /// Gets the logon ID of the user who attempted the RPC call.
+    /// </summary>
     public ulong UserLogonId { get; private set; }
 
+    /// <summary>
+    /// Gets the remote port number used for the RPC call.
+    /// </summary>
     public ushort? RemotePort { get; private set; }
 
+    /// <summary>
+    /// Gets the remote IP address used for the RPC call.
+    /// </summary>
+    /// <remarks>IP addresses are only populated when a TCP/IP binding is used.</remarks>
     public IPAddress? RemoteIPAddress { get; private set; }
+
+    /// <summary>
+    /// Gets the UUID of the RPC interface used.
+    /// </summary>
     public Guid InterfaceUUID { get; private set; }
+
+    /// <summary>
+    /// Gets the name of the RPC interface used for the RPC call, if available.
+    /// </summary>
     public string? Protocol => WellKnownProtocolTranslator.ToProtocolName(this.InterfaceUUID);
+
+    /// <summary>
+    /// Gets the operation number of the RPC call.
+    /// </summary>
+    /// <remarks>OpNums are only populated since Windows 11 24H2 or Windows Server 2025</remarks>
     public ushort? OperationNumber { get; private set; }
+
+    /// <summary>
+    /// Gets the name of the RPC operation used for the RPC call, if available.
+    /// </summary>
     public string? Operation => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber);
+
+    /// <summary>
+    /// Gets the transport protocol sequence used for the RPC call.
+    /// </summary>
     public RpcProtocolSequence Transport { get; private set; }
+
+    /// <summary>
+    /// Gets the authentication type used for the RPC call.
+    /// </summary>
     public RpcAuthenticationType AuthenticationType { get; private set; }
+
+    /// <summary>
+    /// Gets the authentication level used for the RPC call.
+    /// </summary>
     public RpcAuthenticationLevel AuthenticationLevel { get; private set; }
+
+    /// <summary>
+    /// Gets the name of the RPC server process.
+    /// </summary>
     public string ProcessName { get; private set; }
+
+    /// <summary>
+    /// Gets the ID of the RPC server process.
+    /// </summary>
     public uint ProcessId { get; private set; }
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="RpcEventLogRecord"/> class from a generic <see cref="EventLogRecord" /> instance.
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentException"></exception>
     public RpcEventLogRecord(EventLogRecord record)
     {
         if (record == null)
