@@ -170,7 +170,7 @@ public static class WellKnownProtocolTranslator
     /// <summary>
     /// DCERPC Endpoint Mapper
     /// </summary>
-    public static readonly Guid EPM = new("e1af8308-5d1f-11c9-91a4-08002b14a0fa");
+    public static readonly Guid EPMAP = new("e1af8308-5d1f-11c9-91a4-08002b14a0fa");
 
     /// <summary>
     /// MS-DSSP: Directory Services Setup Remote Protocol
@@ -520,6 +520,7 @@ public static class WellKnownProtocolTranslator
             { } when interfaceUUID == BKRP =>     "MS-BKRP",
             { } when interfaceUUID == DNSP =>     "MS-DNSP",
             { } when interfaceUUID == SAMR =>     "MS-SAMR",
+            { } when interfaceUUID == EPMAP =>    "EPMAP",
             // Return the original GUID if no match is found
             _ => interfaceUUID.ToString()
         };
