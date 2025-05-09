@@ -1,4 +1,6 @@
-﻿namespace DSInternals.Win32.RpcFilters;
+﻿using System.Globalization;
+
+namespace DSInternals.Win32.RpcFilters;
 
 /// <summary>
 /// Well-known RPC protocol translator.
@@ -539,7 +541,7 @@ public static class WellKnownProtocolTranslator
         else if(interfaceUUID == null)
         {
             // Although the operation number is defined, it cannot be translated without the corresponding interface UUID
-            return operationNumber.ToString();
+            return operationNumber?.ToString(CultureInfo.InvariantCulture);
         }
 
         // Both interface UUID and operation number are configured in the filter
@@ -561,7 +563,7 @@ public static class WellKnownProtocolTranslator
         else
         {
             // Return the original operation number if no match is found
-            return operationNumber.ToString();
+            return operationNumber?.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

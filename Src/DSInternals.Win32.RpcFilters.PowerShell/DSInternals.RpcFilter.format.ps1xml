@@ -30,7 +30,7 @@
               </ExpressionBinding>
               <Text>, ProviderKey: </Text>
               <ExpressionBinding>
-                <PropertyName>ProviderKey</PropertyName>
+                <ScriptBlock>if($null -eq $PSItem.ProviderKey) { 'N/A' } else { $PSItem.ProviderKey }</ScriptBlock>
               </ExpressionBinding>
               <NewLine />
               <Text>Action: </Text>
@@ -57,7 +57,7 @@
               </ExpressionBinding>
               <Text>, Weight: </Text>
               <ExpressionBinding>
-                <PropertyName>Weight</PropertyName>
+                <ScriptBlock>if($null -eq $PSItem.Weight) { 'N/A' } else { $PSItem.Weight }</ScriptBlock>
               </ExpressionBinding>
               <NewLine />
               <Text>Conditions:</Text>

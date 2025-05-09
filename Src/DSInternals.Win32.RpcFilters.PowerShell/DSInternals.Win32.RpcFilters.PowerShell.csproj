@@ -12,6 +12,7 @@
     <FileVersion>1.0</FileVersion>
     <AssemblyTitle>DSInternals.RpcFilters PowerShell Module</AssemblyTitle>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AnalysisMode>Recommended</AnalysisMode>
   </PropertyGroup>
 
   <!-- Include platform-independent module files -->
@@ -29,11 +30,11 @@
   <ItemGroup>
     <!-- Reference assemblies that are bundled with PowerShell -->
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" IncludeAssets="compile" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="9.0.4" IncludeAssets="compile" Condition="'$(TargetFramework)' == 'net8.0-windows'" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="9.0.4" IncludeAssets="compile" Condition="'$(TargetFramework)' != 'net480'" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DSInternals.Win32.RpcFilters\DSInternals.Win32.RpcFilters.csproj" />
+    <Compile Include="..\DSInternals.Win32.RpcFilters\GlobalSuppressions.cs" />
   </ItemGroup>
-
 </Project>

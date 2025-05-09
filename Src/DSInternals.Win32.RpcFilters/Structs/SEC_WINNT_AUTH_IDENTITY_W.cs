@@ -8,7 +8,7 @@ namespace DSInternals.Win32.RpcFilters;
 /// Enables passing a particular user name and password to the run-time library for the purpose of authentication.
 /// </summary>
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-internal class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
+internal sealed class SEC_WINNT_AUTH_IDENTITY_W : IDisposable
 {
     /// <summary>
     /// String containing the user name.
