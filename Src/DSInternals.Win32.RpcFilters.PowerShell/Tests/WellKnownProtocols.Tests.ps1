@@ -1,15 +1,19 @@
 ﻿<#
 .SYNOPSIS
-Tests for the DSInternals.RpcFilters well-known protocol and operation translalion.
-
+    Tests for the DSInternals.RpcFilters well-known protocol and operation translalion.
 #>
 
 #Requires -Version 5.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 
-BeforeAll {
-    [string] $ModulePath = "$PSScriptRoot\..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters"
-    Import-Module -Name $modulePath -ErrorAction Stop -Force
+param(
+    [Parameter(Mandatory = $false)]
+    [ValidateNotNullOrEmpty()]
+    [string] $ModulePath = "..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters"
+)
+
+BeforeDiscovery {
+    Import-Module -Name $ModulePath -ErrorAction Stop -Force
 }
 
 Describe 'Well-Known Protocols' {

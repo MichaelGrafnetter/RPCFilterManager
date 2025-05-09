@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Debug PowerShell Module": {
+      "commandName": "Executable",
+      "executablePath": "powershell.exe",
+      "commandLineArgs": "-NoExit -NoProfile -NoLogo -ExecutionPolicy Bypass -File Debug.ps1 -ModulePath \"$(TargetDir)..\\DSInternals.RpcFilters.psd1\"",
+      "workingDirectory": "$(MSBuildProjectDirectory)"
+    },
+    "Run Pester Tests": {
+      "commandName": "Executable",
+      "executablePath": "powershell.exe",
+      "commandLineArgs": "-NoExit -NoProfile -NoLogo -ExecutionPolicy Bypass -File Test.ps1 -ModulePath \"$(TargetDir)..\\DSInternals.RpcFilters.psd1\"",
+      "workingDirectory": "$(MSBuildProjectDirectory)"
+    }
+  }
+}

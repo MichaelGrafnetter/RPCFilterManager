@@ -1,19 +1,23 @@
 <#
 .SYNOPSIS
-Tests for the DSInternals.RpcFilters module.
+    Tests for the DSInternals.RpcFilters module.
 
 .DESCRIPTION
-Administrative privileges are required for interacting with RPC filters.
-
+    Administrative privileges are required for interacting with RPC filters.
 #>
 
 #Requires -Version 5.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 #Requires -RunAsAdministrator
 
-BeforeAll {
-    [string] $ModulePath = "$PSScriptRoot\..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters"
-    Import-Module -Name $modulePath -ErrorAction Stop -Force
+param(
+    [Parameter(Mandatory = $false)]
+    [ValidateNotNullOrEmpty()]
+    [string] $ModulePath = "..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters"
+)
+
+BeforeDiscovery {
+    Import-Module -Name $ModulePath -ErrorAction Stop -Force
 }
 
 Describe 'PowerShell Module' {
