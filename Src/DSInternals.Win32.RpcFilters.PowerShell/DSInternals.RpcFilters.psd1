@@ -37,6 +37,9 @@ ProcessorArchitecture = 'MSIL'
 # Assemblies that must be loaded prior to importing this module
 RequiredAssemblies = @()
 
+# Modules that must be in the global session state.
+RequiredModules = @('Microsoft.PowerShell.Diagnostics')
+
 # Type files (.ps1xml) to be loaded when importing this module
 TypesToProcess = @()
 
