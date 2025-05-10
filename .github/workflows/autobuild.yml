@@ -60,7 +60,7 @@ jobs:
       continue-on-error: true
 
     - name: Run Pester Tests
-      shell: pwsh
+      shell: powershell
       working-directory: Src/DSInternals.Win32.RpcFilters.PowerShell
       run: ./Test.ps1 -ModulePath "${{github.workspace}}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Debug/DSInternals.RpcFilters"
       continue-on-error: true
