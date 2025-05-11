@@ -121,7 +121,7 @@ public sealed class RpcFilter
     /// <summary>
     /// Contains the weight assigned to the filter.
     /// </summary>
-    public ulong? EffectiveWeight { get; internal set; }
+    public ulong? EffectiveWeight { get; private set; }
 
     /// <summary>
     /// The authentication level controls how much security a client or server wants from its SSP.

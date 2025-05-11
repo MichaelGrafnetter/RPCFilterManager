@@ -71,6 +71,11 @@ public enum WellKnownProtocol
     PrintSpooler,
 
     /// <summary>
+    /// MS-PAR: Print System Asynchronous Remote Protocol
+    /// </summary>
+    PrintSpoolerAsync,
+
+    /// <summary>
     /// MS-DFSNM: Distributed File System (DFS): Namespace Management Protocol
     /// </summary>
     NamespaceManagement,
@@ -143,5 +148,55 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-BRWSA: Common Internet File System (CIFS) Browser Auxiliary Protocol
     /// </summary>
-    MasterBrowser
+    MasterBrowser,
+
+    /// <summary>
+    /// MS-W32T: W32Time Remote Protocol
+    /// </summary>
+    WindowsTime,
+
+    /// <summary>
+    /// MS-DLTW: Distributed Link Tracking: Workstation Protocol
+    /// </summary>
+    DistributedLinkTrackingClient,
+
+    /// <summary>
+    /// MS-DLTM: Distributed Link Tracking: Central Manager Protocol
+    /// </summary>
+    DistributedLinkTrackingServer,
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol
+    /// </summary>
+    RemoteAccessManagement,
+
+    /// <summary>
+    /// MS-NSPI: Name Service Provider Interface (NSPI) Protocol
+    /// </summary>
+    NameServiceProvider,
+
+    /// <summary>
+    /// MS-ICPR: ICertPassage Remote Protocol
+    /// </summary>
+    ICertPassage,
+
+    /// <summary>
+    /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD)
+    /// </summary>
+    ICertRequestD,
+
+    /// <summary>
+    /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD2)
+    /// </summary>
+    ICertRequestD2,
+
+    /// <summary>
+    /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD)
+    /// </summary>
+    ICertAdminD,
+
+    /// <summary>
+    /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD2)
+    /// </summary>
+    ICertAdminD2
 }

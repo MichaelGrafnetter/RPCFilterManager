@@ -291,8 +291,11 @@ public sealed class RpcFilterManager : IDisposable
         }
         finally
         {
-            // Free the unmanaged memory
-            conditionsHandle.Free();
+            if (conditionsHandle.IsAllocated)
+            {
+                // Free the unmanaged memory
+                conditionsHandle.Free();
+            }
 
             foreach(var handle in handles)
             {

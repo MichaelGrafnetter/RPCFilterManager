@@ -57,10 +57,8 @@ jobs:
     - name: Run .NET Unit Tests
       working-directory: Src
       run: dotnet test --configuration Debug --no-build
-      continue-on-error: true
 
     - name: Run Pester Tests
       shell: powershell
       working-directory: Src/DSInternals.Win32.RpcFilters.PowerShell
       run: ./Test.ps1 -ModulePath "${{github.workspace}}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Debug/DSInternals.RpcFilters"
-      continue-on-error: true

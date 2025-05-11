@@ -193,6 +193,171 @@ public static class WellKnownProtocolTranslator
     public static readonly Guid DHCPM_dhcpsrv2 = new ("5b821720-f63b-11d0-aad2-00c04fc324db");
 
     /// <summary>
+    /// MS-DLTM: Distributed Link Tracking: Central Manager Protocol
+    /// </summary>
+    public static readonly Guid DLTM = new("4da1c422-943d-11d1-acae-00c04fc2aa3f");
+
+    /// <summary>
+    /// MS-DLTW: Distributed Link Tracking: Workstation Protocol
+    /// </summary>
+    public static readonly Guid DLTW = new("300f3532-38cc-11d0-a3f0-0020af6b0add");
+
+    /// <summary>
+    /// MS-W32T: W32Time Remote Protocol
+    /// </summary>
+    public static readonly Guid W32T = new("8fb6d884-2388-11d0-8c35-00c04fda2795");
+
+    /// <summary>
+    /// MS-RRASM: Remote Access Service Management Protocol
+    /// </summary>
+    public static readonly Guid RRASM = new("8f09f000-b7ed-11ce-bbd2-00001a181cad");
+
+    /// <summary>
+    /// MS-RAIW: Remote Administrative Interface: WINS (winsif)
+    /// </summary>
+    public static readonly Guid RAIW_winsif = new("45f52c28-7f9f-101a-b52b-08002b2efabe");
+
+    /// <summary>
+    /// MS-RAIW: Remote Administrative Interface: WINS (winsif2)
+    /// </summary>
+    public static readonly Guid RAIW_winsif2 = new("811109bf-a4e1-11d1-ab54-00a0c91e9b45");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Session)
+    /// </summary>
+    public static readonly Guid TSTS_LSM_Session = new("484809d6-4239-471b-b5bc-61df8c23ac48");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Notification)
+    /// </summary>
+    public static readonly Guid TSTS_LSM_Notification = new("11899a43-2b68-4a76-92e3-a3d6ad8c26ce");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Enumeration)
+    /// </summary>
+    public static readonly Guid TSTS_LSM_Enumeration = new("88143fd0-c28d-4b2b-8fef-8d882f6a9390");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TermSrv)
+    /// </summary>
+    public static readonly Guid TSTS_TermSrv = new("bde95fdf-eee0-45de-9e12-e5a61cd0d4fe");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TermSrv Listener)
+    /// </summary>
+    public static readonly Guid TSTS_TermSrv_Listener = new("497d95a6-2d27-4bf5-9bbd-a6046957133c");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (Legacy)
+    /// </summary>
+    public static readonly Guid TSTS_Legacy = new("5ca4a760-ebb1-11cf-8611-00a0245420ed");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TSVIPPublic)
+    /// </summary>
+    public static readonly Guid TSTS_TSVIPPublic = new("53b46b02-c73b-4a3e-8dee-b16b80672fc0");
+
+    /// <summary>
+    /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (SessEnvPublicRpc)
+    /// </summary>
+    public static readonly Guid TSTS_SessEnvPublicRpc = new("1257B580-CE2F-4109-82D6-A9459D0BF6BC");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivation)
+    /// </summary>
+    public static readonly Guid DCOM_IActivation = new("4d9f4ab8-7d1c-11cf-861e-0020af6e7c57");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivationPropertiesIn)
+    /// </summary>
+    public static readonly Guid DCOM_IActivationPropertiesIn = new("000001A2-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivationPropertiesOut)
+    /// </summary>
+    public static readonly Guid DCOM_IActivationPropertiesOut = new("000001A3-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IContext)
+    /// </summary>
+    public static readonly Guid DCOM_IContext = new("000001c0-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IObjectExporter)
+    /// </summary>
+    public static readonly Guid DCOM_IObjectExporter = new("99fcfec4-5260-101b-bbcb-00aa0021347a");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemoteSCMActivator)
+    /// </summary>
+    public static readonly Guid DCOM_IRemoteSCMActivator = new("000001A0-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemUnknown)
+    /// </summary>
+    public static readonly Guid DCOM_IRemUnknown = new("00000131-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemUnknown2)
+    /// </summary>
+    public static readonly Guid DCOM_IRemUnknown2 = new("00000143-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IUnknown)
+    /// </summary>
+    public static readonly Guid DCOM_IUnknown = new("00000000-0000-0000-C000-000000000046");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLevel1Login)
+    /// </summary>
+    public static readonly Guid WMI_IWbemLevel1Login = new("F309AD18-D86A-11d0-A075-00C04FB68820");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginClientID)
+    /// </summary>
+    public static readonly Guid WMI_IWbemLoginClientID = new("D4781CD6-E5D3-44DF-AD94-930EFE48A887");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginHelper)
+    /// </summary>
+    public static readonly Guid WMI_IWbemLoginHelper = new("541679AB-2E5F-11d3-B34E-00104BCC4B4A");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemServices)
+    /// </summary>
+    public static readonly Guid WMI_IWbemServices = new("9556DC99-828C-11CF-A37E-00AA003240C7");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemBackupRestore)
+    /// </summary>
+    public static readonly Guid WMI_IWbemBackupRestore = new("C49E32C7-BC8B-11d2-85D4-00105A1F8304");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemBackupRestoreEx)
+    /// </summary>
+    public static readonly Guid WMI_IWbemBackupRestoreEx = new("A359DEC5-E813-4834-8A2A-BA7F1D777D76");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemClassObject)
+    /// </summary>
+    public static readonly Guid WMI_IWbemClassObject = new("DC12A681-737F-11CF-884D-00AA004B2E24");
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemContext)
+    /// </summary>
+    public static readonly Guid WMI_IWbemContext = new("44ACA674-E8FC-11D0-A07C-00C04FB68820");
+
+    /// <summary>
+    /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD)
+    /// </summary>
+    public static readonly Guid WCCE_ICertRequestD = new ("d99e6e70-fc88-11d0-b498-00a0c90312f3");
+
+    /// <summary>
+    /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD2)
+    /// </summary>
+    public static readonly Guid WCCE_ICertRequestD2 = new ("5422fd3a-d4b8-4cef-a12e-e87d4ca22e90");
+
+    /// <summary>
     /// MS-EVEN6: EvtRpcClearLog
     /// </summary>
     public const ushort EvtRpcClearLog = 6;
@@ -417,6 +582,21 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.BackupKey => BKRP,
             WellKnownProtocol.LocalSecurityAuthority => LSAD,
             WellKnownProtocol.DnsManagement => DNSP,
+            WellKnownProtocol.EndpointMapper => EPMAP,
+            WellKnownProtocol.DirectoryServicesSetup => DSSP,
+            WellKnownProtocol.MasterBrowser => BRWSA,
+            WellKnownProtocol.RemoteAccessManagement => RRASM,
+            WellKnownProtocol.WindowsTime => W32T,
+            WellKnownProtocol.DistributedLinkTrackingClient => DLTW,
+            WellKnownProtocol.PrintSpoolerAsync => PAR,
+            WellKnownProtocol.DistributedLinkTrackingServer => DLTM,
+            WellKnownProtocol.NameServiceProvider => NSPI,
+            WellKnownProtocol.ICertPassage => ICPR,
+            WellKnownProtocol.ICertRequestD => WCCE_ICertRequestD,
+            WellKnownProtocol.ICertRequestD2 => WCCE_ICertRequestD2,
+            WellKnownProtocol.ICertAdminD => CSRA_ICertAdminD,
+            WellKnownProtocol.ICertAdminD2 => CSRA_ICertAdminD2,
+
             _ => throw new ArgumentOutOfRangeException(nameof(protocol), protocol, "This protocol is not yet supported.")
         };
     }
@@ -432,10 +612,43 @@ public static class WellKnownProtocolTranslator
         return operation switch
         {
             WellKnownOperation.IDL_DRSGetNCChanges => (WellKnownProtocol.DirectoryReplicationService, IDL_DRSGetNCChanges),
+            WellKnownOperation.IDL_DRSReplicaAdd => (WellKnownProtocol.DirectoryReplicationService, IDL_DRSReplicaAdd),
             WellKnownOperation.EvtRpcClearLog => (WellKnownProtocol.EventLogV6, EvtRpcClearLog),
             WellKnownOperation.ElfrClearELFW => (WellKnownProtocol.EventLog, ElfrClearELFW),
             WellKnownOperation.ElfrClearELFA => (WellKnownProtocol.EventLog, ElfrClearELFA),
             WellKnownOperation.RCreateServiceW => (WellKnownProtocol.ServiceControlManager, RCreateServiceW),
+            WellKnownOperation.RCreateServiceA => (WellKnownProtocol.ServiceControlManager, RCreateServiceA),
+            WellKnownOperation.RCreateServiceWOW64A => (WellKnownProtocol.ServiceControlManager, RCreateServiceWOW64A),
+            WellKnownOperation.RCreateServiceWOW64W => (WellKnownProtocol.ServiceControlManager, RCreateServiceWOW64W),
+            WellKnownOperation.RCreateWowService => (WellKnownProtocol.ServiceControlManager, RCreateWowService),
+            WellKnownOperation.BaseRegCreateKey => (WellKnownProtocol.RemoteRegistry, BaseRegCreateKey),
+            WellKnownOperation.BaseRegSetValue => (WellKnownProtocol.RemoteRegistry, BaseRegSetValue),
+            WellKnownOperation.SchRpcRegisterTask => (WellKnownProtocol.TaskSchedulerService, SchRpcRegisterTask),
+            WellKnownOperation.NetrJobAdd => (WellKnownProtocol.NetSchedule, NetrJobAdd),
+            WellKnownOperation.NetrFileEnum => (WellKnownProtocol.ServerService, NetrFileEnum),
+            WellKnownOperation.NetrSessionEnum => (WellKnownProtocol.ServerService, NetrSessionEnum),
+            WellKnownOperation.NetrShareEnum => (WellKnownProtocol.ServerService, NetrShareEnum),
+            WellKnownOperation.NetrConnectionEnum => (WellKnownProtocol.ServerService, NetrConnectionEnum),
+            WellKnownOperation.RpcAsyncAddPrinterDriver => (WellKnownProtocol.PrintSpoolerAsync, RpcAsyncAddPrinterDriver),
+            WellKnownOperation.RpcAddPrinterDriverEx => (WellKnownProtocol.PrintSpooler, RpcAddPrinterDriverEx),
+            WellKnownOperation.RpcRemoteFindFirstPrinterChangeNotification => (WellKnownProtocol.PrintSpooler, RpcRemoteFindFirstPrinterChangeNotification),
+            WellKnownOperation.RpcRemoteFindFirstPrinterChangeNotificationEx => (WellKnownProtocol.PrintSpooler, RpcRemoteFindFirstPrinterChangeNotificationEx),
+            WellKnownOperation.SamrEnumerateGroupsInDomain => (WellKnownProtocol.SecurityAccountManager, SamrEnumerateGroupsInDomain),
+            WellKnownOperation.SamrEnumerateUsersInDomain => (WellKnownProtocol.SecurityAccountManager, SamrEnumerateUsersInDomain),
+            WellKnownOperation.LsarRetrievePrivateData => (WellKnownProtocol.LocalSecurityAuthority, LsarRetrievePrivateData),
+            WellKnownOperation.EfsRpcOpenFileRaw => (WellKnownProtocol.EncryptingFileSystem, EfsRpcOpenFileRaw),
+            WellKnownOperation.EfsRpcEncryptFileSrv => (WellKnownProtocol.EncryptingFileSystem, EfsRpcEncryptFileSrv),
+            WellKnownOperation.EfsRpcDecryptFileSrv => (WellKnownProtocol.EncryptingFileSystem, EfsRpcDecryptFileSrv),
+            WellKnownOperation.EfsRpcQueryUsersOnFile => (WellKnownProtocol.EncryptingFileSystem, EfsRpcQueryUsersOnFile),
+            WellKnownOperation.EfsRpcQueryRecoveryAgents => (WellKnownProtocol.EncryptingFileSystem, EfsRpcQueryRecoveryAgents),
+            WellKnownOperation.EfsRpcRemoveUsersFromFile => (WellKnownProtocol.EncryptingFileSystem, EfsRpcRemoveUsersFromFile),
+            WellKnownOperation.EfsRpcAddUsersToFile => (WellKnownProtocol.EncryptingFileSystem, EfsRpcAddUsersToFile),
+            WellKnownOperation.IsPathSupported => (WellKnownProtocol.VolumeShadowCopy, IsPathSupported),
+            WellKnownOperation.IsPathShadowCopied => (WellKnownProtocol.VolumeShadowCopy, IsPathShadowCopied),
+            WellKnownOperation.NetrDfsAddStdRoot => (WellKnownProtocol.NamespaceManagement, NetrDfsAddStdRoot),
+            WellKnownOperation.NetrDfsRemoveStdRoot => (WellKnownProtocol.NamespaceManagement, NetrDfsRemoveStdRoot),
+            WellKnownOperation.NetrDfsAddRootTarget => (WellKnownProtocol.NamespaceManagement, NetrDfsAddRootTarget),
+            WellKnownOperation.NetrDfsRemoveRootTarget => (WellKnownProtocol.NamespaceManagement, NetrDfsRemoveRootTarget),
             _ => throw new ArgumentOutOfRangeException(nameof(operation), operation, "This operation is not yet supported.")
         };
     }
@@ -469,11 +682,15 @@ public static class WellKnownProtocolTranslator
             case WellKnownProtocol.EndpointMapper:
             case WellKnownProtocol.DirectoryServicesSetup:
             case WellKnownProtocol.MasterBrowser:
+            case WellKnownProtocol.Netlogon:
+            case WellKnownProtocol.WindowsTime:
+            case WellKnownProtocol.DistributedLinkTrackingClient:
+            case WellKnownProtocol.RemoteAccessManagement:
+            // TODO: Add RDPP protocols
                 return true;
             case WellKnownProtocol.DirectoryReplicationService:
             case WellKnownProtocol.FileReplicationService:
             case WellKnownProtocol.DistributedFileReplication:
-            case WellKnownProtocol.Netlogon:
             default:
                 // We either do not know the protocol or it does not use named pipes.
                 return false;
@@ -515,12 +732,56 @@ public static class WellKnownProtocolTranslator
             { } when interfaceUUID == NRPC =>     "MS-NRPC",
             { } when interfaceUUID == EFSR =>     "MS-EFSR (\\pipe\\efsrpc)",
             { } when interfaceUUID == EFSR_LSA => "MS-EFSR (\\pipe\\lsarpc)",
+            { } when interfaceUUID == LSAD =>     "MS-LSAD",
             { } when interfaceUUID == SRVSVC =>   "MS-SRVSVC",
             { } when interfaceUUID == WKSSVC =>   "MS-WKSSVC",
             { } when interfaceUUID == BKRP =>     "MS-BKRP",
             { } when interfaceUUID == DNSP =>     "MS-DNSP",
             { } when interfaceUUID == SAMR =>     "MS-SAMR",
             { } when interfaceUUID == EPMAP =>    "EPMAP",
+            { } when interfaceUUID == CSRA_ICertAdminD => "MS-CSRA (ICertAdminD)",
+            { } when interfaceUUID == CSRA_ICertAdminD2 => "MS-CSRA (ICertAdminD2)",
+            { } when interfaceUUID == ICPR =>     "MS-ICPR",
+            { } when interfaceUUID == PAN_IRPCAsyncNotify => "MS-PAN (IRPCAsyncNotify)",
+            { } when interfaceUUID == PAN_IRPCRemoteObject => "MS-PAN (IRPCRemoteObject)",
+            { } when interfaceUUID == NSPI =>     "MS-NSPI",
+            { } when interfaceUUID == DSSP =>     "MS-DSSP",
+            { } when interfaceUUID == BRWSA =>    "MS-BRWSA",
+            { } when interfaceUUID == DHCPM_dhcpsrv => "MS-DHCPM (dhcpsrv)",
+            { } when interfaceUUID == DHCPM_dhcpsrv2 => "MS-DHCPM (dhcpsrv2)",
+            { } when interfaceUUID == DLTM =>     "MS-DLTM",
+            { } when interfaceUUID == DLTW =>     "MS-DLTW",
+            { } when interfaceUUID == RRASM =>    "MS-RRASM",
+            { } when interfaceUUID == W32T =>     "MS-W32T",
+            { } when interfaceUUID == RAIW_winsif =>           "MS-RAIW (winsif",
+            { } when interfaceUUID == RAIW_winsif2 =>          "MS-RAIW (winsif2)",
+            { } when interfaceUUID == TSTS_LSM_Session =>      "MS-TSTS (LSM Session)",
+            { } when interfaceUUID == TSTS_LSM_Notification => "MS-TSTS (LSM Notification)",
+            { } when interfaceUUID == TSTS_LSM_Enumeration =>  "MS-TSTS (LSM Enumeration)",
+            { } when interfaceUUID == TSTS_TermSrv =>          "MS-TSTS (TermSrv)",
+            { } when interfaceUUID == TSTS_TermSrv_Listener => "MS-TSTS (TermSrv Listener)",
+            { } when interfaceUUID == TSTS_Legacy =>           "MS-TSTS (Legacy)",
+            { } when interfaceUUID == TSTS_TSVIPPublic =>      "MS-TSTS (TSVIPPublic)",
+            { } when interfaceUUID == TSTS_SessEnvPublicRpc => "MS-TSTS (SessEnvPublicRpc)",
+            { } when interfaceUUID == DCOM_IActivation =>      "MS-DCOM (IActivation)",
+            { } when interfaceUUID == DCOM_IActivationPropertiesIn =>  "MS-DCOM (IActivationPropertiesIn)",
+            { } when interfaceUUID == DCOM_IActivationPropertiesOut => "MS-DCOM (IActivationPropertiesOut)",
+            { } when interfaceUUID == DCOM_IContext =>            "MS-DCOM (IContext)",
+            { } when interfaceUUID == DCOM_IObjectExporter =>     "MS-DCOM (IObjectExporter)",
+            { } when interfaceUUID == DCOM_IRemoteSCMActivator => "MS-DCOM (IRemoteSCMActivator)",
+            { } when interfaceUUID == DCOM_IRemUnknown =>         "MS-DCOM (IRemUnknown)",
+            { } when interfaceUUID == DCOM_IRemUnknown2 =>        "MS-DCOM (IRemUnknown2)",
+            { } when interfaceUUID == DCOM_IUnknown =>            "MS-DCOM (IUnknown)",
+            { } when interfaceUUID == WMI_IWbemLevel1Login =>     "MS-WMI (IWbemLevel1Login)",
+            { } when interfaceUUID == WMI_IWbemLoginClientID =>   "MS-WMI (IWbemLoginClientID)",
+            { } when interfaceUUID == WMI_IWbemLoginHelper =>     "MS-WMI (IWbemLoginHelper)",
+            { } when interfaceUUID == WMI_IWbemServices =>        "MS-WMI (IWbemServices)",
+            { } when interfaceUUID == WMI_IWbemBackupRestore =>   "MS-WMI (IWbemBackupRestore)",
+            { } when interfaceUUID == WMI_IWbemBackupRestoreEx => "MS-WMI (IWbemBackupRestoreEx)",
+            { } when interfaceUUID == WMI_IWbemClassObject =>     "MS-WMI (IWbemClassObject)",
+            { } when interfaceUUID == WMI_IWbemContext =>         "MS-WMI (IWbemContext)",
+            { } when interfaceUUID == WCCE_ICertRequestD =>       "MS-WCCE (ICertRequestD)",
+            { } when interfaceUUID == WCCE_ICertRequestD2 =>      "MS-WCCE (ICertRequestD)",
             // Return the original GUID if no match is found
             _ => interfaceUUID.ToString()
         };
@@ -549,10 +810,50 @@ public static class WellKnownProtocolTranslator
         string? operationName = (interfaceUUID, operationNumber) switch
         {
             { } when interfaceUUID == DRSR && operationNumber == IDL_DRSGetNCChanges => nameof(IDL_DRSGetNCChanges),
+            { } when interfaceUUID == DRSR && operationNumber == IDL_DRSReplicaAdd => nameof(IDL_DRSReplicaAdd),
             { } when interfaceUUID == EVEN6 && operationNumber == EvtRpcClearLog => nameof(EvtRpcClearLog),
             { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFW => nameof(ElfrClearELFW),
             { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFA => nameof(ElfrClearELFA),
             { } when interfaceUUID == SCMR && operationNumber == RCreateServiceW => nameof(RCreateServiceW),
+            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceA => nameof(RCreateServiceA),
+            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceWOW64A => nameof(RCreateServiceWOW64A),
+            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceWOW64W => nameof(RCreateServiceWOW64W),
+            { } when interfaceUUID == SCMR && operationNumber == RCreateWowService => nameof(RCreateWowService),
+            { } when interfaceUUID == RRP && operationNumber == BaseRegCreateKey => nameof(BaseRegCreateKey),
+            { } when interfaceUUID == RRP && operationNumber == BaseRegSetValue => nameof(BaseRegSetValue),
+            { } when interfaceUUID == TSCH && operationNumber == SchRpcRegisterTask => nameof(SchRpcRegisterTask),
+            { } when interfaceUUID == ATSvc && operationNumber == NetrJobAdd => nameof(NetrJobAdd),
+            { } when interfaceUUID == SRVSVC && operationNumber == NetrFileEnum => nameof(NetrFileEnum),
+            { } when interfaceUUID == SRVSVC && operationNumber == NetrSessionEnum => nameof(NetrSessionEnum),
+            { } when interfaceUUID == SRVSVC && operationNumber == NetrShareEnum => nameof(NetrShareEnum),
+            { } when interfaceUUID == SRVSVC && operationNumber == NetrConnectionEnum => nameof(NetrConnectionEnum),
+            { } when interfaceUUID == PAR && operationNumber == RpcAsyncAddPrinterDriver => nameof(RpcAsyncAddPrinterDriver),
+            { } when interfaceUUID == RPRN && operationNumber == RpcAddPrinterDriverEx => nameof(RpcAddPrinterDriverEx),
+            { } when interfaceUUID == RPRN && operationNumber == RpcRemoteFindFirstPrinterChangeNotification => nameof(RpcRemoteFindFirstPrinterChangeNotification),
+            { } when interfaceUUID == RPRN && operationNumber == RpcRemoteFindFirstPrinterChangeNotificationEx => nameof(RpcRemoteFindFirstPrinterChangeNotificationEx),
+            { } when interfaceUUID == SAMR && operationNumber == SamrEnumerateGroupsInDomain => nameof(SamrEnumerateGroupsInDomain),
+            { } when interfaceUUID == SAMR && operationNumber == SamrEnumerateUsersInDomain => nameof(SamrEnumerateUsersInDomain),
+            { } when interfaceUUID == LSAD && operationNumber == LsarRetrievePrivateData => nameof(LsarRetrievePrivateData),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcOpenFileRaw => nameof(EfsRpcOpenFileRaw),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcEncryptFileSrv => nameof(EfsRpcEncryptFileSrv),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcDecryptFileSrv => nameof(EfsRpcDecryptFileSrv),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcQueryUsersOnFile => nameof(EfsRpcQueryUsersOnFile),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcQueryRecoveryAgents => nameof(EfsRpcQueryRecoveryAgents),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcRemoveUsersFromFile => nameof(EfsRpcRemoveUsersFromFile),
+            { } when interfaceUUID == EFSR && operationNumber == EfsRpcAddUsersToFile => nameof(EfsRpcAddUsersToFile),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcOpenFileRaw => nameof(EfsRpcOpenFileRaw),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcEncryptFileSrv => nameof(EfsRpcEncryptFileSrv),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcDecryptFileSrv => nameof(EfsRpcDecryptFileSrv),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcQueryUsersOnFile => nameof(EfsRpcQueryUsersOnFile),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcQueryRecoveryAgents => nameof(EfsRpcQueryRecoveryAgents),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcRemoveUsersFromFile => nameof(EfsRpcRemoveUsersFromFile),
+            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcAddUsersToFile => nameof(EfsRpcAddUsersToFile),
+            { } when interfaceUUID == FSRVP && operationNumber == IsPathSupported => nameof(IsPathSupported),
+            { } when interfaceUUID == FSRVP && operationNumber == IsPathShadowCopied => nameof(IsPathShadowCopied),
+            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsAddStdRoot => nameof(NetrDfsAddStdRoot),
+            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsRemoveStdRoot => nameof(NetrDfsRemoveStdRoot),
+            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsAddRootTarget => nameof(NetrDfsAddRootTarget),
+            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsRemoveRootTarget => nameof(NetrDfsRemoveRootTarget),
             _ => null
         };
 

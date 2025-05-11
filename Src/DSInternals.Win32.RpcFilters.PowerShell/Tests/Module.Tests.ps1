@@ -4,6 +4,8 @@
 
 .DESCRIPTION
     Administrative privileges are required for interacting with RPC filters.
+.PARAMETER ModulePath
+    Path to the compiled module directory.
 #>
 
 #Requires -Version 5.1
@@ -13,8 +15,13 @@
 param(
     [Parameter(Mandatory = $false)]
     [ValidateNotNullOrEmpty()]
-    [string] $ModulePath = "..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters"
+    [string] $ModulePath
 )
+
+if ([string]::IsNullOrWhiteSpace($ModulePath)) {
+    # No path has been provided, so use a the default value
+    $ModulePath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters' -Resolve -ErrorAction Stop
+}
 
 BeforeDiscovery {
     Import-Module -Name $ModulePath -ErrorAction Stop -Force
@@ -23,7 +30,7 @@ BeforeDiscovery {
 Describe 'PowerShell Module' {
     Context 'Manifest' {
         BeforeAll {
-            [string] $ModuleManifestPath = Join-Path $ModulePath DSInternals.RpcFilters.psd1
+            [string] $ModuleManifestPath = Join-Path -Path $ModulePath -ChildPath 'DSInternals.RpcFilters.psd1'
         }
 
         It 'exists' {
