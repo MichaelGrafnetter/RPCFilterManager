@@ -19,7 +19,7 @@ internal struct FWPM_FILTER0
     /// Human-readable annotations associated with the filter.
     /// </summary>
     public FWPM_DISPLAY_DATA0 DisplayData;
-    
+
     /// <summary>
     /// Filter flags.
     /// </summary>
@@ -96,7 +96,7 @@ internal struct FWPM_FILTER0
     /// Specifies the action to be performed if all the filter conditions are true.
     /// </summary>
     public FWPM_ACTION0 Action;
-    
+
     /// <summary>
     /// Filter context.
     /// </summary>
@@ -141,6 +141,12 @@ internal struct FWPM_FILTER0
         }
 
         this.numFilterConditions = conditions.Count;
+
+        if (conditions.Count == 0)
+        {
+            this.filterCondition = IntPtr.Zero;
+            return default;
+        }
 
         var conditionsArray = conditions.ToArray();
         var conditionsHandle = GCHandle.Alloc(conditionsArray, GCHandleType.Pinned);

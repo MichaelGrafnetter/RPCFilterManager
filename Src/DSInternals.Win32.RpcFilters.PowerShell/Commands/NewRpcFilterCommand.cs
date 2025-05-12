@@ -56,9 +56,6 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     [Parameter(Mandatory = true, ParameterSetName = WellKnownOperationParameterSet, ValueFromPipelineByPropertyName = true)]
     public WellKnownOperation? WellKnownOperation { get; set; }
 
-    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    public Guid? ProviderKey { get; set; }
-
     [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true)]
     public RpcFilterAction Action { get; set; }
 
@@ -158,6 +155,12 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 return;
             }
 
+            if (BootTimeEnforced.IsPresent && Persistent.IsPresent)
+            {
+                WriteError(new ErrorRecord(new ArgumentException("The BootTimeEnforced and Persistent switches cannot be used together."), "PersistenAndBootExclusive", ErrorCategory.InvalidArgument, null));
+                return;
+            }
+
             if (ipAddressUsed)
             {
                 bool isRemoteIPv4Subnet =
@@ -210,7 +213,6 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 Weight = Weight,
                 OperationNumber = OperationNumber,
                 NamedPipe = NamedPipe,
-                ProviderKey = ProviderKey
             };
 
             WriteVerbose($"Creating filter {filter.Name} with key {filter.FilterKey}.");

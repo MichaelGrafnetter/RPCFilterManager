@@ -48,43 +48,50 @@ public class RPCFilterManagerTester
             InterfaceFlag = 2,
         };
 
+        IList<RpcFilter> filters;
+
         // Create the filter
         ulong id = fw.AddFilter(filter);
 
-        // Test the existence of the filter
-        var filters = fw.GetFilters().ToList();
-        Assert.AreEqual(1, filters.Count);
-        var createdFilter = filters.First();
+        try
+        {
+            // Test the existence of the filter
+            filters = fw.GetFilters().ToList();
+            Assert.AreEqual(1, filters.Count);
+            var createdFilter = filters.First();
 
-        // Test that the filter has all the expected properties
-        Assert.AreEqual(id, createdFilter.FilterId);
-        Assert.AreEqual(filter.Name, createdFilter.Name);
-        Assert.AreEqual(filter.Description, createdFilter.Description);
+            // Test that the filter has all the expected properties
+            Assert.AreEqual(id, createdFilter.FilterId);
+            Assert.AreEqual(filter.Name, createdFilter.Name);
+            Assert.AreEqual(filter.Description, createdFilter.Description);
 
-        Assert.AreEqual(filter.InterfaceUUID, createdFilter.InterfaceUUID);
-        Assert.AreEqual(filter.FilterKey, createdFilter.FilterKey);
-        Assert.AreEqual(filter.Transport, createdFilter.Transport);
-        Assert.AreEqual(filter.DcomAppId, createdFilter.DcomAppId);
-        Assert.AreEqual(filter.NamedPipe, createdFilter.NamedPipe);
-        Assert.AreEqual(filter.Action, createdFilter.Action);
-        Assert.AreEqual(filter.SDDL, createdFilter.SDDL);
-        Assert.AreEqual(filter.Audit, createdFilter.Audit);
-        Assert.AreEqual(filter.IsPersistent, createdFilter.IsPersistent);
-        Assert.AreEqual(filter.AuthenticationLevel, createdFilter.AuthenticationLevel);
-        Assert.AreEqual(filter.AuthenticationType, createdFilter.AuthenticationType);
-        Assert.AreEqual(filter.IsBootTimeEnforced, createdFilter.IsBootTimeEnforced);
-        Assert.AreEqual(filter.Weight, createdFilter.Weight);
-        Assert.AreEqual(filter.ImageName, createdFilter.ImageName);
-        Assert.AreEqual(filter.LocalPort, createdFilter.LocalPort);
-        Assert.AreEqual(filter.RemoteAddress, createdFilter.RemoteAddress);
-        Assert.AreEqual(filter.OperationNumber, createdFilter.OperationNumber);
-        Assert.AreEqual(filter.LocalAddress, createdFilter.LocalAddress);
-        Assert.AreEqual(filter.LocalAddressMask, createdFilter.LocalAddressMask);
-        Assert.AreEqual(filter.InterfaceVersion, createdFilter.InterfaceVersion);
-        Assert.AreEqual(filter.InterfaceFlag, createdFilter.InterfaceFlag);
-
-        // Delete the filter
-        fw.RemoveFilter(id);
+            Assert.AreEqual(filter.InterfaceUUID, createdFilter.InterfaceUUID);
+            Assert.AreEqual(filter.FilterKey, createdFilter.FilterKey);
+            Assert.AreEqual(filter.Transport, createdFilter.Transport);
+            Assert.AreEqual(filter.DcomAppId, createdFilter.DcomAppId);
+            Assert.AreEqual(filter.NamedPipe, createdFilter.NamedPipe);
+            Assert.AreEqual(filter.Action, createdFilter.Action);
+            Assert.AreEqual(filter.SDDL, createdFilter.SDDL);
+            Assert.AreEqual(filter.Audit, createdFilter.Audit);
+            Assert.AreEqual(filter.IsPersistent, createdFilter.IsPersistent);
+            Assert.AreEqual(filter.AuthenticationLevel, createdFilter.AuthenticationLevel);
+            Assert.AreEqual(filter.AuthenticationType, createdFilter.AuthenticationType);
+            Assert.AreEqual(filter.IsBootTimeEnforced, createdFilter.IsBootTimeEnforced);
+            Assert.AreEqual(filter.Weight, createdFilter.Weight);
+            Assert.AreEqual(filter.ImageName, createdFilter.ImageName);
+            Assert.AreEqual(filter.LocalPort, createdFilter.LocalPort);
+            Assert.AreEqual(filter.RemoteAddress, createdFilter.RemoteAddress);
+            Assert.AreEqual(filter.OperationNumber, createdFilter.OperationNumber);
+            Assert.AreEqual(filter.LocalAddress, createdFilter.LocalAddress);
+            Assert.AreEqual(filter.LocalAddressMask, createdFilter.LocalAddressMask);
+            Assert.AreEqual(filter.InterfaceVersion, createdFilter.InterfaceVersion);
+            Assert.AreEqual(filter.InterfaceFlag, createdFilter.InterfaceFlag);
+        }
+        finally
+        {
+            // Delete the filter
+            fw.RemoveFilter(id);
+        }
 
         // Check that no filter exist
         filters = fw.GetFilters().ToList();
@@ -100,49 +107,6 @@ public class RPCFilterManagerTester
         var filters = fw.GetFilters(dummyProviderKey);
         Assert.IsNotNull(filters);
         Assert.AreEqual(0, filters.ToList().Count);
-    }
-
-    [TestMethod]
-    public void RPCFilterManager_List_ExistingProviderKey()
-    {
-        using var fw = new RpcFilterManager();
-
-        var filter = new RpcFilter()
-        {
-            Name = "TestFilter",
-            FilterKey = Guid.Parse("98a1836e-06b0-4bf9-bb1b-0dd2e994a863"),
-            ProviderKey = Guid.Parse("5c8c1876-e71c-415c-bb03-bef232f41668"),
-            Action = RpcFilterAction.Permit
-        };
-
-        IList<RpcFilter> filters;
-
-        // Create the filter
-        ulong id = fw.AddFilter(filter);
-
-        try
-        {
-            // Test the existence of the filter
-            filters = fw.GetFilters(filter.ProviderKey).ToList();
-            Assert.AreEqual(1, filters.Count);
-            var createdFilter = filters.First();
-
-            // Test that the filter has all the expected properties
-            Assert.AreEqual(id, createdFilter.FilterId);
-            Assert.AreEqual(filter.Name, createdFilter.Name);
-            Assert.AreEqual(filter.FilterKey, createdFilter.FilterKey);
-            Assert.AreEqual(filter.ProviderKey, createdFilter.ProviderKey);
-            Assert.AreEqual(filter.Action, createdFilter.Action);
-        }
-        finally
-        {
-            // Delete the filter
-            fw.RemoveFilter(id);
-        }
-
-        // Check that no filter exist
-        filters = fw.GetFilters().ToList();
-        Assert.AreEqual(0, filters.Count);
     }
 
     [TestMethod]

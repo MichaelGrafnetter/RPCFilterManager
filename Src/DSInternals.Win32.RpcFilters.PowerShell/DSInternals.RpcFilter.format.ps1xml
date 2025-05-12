@@ -50,6 +50,10 @@
               <ExpressionBinding>
                 <PropertyName>IsBootTimeEnforced</PropertyName>
               </ExpressionBinding>
+              <Text>, Disabled: </Text>
+              <ExpressionBinding>
+                <PropertyName>IsDisabled</PropertyName>
+              </ExpressionBinding>
               <NewLine />
               <Text>EffectiveWeight: </Text>
               <ExpressionBinding>
@@ -259,6 +263,10 @@
               <ListItem>
                 <Label>ProviderKey</Label>
                 <PropertyName>ProviderKey</PropertyName>
+              </ListItem>
+              <ListItem>
+                <Label>Disabled</Label>
+                <PropertyName>IsDisabled</PropertyName>
               </ListItem>
               <ListItem>
                 <Label>Action</Label>

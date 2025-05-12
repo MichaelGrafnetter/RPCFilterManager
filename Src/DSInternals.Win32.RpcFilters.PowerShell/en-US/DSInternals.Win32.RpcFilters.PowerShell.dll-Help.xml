@@ -370,18 +370,6 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
-          <maml:name>ProviderKey</maml:name>
-          <maml:description>
-            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
-          <dev:type>
-            <maml:name>Guid</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
@@ -670,18 +658,6 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
-          <maml:name>ProviderKey</maml:name>
-          <maml:description>
-            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
-          <dev:type>
-            <maml:name>Guid</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
           <maml:description>
@@ -969,18 +945,6 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
-          <maml:name>ProviderKey</maml:name>
-          <maml:description>
-            <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
-          <dev:type>
-            <maml:name>Guid</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
           <maml:name>RemoteAddress</maml:name>
@@ -1272,18 +1236,6 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
-        <maml:name>ProviderKey</maml:name>
-        <maml:description>
-          <maml:para>Optional identifier of the policy provider that manages this filter.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
-        <dev:type>
-          <maml:name>Guid</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="IPAddress, Address">
         <maml:name>RemoteAddress</maml:name>

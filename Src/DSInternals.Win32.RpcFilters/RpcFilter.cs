@@ -109,9 +109,18 @@ public sealed class RpcFilter
     public bool IsBootTimeEnforced { get; set; }
 
     /// <summary>
+    /// Indicates whether the filter is disabled.
+    /// </summary>
+    /// <remarks>
+    /// A provider's filters are disabled when the BFE starts if the provider has no associated Windows service name, or if the associated service is not set to auto-start.
+    /// This flag cannot be set when adding new filters. It can only be returned by BFE when getting or enumerating filters.
+    /// </remarks>
+    public bool IsDisabled { get; private set; }
+
+    /// <summary>
     /// Optional identifier of the policy provider that manages this filter.
     /// </summary>
-    public Guid? ProviderKey { get; set; }
+    public Guid? ProviderKey { get; private set; }
 
     /// <summary>
     /// The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.
@@ -326,6 +335,7 @@ public sealed class RpcFilter
             Description = nativeFilter.DisplayData.Description,
             IsPersistent = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT),
             IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
+            IsDisabled = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_DISABLED),
             Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
             ProviderKey = nativeFilter.ProviderKey,
             Weight = nativeFilter.Weight.UIntValue,

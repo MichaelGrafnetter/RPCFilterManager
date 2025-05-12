@@ -154,12 +154,12 @@ public sealed class RpcFilterManager : IDisposable
         FWPM_ACTION0 action = new(filter.Action);
         FWPM_FILTER_FLAGS flags = FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_NONE;
 
-        if(filter.IsPersistent)
+        if (filter.IsPersistent)
         {
             flags |= FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT;
         }
 
-        if(filter.IsBootTimeEnforced)
+        if (filter.IsBootTimeEnforced)
         {
             flags |= FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME;
         }
@@ -167,14 +167,16 @@ public sealed class RpcFilterManager : IDisposable
         var conditions = new List<FWPM_FILTER_CONDITION0>();
         var handles = new Stack<SafeHandle>();
 
-        if(filter.AuthenticationLevel.HasValue)
+        if (filter.AuthenticationLevel.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationLevel.Value));
         }
-        if(filter.AuthenticationType.HasValue)
+
+        if (filter.AuthenticationType.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationType.Value));
         }
+
         if (filter.Transport.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.Transport.Value));
@@ -184,10 +186,12 @@ public sealed class RpcFilterManager : IDisposable
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_IP_LOCAL_PORT, filter.LocalPort.Value));
         }
+
         if (filter.InterfaceVersion.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_RPC_IF_VERSION, filter.InterfaceVersion.Value));
         }
+
         if (filter.InterfaceFlag.HasValue)
         {
             conditions.Add(new FWPM_FILTER_CONDITION0(filter.InterfaceFlag.Value));
@@ -275,12 +279,7 @@ public sealed class RpcFilterManager : IDisposable
             nativeFilter.Context.rawContext = FWPM_CONTEXT_RPC_AUDIT_ENABLED;
         }
 
-        var conditionsHandle = new GCHandle();
-
-        if (conditions.Count > 0)
-        {
-            conditionsHandle = nativeFilter.SetFilterConditions(conditions);
-        }
+        GCHandle conditionsHandle = nativeFilter.SetFilterConditions(conditions);
 
         ulong newFilterId;
 
@@ -291,9 +290,9 @@ public sealed class RpcFilterManager : IDisposable
         }
         finally
         {
+            // Free the unmanaged memory
             if (conditionsHandle.IsAllocated)
             {
-                // Free the unmanaged memory
                 conditionsHandle.Free();
             }
 
@@ -348,6 +347,7 @@ public sealed class RpcFilterManager : IDisposable
             WIN32_ERROR.ERROR_ACCESS_DENIED => new UnauthorizedAccessException(genericException.Message, genericException),
             WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY or WIN32_ERROR.ERROR_OUTOFMEMORY => new OutOfMemoryException(genericException.Message, genericException),
             { } when (int)code == HRESULT.FWP_E_CONDITION_NOT_FOUND.Value => new PlatformNotSupportedException(genericException.Message, genericException),
+            { } when (int)code == HRESULT.FWP_E_INVALID_FLAGS => new ArgumentException(genericException.Message, genericException),
             // TODO: Handle HRESULT.FWP_E_FILTER_NOT_FOUND
             // TODO: Handle HRESULT.FWP_E_ALREADY_EXISTS
             // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.

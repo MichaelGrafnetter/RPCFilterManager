@@ -16,7 +16,7 @@ Creates a new RPC filter for managing remote procedure call (RPC) traffic based 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>] [-InterfaceUUID <Guid>]
- [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit] [-AuthenticationLevel <RpcAuthenticationLevel>]
+ -Action <RpcFilterAction> [-Audit] [-AuthenticationLevel <RpcAuthenticationLevel>]
  [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
  [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>]
  [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>] [-Weight <UInt64>]
@@ -27,7 +27,7 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
- -WellKnownProtocol <WellKnownProtocol> [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit]
+ -WellKnownProtocol <WellKnownProtocol> -Action <RpcFilterAction> [-Audit]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
  [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
  [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
@@ -38,7 +38,7 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
- -WellKnownOperation <WellKnownOperation> [-ProviderKey <Guid>] -Action <RpcFilterAction> [-Audit]
+ -WellKnownOperation <WellKnownOperation> -Action <RpcFilterAction> [-Audit]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
  [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
  [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
@@ -329,21 +329,6 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ProviderKey
-Optional identifier of the policy provider that manages this filter.
-
-```yaml
-Type: Guid
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
