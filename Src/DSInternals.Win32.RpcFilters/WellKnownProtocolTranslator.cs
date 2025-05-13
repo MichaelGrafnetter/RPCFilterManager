@@ -208,10 +208,49 @@ public static class WellKnownProtocolTranslator
     public static readonly Guid W32T = new("8fb6d884-2388-11d0-8c35-00c04fda2795");
 
     /// <summary>
-    /// MS-RRASM: Remote Access Service Management Protocol
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (DIMSVC)
     /// </summary>
-    public static readonly Guid RRASM = new("8f09f000-b7ed-11ce-bbd2-00001a181cad");
+    public static readonly Guid RRASM_DIMSVC = new("8f09f000-b7ed-11ce-bbd2-00001a181cad");
 
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (RASRPC)
+    /// </summary>
+    public static readonly Guid RRASM_RASRPC = new("20610036-fa22-11cf-9823-00a0c911e5df");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteNetworkConfig)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteNetworkConfig = new("66a2db1b-d706-11d0-a37b-00c04fc9da04");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteRouterRestart)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteRouterRestart = new("66a2db20-d706-11d0-a37b-00c04fc9da04");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteSetDnsConfig)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteSetDnsConfig = new("66a2db21-d706-11d0-a37b-00c04fc9da04");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteICFICSConfig)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteICFICSConfig = new("66a2db22-d706-11d0-a37b-00c04fc9da04");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteStringIdConfig)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteStringIdConfig = new("67e08fc2-2984-4b62-b92e-fc1aae64bbbb");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteIPV6Config)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteIPV6Config = new("6139d8a4-e508-4ebb-bac7-d7f275145897");
+
+    /// <summary>
+    /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteSstpCertCheck)
+    /// </summary>
+    public static readonly Guid RRASM_IRemoteSstpCertCheck = new("5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8");
     /// <summary>
     /// MS-RAIW: Remote Administrative Interface: WINS (winsif)
     /// </summary>
@@ -585,7 +624,7 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.EndpointMapper => EPMAP,
             WellKnownProtocol.DirectoryServicesSetup => DSSP,
             WellKnownProtocol.MasterBrowser => BRWSA,
-            WellKnownProtocol.RemoteAccessManagement => RRASM,
+            WellKnownProtocol.RemoteAccessManagement => RRASM_RASRPC,
             WellKnownProtocol.WindowsTime => W32T,
             WellKnownProtocol.DistributedLinkTrackingClient => DLTW,
             WellKnownProtocol.PrintSpoolerAsync => PAR,
@@ -658,6 +697,7 @@ public static class WellKnownProtocolTranslator
     /// </summary>
     public static bool SupportsNamedPipes(this WellKnownProtocol? protocol)
     {
+        // Change to InterfaceUUID
         switch (protocol)
         {
             case WellKnownProtocol.ServiceControlManager:
@@ -751,7 +791,15 @@ public static class WellKnownProtocolTranslator
             { } when interfaceUUID == DHCPM_dhcpsrv2 => "MS-DHCPM (dhcpsrv2)",
             { } when interfaceUUID == DLTM =>     "MS-DLTM",
             { } when interfaceUUID == DLTW =>     "MS-DLTW",
-            { } when interfaceUUID == RRASM =>    "MS-RRASM",
+            { } when interfaceUUID == RRASM_RASRPC =>                "MS-RRASM (RASRPC)",
+            { } when interfaceUUID == RRASM_DIMSVC =>                "MS-RRASM (DIMSVC)",
+            { } when interfaceUUID == RRASM_IRemoteNetworkConfig =>  "MS-RRASM (IRemoteNetworkConfig)",
+            { } when interfaceUUID == RRASM_IRemoteRouterRestart =>  "MS-RRASM (IRemoteRouterRestart)",
+            { } when interfaceUUID == RRASM_IRemoteSetDnsConfig =>   "MS-RRASM (IRemoteSetDnsConfig)",
+            { } when interfaceUUID == RRASM_IRemoteICFICSConfig =>   "MS-RRASM (IRemoteICFICSConfig)",
+            { } when interfaceUUID == RRASM_IRemoteStringIdConfig => "MS-RRASM (IRemoteStringIdConfig)",
+            { } when interfaceUUID == RRASM_IRemoteIPV6Config =>     "MS-RRASM (IRemoteIPV6Config)",
+            { } when interfaceUUID == RRASM_IRemoteSstpCertCheck =>  "MS-RRASM (IRemoteSstpCertCheck)",
             { } when interfaceUUID == W32T =>     "MS-W32T",
             { } when interfaceUUID == RAIW_winsif =>           "MS-RAIW (winsif",
             { } when interfaceUUID == RAIW_winsif2 =>          "MS-RAIW (winsif2)",
