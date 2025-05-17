@@ -30,7 +30,7 @@
               </ExpressionBinding>
               <Text>, ProviderKey: </Text>
               <ExpressionBinding>
-                <ScriptBlock>if($null -eq $PSItem.ProviderKey) { 'N/A' } else { $PSItem.ProviderKey }</ScriptBlock>
+                <ScriptBlock>if ($null -eq $PSItem.ProviderKey) { 'N/A' } else { $PSItem.ProviderKey }</ScriptBlock>
               </ExpressionBinding>
               <NewLine />
               <Text>Action: </Text>
@@ -61,7 +61,7 @@
               </ExpressionBinding>
               <Text>, Weight: </Text>
               <ExpressionBinding>
-                <ScriptBlock>if($null -eq $PSItem.Weight) { 'N/A' } else { $PSItem.Weight }</ScriptBlock>
+                <ScriptBlock>if ($null -eq $PSItem.Weight) { 'N/A' } else { $PSItem.Weight }</ScriptBlock>
               </ExpressionBinding>
               <NewLine />
               <Text>Conditions:</Text>
@@ -70,40 +70,40 @@
                 <LeftIndent>2</LeftIndent>
                 <CustomItem>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.InterfaceUUID) { "Protocol = {0}`n" -f $PSItem.InterfaceName }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.InterfaceUUID) { "Protocol = {0}`n" -f $PSItem.InterfaceName }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.OperationNumber) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.OperationNumber) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.Transport) { "Transport = {0}`n" -f $PSItem.Transport }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.Transport) { "Transport = {0}`n" -f $PSItem.Transport }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.LocalPort) { "LocalPort = {0}`n" -f $PSItem.LocalPort }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.LocalPort) { "LocalPort = {0}`n" -f $PSItem.LocalPort }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.NamedPipe) { "NamedPipe = {0}`n" -f $PSItem.NamedPipe }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.NamedPipe) { "NamedPipe = {0}`n" -f $PSItem.NamedPipe }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.SecurityDescriptor) { "SecurityDescriptor = {0}`n" -f $PSItem.SDDL }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.SecurityDescriptor) { "SecurityDescriptor = {0}`n" -f $PSItem.SDDL }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.RemoteAddress) { "RemoteAddress = {0}`n" -f $PSItem.RemoteNetwork }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.RemoteAddress) { "RemoteAddress = {0}`n" -f $PSItem.RemoteNetwork }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.LocalAddress) { "LocalAddress = {0}`n" -f $PSItem.LocalNetwork }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.LocalAddress) { "LocalAddress = {0}`n" -f $PSItem.LocalNetwork }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.AuthenticationLevel) { "AuthenticationLevel = {0}`n" -f $PSItem.AuthenticationLevel }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.AuthenticationLevel) { "AuthenticationLevel = {0}`n" -f $PSItem.AuthenticationLevel }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.AuthenticationType) { "AuthenticationType = {0}`n" -f $PSItem.AuthenticationType }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.AuthenticationType) { "AuthenticationType = {0}`n" -f $PSItem.AuthenticationType }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.ImageName) { "ImageName = {0}`n" -f $PSItem.ImageName }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.ImageName) { "ImageName = {0}`n" -f $PSItem.ImageName }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($PSItem.DcomAppId) { "DcomAppId = {0}`n" -f $PSItem.DcomAppId }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.DcomAppId) { "DcomAppId = {0}`n" -f $PSItem.DcomAppId }</ScriptBlock>
                   </ExpressionBinding>
                   <NewLine />
                 </CustomItem>
@@ -228,7 +228,7 @@
                 <PropertyName>Weight</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
+                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x}' -f $PSItem.EffectiveWeight }</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -338,7 +338,7 @@
               </ListItem>
               <ListItem>
                 <Label>EffectiveWeight</Label>
-                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
+                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x}' -f $PSItem.EffectiveWeight }</ScriptBlock>
               </ListItem>
             </ListItems>
           </ListEntry>
