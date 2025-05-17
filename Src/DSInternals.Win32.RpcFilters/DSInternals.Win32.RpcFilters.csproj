@@ -52,7 +52,7 @@
   <ItemGroup>
     <!-- Additional files to include in the NuGet package -->
     <None Include="$(MSBuildThisFileDirectory)../Icons/package_black.png" Pack="true" PackagePath="/icon.png" Visible="false" />
-    <None Include="$(MSBuildThisFileDirectory)PACKAGE.md" Pack="true" PackagePath="/README.md" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)PACKAGE.md" Pack="true" PackagePath="/README.md" Visible="true" />
   </ItemGroup>
 
 </Project>

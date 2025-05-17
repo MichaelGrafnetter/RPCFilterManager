@@ -141,12 +141,18 @@ public class RpcEventLogRecord
         this.Transport = protocolSequence;
 
         // IP addresses and ports might not be unavailable for named pipe connections
-        IPAddress.TryParse((string?)record.Properties[6].Value, out IPAddress? parsedAddress);
-        this.RemoteIPAddress = IPAddress.Any.Equals(parsedAddress) ? null : parsedAddress;
+        bool ipParseSuccessful = IPAddress.TryParse((string?)record.Properties[6].Value, out IPAddress? parsedAddress);
+        if (ipParseSuccessful && !IPAddress.Any.Equals(parsedAddress))
+        {
+            this.RemoteIPAddress = parsedAddress;
+        }
 
         // Port number is stored as a string in the event data
-        UInt16.TryParse((string?)record.Properties[7].Value, out var parsedPort);
-        this.RemotePort = parsedPort == default ? null : parsedPort;
+        bool portParseSuccessful = UInt16.TryParse((string?)record.Properties[7].Value, out var parsedPort);
+        if (portParseSuccessful && parsedPort != default)
+        {
+            this.RemotePort = parsedPort;
+        }
 
         if (record.Properties.Count >= 13)
         {

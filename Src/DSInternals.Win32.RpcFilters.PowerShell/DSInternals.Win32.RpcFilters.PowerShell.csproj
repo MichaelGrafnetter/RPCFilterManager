@@ -1,18 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Target both Windows PowerShell 5 and PowerShell 7 -->
     <TargetFrameworks>net480;net8.0-windows</TargetFrameworks>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
-    <IncludeSymbols>False</IncludeSymbols>
+    <!-- Redirect the build directory so that it includes the module name -->
     <ArtifactsPivots>$(Configuration)/DSInternals.RpcFilters/$(TargetFramework)</ArtifactsPivots>
     <PublishRelease>true</PublishRelease>
+    <IncludeSymbols>False</IncludeSymbols>
     <Version>1.0</Version>
     <AssemblyVersion>1.0</AssemblyVersion>
     <ProductVersion>1.0</ProductVersion>
     <FileVersion>1.0</FileVersion>
     <AssemblyTitle>DSInternals.RpcFilters PowerShell Module</AssemblyTitle>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AnalysisMode>Recommended</AnalysisMode>
+    <!-- Copy all dependency DLLs to the binary module -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- XML documentation files are not needed for PowerShell binary modules -->
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <!-- Do not generate the *.deps.json file, which is not needed by PowerShell Core -->
+    <GenerateDependencyFile>False</GenerateDependencyFile>
+    <!-- Skip copying XML files from the referenced projects -->
+    <AllowedReferenceRelatedFileExtensions>.pdb</AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
 
   <!-- Include platform-independent module files -->
@@ -35,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DSInternals.Win32.RpcFilters\DSInternals.Win32.RpcFilters.csproj" />
+     <!-- Include the common GlobalSuppressions file -->
     <Compile Include="..\DSInternals.Win32.RpcFilters\GlobalSuppressions.cs" />
   </ItemGroup>
 </Project>

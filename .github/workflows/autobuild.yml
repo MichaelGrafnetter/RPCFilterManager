@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+      issues: read
+      checks: write
+      pull-requests: write
     env:
       DOTNET_NOLOGO: true
       DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -60,5 +63,37 @@ jobs:
 
     - name: Run Pester Tests
       shell: powershell
-      working-directory: Src/DSInternals.Win32.RpcFilters.PowerShell
-      run: ./Test.ps1 -ModulePath "${{github.workspace}}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Debug/DSInternals.RpcFilters"
+      run: Src/DSInternals.Win32.RpcFilters.PowerShell/Test.ps1 -ModulePath "${{github.workspace}}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Debug/DSInternals.RpcFilters"
+
+    - name: Cache DotNet Global Tools
+      id: cache-dotnet-globaltools
+      uses: actions/cache@v4
+      with:
+        path: ~/.dotnet/tools
+        # Heuristics: The current list of required global tools is defined in this workflow file.
+        key: ${{ runner.os }}-DotNET-GlobalTools-Build-${{ hashFiles('.github/workflows/autobuild.yml') }}
+
+    - name: Install Coverage Report Generator
+      if: ${{ steps.cache-dotnet-globaltools.outputs.cache-hit != 'true' }}
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+    - name: Generate Code Coverage Reports
+      working-directory: Build/TestResults
+      run: reportgenerator -reports:*/coverage.cobertura.xml -targetdir:. -reporttypes:"HtmlSummary" -title:"DSInternals RPC Filters"
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      if: always()
+      with:
+        # Publish the MSTest and Pester results to the GitHub Checks API
+        files: |
+          Build\TestResults\**\*.trx
+          Build\TestResults\*.xml
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: TestResults
+        path: |
+            Build/TestResults/*.*
+            !**/*.htm

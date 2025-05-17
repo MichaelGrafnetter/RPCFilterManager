@@ -38,6 +38,8 @@ public abstract class RpcFilterCommandBase : PSCmdlet, IDisposable
 
     public void Dispose()
     {
+        GC.SuppressFinalize(this);
+
         RpcFilterManager?.Dispose();
         RpcFilterManager = null;
     }

@@ -146,7 +146,7 @@ public sealed class RpcFilterManager : IDisposable
         // Weight must be in the range [0, 15]
         if (filter.Weight.HasValue && filter.Weight.Value > 15)
         {
-            throw new ArgumentOutOfRangeException(nameof(filter.Weight), filter.Weight.Value, "The weight must be in the range [0, 15].");
+            throw new ArgumentOutOfRangeException(nameof(filter), filter.Weight.Value, "The weight must be in the range [0, 15].");
         }
 
         FWP_VALUE0 nativeWeight = filter.Weight.HasValue ? new FWP_VALUE0((byte)filter.Weight.Value) : new FWP_VALUE0();
