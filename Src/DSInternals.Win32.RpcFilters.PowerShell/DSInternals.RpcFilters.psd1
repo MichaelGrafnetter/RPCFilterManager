@@ -86,6 +86,7 @@ FileList = @(
     'net480\System.Buffers.dll',
     'net480\System.Memory.dll',
     'en-US\about_DSInternals.RpcFilters.help.txt',
+    'en-US\DSInternals.RpcFilters.Bootstrap-help.xml',
     'en-US\DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml'
 )
 
