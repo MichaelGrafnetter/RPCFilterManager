@@ -70,10 +70,10 @@
                 <LeftIndent>2</LeftIndent>
                 <CustomItem>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($null -ne $PSItem.InterfaceUUID) { "Protocol = {0}`n" -f $PSItem.InterfaceName }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.InterfaceUUID) { "Protocol = {0}`n" -f [DSInternals.Win32.RpcFilters.WellKnownProtocolTranslator]::ToProtocolName($PSItem.InterfaceUUID, $true) }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($null -ne $PSItem.OperationNumber) { "Operation = {0}`n" -f $PSItem.OperationName }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.OperationNumber) { "Operation = {0}`n" -f [DSInternals.Win32.RpcFilters.WellKnownProtocolTranslator]::ToOperationName($PSItem.InterfaceUUID, $PSItem.OperationNumber, $true) }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
                     <ScriptBlock>if ($null -ne $PSItem.Transport) { "Transport = {0}`n" -f $PSItem.Transport }</ScriptBlock>
@@ -286,11 +286,11 @@
               </ListItem>
               <ListItem>
                 <Label>Protocol</Label>
-                <PropertyName>InterfaceName</PropertyName>
+                <ScriptBlock>[DSInternals.Win32.RpcFilters.WellKnownProtocolTranslator]::ToProtocolName($PSItem.InterfaceUUID, $true)</ScriptBlock>
               </ListItem>
               <ListItem>
                 <Label>Operation</Label>
-                <PropertyName>OperationName</PropertyName>
+                <ScriptBlock>[DSInternals.Win32.RpcFilters.WellKnownProtocolTranslator]::ToOperationName($PSItem.InterfaceUUID, $PSItem.OperationNumber, $true)</ScriptBlock>
               </ListItem>
               <ListItem>
                 <Label>Transport</Label>

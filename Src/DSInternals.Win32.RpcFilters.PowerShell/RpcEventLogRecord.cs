@@ -65,7 +65,7 @@ public class RpcEventLogRecord
     /// <summary>
     /// Gets the name of the RPC interface used for the RPC call, if available.
     /// </summary>
-    public string? Protocol => WellKnownProtocolTranslator.ToProtocolName(this.InterfaceUUID);
+    public string? Protocol => WellKnownProtocolTranslator.ToProtocolName(this.InterfaceUUID, false);
 
     /// <summary>
     /// Gets the operation number of the RPC call.
@@ -76,7 +76,7 @@ public class RpcEventLogRecord
     /// <summary>
     /// Gets the name of the RPC operation used for the RPC call, if available.
     /// </summary>
-    public string? Operation => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber);
+    public string? Operation => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber, false);
 
     /// <summary>
     /// Gets the transport protocol sequence used for the RPC call.

@@ -133,8 +133,13 @@ Describe 'PowerShell Module' {
         It '<Assembly> has a strong name' -TestCases $AllAssemblies -Test {
             param([System.IO.FileInfo] $Assembly)
 
-            $assemblyName = [System.Reflection.AssemblyName]::GetAssemblyName($Assembly.FullName)
-            $assemblyName.Flags.HasFlag([System.Reflection.AssemblyNameFlags]::PublicKey) | Should -Be $true
+            if ($Assembly.DirectoryName -like '*Debug*') {
+                # Only do this check for Release builds, not Debug ones
+                Set-ItResult -Skip -Because 'this is a Debug build.'
+            } else {
+                [System.Reflection.AssemblyName] $assemblyName = [System.Reflection.AssemblyName]::GetAssemblyName($Assembly.FullName)
+                $assemblyName.Flags.HasFlag([System.Reflection.AssemblyNameFlags]::PublicKey) | Should -Be $true
+            }
         }
 
         It '<Assembly> has file details' -TestCases $OwnedAssemblies -Test {

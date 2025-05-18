@@ -49,7 +49,7 @@ public sealed class RpcFilter
     /// <summary>
     /// The name of the RPC interface.
     /// </summary>
-    public string? InterfaceName => this.InterfaceUUID.ToProtocolName();
+    public string? InterfaceName => this.InterfaceUUID.ToProtocolName(false);
 
     /// <summary>
     /// Protocol family used by the RPC endpoint.
@@ -64,7 +64,7 @@ public sealed class RpcFilter
     /// <summary>
     /// The name of the RPC operation.
     /// </summary>
-    public string? OperationName => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber);
+    public string? OperationName => WellKnownProtocolTranslator.ToOperationName(this.InterfaceUUID, this.OperationNumber, false);
 
     /// <summary>
     /// The identification of the remote user.
