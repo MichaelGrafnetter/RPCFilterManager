@@ -133,7 +133,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 WriteWarning("Filters with both IP address and named pipe conditions are ignored by Windows.");
             }
 
-            if (WellKnownProtocol.SupportsNamedPipes() && ipAddressUsed)
+            if (InterfaceUUID.SupportsNamedPipes() && ipAddressUsed)
             {
                 WriteWarning("The target interface supports a named pipe binding. Only TCP/IP bindings work with IP address conditions.");
             }

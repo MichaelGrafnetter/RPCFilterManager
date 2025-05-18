@@ -7,394 +7,557 @@ namespace DSInternals.Win32.RpcFilters;
 /// </summary>
 public static class WellKnownProtocolTranslator
 {
+    private const string DRSR_drsuapi_UUID = "e3514235-4b06-11d1-ab04-00c04fc2dcd2";
+
     /// <summary>
     /// MS-DRSR: Directory Replication Service Remote Protocol
     /// </summary>
-    public static readonly Guid DRSR = new("e3514235-4b06-11d1-ab04-00c04fc2dcd2");
+    public static readonly Guid DRSR_drsuapi = new(DRSR_drsuapi_UUID);
+
+    private const string DRSR_dsaop_UUID = "7c44d7d4-31d5-424c-bd5e-2b3e1f323d22";
+
+    /// <summary>
+    /// MS-DRSR: Directory Replication Service Remote Protocol
+    /// </summary>
+    public static readonly Guid DRSR_dsaop = new(DRSR_dsaop_UUID);
+
+    private const string SCMR_UUID = "367abb81-9844-35f1-ad32-98f038001003";
 
     /// <summary>
     /// MS-SCMR: Service Control Manager Remote Protocol
     /// </summary>
-    public static readonly Guid SCMR = new("367ABB81-9844-35F1-AD32-98F038001003");
+    public static readonly Guid SCMR = new(SCMR_UUID);
+
+    private const string TSCH_UUID = "86d35949-83c9-4044-b424-db363231fd0c";
 
     /// <summary>
     /// MS-TSCH: Task Scheduler Service Remoting Protocol (ITaskSchedulerService)
     /// </summary>
-    public static readonly Guid TSCH = new("86D35949-83C9-4044-B424-DB363231FD0C");
+    public static readonly Guid TSCH = new(TSCH_UUID);
+
+    private const string ATSvc_UUID = "1ff70682-0a51-30e8-076d-740be8cee98b";
 
     /// <summary>
     /// MS-TSCH: Task Scheduler Service Remoting Protocol (ATSvc)
     /// </summary>
-    public static readonly Guid ATSvc = new("1FF70682-0A51-30E8-076D-740BE8CEE98B");
+    public static readonly Guid ATSvc = new(ATSvc_UUID);
+
+    private const string SASec_UUID = "378e52b0-c0a9-11cf-822d-00aa0051e40f";
 
     /// <summary>
     /// MS-TSCH: Task Scheduler Service Remoting Protocol (SASec)
     /// </summary>
-    public static readonly Guid SASec = new("378E52B0-C0A9-11CF-822D-00AA0051E40F");
+    public static readonly Guid SASec = new(SASec_UUID);
+
+    private const string EVEN_UUID = "82273fdc-e32a-18c3-3f78-827929dc23ea";
 
     /// <summary>
     /// MS-EVEN: EventLog Remoting Protocol
     /// </summary>
-    public static readonly Guid EVEN = new("82273FDC-E32A-18C3-3F78-827929DC23EA");
+    public static readonly Guid EVEN = new(EVEN_UUID);
+
+    private const string EVEN6_UUID = "f6beaff7-1e19-4fbb-9f8f-b89e2018337c";
 
     /// <summary>
     /// MS-EVEN6: EventLog Remoting Protocol Version 6.0
     /// </summary>
-    public static readonly Guid EVEN6 = new("F6BEAFF7-1E19-4FBB-9F8F-B89E2018337C");
+    public static readonly Guid EVEN6 = new(EVEN6_UUID);
+
+    private const string KIWI_UUID = "17fc11e9-c258-4b8d-8d07-2f4125156244";
 
     /// <summary>
     /// MimiCom: Mimikatz Remote Protocol
     /// </summary>
-    public static readonly Guid KIWI = new("17FC11E9-C258-4B8D-8D07-2F4125156244");
+    public static readonly Guid KIWI = new(KIWI_UUID);
+
+    private const string RRP_UUID = "338cd001-2244-31f1-aaaa-900038001003";
 
     /// <summary>
     /// MS-RRP: Windows Remote Registry Protocol
     /// </summary>
-    public static readonly Guid RRP = new("338CD001-2244-31F1-AAAA-900038001003");
+    public static readonly Guid RRP = new(RRP_UUID);
+
+    private const string RSP_NP_UUID = "894de0c0-0d55-11d3-a322-00c04fa321a1";
 
     /// <summary>
     /// MS-RSP: Remote Shutdown Protocol (InitShutdown)
     /// </summary>
-    public static readonly Guid RSP_NP = new("894DE0C0-0D55-11D3-A322-00C04FA321A1");
+    public static readonly Guid RSP_NP = new(RSP_NP_UUID);
+
+    private const string RSP_TCP_UUID = "d95afe70-a6d5-4259-822e-2c84da1ddb0d";
 
     /// <summary>
     /// MS-RSP: Remote Shutdown Protocol (WindowsShutdown)
     /// </summary>
-    public static readonly Guid RSP_TCP = new("D95AFE70-A6D5-4259-822E-2C84DA1DDB0D");
+    public static readonly Guid RSP_TCP = new(RSP_TCP_UUID);
+
+    private const string RPRN_UUID = "12345678-1234-abcd-ef00-0123456789ab";
 
     /// <summary>
     /// MS-RPRN: Print Spooler Remote Protocol
     /// </summary>
-    public static readonly Guid RPRN = new("12345678-1234-ABCD-EF00-0123456789AB");
+    public static readonly Guid RPRN = new(RPRN_UUID);
+
+    private const string PAR_UUID = "76f03f96-cdfd-44fc-a22c-64950a001209";
 
     /// <summary>
     /// MS-PAR: Print System Asynchronous Remote Protocol
     /// </summary>
-    public static readonly Guid PAR = new("76F03F96-CDFD-44fc-A22C-64950A001209");
+    public static readonly Guid PAR = new(PAR_UUID);
+
+    private const string DFSNM_UUID = "4fc742e0-4a10-11cf-8273-00aa004ae673";
 
     /// <summary>
     /// MS-DFS: Distributed File System Namespace Management Protocol
     /// </summary>
-    public static readonly Guid DFSNM = new("4FC742E0-4A10-11CF-8273-00AA004AE673");
+    public static readonly Guid DFSNM = new(DFSNM_UUID);
+
+    private const string SAMR_UUID = "12345778-1234-abcd-ef00-0123456789ac";
 
     /// <summary>
     /// MS-SAMR: Security Account Manager (SAM) Remote Protocol
     /// </summary>
-    public static readonly Guid SAMR = new("12345778-1234-ABCD-EF00-0123456789AC");
+    public static readonly Guid SAMR = new(SAMR_UUID);
+
+    private const string NRPC_UUID = "12345678-1234-abcd-ef00-01234567cffb";
 
     /// <summary>
     /// MS-NRPC: Netlogon Remote Protocol
     /// </summary>
-    public static readonly Guid NRPC = new ("12345678-1234-ABCD-EF00-01234567CFFB");
+    public static readonly Guid NRPC = new(NRPC_UUID);
+
+    private const string FRS1_UUID = "f5cc59b4-4264-101a-8c59-08002b2f8426";
 
     /// <summary>
     /// MS-FRS1: File Replication Service Remote Protocol
     /// </summary>
-    public static readonly Guid FRS1 = new ("F5CC59B4-4264-101A-8C59-08002B2F8426");
+    public static readonly Guid FRS1 = new(FRS1_UUID);
+
+    private const string FRS2_UUID = "897e2e5f-93f3-4376-9c9c-fd2277495c27";
 
     /// <summary>
     /// MS-FRS2: Distributed File System Replication Protocol
     /// </summary>
-    public static readonly Guid FRS2 = new("897e2e5f-93f3-4376-9c9c-fd2277495c27");
+    public static readonly Guid FRS2 = new(FRS2_UUID);
+
+    private const string FSRVP_UUID = "a8e0653c-2744-4389-a61d-7373df8b2292";
 
     /// <summary>
     /// MS-FSRVP: Volume Shadow Copy Service Remote Protocol
     /// </summary>
-    public static readonly Guid FSRVP = new ("a8e0653c-2744-4389-a61d-7373df8b2292");
+    public static readonly Guid FSRVP = new(FSRVP_UUID);
+
+    private const string EFSR_UUID = "df1941c5-fe89-4e79-bf10-463657acf44d";
 
     /// <summary>
     /// MS-EFSR: Encrypting File System Remote Protocol (EFSRPC)
     /// </summary>
-    public static readonly Guid EFSR = new ("df1941c5-fe89-4e79-bf10-463657acf44d");
+    public static readonly Guid EFSR = new(EFSR_UUID);
+
+    private const string EFSR_LSA_UUID = "c681d488-d850-11d0-8c52-00c04fd90f7e";
 
     /// <summary>
     /// MS-EFSR: Encrypting File System Remote Protocol (LSARPC)
     /// </summary>
-    public static readonly Guid EFSR_LSA = new ("c681d488-d850-11d0-8c52-00c04fd90f7e");
+    public static readonly Guid EFSR_LSA = new(EFSR_LSA_UUID);
+
+    private const string SRVSVC_UUID = "4b324fc8-1670-01d3-1278-5a47bf6ee188";
 
     /// <summary>
     /// MS-SRVSVC: Server Service Remote Protocol
     /// </summary>
-    public static readonly Guid SRVSVC = new ("4B324FC8-1670-01D3-1278-5A47BF6EE188");
+    public static readonly Guid SRVSVC = new(SRVSVC_UUID);
+
+    private const string WKSSVC_UUID = "6bffd098-a112-3610-9833-46c3f87e345a";
 
     /// <summary>
     /// MS-WKSSVC: Workstation Service Remote Protocol
     /// </summary>
-    public static readonly Guid WKSSVC = new ("6BFFD098-A112-3610-9833-46C3F87E345A");
+    public static readonly Guid WKSSVC = new(WKSSVC_UUID);
+
+    private const string BKRP_UUID = "3dde7c30-165d-11d1-ab8f-00805f14db40";
 
     /// <summary>
     /// MS-BKRP: Backup Key Remote Protocol
     /// </summary>
-    public static readonly Guid BKRP = new("3dde7c30-165d-11d1-ab8f-00805f14db40");
+    public static readonly Guid BKRP = new(BKRP_UUID);
+
+    private const string LSAD_UUID = "12345778-1234-abcd-ef00-0123456789ab";
 
     /// <summary>
     /// MS-LSAD: Local Security Authority (LSA) Remote Protocol
     /// </summary>
-    public static readonly Guid LSAD = new("12345778-1234-ABCD-EF00-0123456789AB");
+    public static readonly Guid LSAD = new(LSAD_UUID);
+
+    private const string DNSP_UUID = "50abc2a4-574d-40b3-9d66-ee4fd5fba076";
 
     /// <summary>
     /// MS-DNSP: Domain Name Service (DNS) Server Management Protocol
     /// </summary>
-    public static readonly Guid DNSP = new("50abc2a4-574d-40b3-9d66-ee4fd5fba076");
+    public static readonly Guid DNSP = new(DNSP_UUID);
+
+    private const string CSRA_ICertAdminD_UUID = "d99e6e71-fc88-11d0-b498-00a0c90312f3";
 
     /// <summary>
     /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD)
     /// </summary>
-    public static readonly Guid CSRA_ICertAdminD =  new("d99e6e71-fc88-11d0-b498-00a0c90312f3");
+    public static readonly Guid CSRA_ICertAdminD = new(CSRA_ICertAdminD_UUID);
 
+    private const string CSRA_ICertAdminD2_UUID = "7fe0d935-dda6-443f-85d0-1cfb58fe41dd";
     /// <summary>
     /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD2)
     /// </summary>
-    public static readonly Guid CSRA_ICertAdminD2 = new("7fe0d935-dda6-443f-85d0-1cfb58fe41dd");
+    public static readonly Guid CSRA_ICertAdminD2 = new(CSRA_ICertAdminD2_UUID);
+
+    private const string ICPR_UUID = "91ae6020-9e3c-11cf-8d7c-00aa00c091be";
 
     /// <summary>
     /// MS-ICPR: ICertPassage Remote Protocol
     /// </summary>
-    public static readonly Guid ICPR = new("91ae6020-9e3c-11cf-8d7c-00aa00c091be");
+    public static readonly Guid ICPR = new(ICPR_UUID);
+
+    private const string PAN_IRPCAsyncNotify_UUID = "0b6edbfa-4a24-4fc6-8a23-942b1eca65d1";
 
     /// <summary>
     /// MS-PAN: Print System Asynchronous Notification Protocol (IRPCAsyncNotify)
     /// </summary>
-    public static readonly Guid PAN_IRPCAsyncNotify = new("0b6edbfa-4a24-4fc6-8a23-942b1eca65d1");
+    public static readonly Guid PAN_IRPCAsyncNotify = new(PAN_IRPCAsyncNotify_UUID);
+
+    private const string PAN_IRPCRemoteObject_UUID = "ae33069b-a2a8-46ee-a235-ddfd339be281";
 
     /// <summary>
     /// MS-PAN: Print System Asynchronous Notification Protocol (IRPCRemoteObject)
     /// </summary>
-    public static readonly Guid PAN_IRPCRemoteObject = new("ae33069b-a2a8-46ee-a235-ddfd339be281");
+    public static readonly Guid PAN_IRPCRemoteObject = new(PAN_IRPCRemoteObject_UUID);
+
+    private const string NSPI_UUID = "f5cc5a18-4264-101a-8c59-08002b2f8426";
 
     /// <summary>
     /// MS-NSPI: Name Service Provider Interface (NSPI) Remote Protocol
     /// </summary>
-    public static readonly Guid NSPI = new ("F5CC5A18-4264-101A-8C59-08002B2F8426");
+    public static readonly Guid NSPI = new(NSPI_UUID);
+
+    private const string EPMAP_UUID = "e1af8308-5d1f-11c9-91a4-08002b14a0fa";
 
     /// <summary>
     /// DCERPC Endpoint Mapper
     /// </summary>
-    public static readonly Guid EPMAP = new("e1af8308-5d1f-11c9-91a4-08002b14a0fa");
+    public static readonly Guid EPMAP = new(EPMAP_UUID);
+
+    private const string DSSP_UUID = "3919286a-b10c-11d0-9ba8-00c04fd92ef5";
 
     /// <summary>
     /// MS-DSSP: Directory Services Setup Remote Protocol
     /// </summary>
-    public static readonly Guid DSSP = new("3919286a-b10c-11d0-9ba8-00c04fd92ef5");
+    public static readonly Guid DSSP = new(DSSP_UUID);
+
+    private const string BRWSA_UUID = "6bffd098-a112-3610-9833-012892020162";
 
     /// <summary>
     /// MS-BRWSA: Common Internet File System (CIFS) Browser Auxiliary Protocol
     /// </summary>
-    public static readonly Guid BRWSA = new("6BFFD098-A112-3610-9833-012892020162");
+    public static readonly Guid BRWSA = new(BRWSA_UUID);
+
+    private const string DHCPM_dhcpsrv_UUID = "6bffd098-a112-3610-9833-46c3f874532d";
 
     /// <summary>
     /// MS-DHCPM: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol (dhcpsrv)
     /// </summary>
-    public static readonly Guid DHCPM_dhcpsrv = new("6BFFD098-A112-3610-9833-46C3F874532D");
+    public static readonly Guid DHCPM_dhcpsrv = new(DHCPM_dhcpsrv_UUID);
+
+    private const string DHCPM_dhcpsrv2_UUID = "5b821720-f63b-11d0-aad2-00c04fc324db";
 
     /// <summary>
     /// MS-DHCPM: Microsoft Dynamic Host Configuration Protocol (DHCP) Server Management Protocol (dhcpsrv2)
     /// </summary>
-    public static readonly Guid DHCPM_dhcpsrv2 = new ("5b821720-f63b-11d0-aad2-00c04fc324db");
+    public static readonly Guid DHCPM_dhcpsrv2 = new(DHCPM_dhcpsrv2_UUID);
+
+    private const string DLTM_UUID = "4da1c422-943d-11d1-acae-00c04fc2aa3f";
 
     /// <summary>
     /// MS-DLTM: Distributed Link Tracking: Central Manager Protocol
     /// </summary>
-    public static readonly Guid DLTM = new("4da1c422-943d-11d1-acae-00c04fc2aa3f");
+    public static readonly Guid DLTM = new(DLTM_UUID);
+
+    private const string DLTW_UUID = "300f3532-38cc-11d0-a3f0-0020af6b0add";
 
     /// <summary>
     /// MS-DLTW: Distributed Link Tracking: Workstation Protocol
     /// </summary>
-    public static readonly Guid DLTW = new("300f3532-38cc-11d0-a3f0-0020af6b0add");
+    public static readonly Guid DLTW = new(DLTW_UUID);
+
+    private const string W32T_UUID = "8fb6d884-2388-11d0-8c35-00c04fda2795";
 
     /// <summary>
     /// MS-W32T: W32Time Remote Protocol
     /// </summary>
-    public static readonly Guid W32T = new("8fb6d884-2388-11d0-8c35-00c04fda2795");
+    public static readonly Guid W32T = new(W32T_UUID);
+
+    private const string RRASM_DIMSVC_UUID = "8f09f000-b7ed-11ce-bbd2-00001a181cad";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (DIMSVC)
     /// </summary>
-    public static readonly Guid RRASM_DIMSVC = new("8f09f000-b7ed-11ce-bbd2-00001a181cad");
+    public static readonly Guid RRASM_DIMSVC = new(RRASM_DIMSVC_UUID);
+
+    private const string RRASM_RASRPC_UUID = "20610036-fa22-11cf-9823-00a0c911e5df";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (RASRPC)
     /// </summary>
-    public static readonly Guid RRASM_RASRPC = new("20610036-fa22-11cf-9823-00a0c911e5df");
+    public static readonly Guid RRASM_RASRPC = new(RRASM_RASRPC_UUID);
+
+    private const string RRASM_IRemoteNetworkConfig_UUID = "66a2db1b-d706-11d0-a37b-00c04fc9da04";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteNetworkConfig)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteNetworkConfig = new("66a2db1b-d706-11d0-a37b-00c04fc9da04");
+    public static readonly Guid RRASM_IRemoteNetworkConfig = new(RRASM_IRemoteNetworkConfig_UUID);
+
+    private const string RRASM_IRemoteRouterRestart_UUID = "66a2db20-d706-11d0-a37b-00c04fc9da04";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteRouterRestart)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteRouterRestart = new("66a2db20-d706-11d0-a37b-00c04fc9da04");
+    public static readonly Guid RRASM_IRemoteRouterRestart = new(RRASM_IRemoteRouterRestart_UUID);
+
+    private const string RRASM_IRemoteSetDnsConfig_UUID = "66a2db21-d706-11d0-a37b-00c04fc9da04";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteSetDnsConfig)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteSetDnsConfig = new("66a2db21-d706-11d0-a37b-00c04fc9da04");
+    public static readonly Guid RRASM_IRemoteSetDnsConfig = new(RRASM_IRemoteSetDnsConfig_UUID);
+
+    private const string RRASM_IRemoteICFICSConfig_UUID = "66a2db22-d706-11d0-a37b-00c04fc9da04";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteICFICSConfig)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteICFICSConfig = new("66a2db22-d706-11d0-a37b-00c04fc9da04");
+    public static readonly Guid RRASM_IRemoteICFICSConfig = new(RRASM_IRemoteICFICSConfig_UUID);
+
+    private const string RRASM_IRemoteStringIdConfig_UUID = "67e08fc2-2984-4b62-b92e-fc1aae64bbbb";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteStringIdConfig)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteStringIdConfig = new("67e08fc2-2984-4b62-b92e-fc1aae64bbbb");
+    public static readonly Guid RRASM_IRemoteStringIdConfig = new(RRASM_IRemoteStringIdConfig_UUID);
+
+    private const string RRASM_IRemoteIPV6Config_UUID = "6139d8a4-e508-4ebb-bac7-d7f275145897";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteIPV6Config)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteIPV6Config = new("6139d8a4-e508-4ebb-bac7-d7f275145897");
+    public static readonly Guid RRASM_IRemoteIPV6Config = new(RRASM_IRemoteIPV6Config_UUID);
+
+    private const string RRASM_IRemoteSstpCertCheck_UUID = "5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8";
 
     /// <summary>
     /// MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol (IRemoteSstpCertCheck)
     /// </summary>
-    public static readonly Guid RRASM_IRemoteSstpCertCheck = new("5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8");
+    public static readonly Guid RRASM_IRemoteSstpCertCheck = new(RRASM_IRemoteSstpCertCheck_UUID);
+
+    private const string RAIW_winsif_UUID = "45f52c28-7f9f-101a-b52b-08002b2efabe";
+
     /// <summary>
     /// MS-RAIW: Remote Administrative Interface: WINS (winsif)
     /// </summary>
-    public static readonly Guid RAIW_winsif = new("45f52c28-7f9f-101a-b52b-08002b2efabe");
+    public static readonly Guid RAIW_winsif = new(RAIW_winsif_UUID);
+
+    private const string RAIW_winsi2_UUID = "811109bf-a4e1-11d1-ab54-00a0c91e9b45";
 
     /// <summary>
     /// MS-RAIW: Remote Administrative Interface: WINS (winsif2)
     /// </summary>
-    public static readonly Guid RAIW_winsif2 = new("811109bf-a4e1-11d1-ab54-00a0c91e9b45");
+    public static readonly Guid RAIW_winsi2 = new(RAIW_winsi2_UUID);
+
+    private const string TSTS_LSM_Session_UUID = "484809d6-4239-471b-b5bc-61df8c23ac48";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Session)
     /// </summary>
-    public static readonly Guid TSTS_LSM_Session = new("484809d6-4239-471b-b5bc-61df8c23ac48");
+    public static readonly Guid TSTS_LSM_Session = new(TSTS_LSM_Session_UUID);
+
+    private const string TSTS_LSM_Notification_UUID = "11899a43-2b68-4a76-92e3-a3d6ad8c26ce";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Notification)
     /// </summary>
-    public static readonly Guid TSTS_LSM_Notification = new("11899a43-2b68-4a76-92e3-a3d6ad8c26ce");
+    public static readonly Guid TSTS_LSM_Notification = new(TSTS_LSM_Notification_UUID);
+
+    private const string TSTS_LSM_Enumeration_UUID = "88143fd0-c28d-4b2b-8fef-8d882f6a9390";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (LSM Enumeration)
     /// </summary>
-    public static readonly Guid TSTS_LSM_Enumeration = new("88143fd0-c28d-4b2b-8fef-8d882f6a9390");
+    public static readonly Guid TSTS_LSM_Enumeration = new(TSTS_LSM_Enumeration_UUID);
+
+    private const string TSTS_TermSrv_UUID = "bde95fdf-eee0-45de-9e12-e5a61cd0d4fe";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TermSrv)
     /// </summary>
-    public static readonly Guid TSTS_TermSrv = new("bde95fdf-eee0-45de-9e12-e5a61cd0d4fe");
+    public static readonly Guid TSTS_TermSrv = new(TSTS_TermSrv_UUID);
+
+    private const string TSTS_TermSrv_Listener_UUID = "497d95a6-2d27-4bf5-9bbd-a6046957133c";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TermSrv Listener)
     /// </summary>
-    public static readonly Guid TSTS_TermSrv_Listener = new("497d95a6-2d27-4bf5-9bbd-a6046957133c");
+    public static readonly Guid TSTS_TermSrv_Listener = new(TSTS_TermSrv_Listener_UUID);
+
+    private const string TSTS_Legacy_UUID = "5ca4a760-ebb1-11cf-8611-00a0245420ed";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (Legacy)
     /// </summary>
-    public static readonly Guid TSTS_Legacy = new("5ca4a760-ebb1-11cf-8611-00a0245420ed");
+    public static readonly Guid TSTS_Legacy = new(TSTS_Legacy_UUID);
+
+    private const string TSTS_TSVIPPublic_UUID = "53b46b02-c73b-4a3e-8dee-b16b80672fc0";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (TSVIPPublic)
     /// </summary>
-    public static readonly Guid TSTS_TSVIPPublic = new("53b46b02-c73b-4a3e-8dee-b16b80672fc0");
+    public static readonly Guid TSTS_TSVIPPublic = new(TSTS_TSVIPPublic_UUID);
+
+    private const string TSTS_SessEnvPublicRpc_UUID = "1257b580-ce2f-4109-82d6-a9459d0bf6bc";
 
     /// <summary>
     /// MS-TSTS: Terminal Services Terminal Server Runtime Interface Protocol (SessEnvPublicRpc)
     /// </summary>
-    public static readonly Guid TSTS_SessEnvPublicRpc = new("1257B580-CE2F-4109-82D6-A9459D0BF6BC");
+    public static readonly Guid TSTS_SessEnvPublicRpc = new(TSTS_SessEnvPublicRpc_UUID);
+
+    private const string DCOM_IActivation_UUID = "4d9f4ab8-7d1c-11cf-861e-0020af6e7c57";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivation)
     /// </summary>
-    public static readonly Guid DCOM_IActivation = new("4d9f4ab8-7d1c-11cf-861e-0020af6e7c57");
+    public static readonly Guid DCOM_IActivation = new(DCOM_IActivation_UUID);
+
+    private const string DCOM_IActivationPropertiesIn_UUID = "000001a2-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivationPropertiesIn)
     /// </summary>
-    public static readonly Guid DCOM_IActivationPropertiesIn = new("000001A2-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IActivationPropertiesIn = new(DCOM_IActivationPropertiesIn_UUID);
+
+    private const string DCOM_IActivationPropertiesOut_UUID = "000001a3-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IActivationPropertiesOut)
     /// </summary>
-    public static readonly Guid DCOM_IActivationPropertiesOut = new("000001A3-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IActivationPropertiesOut = new(DCOM_IActivationPropertiesOut_UUID);
+
+    private const string DCOM_IContext_UUID = "000001c0-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IContext)
     /// </summary>
-    public static readonly Guid DCOM_IContext = new("000001c0-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IContext = new(DCOM_IContext_UUID);
+
+    private const string DCOM_IObjectExporter_UUID = "99fcfec4-5260-101b-bbcb-00aa0021347a";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IObjectExporter)
     /// </summary>
-    public static readonly Guid DCOM_IObjectExporter = new("99fcfec4-5260-101b-bbcb-00aa0021347a");
+    public static readonly Guid DCOM_IObjectExporter = new(DCOM_IObjectExporter_UUID);
+
+    private const string DCOM_IRemoteSCMActivator_UUID = "000001a0-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemoteSCMActivator)
     /// </summary>
-    public static readonly Guid DCOM_IRemoteSCMActivator = new("000001A0-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IRemoteSCMActivator = new(DCOM_IRemoteSCMActivator_UUID);
+
+    private const string DCOM_IRemUnknown_UUID = "00000131-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemUnknown)
     /// </summary>
-    public static readonly Guid DCOM_IRemUnknown = new("00000131-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IRemUnknown = new(DCOM_IRemUnknown_UUID);
+
+    private const string DCOM_IRemUnknown2_UUID = "00000143-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IRemUnknown2)
     /// </summary>
-    public static readonly Guid DCOM_IRemUnknown2 = new("00000143-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IRemUnknown2 = new(DCOM_IRemUnknown2_UUID);
+
+    private const string DCOM_IUnknown_UUID = "00000000-0000-0000-c000-000000000046";
 
     /// <summary>
     /// MS-DCOM: Distributed Component Object Model (DCOM) Remote Protocol (IUnknown)
     /// </summary>
-    public static readonly Guid DCOM_IUnknown = new("00000000-0000-0000-C000-000000000046");
+    public static readonly Guid DCOM_IUnknown = new(DCOM_IUnknown_UUID);
+
+    private const string WMI_IWbemLevel1Login_UUID = "f309ad18-d86a-11d0-a075-00c04fb68820";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLevel1Login)
     /// </summary>
-    public static readonly Guid WMI_IWbemLevel1Login = new("F309AD18-D86A-11d0-A075-00C04FB68820");
+    public static readonly Guid WMI_IWbemLevel1Login = new(WMI_IWbemLevel1Login_UUID);
+
+    private const string WMI_IWbemLoginClientID_UUID = "d4781cd6-e5d3-44df-ad94-930efe48a887";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginClientID)
     /// </summary>
-    public static readonly Guid WMI_IWbemLoginClientID = new("D4781CD6-E5D3-44DF-AD94-930EFE48A887");
+    public static readonly Guid WMI_IWbemLoginClientID = new(WMI_IWbemLoginClientID_UUID);
+
+    private const string WMI_IWbemLoginHelper_UUID = "541679ab-2e5f-11d3-b34e-00104bcc4b4a";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginHelper)
     /// </summary>
-    public static readonly Guid WMI_IWbemLoginHelper = new("541679AB-2E5F-11d3-B34E-00104BCC4B4A");
+    public static readonly Guid WMI_IWbemLoginHelper = new(WMI_IWbemLoginHelper_UUID);
+
+    private const string WMI_IWbemServices_UUID = "9556dc99-828c-11cf-a37e-00aa003240c7";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemServices)
     /// </summary>
-    public static readonly Guid WMI_IWbemServices = new("9556DC99-828C-11CF-A37E-00AA003240C7");
+    public static readonly Guid WMI_IWbemServices = new(WMI_IWbemServices_UUID);
+
+    private const string WMI_IWbemBackupRestore_UUID = "c49e32c7-bc8b-11d2-85d4-00105a1f8304";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemBackupRestore)
     /// </summary>
-    public static readonly Guid WMI_IWbemBackupRestore = new("C49E32C7-BC8B-11d2-85D4-00105A1F8304");
+    public static readonly Guid WMI_IWbemBackupRestore = new(WMI_IWbemBackupRestore_UUID);
+
+    private const string WMI_IWbemBackupRestoreEx_UUID = "a359dec5-e813-4834-8a2a-ba7f1d777d76";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemBackupRestoreEx)
     /// </summary>
-    public static readonly Guid WMI_IWbemBackupRestoreEx = new("A359DEC5-E813-4834-8A2A-BA7F1D777D76");
+    public static readonly Guid WMI_IWbemBackupRestoreEx = new(WMI_IWbemBackupRestoreEx_UUID);
+
+    private const string WMI_IWbemClassObject_UUID = "dc12a681-737f-11cf-884d-00aa004b2e24";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemClassObject)
     /// </summary>
-    public static readonly Guid WMI_IWbemClassObject = new("DC12A681-737F-11CF-884D-00AA004B2E24");
+    public static readonly Guid WMI_IWbemClassObject = new(WMI_IWbemClassObject_UUID);
+
+    private const string WMI_IWbemContext_UUID = "44aca674-e8fc-11d0-a07c-00c04fb68820";
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemContext)
     /// </summary>
-    public static readonly Guid WMI_IWbemContext = new("44ACA674-E8FC-11D0-A07C-00C04FB68820");
+    public static readonly Guid WMI_IWbemContext = new(WMI_IWbemContext_UUID);
+
+    private const string WCCE_ICertRequestD_UUID = "d99e6e70-fc88-11d0-b498-00a0c90312f3";
 
     /// <summary>
     /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD)
     /// </summary>
-    public static readonly Guid WCCE_ICertRequestD = new ("d99e6e70-fc88-11d0-b498-00a0c90312f3");
+    public static readonly Guid WCCE_ICertRequestD = new(WCCE_ICertRequestD_UUID);
+
+    private const string WCCE_ICertRequestD2_UUID = "5422fd3a-d4b8-4cef-a12e-e87d4ca22e90";
 
     /// <summary>
     /// MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD2)
     /// </summary>
-    public static readonly Guid WCCE_ICertRequestD2 = new ("5422fd3a-d4b8-4cef-a12e-e87d4ca22e90");
+    public static readonly Guid WCCE_ICertRequestD2 = new(WCCE_ICertRequestD2_UUID);
 
     /// <summary>
     /// MS-EVEN6: EvtRpcClearLog
@@ -596,7 +759,8 @@ public static class WellKnownProtocolTranslator
     {
         return protocol switch
         {
-            WellKnownProtocol.DirectoryReplicationService => DRSR,
+            WellKnownProtocol.DirectoryReplicationService => DRSR_drsuapi,
+            WellKnownProtocol.DomainRenameScript => DRSR_dsaop,
             WellKnownProtocol.ServiceControlManager => SCMR,
             WellKnownProtocol.TaskSchedulerAgent => SASec,
             WellKnownProtocol.NetSchedule => ATSvc,
@@ -635,7 +799,6 @@ public static class WellKnownProtocolTranslator
             WellKnownProtocol.ICertRequestD2 => WCCE_ICertRequestD2,
             WellKnownProtocol.ICertAdminD => CSRA_ICertAdminD,
             WellKnownProtocol.ICertAdminD2 => CSRA_ICertAdminD2,
-
             _ => throw new ArgumentOutOfRangeException(nameof(protocol), protocol, "This protocol is not yet supported.")
         };
     }
@@ -695,42 +858,68 @@ public static class WellKnownProtocolTranslator
     /// <summary>
     /// Checks if the specified protocol supports RPC over named pipes by default.
     /// </summary>
-    public static bool SupportsNamedPipes(this WellKnownProtocol? protocol)
+    public static bool SupportsNamedPipes(this Guid? interfaceUUID)
     {
-        // Change to InterfaceUUID
-        switch (protocol)
+        if (!interfaceUUID.HasValue)
         {
-            case WellKnownProtocol.ServiceControlManager:
-            case WellKnownProtocol.TaskSchedulerAgent:
-            case WellKnownProtocol.NetSchedule:
-            case WellKnownProtocol.TaskSchedulerService:
-            case WellKnownProtocol.EventLog:
-            case WellKnownProtocol.EventLogV6:
-            case WellKnownProtocol.RemoteRegistry:
-            case WellKnownProtocol.InitShutdown:
-            case WellKnownProtocol.SecurityAccountManager:
-            case WellKnownProtocol.PrintSpooler:
-            case WellKnownProtocol.NamespaceManagement:
-            case WellKnownProtocol.EncryptingFileSystem:
-            case WellKnownProtocol.EncryptingFileSystemLSA:
-            case WellKnownProtocol.ServerService:
-            case WellKnownProtocol.WorkstationService:
-            case WellKnownProtocol.VolumeShadowCopy:
-            case WellKnownProtocol.BackupKey:
-            case WellKnownProtocol.LocalSecurityAuthority:
-            case WellKnownProtocol.DnsManagement:
-            case WellKnownProtocol.EndpointMapper:
-            case WellKnownProtocol.DirectoryServicesSetup:
-            case WellKnownProtocol.MasterBrowser:
-            case WellKnownProtocol.Netlogon:
-            case WellKnownProtocol.WindowsTime:
-            case WellKnownProtocol.DistributedLinkTrackingClient:
-            case WellKnownProtocol.RemoteAccessManagement:
-            // TODO: Add RDPP protocols
+            // No interface UUID is configured in the filter
+            return false;
+        }
+
+        string interfaceUUIDString = interfaceUUID.Value.ToString().ToLowerInvariant();
+
+        switch (interfaceUUIDString)
+        {
+            case SCMR_UUID:
+            case TSCH_UUID:
+            case ATSvc_UUID:
+            case SASec_UUID:
+            case EVEN_UUID:
+            case EVEN6_UUID:
+            case RRP_UUID:
+            case RSP_TCP_UUID:
+            case RSP_NP_UUID:
+            case SAMR_UUID:
+            case RPRN_UUID:
+            case DFSNM_UUID:
+            case EFSR_UUID:
+            case EFSR_LSA_UUID:
+            case SRVSVC_UUID:
+            case WKSSVC_UUID:
+            case FSRVP_UUID:
+            case BKRP_UUID:
+            case LSAD_UUID:
+            case DNSP_UUID:
+            case EPMAP_UUID:
+            case DSSP_UUID:
+            case BRWSA_UUID:
+            case NRPC_UUID:
+            case W32T_UUID:
+            case DLTW_UUID:
+            case RRASM_DIMSVC_UUID:
+            case RRASM_RASRPC_UUID:
+            case RRASM_IRemoteNetworkConfig_UUID:
+            case RRASM_IRemoteRouterRestart_UUID:
+            case RRASM_IRemoteSetDnsConfig_UUID:
+            case RRASM_IRemoteICFICSConfig_UUID:
+            case RRASM_IRemoteStringIdConfig_UUID:
+            case RRASM_IRemoteIPV6Config_UUID:
+            case RRASM_IRemoteSstpCertCheck_UUID:
+            case TSTS_LSM_Session_UUID:
+            case TSTS_LSM_Notification_UUID:
+            case TSTS_LSM_Enumeration_UUID:
+            case TSTS_TermSrv_UUID:
+            case TSTS_TermSrv_Listener_UUID:
+            case TSTS_Legacy_UUID:
+            case TSTS_TSVIPPublic_UUID:
+            case TSTS_SessEnvPublicRpc_UUID:
+            case RAIW_winsif_UUID:
+            case RAIW_winsi2_UUID:
                 return true;
-            case WellKnownProtocol.DirectoryReplicationService:
-            case WellKnownProtocol.FileReplicationService:
-            case WellKnownProtocol.DistributedFileReplication:
+            case DRSR_drsuapi_UUID:
+            case DRSR_dsaop_UUID:
+            case FRS1_UUID:
+            case FRS2_UUID:
             default:
                 // We either do not know the protocol or it does not use named pipes.
                 return false;
@@ -741,98 +930,110 @@ public static class WellKnownProtocolTranslator
     /// Translates a well-known RPC interface UUID to its corresponding protocol name.
     /// </summary>
     /// <param name="interfaceUUID">RPC interface UUID</param>
+    /// <param name="alwaysIncludeInterfaceUUID">Indicated whether the original interface UUID should be appended to the translated protocol name.</param>
     /// <returns>Protocol name</returns>
-    public static string? ToProtocolName(this Guid? interfaceUUID)
+    public static string? ToProtocolName(this Guid? interfaceUUID, bool alwaysIncludeInterfaceUUID = false)
     {
-        if(interfaceUUID == null)
+        if (!interfaceUUID.HasValue)
         {
             // No interface UUID is configured in the filter
             return null;
         }
 
-        return interfaceUUID switch
+        string interfaceUUIDString = interfaceUUID.Value.ToString().ToLowerInvariant();
+
+        string protocolName = interfaceUUIDString switch
         {
-            { } when interfaceUUID == DRSR =>     "MS-DRSR",
-            { } when interfaceUUID == SCMR =>     "MS-SCMR",
-            { } when interfaceUUID == SASec =>    "MS-TSCH (SASec)",
-            { } when interfaceUUID == ATSvc =>    "MS-TSCH (ATSvc)",
-            { } when interfaceUUID == TSCH =>     "MS-TSCH (ITaskSchedulerService)",
-            { } when interfaceUUID == EVEN =>     "MS-EVEN",
-            { } when interfaceUUID == EVEN6 =>    "MS-EVEN6",
-            { } when interfaceUUID == KIWI =>     "MimiCom",
-            { } when interfaceUUID == RRP =>      "MS-RRP",
-            { } when interfaceUUID == RSP_NP =>   "MS-RSP (InitShutdown)",
-            { } when interfaceUUID == RSP_TCP =>  "MS-RSP (WindowsShutdown)",
-            { } when interfaceUUID == RPRN =>     "MS-RPRN",
-            { } when interfaceUUID == PAR =>      "MS-PAR",
-            { } when interfaceUUID == DFSNM =>    "MS-DFSNM",
-            { } when interfaceUUID == FRS1 =>     "MS-FRS1",
-            { } when interfaceUUID == FRS2 =>     "MS-FRS2",
-            { } when interfaceUUID == FSRVP =>    "MS-FSRP",
-            { } when interfaceUUID == NRPC =>     "MS-NRPC",
-            { } when interfaceUUID == EFSR =>     "MS-EFSR (\\pipe\\efsrpc)",
-            { } when interfaceUUID == EFSR_LSA => "MS-EFSR (\\pipe\\lsarpc)",
-            { } when interfaceUUID == LSAD =>     "MS-LSAD",
-            { } when interfaceUUID == SRVSVC =>   "MS-SRVSVC",
-            { } when interfaceUUID == WKSSVC =>   "MS-WKSSVC",
-            { } when interfaceUUID == BKRP =>     "MS-BKRP",
-            { } when interfaceUUID == DNSP =>     "MS-DNSP",
-            { } when interfaceUUID == SAMR =>     "MS-SAMR",
-            { } when interfaceUUID == EPMAP =>    "EPMAP",
-            { } when interfaceUUID == CSRA_ICertAdminD => "MS-CSRA (ICertAdminD)",
-            { } when interfaceUUID == CSRA_ICertAdminD2 => "MS-CSRA (ICertAdminD2)",
-            { } when interfaceUUID == ICPR =>     "MS-ICPR",
-            { } when interfaceUUID == PAN_IRPCAsyncNotify => "MS-PAN (IRPCAsyncNotify)",
-            { } when interfaceUUID == PAN_IRPCRemoteObject => "MS-PAN (IRPCRemoteObject)",
-            { } when interfaceUUID == NSPI =>     "MS-NSPI",
-            { } when interfaceUUID == DSSP =>     "MS-DSSP",
-            { } when interfaceUUID == BRWSA =>    "MS-BRWSA",
-            { } when interfaceUUID == DHCPM_dhcpsrv => "MS-DHCPM (dhcpsrv)",
-            { } when interfaceUUID == DHCPM_dhcpsrv2 => "MS-DHCPM (dhcpsrv2)",
-            { } when interfaceUUID == DLTM =>     "MS-DLTM",
-            { } when interfaceUUID == DLTW =>     "MS-DLTW",
-            { } when interfaceUUID == RRASM_RASRPC =>                "MS-RRASM (RASRPC)",
-            { } when interfaceUUID == RRASM_DIMSVC =>                "MS-RRASM (DIMSVC)",
-            { } when interfaceUUID == RRASM_IRemoteNetworkConfig =>  "MS-RRASM (IRemoteNetworkConfig)",
-            { } when interfaceUUID == RRASM_IRemoteRouterRestart =>  "MS-RRASM (IRemoteRouterRestart)",
-            { } when interfaceUUID == RRASM_IRemoteSetDnsConfig =>   "MS-RRASM (IRemoteSetDnsConfig)",
-            { } when interfaceUUID == RRASM_IRemoteICFICSConfig =>   "MS-RRASM (IRemoteICFICSConfig)",
-            { } when interfaceUUID == RRASM_IRemoteStringIdConfig => "MS-RRASM (IRemoteStringIdConfig)",
-            { } when interfaceUUID == RRASM_IRemoteIPV6Config =>     "MS-RRASM (IRemoteIPV6Config)",
-            { } when interfaceUUID == RRASM_IRemoteSstpCertCheck =>  "MS-RRASM (IRemoteSstpCertCheck)",
-            { } when interfaceUUID == W32T =>     "MS-W32T",
-            { } when interfaceUUID == RAIW_winsif =>           "MS-RAIW (winsif",
-            { } when interfaceUUID == RAIW_winsif2 =>          "MS-RAIW (winsif2)",
-            { } when interfaceUUID == TSTS_LSM_Session =>      "MS-TSTS (LSM Session)",
-            { } when interfaceUUID == TSTS_LSM_Notification => "MS-TSTS (LSM Notification)",
-            { } when interfaceUUID == TSTS_LSM_Enumeration =>  "MS-TSTS (LSM Enumeration)",
-            { } when interfaceUUID == TSTS_TermSrv =>          "MS-TSTS (TermSrv)",
-            { } when interfaceUUID == TSTS_TermSrv_Listener => "MS-TSTS (TermSrv Listener)",
-            { } when interfaceUUID == TSTS_Legacy =>           "MS-TSTS (Legacy)",
-            { } when interfaceUUID == TSTS_TSVIPPublic =>      "MS-TSTS (TSVIPPublic)",
-            { } when interfaceUUID == TSTS_SessEnvPublicRpc => "MS-TSTS (SessEnvPublicRpc)",
-            { } when interfaceUUID == DCOM_IActivation =>      "MS-DCOM (IActivation)",
-            { } when interfaceUUID == DCOM_IActivationPropertiesIn =>  "MS-DCOM (IActivationPropertiesIn)",
-            { } when interfaceUUID == DCOM_IActivationPropertiesOut => "MS-DCOM (IActivationPropertiesOut)",
-            { } when interfaceUUID == DCOM_IContext =>            "MS-DCOM (IContext)",
-            { } when interfaceUUID == DCOM_IObjectExporter =>     "MS-DCOM (IObjectExporter)",
-            { } when interfaceUUID == DCOM_IRemoteSCMActivator => "MS-DCOM (IRemoteSCMActivator)",
-            { } when interfaceUUID == DCOM_IRemUnknown =>         "MS-DCOM (IRemUnknown)",
-            { } when interfaceUUID == DCOM_IRemUnknown2 =>        "MS-DCOM (IRemUnknown2)",
-            { } when interfaceUUID == DCOM_IUnknown =>            "MS-DCOM (IUnknown)",
-            { } when interfaceUUID == WMI_IWbemLevel1Login =>     "MS-WMI (IWbemLevel1Login)",
-            { } when interfaceUUID == WMI_IWbemLoginClientID =>   "MS-WMI (IWbemLoginClientID)",
-            { } when interfaceUUID == WMI_IWbemLoginHelper =>     "MS-WMI (IWbemLoginHelper)",
-            { } when interfaceUUID == WMI_IWbemServices =>        "MS-WMI (IWbemServices)",
-            { } when interfaceUUID == WMI_IWbemBackupRestore =>   "MS-WMI (IWbemBackupRestore)",
-            { } when interfaceUUID == WMI_IWbemBackupRestoreEx => "MS-WMI (IWbemBackupRestoreEx)",
-            { } when interfaceUUID == WMI_IWbemClassObject =>     "MS-WMI (IWbemClassObject)",
-            { } when interfaceUUID == WMI_IWbemContext =>         "MS-WMI (IWbemContext)",
-            { } when interfaceUUID == WCCE_ICertRequestD =>       "MS-WCCE (ICertRequestD)",
-            { } when interfaceUUID == WCCE_ICertRequestD2 =>      "MS-WCCE (ICertRequestD)",
+            DRSR_drsuapi_UUID => "MS-DRSR (drsuapi)",
+            DRSR_dsaop_UUID   => "MS-DRSR (dsaop)",
+            SCMR_UUID =>     "MS-SCMR",
+            SASec_UUID =>    "MS-TSCH (SASec)",
+            ATSvc_UUID =>    "MS-TSCH (ATSvc)",
+            TSCH_UUID =>     "MS-TSCH (ITaskSchedulerService)",
+            EVEN_UUID =>     "MS-EVEN",
+            EVEN6_UUID =>    "MS-EVEN6",
+            KIWI_UUID =>     "MimiCom",
+            RRP_UUID =>      "MS-RRP",
+            RSP_NP_UUID =>   "MS-RSP (InitShutdown)",
+            RSP_TCP_UUID =>  "MS-RSP (WindowsShutdown)",
+            RPRN_UUID =>     "MS-RPRN",
+            PAR_UUID =>      "MS-PAR",
+            DFSNM_UUID =>    "MS-DFSNM",
+            FRS1_UUID =>     "MS-FRS1",
+            FRS2_UUID =>     "MS-FRS2",
+            FSRVP_UUID =>    "MS-FSRP",
+            NRPC_UUID =>     "MS-NRPC",
+            EFSR_UUID =>     "MS-EFSR (\\pipe\\efsrpc)",
+            EFSR_LSA_UUID => "MS-EFSR (\\pipe\\lsarpc)",
+            LSAD_UUID =>     "MS-LSAD",
+            SRVSVC_UUID =>   "MS-SRVSVC",
+            WKSSVC_UUID =>   "MS-WKSSVC",
+            BKRP_UUID =>     "MS-BKRP",
+            DNSP_UUID =>     "MS-DNSP",
+            SAMR_UUID =>     "MS-SAMR",
+            EPMAP_UUID =>    "EPMAP",
+            CSRA_ICertAdminD_UUID => "MS-CSRA (ICertAdminD)",
+            CSRA_ICertAdminD2_UUID => "MS-CSRA (ICertAdminD2)",
+            ICPR_UUID =>     "MS-ICPR",
+            PAN_IRPCAsyncNotify_UUID => "MS-PAN (IRPCAsyncNotify)",
+            PAN_IRPCRemoteObject_UUID => "MS-PAN (IRPCRemoteObject)",
+            NSPI_UUID =>     "MS-NSPI",
+            DSSP_UUID =>     "MS-DSSP",
+            BRWSA_UUID =>    "MS-BRWSA",
+            DHCPM_dhcpsrv_UUID => "MS-DHCPM (dhcpsrv)",
+            DHCPM_dhcpsrv2_UUID => "MS-DHCPM (dhcpsrv2)",
+            DLTM_UUID =>     "MS-DLTM",
+            DLTW_UUID =>     "MS-DLTW",
+            RRASM_RASRPC_UUID =>                "MS-RRASM (RASRPC)",
+            RRASM_DIMSVC_UUID =>                "MS-RRASM (DIMSVC)",
+            RRASM_IRemoteNetworkConfig_UUID =>  "MS-RRASM (IRemoteNetworkConfig)",
+            RRASM_IRemoteRouterRestart_UUID =>  "MS-RRASM (IRemoteRouterRestart)",
+            RRASM_IRemoteSetDnsConfig_UUID =>   "MS-RRASM (IRemoteSetDnsConfig)",
+            RRASM_IRemoteICFICSConfig_UUID =>   "MS-RRASM (IRemoteICFICSConfig)",
+            RRASM_IRemoteStringIdConfig_UUID => "MS-RRASM (IRemoteStringIdConfig)",
+            RRASM_IRemoteIPV6Config_UUID =>     "MS-RRASM (IRemoteIPV6Config)",
+            RRASM_IRemoteSstpCertCheck_UUID =>  "MS-RRASM (IRemoteSstpCertCheck)",
+            W32T_UUID =>     "MS-W32T",
+            RAIW_winsif_UUID =>           "MS-RAIW (winsif",
+            RAIW_winsi2_UUID =>           "MS-RAIW (winsi2)",
+            TSTS_LSM_Session_UUID =>      "MS-TSTS (LSM Session)",
+            TSTS_LSM_Notification_UUID => "MS-TSTS (LSM Notification)",
+            TSTS_LSM_Enumeration_UUID =>  "MS-TSTS (LSM Enumeration)",
+            TSTS_TermSrv_UUID =>          "MS-TSTS (TermSrv)",
+            TSTS_TermSrv_Listener_UUID => "MS-TSTS (TermSrv Listener)",
+            TSTS_Legacy_UUID =>           "MS-TSTS (Legacy)",
+            TSTS_TSVIPPublic_UUID =>      "MS-TSTS (TSVIPPublic)",
+            TSTS_SessEnvPublicRpc_UUID => "MS-TSTS (SessEnvPublicRpc)",
+            DCOM_IActivation_UUID =>      "MS-DCOM (IActivation)",
+            DCOM_IActivationPropertiesIn_UUID =>  "MS-DCOM (IActivationPropertiesIn)",
+            DCOM_IActivationPropertiesOut_UUID => "MS-DCOM (IActivationPropertiesOut)",
+            DCOM_IContext_UUID =>            "MS-DCOM (IContext)",
+            DCOM_IObjectExporter_UUID =>     "MS-DCOM (IObjectExporter)",
+            DCOM_IRemoteSCMActivator_UUID => "MS-DCOM (IRemoteSCMActivator)",
+            DCOM_IRemUnknown_UUID =>         "MS-DCOM (IRemUnknown)",
+            DCOM_IRemUnknown2_UUID =>        "MS-DCOM (IRemUnknown2)",
+            DCOM_IUnknown_UUID =>            "MS-DCOM (IUnknown)",
+            WMI_IWbemLevel1Login_UUID =>     "MS-WMI (IWbemLevel1Login)",
+            WMI_IWbemLoginClientID_UUID =>   "MS-WMI (IWbemLoginClientID)",
+            WMI_IWbemLoginHelper_UUID =>     "MS-WMI (IWbemLoginHelper)",
+            WMI_IWbemServices_UUID =>        "MS-WMI (IWbemServices)",
+            WMI_IWbemBackupRestore_UUID =>   "MS-WMI (IWbemBackupRestore)",
+            WMI_IWbemBackupRestoreEx_UUID => "MS-WMI (IWbemBackupRestoreEx)",
+            WMI_IWbemClassObject_UUID =>     "MS-WMI (IWbemClassObject)",
+            WMI_IWbemContext_UUID =>         "MS-WMI (IWbemContext)",
+            WCCE_ICertRequestD_UUID =>       "MS-WCCE (ICertRequestD)",
+            WCCE_ICertRequestD2_UUID =>      "MS-WCCE (ICertRequestD)",
             // Return the original GUID if no match is found
-            _ => interfaceUUID.ToString()
+            _ => interfaceUUIDString
         };
+
+        if (protocolName != interfaceUUIDString && alwaysIncludeInterfaceUUID)
+        {
+            // Append the original interface UUID to the translated protocol name if requested by the caller
+            protocolName = $"{protocolName} - {{{interfaceUUIDString}}}";
+        }
+
+        return protocolName;
     }
 
     /// <summary>
@@ -840,75 +1041,79 @@ public static class WellKnownProtocolTranslator
     /// </summary>
     /// <param name="interfaceUUID">RPC interface UUID</param>
     /// <param name="operationNumber">Interface-specific operation number</param>
+    /// <param name="alwaysIncludeOperationNumber">Indicated whether the original operation number should be appended to the translated operation name.</param>
     /// <returns>Operation name</returns>
-    public static string? ToOperationName(Guid? interfaceUUID, ushort? operationNumber)
+    public static string? ToOperationName(Guid? interfaceUUID, ushort? operationNumber, bool alwaysIncludeOperationNumber = true)
     {
         if(operationNumber == null)
         {
             // No operation number is configured in the filter
             return null;
         }
-        else if(interfaceUUID == null)
+        else if(!interfaceUUID.HasValue)
         {
             // Although the operation number is defined, it cannot be translated without the corresponding interface UUID
             return operationNumber?.ToString(CultureInfo.InvariantCulture);
         }
 
+        string interfaceUUIDString = interfaceUUID.Value.ToString().ToLowerInvariant();
+
         // Both interface UUID and operation number are configured in the filter
-        string? operationName = (interfaceUUID, operationNumber) switch
+        string? operationName = (interfaceUUIDString, operationNumber) switch
         {
-            { } when interfaceUUID == DRSR && operationNumber == IDL_DRSGetNCChanges => nameof(IDL_DRSGetNCChanges),
-            { } when interfaceUUID == DRSR && operationNumber == IDL_DRSReplicaAdd => nameof(IDL_DRSReplicaAdd),
-            { } when interfaceUUID == EVEN6 && operationNumber == EvtRpcClearLog => nameof(EvtRpcClearLog),
-            { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFW => nameof(ElfrClearELFW),
-            { } when interfaceUUID == EVEN && operationNumber == ElfrClearELFA => nameof(ElfrClearELFA),
-            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceW => nameof(RCreateServiceW),
-            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceA => nameof(RCreateServiceA),
-            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceWOW64A => nameof(RCreateServiceWOW64A),
-            { } when interfaceUUID == SCMR && operationNumber == RCreateServiceWOW64W => nameof(RCreateServiceWOW64W),
-            { } when interfaceUUID == SCMR && operationNumber == RCreateWowService => nameof(RCreateWowService),
-            { } when interfaceUUID == RRP && operationNumber == BaseRegCreateKey => nameof(BaseRegCreateKey),
-            { } when interfaceUUID == RRP && operationNumber == BaseRegSetValue => nameof(BaseRegSetValue),
-            { } when interfaceUUID == TSCH && operationNumber == SchRpcRegisterTask => nameof(SchRpcRegisterTask),
-            { } when interfaceUUID == ATSvc && operationNumber == NetrJobAdd => nameof(NetrJobAdd),
-            { } when interfaceUUID == SRVSVC && operationNumber == NetrFileEnum => nameof(NetrFileEnum),
-            { } when interfaceUUID == SRVSVC && operationNumber == NetrSessionEnum => nameof(NetrSessionEnum),
-            { } when interfaceUUID == SRVSVC && operationNumber == NetrShareEnum => nameof(NetrShareEnum),
-            { } when interfaceUUID == SRVSVC && operationNumber == NetrConnectionEnum => nameof(NetrConnectionEnum),
-            { } when interfaceUUID == PAR && operationNumber == RpcAsyncAddPrinterDriver => nameof(RpcAsyncAddPrinterDriver),
-            { } when interfaceUUID == RPRN && operationNumber == RpcAddPrinterDriverEx => nameof(RpcAddPrinterDriverEx),
-            { } when interfaceUUID == RPRN && operationNumber == RpcRemoteFindFirstPrinterChangeNotification => nameof(RpcRemoteFindFirstPrinterChangeNotification),
-            { } when interfaceUUID == RPRN && operationNumber == RpcRemoteFindFirstPrinterChangeNotificationEx => nameof(RpcRemoteFindFirstPrinterChangeNotificationEx),
-            { } when interfaceUUID == SAMR && operationNumber == SamrEnumerateGroupsInDomain => nameof(SamrEnumerateGroupsInDomain),
-            { } when interfaceUUID == SAMR && operationNumber == SamrEnumerateUsersInDomain => nameof(SamrEnumerateUsersInDomain),
-            { } when interfaceUUID == LSAD && operationNumber == LsarRetrievePrivateData => nameof(LsarRetrievePrivateData),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcOpenFileRaw => nameof(EfsRpcOpenFileRaw),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcEncryptFileSrv => nameof(EfsRpcEncryptFileSrv),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcDecryptFileSrv => nameof(EfsRpcDecryptFileSrv),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcQueryUsersOnFile => nameof(EfsRpcQueryUsersOnFile),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcQueryRecoveryAgents => nameof(EfsRpcQueryRecoveryAgents),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcRemoveUsersFromFile => nameof(EfsRpcRemoveUsersFromFile),
-            { } when interfaceUUID == EFSR && operationNumber == EfsRpcAddUsersToFile => nameof(EfsRpcAddUsersToFile),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcOpenFileRaw => nameof(EfsRpcOpenFileRaw),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcEncryptFileSrv => nameof(EfsRpcEncryptFileSrv),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcDecryptFileSrv => nameof(EfsRpcDecryptFileSrv),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcQueryUsersOnFile => nameof(EfsRpcQueryUsersOnFile),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcQueryRecoveryAgents => nameof(EfsRpcQueryRecoveryAgents),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcRemoveUsersFromFile => nameof(EfsRpcRemoveUsersFromFile),
-            { } when interfaceUUID == EFSR_LSA && operationNumber == EfsRpcAddUsersToFile => nameof(EfsRpcAddUsersToFile),
-            { } when interfaceUUID == FSRVP && operationNumber == IsPathSupported => nameof(IsPathSupported),
-            { } when interfaceUUID == FSRVP && operationNumber == IsPathShadowCopied => nameof(IsPathShadowCopied),
-            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsAddStdRoot => nameof(NetrDfsAddStdRoot),
-            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsRemoveStdRoot => nameof(NetrDfsRemoveStdRoot),
-            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsAddRootTarget => nameof(NetrDfsAddRootTarget),
-            { } when interfaceUUID == DFSNM && operationNumber == NetrDfsRemoveRootTarget => nameof(NetrDfsRemoveRootTarget),
+            (DRSR_drsuapi_UUID, IDL_DRSGetNCChanges) => nameof(IDL_DRSGetNCChanges),
+            (DRSR_drsuapi_UUID, IDL_DRSReplicaAdd) => nameof(IDL_DRSReplicaAdd),
+            (EVEN6_UUID, EvtRpcClearLog) => nameof(EvtRpcClearLog),
+            (EVEN_UUID, ElfrClearELFW) => nameof(ElfrClearELFW),
+            (EVEN_UUID, ElfrClearELFA) => nameof(ElfrClearELFA),
+            (SCMR_UUID, RCreateServiceW) => nameof(RCreateServiceW),
+            (SCMR_UUID, RCreateServiceA) => nameof(RCreateServiceA),
+            (SCMR_UUID, RCreateServiceWOW64A) => nameof(RCreateServiceWOW64A),
+            (SCMR_UUID, RCreateServiceWOW64W) => nameof(RCreateServiceWOW64W),
+            (SCMR_UUID, RCreateWowService) => nameof(RCreateWowService),
+            (RRP_UUID, BaseRegCreateKey) => nameof(BaseRegCreateKey),
+            (RRP_UUID, BaseRegSetValue) => nameof(BaseRegSetValue),
+            (TSCH_UUID, SchRpcRegisterTask) => nameof(SchRpcRegisterTask),
+            (ATSvc_UUID, NetrJobAdd) => nameof(NetrJobAdd),
+            (SRVSVC_UUID, NetrFileEnum) => nameof(NetrFileEnum),
+            (SRVSVC_UUID, NetrSessionEnum) => nameof(NetrSessionEnum),
+            (SRVSVC_UUID, NetrShareEnum) => nameof(NetrShareEnum),
+            (SRVSVC_UUID, NetrConnectionEnum) => nameof(NetrConnectionEnum),
+            (PAR_UUID, RpcAsyncAddPrinterDriver) => nameof(RpcAsyncAddPrinterDriver),
+            (RPRN_UUID, RpcAddPrinterDriverEx) => nameof(RpcAddPrinterDriverEx),
+            (RPRN_UUID, RpcRemoteFindFirstPrinterChangeNotification) => nameof(RpcRemoteFindFirstPrinterChangeNotification),
+            (RPRN_UUID, RpcRemoteFindFirstPrinterChangeNotificationEx) => nameof(RpcRemoteFindFirstPrinterChangeNotificationEx),
+            (SAMR_UUID, SamrEnumerateGroupsInDomain) => nameof(SamrEnumerateGroupsInDomain),
+            (SAMR_UUID, SamrEnumerateUsersInDomain) => nameof(SamrEnumerateUsersInDomain),
+            (LSAD_UUID, LsarRetrievePrivateData) => nameof(LsarRetrievePrivateData),
+            (EFSR_UUID, EfsRpcOpenFileRaw) => nameof(EfsRpcOpenFileRaw),
+            (EFSR_UUID, EfsRpcEncryptFileSrv) => nameof(EfsRpcEncryptFileSrv),
+            (EFSR_UUID, EfsRpcDecryptFileSrv) => nameof(EfsRpcDecryptFileSrv),
+            (EFSR_UUID, EfsRpcQueryUsersOnFile) => nameof(EfsRpcQueryUsersOnFile),
+            (EFSR_UUID, EfsRpcQueryRecoveryAgents) => nameof(EfsRpcQueryRecoveryAgents),
+            (EFSR_UUID, EfsRpcRemoveUsersFromFile) => nameof(EfsRpcRemoveUsersFromFile),
+            (EFSR_UUID, EfsRpcAddUsersToFile) => nameof(EfsRpcAddUsersToFile),
+            (EFSR_LSA_UUID, EfsRpcOpenFileRaw) => nameof(EfsRpcOpenFileRaw),
+            (EFSR_LSA_UUID, EfsRpcEncryptFileSrv) => nameof(EfsRpcEncryptFileSrv),
+            (EFSR_LSA_UUID, EfsRpcDecryptFileSrv) => nameof(EfsRpcDecryptFileSrv),
+            (EFSR_LSA_UUID, EfsRpcQueryUsersOnFile) => nameof(EfsRpcQueryUsersOnFile),
+            (EFSR_LSA_UUID, EfsRpcQueryRecoveryAgents) => nameof(EfsRpcQueryRecoveryAgents),
+            (EFSR_LSA_UUID, EfsRpcRemoveUsersFromFile) => nameof(EfsRpcRemoveUsersFromFile),
+            (EFSR_LSA_UUID, EfsRpcAddUsersToFile) => nameof(EfsRpcAddUsersToFile),
+            (FSRVP_UUID, IsPathSupported) => nameof(IsPathSupported),
+            (FSRVP_UUID, IsPathShadowCopied) => nameof(IsPathShadowCopied),
+            (DFSNM_UUID, NetrDfsAddStdRoot) => nameof(NetrDfsAddStdRoot),
+            (DFSNM_UUID, NetrDfsRemoveStdRoot) => nameof(NetrDfsRemoveStdRoot),
+            (DFSNM_UUID, NetrDfsAddRootTarget) => nameof(NetrDfsAddRootTarget),
+            (DFSNM_UUID, NetrDfsRemoveRootTarget) => nameof(NetrDfsRemoveRootTarget),
             _ => null
         };
 
+        // Check if an operation name was found
         if (operationName != null)
         {
-            // Return the operation name and number if a match is found
-            return $"{operationName} ({operationNumber})";
+            // Return the translated operation name and optionally include the original number in  parenthesis
+            return alwaysIncludeOperationNumber ? $"{operationName} ({operationNumber})" : operationName;
         }
         else
         {

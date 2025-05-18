@@ -6,9 +6,14 @@
 public enum WellKnownProtocol
 {
     /// <summary>
-    /// MS-DRSR: Directory Replication Service Remote Protocol
+    /// MS-DRSR: Directory Replication Service Remote Protocol (drsuapi)
     /// </summary>
     DirectoryReplicationService,
+
+    /// <summary>
+    /// MS-DRSR: Directory Replication Service Remote Protocol (dsaop)
+    /// </summary>
+    DomainRenameScript,
 
     /// <summary>
     /// MS-SCMR: Service Control Manager Remote Protocol
