@@ -380,13 +380,13 @@ internal readonly struct FWP_VALUE0
             {
                 // IPV4 address only
                 byte[] binaryAddress = address.GetAddressBytes();
-                uint byteAddress = BitConverter.ToUInt32(binaryAddress, 0);
+                uint intAddress = BitConverter.ToUInt32(binaryAddress, 0);
                 if (BitConverter.IsLittleEndian)
                 {
-                    // Convert to big-endian if necessary
-                    byteAddress = BinaryPrimitives.ReverseEndianness(byteAddress);
+                    // Convert from big-endian if necessary
+                    intAddress = BinaryPrimitives.ReverseEndianness(intAddress);
                 }
-                var nativeValue = new FWP_VALUE0(byteAddress);
+                var nativeValue = new FWP_VALUE0(intAddress);
                 return (nativeValue, null);
             }
         }

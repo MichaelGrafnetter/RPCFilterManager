@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Buffers.Binary;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
@@ -50,11 +51,17 @@ internal readonly struct FWPM_FILTER_CONDITION0
         {
             if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4)
             {
-                long? intValue = this.ConditionValue.IntValue;
+                uint? intValue = this.ConditionValue.UInt32Value;
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    var address = new IPAddress(IPAddress.HostToNetworkOrder(intValue.Value));
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        // Convert to big-endian if necessary
+                        intValue = BinaryPrimitives.ReverseEndianness(intValue.Value);
+                    }
+
+                    IPAddress address = new(intValue.Value);
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
                 else
@@ -95,11 +102,17 @@ internal readonly struct FWPM_FILTER_CONDITION0
         {
             if (this.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4)
             {
-                long? intValue = this.ConditionValue.IntValue;
+                uint? intValue = this.ConditionValue.UInt32Value;
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    var address = new IPAddress(IPAddress.HostToNetworkOrder(intValue.Value));
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        // Convert to big-endian if necessary
+                        intValue = BinaryPrimitives.ReverseEndianness(intValue.Value);
+                    }
+
+                    IPAddress address = new(intValue.Value);
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
                 else
