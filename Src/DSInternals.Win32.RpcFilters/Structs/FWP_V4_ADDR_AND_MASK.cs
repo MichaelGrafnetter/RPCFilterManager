@@ -1,5 +1,4 @@
-﻿using System.Buffers.Binary;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 
@@ -29,18 +28,7 @@ internal struct FWP_V4_ADDR_AND_MASK
     /// </summary>
     public IPAddress Address
     {
-        readonly get
-        {
-            if (BitConverter.IsLittleEndian)
-            {
-                // Convert to big-endian if necessary
-                return new(BinaryPrimitives.ReverseEndianness(this.addr));
-            }
-            else
-            {
-                return new(this.addr);
-            }
-        }
+        readonly get => new(this.addr);
         set
         {
             if (value == null)
@@ -54,15 +42,7 @@ internal struct FWP_V4_ADDR_AND_MASK
             }
 
             byte[] binaryAddress = value.GetAddressBytes();
-            uint intAddress = BitConverter.ToUInt32(binaryAddress, 0);
-
-            if (BitConverter.IsLittleEndian)
-            {
-                // Convert from big-endian if necessary
-                intAddress = BinaryPrimitives.ReverseEndianness(intAddress);
-            }
-
-            this.addr = intAddress;
+            this.addr = BitConverter.ToUInt32(binaryAddress, 0);
         }
     }
 

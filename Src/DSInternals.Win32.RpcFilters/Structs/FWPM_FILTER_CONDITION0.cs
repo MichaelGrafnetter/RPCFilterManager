@@ -1,5 +1,4 @@
-﻿using System.Buffers.Binary;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
@@ -55,12 +54,6 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    if (BitConverter.IsLittleEndian)
-                    {
-                        // Convert to big-endian if necessary
-                        intValue = BinaryPrimitives.ReverseEndianness(intValue.Value);
-                    }
-
                     IPAddress address = new(intValue.Value);
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
@@ -106,12 +99,6 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    if (BitConverter.IsLittleEndian)
-                    {
-                        // Convert to big-endian if necessary
-                        intValue = BinaryPrimitives.ReverseEndianness(intValue.Value);
-                    }
-
                     IPAddress address = new(intValue.Value);
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
