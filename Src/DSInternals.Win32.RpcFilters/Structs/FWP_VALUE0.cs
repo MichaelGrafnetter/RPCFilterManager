@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Buffers.Binary;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
@@ -380,6 +381,11 @@ internal readonly struct FWP_VALUE0
                 // IPV4 address only
                 byte[] binaryAddress = address.GetAddressBytes();
                 uint byteAddress = BitConverter.ToUInt32(binaryAddress, 0);
+                if (BitConverter.IsLittleEndian)
+                {
+                    // Convert to big-endian if necessary
+                    byteAddress = BinaryPrimitives.ReverseEndianness(byteAddress);
+                }
                 var nativeValue = new FWP_VALUE0(byteAddress);
                 return (nativeValue, null);
             }

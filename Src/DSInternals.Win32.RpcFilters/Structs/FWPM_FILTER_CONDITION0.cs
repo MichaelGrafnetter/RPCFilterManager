@@ -54,7 +54,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    var address = new IPAddress(intValue.Value);
+                    var address = new IPAddress(IPAddress.HostToNetworkOrder(intValue.Value));
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
                 else
@@ -99,7 +99,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
                 if (intValue.HasValue)
                 {
                     // Single IPv4 address.
-                    var address = new IPAddress(intValue.Value);
+                    var address = new IPAddress(IPAddress.HostToNetworkOrder(intValue.Value));
                     return (address, FWP_V4_ADDR_AND_MASK.MaxIpv4PrefixLength);
                 }
                 else

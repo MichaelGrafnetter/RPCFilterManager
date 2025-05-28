@@ -16,7 +16,7 @@ internal struct FWP_V4_ADDR_AND_MASK
     /// <summary>
     /// Specifies an IPv4 address.
     /// </summary>
-    private uint addr;
+    private int addr;
 
     /// <summary>
     /// Specifies an IPv4 mask.
@@ -28,7 +28,7 @@ internal struct FWP_V4_ADDR_AND_MASK
     /// </summary>
     public IPAddress Address
     {
-        readonly get => new(this.addr);
+        readonly get => new(IPAddress.HostToNetworkOrder(this.addr));
         set
         {
             if (value == null)
@@ -42,8 +42,8 @@ internal struct FWP_V4_ADDR_AND_MASK
             }
 
             byte[] binaryAddress = value.GetAddressBytes();
-            this.addr = BitConverter.ToUInt32(binaryAddress, 0);
-        } 
+            this.addr = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(binaryAddress, 0));
+        }
     }
 
     /// <summary>
