@@ -111,10 +111,10 @@ jobs:
       if: ${{ inputs.certificate_sign }}
       run: >
         sign code azure-key-vault
-        DSInternals.Win32.RpcFilters/release_*/DSInternals.Win32.RpcFilters.dll
-        DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters/DSInternals.*
-        DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters/**/DSInternals.Win32.RpcFilters.PowerShell.dll
-        --base-directory "${{ github.workspace }}/Build/bin
+        "DSInternals.Win32.RpcFilters/release_*/DSInternals.Win32.RpcFilters.dll"
+        "DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters/DSInternals.*"
+        "DSInternals.Win32.RpcFilters.PowerShell/Release/DSInternals.RpcFilters/**/DSInternals.Win32.RpcFilters.PowerShell.dll"
+        --base-directory "${{ github.workspace }}/Build/bin"
         --azure-key-vault-url "${{ secrets.SIGNING_KEY_VAULT_URL }}"
         --azure-key-vault-certificate "${{ secrets.SIGNING_KEY_VAULT_CERTIFICATE }}"
         --azure-credential-type azure-cli
