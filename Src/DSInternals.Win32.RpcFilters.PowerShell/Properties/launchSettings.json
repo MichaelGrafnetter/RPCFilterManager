@@ -1,8 +1,14 @@
 {
   "profiles": {
-    "Debug PowerShell Module": {
+    "Debug in PowerShell Desktop": {
       "commandName": "Executable",
       "executablePath": "powershell.exe",
+      "commandLineArgs": "-NoExit -NoProfile -NoLogo -ExecutionPolicy Bypass -File Debug.ps1 -ModulePath \"$(TargetDir)..\\DSInternals.RpcFilters.psd1\"",
+      "workingDirectory": "$(MSBuildProjectDirectory)"
+    },
+    "Debug in PowerShell Core": {
+      "commandName": "Executable",
+      "executablePath": "pwsh.exe",
       "commandLineArgs": "-NoExit -NoProfile -NoLogo -ExecutionPolicy Bypass -File Debug.ps1 -ModulePath \"$(TargetDir)..\\DSInternals.RpcFilters.psd1\"",
       "workingDirectory": "$(MSBuildProjectDirectory)"
     },

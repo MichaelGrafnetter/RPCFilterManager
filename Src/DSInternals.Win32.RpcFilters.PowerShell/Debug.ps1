@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Debugging script for the DSInternals.RpcFilters PowerShell module.+
+    Debugging script for the DSInternals.RpcFilters PowerShell module.
 .PARAMETER ModulePath
     Path to the compiled PowerShell module
 #>
