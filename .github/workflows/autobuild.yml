@@ -59,27 +59,11 @@ jobs:
 
     - name: Run .NET Unit Tests
       working-directory: Src
-      run: dotnet test --configuration Debug --no-build
+      run: dotnet test --configuration Debug --no-build -- --report-trx --results-directory "${{ github.workspace }}/Build/TestResults"
 
     - name: Run Pester Tests
       shell: powershell
       run: Src/DSInternals.Win32.RpcFilters.PowerShell/Test.ps1 -ModulePath "${{github.workspace}}/Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Debug/DSInternals.RpcFilters"
-
-    - name: Cache DotNet Global Tools
-      id: cache-dotnet-globaltools
-      uses: actions/cache@v4
-      with:
-        path: ~/.dotnet/tools
-        # Heuristics: The current list of required global tools is defined in this workflow file.
-        key: ${{ runner.os }}-DotNET-GlobalTools-Build-${{ hashFiles('.github/workflows/autobuild.yml') }}
-
-    - name: Install Coverage Report Generator
-      if: ${{ steps.cache-dotnet-globaltools.outputs.cache-hit != 'true' }}
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-    - name: Generate Code Coverage Reports
-      working-directory: Build/TestResults
-      run: reportgenerator -reports:*/coverage.cobertura.xml -targetdir:. -reporttypes:"HtmlSummary" -title:"DSInternals RPC Filters"
 
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action/windows@v2

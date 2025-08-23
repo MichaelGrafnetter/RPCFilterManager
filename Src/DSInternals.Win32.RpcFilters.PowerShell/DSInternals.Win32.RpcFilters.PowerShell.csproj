@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- Target both Windows PowerShell 5 and PowerShell 7 -->
-    <TargetFrameworks>net480;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
     <!-- Redirect the build directory so that it includes the module name -->
     <ArtifactsPivots>$(Configuration)/DSInternals.RpcFilters/$(TargetFramework)</ArtifactsPivots>
     <PublishRelease>true</PublishRelease>
@@ -38,7 +38,7 @@
   <ItemGroup>
     <!-- Reference assemblies that are bundled with PowerShell -->
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" IncludeAssets="compile" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="9.0.4" IncludeAssets="compile" Condition="'$(TargetFramework)' != 'net480'" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="9.0.4" IncludeAssets="compile" Condition="'$(TargetFramework)' != 'net48'" />
   </ItemGroup>
 
   <ItemGroup>

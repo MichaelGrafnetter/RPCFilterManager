@@ -79,12 +79,12 @@ ModuleList = @()
 FileList = @(
     'net8.0-windows\DSInternals.Win32.RpcFilters.dll',
     'net8.0-windows\DSInternals.Win32.RpcFilters.PowerShell.dll'
-    'net480\DSInternals.Win32.RpcFilters.dll',
-    'net480\DSInternals.Win32.RpcFilters.PowerShell.dll'
-    'net480\System.Runtime.CompilerServices.Unsafe.dll',
-    'net480\System.Numerics.Vectors.dll',
-    'net480\System.Buffers.dll',
-    'net480\System.Memory.dll',
+    'net48\DSInternals.Win32.RpcFilters.dll',
+    'net48\DSInternals.Win32.RpcFilters.PowerShell.dll'
+    'net48\System.Runtime.CompilerServices.Unsafe.dll',
+    'net48\System.Numerics.Vectors.dll',
+    'net48\System.Buffers.dll',
+    'net48\System.Memory.dll',
     'en-US\about_DSInternals.RpcFilters.help.txt',
     'en-US\DSInternals.RpcFilters.Bootstrap-help.xml',
     'en-US\DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml'

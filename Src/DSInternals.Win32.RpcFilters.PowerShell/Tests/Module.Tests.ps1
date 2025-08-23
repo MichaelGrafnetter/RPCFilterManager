@@ -52,7 +52,7 @@ Describe 'PowerShell Module' {
 
         It 'has the same version as the binary module' {
             # Load the .NET Framework assembly (skip .NET 5+)
-            [string] $assemblyPath = Join-Path -Path $ModulePath -ChildPath 'net480\DSInternals.Win32.RpcFilters.PowerShell.dll'
+            [string] $assemblyPath = Join-Path -Path $ModulePath -ChildPath 'net48\DSInternals.Win32.RpcFilters.PowerShell.dll'
             [System.Reflection.AssemblyName] $assembly = [System.Reflection.AssemblyName]::GetAssemblyName($assemblyPath)
 
             # Load the module manifest
@@ -122,7 +122,7 @@ Describe 'PowerShell Module' {
     Context 'Assemblies' {
         BeforeDiscovery {
             # Only test .NET Framework assemblies
-            [string] $frameworkDirectory = Join-Path -Path $ModulePath -ChildPath 'net480'
+            [string] $frameworkDirectory = Join-Path -Path $ModulePath -ChildPath 'net48'
             [hashtable[]] $AllAssemblies =
                 Get-ChildItem $frameworkDirectory -Recurse -Filter *.dll |
                 ForEach-Object { @{ Assembly = $PSItem } }

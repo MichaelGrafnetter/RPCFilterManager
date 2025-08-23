@@ -18,7 +18,7 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
     Import-Module -Name $coreModulePath -ErrorAction Stop
 }
 else {
-    [string] $desktopModulePath = "$PSScriptRoot/net480/DSInternals.Win32.RpcFilters.PowerShell.dll"
+    [string] $desktopModulePath = "$PSScriptRoot/net48/DSInternals.Win32.RpcFilters.PowerShell.dll"
     Import-Module -Name $desktopModulePath -ErrorAction Stop
 }
 

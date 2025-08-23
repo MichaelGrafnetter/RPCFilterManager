@@ -18,12 +18,6 @@
     <!-- Redirect output directories -->
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <ArtifactsPath>$(MSBuildThisFileDirectory)..\Build</ArtifactsPath>
-    <VSTestResultsDirectory>$(MSBuildThisFileDirectory)..\Build\TestResults</VSTestResultsDirectory>
-
-    <!-- Configure MSTest properties -->
-    <VSTestLogger>html;trx</VSTestLogger>
-    <VSTestCollect>XPlat Code Coverage;Code Coverage</VSTestCollect>
-    <VSTestVerbosity>normal</VSTestVerbosity>
   </PropertyGroup>
 
   <!-- Enable strong name signing -->
