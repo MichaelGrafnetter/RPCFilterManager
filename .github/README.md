@@ -1,17 +1,23 @@
 # RPC Filters Interop Assembly Project
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
-[![.NET Framework 4.8+](https://img.shields.io/badge/.NET%20Framework-4.8%2B-007FFF.svg)](#)
-[![.NET 8+](https://img.shields.io/badge/.NET-8%2B-007FFF.svg)](#)
+[![PowerShell 5.1 | 7](https://badgen.net/badge/icon/5.1%20|%207?icon=terminal&label=PowerShell)](#)
+[![.NET Framework 4.8+](https://img.shields.io/badge/Framework-4.8%2B-007FFF.svg?logo=.net)](#)
+[![.NET 8.0+](https://img.shields.io/badge/Runtime-8.0%2B-007FFF.svg?logo=.net)](#)
 [![Continuous Integration Status](https://github.com/MichaelGrafnetter/RPCFilterManager/actions/workflows/autobuild.yml/badge.svg)](https://github.com/MichaelGrafnetter/RPCFilterManager/actions)
 
 **A .NET Library and PowerShell Module for managing Windows RPC Filters**
 
 ## Interop Assembly
 
-The `DSInternals.Win32.RpcFilters` library allows .NET applications to directly interact with Windows RPC Fiters.
+[![NuGet Gallery Downloads](https://img.shields.io/nuget/dt/DSInternals.Win32.RpcFilters.svg?label=NuGet%20Gallery%20Downloads&logo=NuGet)](https://www.nuget.org/packages/DSInternals.Win32.RpcFilters)
+
+The [DSInternals.Win32.RpcFilters](https://www.nuget.org/packages/DSInternals.Win32.RpcFilters) library allows .NET applications to directly interact with Windows RPC Fiters.
 
 ## PowerShell Module
+
+[![PowerShell Gallery Downloads](https://img.shields.io/powershellgallery/dt/DSInternals.RpcFilters.svg?label=PowerShell%20Gallery%20Downloads&logo=NuGet)](https://www.powershellgallery.com/packages/DSInternals.RpcFilters/)
+[![GitHub Downloads](https://img.shields.io/github/downloads/MichaelGrafnetter/RpcFilterManager/total.svg?label=GitHub%20Downloads&logo=GitHub)](https://github.com/MichaelGrafnetter/RpcFilterManager/releases)
 
 The [DSInternals.RpcFilters](https://www.powershellgallery.com/packages/DSInternals.RpcFilters) PowerShell module
 exposes the functionality of the `DSInternals.Win32.RpcFilters` through PowerShell cmdlets.
@@ -120,7 +126,7 @@ fw.RemoveFilter(id);
 
 ## Monitoring
 
-> ![NOTE]
+> [!NOTE]
 > Add logging example
 
 ## Known Limitations
@@ -135,6 +141,14 @@ The FWPM_CONDITION_RPC_OPNUM filter condition has been backported to downlevel W
 
 - No IP address
 - Name is case sensitive
+
+## Author
+
+### Michael Grafnetter
+
+[![Twitter](https://img.shields.io/twitter/follow/MGrafnetter.svg?label=Twitter%20@MGrafnetter&style=social)](https://x.com/MGrafnetter)
+[![Blog](https://img.shields.io/badge/Blog-www.dsinternals.com-2A6496.svg)](https://www.dsinternals.com/en)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-grafnetter-0077B5.svg)](https://www.linkedin.com/in/grafnetter)
 
 ## Acknowledgements
 
