@@ -119,7 +119,7 @@ Initial release.
         RequireLicenseAcceptance = $false
 
         # External dependent modules of this module
-        # ExternalModuleDependencies = @()
+        ExternalModuleDependencies = @('Microsoft.PowerShell.Diagnostics')
 
     } # End of PSData hashtable
 
