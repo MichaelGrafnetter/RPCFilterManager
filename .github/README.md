@@ -6,7 +6,7 @@
 [![.NET 8.0+](https://img.shields.io/badge/Runtime-8.0%2B-007FFF.svg?logo=.net)](#)
 [![Continuous Integration Status](https://github.com/MichaelGrafnetter/RPCFilterManager/actions/workflows/autobuild.yml/badge.svg)](https://github.com/MichaelGrafnetter/RPCFilterManager/actions)
 
-**A .NET Library and PowerShell Module for managing Windows RPC Filters**
+**A .NET library and PowerShell module for managing Windows RPC filters**
 
 ## Interop Assembly
 
@@ -146,7 +146,7 @@ This can be done in multiple ways:
 
 - The `auditpol.exe /set /subcategory:"RPC Events" /success:enable /failure:enable` command must be executed in an elevated command prompt  .
 - The custom [Enable-RpcFilterAuditing](../Documentation/PowerShell/Enable-RpcFilterAuditing.md) cmdlet can be used in PowerShell.
-- Administrators would prefer to use Active Directory Group Policy (Computer Configuration ⇒ Policies ⇒ Windows Settings ⇒ Security Settings ⇒ Advanced Audit Policy Configuration ⇒ System Audit Policies ⇒ Object Access ⇒ Audit RPC Events)
+- Administrators would prefer to use Active Directory Group Policy (Computer Configuration ⇒ Policies ⇒ Windows Settings ⇒ Security Settings ⇒ Advanced Audit Policy Configuration ⇒ System Audit Policies ⇒ Object Access ⇒ **Audit RPC Events**)
 
 Once auditing is enabled, the corresponding RPC events will be created in the `Security` event log:
 
