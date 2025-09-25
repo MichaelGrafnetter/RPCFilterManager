@@ -1,6 +1,6 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Security;
+using Microsoft.Win32.SafeHandles;
 
 namespace DSInternals.Win32.RpcFilters;
 

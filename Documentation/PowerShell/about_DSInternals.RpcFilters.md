@@ -1,57 +1,112 @@
 ﻿# DSInternals.RpcFilters
+
 ## about_DSInternals.RpcFilters
 
-```
-ABOUT TOPIC NOTE:
-The first header of the about topic should be the topic name.
-The second header contains the lookup name used by the help system.
-
-IE:
-# Some Help Topic Name
-## SomeHelpTopicFileName
-
-This will be transformed into the text file
-as `about_SomeHelpTopicFileName`.
-Do not include file extensions.
-The second header should have no spaces.
-```
-
 # SHORT DESCRIPTION
-{{ Short Description Placeholder }}
 
-```
-ABOUT TOPIC NOTE:
-About topics can be no longer than 80 characters wide when rendered to text.
-Any topics greater than 80 characters will be automatically wrapped.
-The generated about topic will be encoded UTF-8.
-```
+Provides PowerShell cmdlets for managing Windows RPC filters to enhance
+security by restricting remote procedure call access.
 
 # LONG DESCRIPTION
-{{ Long Description Placeholder }}
 
-## Optional Subtopics
-{{ Optional Subtopic Placeholder }}
+The DSInternals.RpcFilters module enables administrators to configure and
+manage RPC filters on Windows systems. RPC filters provide a security
+mechanism to control which RPC interfaces and methods can be accessed
+remotely, helping to reduce the attack surface of Windows services.
+
+This module allows you to:
+
+- Add, remove, and query RPC filters
+- Enable and disable auditing for RPC events
+- Retrieve RPC audit events from the Security log
+
+## RPC Filter Basics
+
+RPC filters work by intercepting incoming RPC requests and evaluating them
+against defined rules before allowing execution. Filters can be configured
+to allow or deny access based on various criteria including interface UUID,
+authentication level, and client identity.
+
+## Security Considerations
+
+Properly configured RPC filters can significantly improve system security
+by preventing unauthorized access to sensitive RPC interfaces. This is
+particularly important for domain controllers and other critical
+infrastructure servers.
 
 # EXAMPLES
-{{ Code or descriptive examples of how to leverage the functions described. }}
+
+```powershell
+Import-Module -Name DSInternals.RpcFilters
+
+# Create 3 RPC filters targeting the Directory Replication Service (DRS) Remote Protocol
+New-RpcFilter -Name 'DCSync-Allow-DC01' -WellKnownOperation IDL_DRSGetNCChanges -IPAddress 10.0.0.1 -Action Permit -Persistent
+New-RpcFilter -Name 'DCSync-Allow-DC02' -WellKnownOperation IDL_DRSGetNCChanges -IPAddress 10.0.0.2 -Action Permit -Persistent
+New-RpcFilter -Name 'DCSync-Block-Default' -WellKnownOperation IDL_DRSGetNCChanges -Action Block -Persistent
+
+# Check the current configuration
+Get-RpcFilter
+
+<# Sample output:
+Name: DCSync-Allow-DC02
+Description: RPC Filter
+FilterId: 99321, FilterKey: 745889a1-207c-4ea0-8207-e97a8ad45b41, ProviderKey: N/A
+Action: Permit
+Audit: False, Persistent: True, BootTimeEnforced: False, Disabled: False
+EffectiveWeight: 0x7e0000000001007, Weight: N/A
+Conditions:
+  Protocol = MS-DRSR
+  Operation = IDL_DRSGetNCChanges (3)
+  RemoteAddress = 10.0.0.2/32
+
+Name: DCSync-Allow-DC01
+Description: RPC Filter
+FilterId: 99320, FilterKey: bc95f1b0-a1f6-4f01-a2d0-8e3d61619b3b, ProviderKey: N/A
+Action: Permit
+Audit: False, Persistent: True, BootTimeEnforced: False, Disabled: False
+EffectiveWeight: 0x7e0000000001007, Weight: N/A
+Conditions:
+  Protocol = MS-DRSR
+  Operation = IDL_DRSGetNCChanges (3)
+  RemoteAddress = 10.0.0.1/32
+
+Name: DCSync-Block-Default
+Description: RPC Filter
+FilterId: 99322, FilterKey: 5c9a49fd-706c-423d-bddf-75afbb2eb051, ProviderKey: N/A
+Action: Block
+Audit: False, Persistent: True, BootTimeEnforced: False, Disabled: False
+EffectiveWeight: 0x7e0000000000007, Weight: N/A
+Conditions:
+  Protocol = MS-DRSR
+  Operation = IDL_DRSGetNCChanges (3)
+#>
+
+# Remove the previously created filters
+Get-RpcFilter | Where-Object Name -like 'DCSync-*' | Remove-RpcFilter
+```
 
 # NOTE
-{{ Note Placeholder - Additional information that a user needs to know.}}
+
+RPC filters require administrative privileges to configure. Changes to RPC
+filters may require service restarts to take effect. Always test filter
+configurations in a non-production environment first.
 
 # TROUBLESHOOTING NOTE
-{{ Troubleshooting Placeholder - Warns users of bugs}}
 
-{{ Explains behavior that is likely to change with fixes }}
+If a service becomes inaccessible after applying RPC filters, check the Windows
+Event Log for RPC-related errors. Overly restrictive filters can prevent
+legitimate Windows service operations.
 
 # SEE ALSO
-{{ See also placeholder }}
 
-{{ You can also list related articles, blogs, and video URLs. }}
+Get-RpcFilter
+New-RpcFilter
+Remove-RpcFilter
+Enable-RpcFilterAuditing
+Disable-RpcFilterAuditing
+Get-RpcFilterEvent
 
 # KEYWORDS
-{{List alternate names or titles for this topic that readers might use.}}
 
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
-- {{ Keyword Placeholder }}
+- RPC
+- DSInternals

@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet retrieves a list of RPC filters that match the specified criteria. If no criteria are specified, all RPC filters on the local computer are returned.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -18,7 +18,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Provider, ProviderId, RpcFilterProvider, RpcFilterProviderId">
           <maml:name>ProviderKey</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+            <maml:para>Specifies the unique identifier of the RPC filter provider.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
           <dev:type>
@@ -33,7 +33,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="RpcFirewall">
           <maml:name>ZeroNetworks</maml:name>
           <maml:description>
-            <maml:para>{{ Fill ZeroNetworks Description }}</maml:para>
+            <maml:para>Specifies that only RPC filters created by the Zero Networks RPC Firewall should be returned. This parameter is equivalent to specifying the provider key 17171717-1717-1717-1717-171717171717, which is the unique identifier of the Zero Networks RPC Filter Provider.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -47,7 +47,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Provider, ProviderId, RpcFilterProvider, RpcFilterProviderId">
         <maml:name>ProviderKey</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ProviderKey Description }}</maml:para>
+          <maml:para>Specifies the unique identifier of the RPC filter provider.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
         <dev:type>
@@ -59,7 +59,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="RpcFirewall">
         <maml:name>ZeroNetworks</maml:name>
         <maml:description>
-          <maml:para>{{ Fill ZeroNetworks Description }}</maml:para>
+          <maml:para>Specifies that only RPC filters created by the Zero Networks RPC Firewall should be returned. This parameter is equivalent to specifying the provider key 17171717-1717-1717-1717-171717171717, which is the unique identifier of the Zero Networks RPC Filter Provider.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -97,9 +97,16 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-RpcFilter</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Retrieves all RPC filters on the local computer.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-RpcFilter | Out-GridView</dev:code>
+        <dev:remarks>
+          <maml:para>Displays all RPC filters in an interactive grid view.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -128,7 +135,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet creates a new RPC filter for managing remote procedure call (RPC) traffic based on specified criteria. The filter can be customized using various parameters to define its behavior and conditions.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -163,7 +170,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
             <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
@@ -184,7 +191,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthType">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
             <maml:para>Authentication service used for RPC connections.</maml:para>
@@ -463,7 +470,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
             <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
@@ -484,7 +491,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthType">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
             <maml:para>Authentication service used for RPC connections.</maml:para>
@@ -721,7 +728,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WellKnownInterface">
           <maml:name>WellKnownProtocol</maml:name>
           <maml:description>
-            <maml:para>{{ Fill WellKnownProtocol Description }}</maml:para>
+            <maml:para>Specifies a well-known RPC protocol. The protocol UUID is derived from the specified value.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">WellKnownProtocol</command:parameterValue>
           <dev:type>
@@ -763,7 +770,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
           <maml:description>
             <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
@@ -784,7 +791,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthType">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
             <maml:para>Authentication service used for RPC connections.</maml:para>
@@ -1009,7 +1016,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>WellKnownOperation</maml:name>
           <maml:description>
-            <maml:para>{{ Fill WellKnownOperation Description }}</maml:para>
+            <maml:para>Specifies a well-known RPC operation. The protocol UUID and operation number is derived from the specified value.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">WellKnownOperation</command:parameterValue>
           <dev:type>
@@ -1045,7 +1052,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
         <maml:name>AuthenticationLevel</maml:name>
         <maml:description>
           <maml:para>The authentication level controls how much security a client or server wants from its SSP.</maml:para>
@@ -1057,7 +1064,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthType">
         <maml:name>AuthenticationType</maml:name>
         <maml:description>
           <maml:para>Authentication service used for RPC connections.</maml:para>
@@ -1300,7 +1307,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>WellKnownOperation</maml:name>
         <maml:description>
-          <maml:para>{{ Fill WellKnownOperation Description }}</maml:para>
+          <maml:para>Specifies a well-known RPC operation. The protocol UUID and operation number is derived from the specified value.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">WellKnownOperation</command:parameterValue>
         <dev:type>
@@ -1312,7 +1319,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="WellKnownInterface">
         <maml:name>WellKnownProtocol</maml:name>
         <maml:description>
-          <maml:para>{{ Fill WellKnownProtocol Description }}</maml:para>
+          <maml:para>Specifies a well-known RPC protocol. The protocol UUID is derived from the specified value.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">WellKnownProtocol</command:parameterValue>
         <dev:type>
@@ -1438,9 +1445,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Creates a new RPC filter to block and audit service management (MS-SCMR) traffic over Named Pipes.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1473,7 +1480,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet removes an existing RPC filter from the system. The filter can be specified by its unique identifier or by passing the filter object directly.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1508,7 +1515,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThrough</maml:name>
           <maml:description>
-            <maml:para>{{ Fill PassThrough Description }}</maml:para>
+            <maml:para>If this switch is specified, the cmdlet returns the deleted RPC filter object. By default, this cmdlet does not generate any output.</maml:para>
           </maml:description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1546,7 +1553,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>PassThrough</maml:name>
         <maml:description>
-          <maml:para>{{ Fill PassThrough Description }}</maml:para>
+          <maml:para>If this switch is specified, the cmdlet returns the deleted RPC filter object. By default, this cmdlet does not generate any output.</maml:para>
         </maml:description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1592,9 +1599,23 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Remove-RpcFilter -Id 123</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Removes the RPC filter with the specified identifier.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-RpcFilter | where Name -eq 'Block-EFSRPC' | Remove-RpcFilter -PassThrough</dev:code>
+        <dev:remarks>
+          <maml:para>Removes RPC filters called 'Block-EFSRPC' and returns the deleted filter objects.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-RpcFilter | Remove-RpcFilter</dev:code>
+        <dev:remarks>
+          <maml:para>Removes all existing RPC filters from the system.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

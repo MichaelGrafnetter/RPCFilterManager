@@ -12,7 +12,8 @@
 
 [![NuGet Gallery Downloads](https://img.shields.io/nuget/dt/DSInternals.Win32.RpcFilters.svg?label=NuGet%20Gallery%20Downloads&logo=NuGet)](https://www.nuget.org/packages/DSInternals.Win32.RpcFilters)
 
-The [DSInternals.Win32.RpcFilters](https://www.nuget.org/packages/DSInternals.Win32.RpcFilters) library allows .NET applications to directly interact with Windows RPC Fiters.
+The [DSInternals.Win32.RpcFilters](https://www.nuget.org/packages/DSInternals.Win32.RpcFilters) library allows .NET applications to directly interact with Windows RPC Fiters,
+part of the [Windows Filtering Platform (WFP)](https://learn.microsoft.com/en-us/windows/win32/fwp/windows-filtering-platform-start-page).
 
 ## PowerShell Module
 
@@ -77,11 +78,25 @@ Conditions:
 Get-RpcFilter | Where-Object Name -like 'DCSync-*' | Remove-RpcFilter
 ```
 
+Further examples can be found in the [PowerShell module documentation](../Documentation/PowerShell/README.md).
+
+### Comparison With the `netsh` Tool
+
+The Windows built-in `netsh` tool [can also be used to manage RPC filters](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh-rpc),
+but it has many limitations:
+
+- Filter names and descriptions cannot be set.
+- Raw protocol UUIDs and OpNums must be used instead of well-known protocol and operation names.
+- IP address conditions are not supported.
+- Auditing cannot be enabled for blocked operations.
+
 ### C\#
 
 The following example shows how RPC filters can be managed by the .NET interop library.
-Note that the code is only meant to showcase all the possible parameters,
-so the resulting filter is not meaningful at all.
+
+> [!IMPORTANT]
+> This code is only meant to showcase all the possible parameters,
+> so the resulting filter is not meaningful at all.
 
 ```cs
 using DSInternals.Win32.RpcFilters;
@@ -126,21 +141,70 @@ fw.RemoveFilter(id);
 
 ## Monitoring
 
-> [!NOTE]
-> Add logging example
+To monitor blocked or permitted RPC operations, auditing for RPC events must be enabled first.
+This can be done in multiple ways:
 
-## Known Limitations
+- The `auditpol.exe /set /subcategory:"RPC Events" /success:enable /failure:enable` command must be executed in an elevated command prompt  .
+- The custom [Enable-RpcFilterAuditing](../Documentation/PowerShell/Enable-RpcFilterAuditing.md) cmdlet can be used in PowerShell.
+- Administrators would prefer to use Active Directory Group Policy (Computer Configuration ⇒ Policies ⇒ Windows Settings ⇒ Security Settings ⇒ Advanced Audit Policy Configuration ⇒ System Audit Policies ⇒ Object Access ⇒ Audit RPC Events)
 
-### Operation Numbers
+Once auditing is enabled, the corresponding RPC events will be created in the `Security` event log:
 
-The FWPM_CONDITION_RPC_OPNUM filter condition has been backported to downlevel Windows versions. (WS2019)
+![Windows Security Event Log entry screenshot](../Documentation/Screenshots/event-log-entry.png)
+
+The [Get-RpcFilterEvent](../Documentation//PowerShell/Get-RpcFilterEvent.md) cmdlet can be used to fetch these RPC audit events,
+and to translate most identifiers into human-readable names:
+
+![Windows Security Event Log parser screenshot](../Documentation/Screenshots/event-log-parser.png)
+
+## Known Base Filtering Engine (BFE) Limitations
+
+> [!WARNING]
+> Several filter conditions are not evaluated by the filtering engine as expected or documented by Microsoft,
+> leading to inconsistent behavior.
+
+### OpNum Filtering
+
+The ability to filter RPC operations by their operation number is only available on Windows 11 24H2 and Windows Server 2025 or later.
+Although the underlying [FWPM_CONDITION_RPC_OPNUM](https://learn.microsoft.com/en-us/windows/win32/fwp/filtering-condition-identifiers-) filter condition
+has been backported to Windows versions down to Windows Server 2019, it is ignored by the filtering engine on these older OS versions.
+
+Windows Server 2016 and older systems do not even support operation number filtering at the API level
+and reject attempts to create such filters by returning the `FWP_E_CONDITION_NOT_FOUND` error.
+The same behavior can be observed in RTM versions of Windows Server 2019 and Windows Server 2022 before Windows Update is launched.
 
 ### Subnets
 
-### Named Pipes
+Filter conditions based on subnets, i.e. specifying IPv4 address masks or IPv6 prefix lengths, will not match any RPC traffic. The `FWP_MATCH_RANGE` operator does not work with IP addresses either.
 
-- No IP address
-- Name is case sensitive
+### Named Pipe Case Sensitivity
+
+Named pipe names are case sensitive. For example, a filter with the named pipe condition `\PIPE\WINREG` will not match
+Remote Registry connections using the `\PIPE\winreg` named pipe.
+
+Although the WFP API supports case-insensitive string comparisons through the `FWP_MATCH_EQUAL_CASE_INSENSITIVE` operator,
+named pipe names are unfortunately stored as blobs instead of strings and thus only support the `FWP_MATCH_EQUAL` operator.
+
+### Name Pipe IP Address Filtering
+
+Filters containing IP address conditions will never match RPC over named pipe traffic.
+
+### Local RPC Calls
+
+RPC filters do not apply to local RPC calls,
+even when a filter condition explicitly targets the `ncalrpc` protocol sequence (transport layer).
+
+## Tool Limitations
+
+### Rule Weights
+
+The .NET wrapper currently only supports relative weights in the 0-15 range when creating new filters.
+Support for absolute weights in the 0-18446744073709551615 range is not yet implemented.
+
+### Comparison Operators
+
+Only the equality operator (`FWP_MATCH_EQUAL`) is currently supported for filter conditions by the tool.
+Although [the WFP API supports a wide range of match types](https://learn.microsoft.com/en-us/windows/win32/api/fwptypes/ne-fwptypes-fwp_match_type), most of them are not even relevant for RPC filters.
 
 ## Author
 
@@ -154,3 +218,4 @@ The FWPM_CONDITION_RPC_OPNUM filter condition has been backported to downlevel W
 
 - [Zero Networks: Stopping Lateral Movement via the RPC Firewall](https://zeronetworks.com/blog/stopping-lateral-movement-via-the-rpc-firewall)
 - [Akamai: A Definitive Guide to the Remote Procedure Call (RPC) Filter](https://www.akamai.com/blog/security/guide-rpc-filter)
+- [Google Project Zero: NtObjectManager](https://github.com/googleprojectzero/sandbox-attacksurface-analysis-tools)

@@ -44,7 +44,7 @@ internal struct FWP_V6_ADDR_AND_MASK
             }
 
             this.addr = value.GetAddressBytes();
-        } 
+        }
     }
 
     /// <summary>

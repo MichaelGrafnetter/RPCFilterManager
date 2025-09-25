@@ -63,9 +63,11 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public SwitchParameter Audit { get; set; } = default;
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Alias("AuthLevel")]
     public RpcAuthenticationLevel? AuthenticationLevel { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Alias("AuthType")]
     public RpcAuthenticationType? AuthenticationType { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]

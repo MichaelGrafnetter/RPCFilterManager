@@ -87,7 +87,7 @@ public sealed class RpcFilterManager : IDisposable
                     var result2 = NativeMethods.FwpmFilterEnum0(this.engineHandle, enumHandle, FilterEnumBatchSize, out entries, out numReturned);
                     ValidateResult(result2);
 
-                    if(numReturned == 0 || entries == null)
+                    if (numReturned == 0 || entries == null)
                     {
                         break;
                     }
@@ -96,9 +96,9 @@ public sealed class RpcFilterManager : IDisposable
                     entries.Initialize<IntPtr>(numReturned);
                     entries.ReadArray<IntPtr>(0, entryPointers, 0, (int)numReturned);
 
-                    foreach(var entryPointer in entryPointers)
+                    foreach (var entryPointer in entryPointers)
                     {
-                        if(entryPointer == IntPtr.Zero)
+                        if (entryPointer == IntPtr.Zero)
                         {
                             continue;
                         }
@@ -113,7 +113,7 @@ public sealed class RpcFilterManager : IDisposable
                     // Free the memory
                     entries?.Dispose();
                 }
-            } while(true);
+            } while (true);
         }
         finally
         {
@@ -296,7 +296,7 @@ public sealed class RpcFilterManager : IDisposable
                 conditionsHandle.Free();
             }
 
-            foreach(var handle in handles)
+            foreach (var handle in handles)
             {
                 handle.Dispose();
             }
@@ -335,7 +335,7 @@ public sealed class RpcFilterManager : IDisposable
 
     private static void ValidateResult(WIN32_ERROR code)
     {
-        if(code == WIN32_ERROR.ERROR_SUCCESS)
+        if (code == WIN32_ERROR.ERROR_SUCCESS)
         {
             return;
         }

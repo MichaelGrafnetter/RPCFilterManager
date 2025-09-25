@@ -32,11 +32,9 @@ jobs:
           cache-dependency-path: 'Src/*/packages.lock.json'
 
     - name: Restore NuGet Packages
-      working-directory: Src
       run: dotnet restore --locked-mode
 
     - name: Build Binaries
-      working-directory: Src
       run: |
         dotnet build --configuration Release --no-restore
         dotnet build --configuration Debug --no-restore
@@ -48,7 +46,6 @@ jobs:
         path: Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release/*
 
     - name: Create NuGet Packages
-      working-directory: Src
       run: dotnet pack --configuration Release --no-build
 
     - name: Upload NuGet Packages as Artifacts
@@ -58,7 +55,6 @@ jobs:
         path: Build/package/release/*nupkg
 
     - name: Run .NET Unit Tests
-      working-directory: Src
       run: dotnet test --configuration Debug --no-build -- --report-trx --results-directory "${{ github.workspace }}/Build/TestResults"
 
     - name: Run Pester Tests

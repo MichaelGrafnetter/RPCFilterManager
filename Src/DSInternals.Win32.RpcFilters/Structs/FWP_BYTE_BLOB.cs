@@ -62,9 +62,9 @@ internal readonly struct FWP_BYTE_BLOB_STRING
 
     public FWP_BYTE_BLOB_STRING(string value)
     {
-        if(value != null)
+        if (value != null)
         {
-            this.size = (uint)(sizeof(char)*(value.Length + 1));
+            this.size = (uint)(sizeof(char) * (value.Length + 1));
             this.Data = value;
         }
     }

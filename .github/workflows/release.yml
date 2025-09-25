@@ -77,11 +77,9 @@ jobs:
           cache-dependency-path: 'Src/*/packages.lock.json'
 
     - name: Restore NuGet Packages
-      working-directory: Src
       run: dotnet restore --locked-mode
 
     - name: Build Binaries
-      working-directory: Src
       run: dotnet build --configuration Release --no-restore
 
     - name: Cache DotNet Global Tools
@@ -122,7 +120,7 @@ jobs:
         --timestamp-digest SHA256
         --timestamp-url "http://timestamp.acs.microsoft.com"
         --verbosity Information
-    
+
     - name: Copy Signed Binaries to PowerShell Module
       shell: cmd
       working-directory: Build/bin
@@ -139,7 +137,7 @@ jobs:
         [hashtable] $manifest = Import-PowerShellDataFile -Path ./Src/DSInternals.Win32.RpcFilters.PowerShell/DSInternals.RpcFilters.psd1
         [string] $version = $manifest.ModuleVersion
         [string] $releaseNotes = $manifest.PrivateData.PSData.ReleaseNotes
-        
+
         echo "version=$version" >> $env:GITHUB_OUTPUT
 
         echo 'release-notes<<EOF' >> $env:GITHUB_OUTPUT
@@ -154,7 +152,6 @@ jobs:
         path: Build/bin/DSInternals.Win32.RpcFilters.PowerShell/Release
 
     - name: Create NuGet Packages
-      working-directory: Src
       run: dotnet pack --configuration Release --no-build
 
     - name: Sign NuGet Packages
@@ -243,7 +240,7 @@ jobs:
       run: |
         @'
         ## Notable Changes
-        
+
         ${{ needs.build.outputs.powershell-module-release-notes }}
 
         ## DSInternals.RpcFilters PowerShell Module

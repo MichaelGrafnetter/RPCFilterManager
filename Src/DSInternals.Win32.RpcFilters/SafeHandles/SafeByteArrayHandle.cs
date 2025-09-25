@@ -1,5 +1,5 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 
 namespace DSInternals.Win32.RpcFilters;
 
@@ -7,7 +7,7 @@ internal sealed class SafeByteArrayHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
     public SafeByteArrayHandle(byte[] value) : base(true)
     {
-        if(value == null)
+        if (value == null)
         {
             throw new ArgumentNullException(nameof(value));
         }

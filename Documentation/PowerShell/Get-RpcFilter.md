@@ -23,21 +23,28 @@ Get-RpcFilter [-ZeroNetworks] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet retrieves a list of RPC filters that match the specified criteria. If no criteria are specified, all RPC filters on the local computer are returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-RpcFilter
 ```
 
-{{ Add example description here }}
+Retrieves all RPC filters on the local computer.
+
+### Example 2
+```powershell
+PS C:\> Get-RpcFilter | Out-GridView
+```
+
+Displays all RPC filters in an interactive grid view.
 
 ## PARAMETERS
 
 ### -ProviderKey
-{{ Fill ProviderKey Description }}
+Specifies the unique identifier of the RPC filter provider.
 
 ```yaml
 Type: Guid
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ZeroNetworks
-{{ Fill ZeroNetworks Description }}
+Specifies that only RPC filters created by the Zero Networks RPC Firewall should be returned. This parameter is equivalent to specifying the provider key 17171717-1717-1717-1717-171717171717, which is the unique identifier of the Zero Networks RPC Filter Provider.
 
 ```yaml
 Type: SwitchParameter

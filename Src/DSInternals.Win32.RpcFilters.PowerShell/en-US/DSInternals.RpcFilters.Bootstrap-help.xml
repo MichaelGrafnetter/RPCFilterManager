@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet disables security auditing for RPC events by configuring the appropriate audit policy settings on the local computer using the netsh tool. The cmdlet must be run with elevated privileges.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -37,9 +37,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Disable-RpcFilterAuditing</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Disables security auditing for RPC events.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -64,7 +64,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet enables security auditing for RPC events by configuring the appropriate audit policy settings on the local computer using the netsh tool. The cmdlet must be run with elevated privileges.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -91,9 +91,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Enable-RpcFilterAuditing</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Enables security auditing for RPC events.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -126,7 +126,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet retrieves RPC audit events from the Security log on the specified computer. By default, it retrieves events from the local computer. The maximum number of events to retrieve can be specified using the -MaxEvents parameter. The cmdlet must be run with elevated privileges to access the Security log.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -202,9 +202,16 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-RpcFilterEvent</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Retrieves RPC audit events from the Security log on the local computer.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-RpcFilterEvent -ComputerName RemotePC -MaxEvents 100</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves the last 100 RPC audit events from the Security log on the specified remote computer.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

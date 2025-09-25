@@ -12,7 +12,7 @@ public class RPCFilterManagerTester
         using var fw = new RpcFilterManager();
         var filters = fw.GetFilters();
         Assert.IsNotNull(filters);
-        Assert.AreEqual(0, filters.ToList().Count);
+        Assert.IsEmpty(filters.ToList());
     }
 
     [TestMethod]
@@ -56,8 +56,8 @@ public class RPCFilterManagerTester
         try
         {
             // Test the existence of the filter
-            filters = fw.GetFilters().ToList();
-            Assert.AreEqual(1, filters.Count);
+            filters = [.. fw.GetFilters()];
+            Assert.HasCount(1, filters);
             var createdFilter = filters.First();
 
             // Test that the filter has all the expected properties
@@ -94,8 +94,8 @@ public class RPCFilterManagerTester
         }
 
         // Check that no filter exist
-        filters = fw.GetFilters().ToList();
-        Assert.AreEqual(0, filters.Count);
+        filters = [.. fw.GetFilters()];
+        Assert.IsEmpty(filters);
     }
 
     [TestMethod]
@@ -106,7 +106,7 @@ public class RPCFilterManagerTester
         using var fw = new RpcFilterManager();
         var filters = fw.GetFilters(dummyProviderKey);
         Assert.IsNotNull(filters);
-        Assert.AreEqual(0, filters.ToList().Count);
+        Assert.IsEmpty(filters.ToList());
     }
 
     [TestMethod]

@@ -46,16 +46,16 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet creates a new RPC filter for managing remote procedure call (RPC) traffic based on specified criteria. The filter can be customized using various parameters to define its behavior and conditions.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit
 ```
 
-{{ Add example description here }}
+Creates a new RPC filter to block and audit service management (MS-SCMR) traffic over Named Pipes.
 
 ## PARAMETERS
 
@@ -96,7 +96,7 @@ The authentication level controls how much security a client or server wants fro
 ```yaml
 Type: RpcAuthenticationLevel
 Parameter Sets: (All)
-Aliases:
+Aliases: AuthLevel
 Accepted values: Default, None, Connect, Call, Packet, PacketIntegrity, PacketPrivacy
 
 Required: False
@@ -112,7 +112,7 @@ Authentication service used for RPC connections.
 ```yaml
 Type: RpcAuthenticationType
 Parameter Sets: (All)
-Aliases:
+Aliases: AuthType
 Accepted values: None, Negotiate, NTLM, SChannel, Kerberos, Digest, Default
 
 Required: False
@@ -408,7 +408,7 @@ Accept wildcard characters: False
 ```
 
 ### -WellKnownOperation
-{{ Fill WellKnownOperation Description }}
+Specifies a well-known RPC operation. The protocol UUID and operation number is derived from the specified value.
 
 ```yaml
 Type: WellKnownOperation
@@ -423,7 +423,7 @@ Accept wildcard characters: False
 ```
 
 ### -WellKnownProtocol
-{{ Fill WellKnownProtocol Description }}
+Specifies a well-known RPC protocol. The protocol UUID is derived from the specified value.
 
 ```yaml
 Type: WellKnownProtocol

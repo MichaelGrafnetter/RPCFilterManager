@@ -249,7 +249,7 @@ public sealed class RpcFilter
     {
         get
         {
-            if(this.RemoteAddress == null)
+            if (this.RemoteAddress == null)
             {
                 return null;
             }
@@ -347,7 +347,8 @@ public sealed class RpcFilter
         // Note: Drops info about the operators in the process, but EQUALS is used in most cases.
         foreach (var condition in nativeFilter.FilterCondition)
         {
-            if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_PROTOCOL) {
+            if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_PROTOCOL)
+            {
                 filter.Transport = condition.Protocol;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_PIPE)
@@ -370,10 +371,12 @@ public sealed class RpcFilter
             {
                 filter.OperationNumber = condition.OperationNumber;
             }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL) {
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL)
+            {
                 filter.AuthenticationLevel = condition.AuthenticationLevel;
             }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_TYPE) {
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_TYPE)
+            {
                 filter.AuthenticationType = condition.AuthenticationType;
             }
             else if (condition.FieldKey == PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN)

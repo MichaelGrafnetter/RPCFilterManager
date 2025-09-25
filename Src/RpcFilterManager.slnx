@@ -1,6 +1,0 @@
-
-<Solution xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/microsoft/vs-solutionpersistence/refs/heads/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/Slnx.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Project Path="DSInternals.Win32.RpcFilters/DSInternals.Win32.RpcFilters.csproj" />
-  <Project Path="DSInternals.Win32.RpcFilters.PowerShell/DSInternals.Win32.RpcFilters.PowerShell.csproj" />
-  <Project Path="DSInternals.Win32.RpcFilters.Tests/DSInternals.Win32.RpcFilters.Tests.csproj" />
-</Solution>

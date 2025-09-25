@@ -23,16 +23,30 @@ Remove-RpcFilter [-InputObject] <RpcFilter> [-PassThrough] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet removes an existing RPC filter from the system. The filter can be specified by its unique identifier or by passing the filter object directly.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-RpcFilter -Id 123
 ```
 
-{{ Add example description here }}
+Removes the RPC filter with the specified identifier.
+
+### Example 2
+```powershell
+PS C:\> Get-RpcFilter | where Name -eq 'Block-EFSRPC' | Remove-RpcFilter -PassThrough
+```
+
+Removes RPC filters called 'Block-EFSRPC' and returns the deleted filter objects.
+
+### Example 3
+```powershell
+PS C:\> Get-RpcFilter | Remove-RpcFilter
+```
+
+Removes all existing RPC filters from the system.
 
 ## PARAMETERS
 
@@ -67,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThrough
-{{ Fill PassThrough Description }}
+If this switch is specified, the cmdlet returns the deleted RPC filter object. By default, this cmdlet does not generate any output.
 
 ```yaml
 Type: SwitchParameter

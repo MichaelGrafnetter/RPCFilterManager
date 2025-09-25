@@ -17,16 +17,24 @@ Get-RpcFilterEvent [[-ComputerName] <String>] [[-MaxEvents] <Int64>] [<CommonPar
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet retrieves RPC audit events from the Security log on the specified computer. By default, it retrieves events from the local computer. The maximum number of events to retrieve can be specified using the -MaxEvents parameter.
+The cmdlet must be run with elevated privileges to access the Security log.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-RpcFilterEvent
 ```
 
-{{ Add example description here }}
+Retrieves RPC audit events from the Security log on the local computer.
+
+### Example 2
+```powershell
+PS C:\> Get-RpcFilterEvent -ComputerName RemotePC -MaxEvents 100
+```
+
+Retrieves the last 100 RPC audit events from the Security log on the specified remote computer.
 
 ## PARAMETERS
 

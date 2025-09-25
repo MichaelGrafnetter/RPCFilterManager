@@ -18,7 +18,7 @@ internal sealed class FWPM_FILTER_ENUM_TEMPLATE0
     {
         get
         {
-            if(providerKey != null)
+            if (providerKey != null)
             {
                 return new Guid(providerKey);
             }

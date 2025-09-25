@@ -190,7 +190,7 @@ internal readonly struct FWP_VALUE0
 
     public readonly int? Int32Value => this.Type switch
     {
-        FWP_DATA_TYPE.FWP_INT32  => this.Value.int32,
+        FWP_DATA_TYPE.FWP_INT32 => this.Value.int32,
         FWP_DATA_TYPE.FWP_EMPTY => null,
         _ => null,
     };
@@ -292,10 +292,10 @@ internal readonly struct FWP_VALUE0
             {
                 byte[]? data = this.ByteArrayValue;
 
-                if(data != null)
+                if (data != null)
                 {
-                   // Remover the trailing null character
-                   return System.Text.Encoding.Unicode.GetString(data, 0, data.Length - sizeof(char));
+                    // Remover the trailing null character
+                    return System.Text.Encoding.Unicode.GetString(data, 0, data.Length - sizeof(char));
                 }
             }
 
@@ -410,7 +410,7 @@ internal readonly struct FWP_VALUE0
 
     public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle1, SafeHandle? memoryHandle2) Allocate(byte[] value)
     {
-        if(value == null)
+        if (value == null)
         {
             throw new ArgumentNullException(nameof(value));
         }
@@ -422,7 +422,7 @@ internal readonly struct FWP_VALUE0
             var array6Value = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_ARRAY6_TYPE, dataHandle);
             return (array6Value, dataHandle, null);
         }
-        else if(value.Length == 16)
+        else if (value.Length == 16)
         {
             var array16Value = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_ARRAY16_TYPE, dataHandle);
             return (array16Value, dataHandle, null);

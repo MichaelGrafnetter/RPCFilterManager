@@ -17,16 +17,17 @@ Enable-RpcFilterAuditing [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet enables security auditing for RPC events by configuring the appropriate audit policy settings on the local computer using the netsh tool.
+The cmdlet must be run with elevated privileges.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Enable-RpcFilterAuditing
 ```
 
-{{ Add example description here }}
+Enables security auditing for RPC events.
 
 ## PARAMETERS
 

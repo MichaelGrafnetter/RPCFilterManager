@@ -8,7 +8,11 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
 {
     private const string ParameterSetByProviderKey = "Default";
     private const string ParameterSetZeroNetworks = "ZeroNetworks";
-    private static readonly Guid ZeroNetworksRpcFirewallProviderKey = new(0x17171717, 0x1717, 0x1717, [0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17]);
+
+    /// <summary>
+    /// The WFP provider key used by the Zero Networks RPC Firewall.
+    /// </summary>
+    private static readonly Guid ZeroNetworksRpcFirewallProviderKey = new(0x17171717, 0x1717, 0x1717, [0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17]); // 17171717-1717-1717-1717-171717171717
 
     [Parameter(Mandatory = false, Position = 0, ParameterSetName = ParameterSetByProviderKey)]
     [Alias("Provider", "ProviderId", "RpcFilterProvider", "RpcFilterProviderId")]

@@ -17,16 +17,17 @@ Disable-RpcFilterAuditing [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet disables security auditing for RPC events by configuring the appropriate audit policy settings on the local computer using the netsh tool.
+The cmdlet must be run with elevated privileges.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Disable-RpcFilterAuditing
 ```
 
-{{ Add example description here }}
+Disables security auditing for RPC events.
 
 ## PARAMETERS
 

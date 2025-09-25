@@ -33,6 +33,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>../en-US/%(Filename)%(Extension)</TargetPath>
     </Content>
+    <!-- Show MarkDown documentation files -->
+    <None Include="$(MSBuildThisFileDirectory)../../Documentation/PowerShell/*.md">
+        <Link>Documentation/Commands/%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)../../Documentation/*.md">
+        <Link>Documentation/%(Filename)%(Extension)</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)../../.github/*.md">
+        <Link>Documentation/%(Filename)%(Extension)</Link>
+    </None>
+    <!-- Display the build scripts as part of the PowerShell project -->
+    <None Include="$(MSBuildThisFileDirectory)../../Scripts/*.*">
+        <Link>Scripts/%(Filename)%(Extension)</Link>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
