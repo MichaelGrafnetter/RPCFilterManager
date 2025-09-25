@@ -78,7 +78,8 @@ Conditions:
 Get-RpcFilter | Where-Object Name -like 'DCSync-*' | Remove-RpcFilter
 ```
 
-Further examples can be found in the [PowerShell module documentation](../Documentation/PowerShell/README.md).
+> [!TIP]
+> More examples can be found in the [PowerShell module documentation](../Documentation/PowerShell/README.md).
 
 ### Comparison With the `netsh` Tool
 

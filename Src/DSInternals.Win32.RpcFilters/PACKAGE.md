@@ -1,6 +1,6 @@
 ## About
 
-Library for managing Windows RPC Filters.
+Library for managing Windows RPC filters.
 
 ## Main Types
 

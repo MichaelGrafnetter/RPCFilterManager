@@ -199,7 +199,7 @@ jobs:
   psgallery:
     name: 'Publish to PowerShell Gallery'
     if: ${{ inputs.publish_powershell }}
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Download PowerShell Module
@@ -243,13 +243,13 @@ jobs:
 
         ${{ needs.build.outputs.powershell-module-release-notes }}
 
-        ## DSInternals.RpcFilters PowerShell Module
+        ## PowerShell Module
 
-        - The module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/DSInternals.RpcFilters).
+        - The `DSInternals.RpcFilters` module is available in the [PowerShell Gallery](https://www.powershellgallery.com/packages/DSInternals.RpcFilters).
         - As an alternative, the attached `DSInternals.RpcFilters_v${{ needs.build.outputs.powershell-module-version }}.zip` file can be used for offline module installation.
 
-        ## NuGet Packages
+        ## NuGet Package
 
-        - Packages are [published in the NuGet Gallery](https://www.nuget.org/packages?q=DSInternals.Win32.RpcFilters).
+        - The `DSInternals.Win32.RpcFilters` package is [published in the NuGet Gallery](https://www.nuget.org/packages?q=DSInternals.Win32.RpcFilters).
         '@ > release-notes.md
         gh release create v${{ needs.build.outputs.powershell-module-version }} ./*.zip --draft --latest --title "DSInternals.RpcFilters PowerShell Module ${{ needs.build.outputs.powershell-module-version }}" --notes-file release-notes.md
