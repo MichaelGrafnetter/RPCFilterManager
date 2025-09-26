@@ -31,10 +31,12 @@ public class RPCFilterManagerTester
             Transport = RpcProtocolSequence.ncacn_ip_tcp,
             NamedPipe = "\\PIPE\\winreg",
             SDDL = "D:(A;;CC;;;BA)",
+            SecurityDescriptorNegativeMatch = true,
             Action = RpcFilterAction.Block,
             Audit = true,
             IsPersistent = true,
             AuthenticationLevel = RpcAuthenticationLevel.PacketPrivacy,
+            AuthenticationLevelMatchType = NumericMatchType.LessThan,
             AuthenticationType = RpcAuthenticationType.Kerberos,
             IsBootTimeEnforced = false,
             Weight = 3,
@@ -72,9 +74,11 @@ public class RPCFilterManagerTester
             Assert.AreEqual(filter.NamedPipe, createdFilter.NamedPipe);
             Assert.AreEqual(filter.Action, createdFilter.Action);
             Assert.AreEqual(filter.SDDL, createdFilter.SDDL);
+            Assert.AreEqual(filter.SecurityDescriptorNegativeMatch, createdFilter.SecurityDescriptorNegativeMatch);
             Assert.AreEqual(filter.Audit, createdFilter.Audit);
             Assert.AreEqual(filter.IsPersistent, createdFilter.IsPersistent);
             Assert.AreEqual(filter.AuthenticationLevel, createdFilter.AuthenticationLevel);
+            Assert.AreEqual(filter.AuthenticationLevelMatchType, createdFilter.AuthenticationLevelMatchType);
             Assert.AreEqual(filter.AuthenticationType, createdFilter.AuthenticationType);
             Assert.AreEqual(filter.IsBootTimeEnforced, createdFilter.IsBootTimeEnforced);
             Assert.AreEqual(filter.Weight, createdFilter.Weight);

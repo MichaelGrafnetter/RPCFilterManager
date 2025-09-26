@@ -37,14 +37,18 @@ internal readonly struct FWP_BYTE_BLOB_PTR
     {
         get
         {
-            if (size % sizeof(char) != 0)
+            if (size % sizeof(char) != 0 || size < sizeof(char))
             {
                 // This cannot be a unicode string, as the data has odd number of bytes.
                 return null;
             }
 
+            // Remove the trailing \0
+            // TODO: Check if the string actually ends with \0 in UTF-16
+            int expectedStringLength = (int)size / sizeof(char) - 1;
+
             // PtrToStringUni contains a null pointer check.
-            return Marshal.PtrToStringUni(this.data, (int)this.size);
+            return Marshal.PtrToStringUni(this.data);
         }
     }
 
