@@ -199,7 +199,7 @@ jobs:
   psgallery:
     name: 'Publish to PowerShell Gallery'
     if: ${{ inputs.publish_powershell }}
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     steps:
       - name: Download PowerShell Module
