@@ -6,6 +6,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyTitle>DSInternals RPC Filter Manager Assembly</AssemblyTitle>
     <Authors>Michael Grafnetter</Authors>
+    <Version>1.1</Version>
+    <AssemblyVersion>1.1</AssemblyVersion>
+    <ProductVersion>1.1</ProductVersion>
+    <FileVersion>1.1</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/MichaelGrafnetter/RpcFilterManager</PackageProjectUrl>
@@ -23,7 +27,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Library for managing Windows RPC Filters.</Description>
     <PackageReleaseNotes>
-      - Initial version.
+- Added support for authentication level and security descriptor match operators.
     </PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <AnalysisMode>Recommended</AnalysisMode>
