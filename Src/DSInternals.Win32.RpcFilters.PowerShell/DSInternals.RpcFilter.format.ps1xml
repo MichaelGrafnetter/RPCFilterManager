@@ -57,7 +57,7 @@
               <NewLine />
               <Text>EffectiveWeight: </Text>
               <ExpressionBinding>
-                <ScriptBlock>'0x{0:x}' -f $PSItem.EffectiveWeight</ScriptBlock>
+                <ScriptBlock>'0x{0:x16}' -f $PSItem.EffectiveWeight</ScriptBlock>
               </ExpressionBinding>
               <Text>, Weight: </Text>
               <ExpressionBinding>
@@ -69,6 +69,7 @@
               <Frame>
                 <LeftIndent>2</LeftIndent>
                 <CustomItem>
+                  <!-- Only show properties that have values. -->
                   <ExpressionBinding>
                     <ScriptBlock>if ($null -ne $PSItem.InterfaceUUID) { "Protocol = {0}`n" -f [DSInternals.Win32.RpcFilters.WellKnownProtocolTranslator]::ToProtocolName($PSItem.InterfaceUUID, $true) }</ScriptBlock>
                   </ExpressionBinding>
@@ -85,7 +86,7 @@
                     <ScriptBlock>if ($null -ne $PSItem.NamedPipe) { "NamedPipe = {0}`n" -f $PSItem.NamedPipe }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($null -ne $PSItem.SecurityDescriptor) { "SecurityDescriptor = {0}`n" -f $PSItem.SDDL }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.SecurityDescriptor) { "SecurityDescriptor {0} {1}`n" -f $PSItem.SecurityDescriptorOperator,$PSItem.SDDL }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
                     <ScriptBlock>if ($null -ne $PSItem.RemoteAddress) { "RemoteAddress = {0}`n" -f $PSItem.RemoteNetwork }</ScriptBlock>
@@ -94,7 +95,7 @@
                     <ScriptBlock>if ($null -ne $PSItem.LocalAddress) { "LocalAddress = {0}`n" -f $PSItem.LocalNetwork }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
-                    <ScriptBlock>if ($null -ne $PSItem.AuthenticationLevel) { "AuthenticationLevel = {0}`n" -f $PSItem.AuthenticationLevel }</ScriptBlock>
+                    <ScriptBlock>if ($null -ne $PSItem.AuthenticationLevel) { "AuthenticationLevel {0} {1}`n" -f $PSItem.AuthenticationLevelOperator,$PSItem.AuthenticationLevel }</ScriptBlock>
                   </ExpressionBinding>
                   <ExpressionBinding>
                     <ScriptBlock>if ($null -ne $PSItem.AuthenticationType) { "AuthenticationType = {0}`n" -f $PSItem.AuthenticationType }</ScriptBlock>
@@ -156,6 +157,9 @@
             <Label>AuthLevel</Label>
           </TableColumnHeader>
           <TableColumnHeader>
+            <Label>MatchType</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
             <Label>AuthType</Label>
           </TableColumnHeader>
           <TableColumnHeader>
@@ -163,6 +167,9 @@
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>SecurityDescriptor</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>NegativeMatch</Label>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>FilterKey</Label>
@@ -213,6 +220,9 @@
                 <PropertyName>AuthenticationLevel</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
+                <PropertyName>AuthenticationLevelMatchType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
                 <PropertyName>AuthenticationType</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
@@ -222,13 +232,16 @@
                 <PropertyName>SDDL</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
+                <PropertyName>SecurityDescriptorNegativeMatch</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
                 <PropertyName>FilterKey</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Weight</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x}' -f $PSItem.EffectiveWeight }</ScriptBlock>
+                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x16}' -f $PSItem.EffectiveWeight }</ScriptBlock>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -306,7 +319,7 @@
               </ListItem>
               <ListItem>
                 <Label>SecurityDescriptor</Label>
-                <PropertyName>SDDL</PropertyName>
+                <ScriptBlock>if ($null -ne $PSItem.SecurityDescriptor) { "{0} [{1}]" -f $PSItem.SDDL, !$PSItem.SecurityDescriptorNegativeMatch }</ScriptBlock>
               </ListItem>
               <ListItem>
                 <Label>RemoteAddress</Label>
@@ -318,7 +331,7 @@
               </ListItem>
               <ListItem>
                 <Label>AuthenticationLevel</Label>
-                <PropertyName>AuthenticationLevel</PropertyName>
+                <ScriptBlock>if ($null -ne $PSItem.AuthenticationLevel) { "{0} {1}" -f $PSItem.AuthenticationLevelMatchType,$PSItem.AuthenticationLevel }</ScriptBlock>
               </ListItem>
               <ListItem>
                 <Label>AuthenticationType</Label>
@@ -338,7 +351,7 @@
               </ListItem>
               <ListItem>
                 <Label>EffectiveWeight</Label>
-                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x}' -f $PSItem.EffectiveWeight }</ScriptBlock>
+                <ScriptBlock>if ($null -ne $PSItem.EffectiveWeight) { '0x{0:x16}' -f $PSItem.EffectiveWeight }</ScriptBlock>
               </ListItem>
             </ListItems>
           </ListEntry>

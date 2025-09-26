@@ -1,8 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Security.AccessControl;
-using Windows.Win32;
-using Windows.Win32.NetworkManagement.WindowsFilteringPlatform;
 
 namespace DSInternals.Win32.RpcFilters;
 
@@ -72,6 +70,17 @@ public sealed class RpcFilter
     public RawSecurityDescriptor? SecurityDescriptor { get; set; }
 
     /// <summary>
+    /// Indicates whether the security descriptor should be negated.
+    /// </summary>
+    public bool SecurityDescriptorNegativeMatch { get; set; }
+
+    /// <summary>
+    /// The security descriptor operator as a string.
+    /// </summary>
+    /// <remarks>This read-only property is for display purposes only.</remarks>
+    public string SecurityDescriptorOperator => this.SecurityDescriptorNegativeMatch ? "<>" : "=";
+
+    /// <summary>
     /// The identification of the remote user in SDDL format.
     /// </summary>
     public string? SDDL
@@ -115,12 +124,12 @@ public sealed class RpcFilter
     /// A provider's filters are disabled when the BFE starts if the provider has no associated Windows service name, or if the associated service is not set to auto-start.
     /// This flag cannot be set when adding new filters. It can only be returned by BFE when getting or enumerating filters.
     /// </remarks>
-    public bool IsDisabled { get; private set; }
+    public bool IsDisabled { get; internal set; }
 
     /// <summary>
     /// Optional identifier of the policy provider that manages this filter.
     /// </summary>
-    public Guid? ProviderKey { get; private set; }
+    public Guid? ProviderKey { get; internal set; }
 
     /// <summary>
     /// The weight indicates the priority of the filter, where higher-numbered weights have higher priorities.
@@ -130,12 +139,31 @@ public sealed class RpcFilter
     /// <summary>
     /// Contains the weight assigned to the filter.
     /// </summary>
-    public ulong? EffectiveWeight { get; private set; }
+    public ulong? EffectiveWeight { get; internal set; }
 
     /// <summary>
     /// The authentication level controls how much security a client or server wants from its SSP.
     /// </summary>
     public RpcAuthenticationLevel? AuthenticationLevel { get; set; }
+
+    /// <summary>
+    /// The match type (operator) for the authentication level.
+    /// </summary>
+    public NumericMatchType AuthenticationLevelMatchType { get; set; } = NumericMatchType.Equals;
+
+    /// <summary>
+    /// The authentication level operator as a string.
+    /// </summary>
+    /// <remarks>This read-only property is for display purposes only.</remarks>
+    public string AuthenticationLevelOperator => this.AuthenticationLevelMatchType switch
+    {
+        NumericMatchType.Equals => "=",
+        NumericMatchType.LessThan => "<",
+        NumericMatchType.LessOrEquals => "<=",
+        NumericMatchType.GreaterThan => ">",
+        NumericMatchType.GreaterOrEquals => ">=",
+        _ => "?" // Undefined operator
+    };
 
     /// <summary>
     /// Authentication service used for RPC connections.
@@ -322,93 +350,5 @@ public sealed class RpcFilter
         this.FilterKey = Guid.NewGuid();
         this.Name = DefaultName;
         this.Description = DefaultDescription;
-    }
-
-    internal static RpcFilter Create(FWPM_FILTER0 nativeFilter)
-    {
-        // Process basic properties
-        var filter = new RpcFilter()
-        {
-            FilterKey = nativeFilter.FilterKey,
-            FilterId = nativeFilter.FilterId,
-            Name = nativeFilter.DisplayData.Name ?? DefaultName,
-            Description = nativeFilter.DisplayData.Description,
-            IsPersistent = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT),
-            IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
-            IsDisabled = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_DISABLED),
-            Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
-            ProviderKey = nativeFilter.ProviderKey,
-            Weight = nativeFilter.Weight.UIntValue,
-            Action = (RpcFilterAction)nativeFilter.Action.Type,
-            EffectiveWeight = nativeFilter.EffectiveWeight.UInt64Value,
-        };
-
-        // Deflate filter conditions
-        // Note: Drops info about the operators in the process, but EQUALS is used in most cases.
-        foreach (var condition in nativeFilter.FilterCondition)
-        {
-            if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_PROTOCOL)
-            {
-                filter.Transport = condition.Protocol;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_PIPE)
-            {
-                filter.NamedPipe = condition.NamedPipe;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_UUID)
-            {
-                filter.InterfaceUUID = condition.InterfaceUUID;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_VERSION)
-            {
-                filter.InterfaceVersion = condition.InterfaceVersion;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_FLAG)
-            {
-                filter.InterfaceFlag = condition.InterfaceFlag;
-            }
-            else if (condition.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
-            {
-                filter.OperationNumber = condition.OperationNumber;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL)
-            {
-                filter.AuthenticationLevel = condition.AuthenticationLevel;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_TYPE)
-            {
-                filter.AuthenticationType = condition.AuthenticationType;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN)
-            {
-                filter.SecurityDescriptor = condition.SecurityDescriptor;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_PORT)
-            {
-                filter.LocalPort = condition.LocalPort;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
-            {
-                (IPAddress? ipAddress, byte? mask) = condition.RemoteAddressAndMask;
-                filter.RemoteAddress = ipAddress;
-                filter.RemoteAddressMask = mask;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
-            {
-                (IPAddress? ipAddress, byte? mask) = condition.LocalAddressAndMask;
-                filter.LocalAddress = ipAddress;
-                filter.LocalAddressMask = mask;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_DCOM_APP_ID)
-            {
-                filter.DcomAppId = condition.DcomAppId;
-            }
-            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IMAGE_NAME)
-            {
-                filter.ImageName = condition.ImageName;
-            }
-        }
-
-        return filter;
     }
 }

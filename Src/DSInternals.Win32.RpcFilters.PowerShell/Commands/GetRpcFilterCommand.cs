@@ -15,6 +15,7 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
     private static readonly Guid ZeroNetworksRpcFirewallProviderKey = new(0x17171717, 0x1717, 0x1717, [0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17]); // 17171717-1717-1717-1717-171717171717
 
     [Parameter(Mandatory = false, Position = 0, ParameterSetName = ParameterSetByProviderKey)]
+    [ValidateNotNull()]
     [Alias("Provider", "ProviderId", "RpcFilterProvider", "RpcFilterProviderId")]
     public Guid? ProviderKey { get; set; }
 

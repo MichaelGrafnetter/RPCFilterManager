@@ -17,8 +17,9 @@ Creates a new RPC filter for managing remote procedure call (RPC) traffic based 
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>] [-InterfaceUUID <Guid>]
  -Action <RpcFilterAction> [-Audit] [-AuthenticationLevel <RpcAuthenticationLevel>]
- [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
- [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>]
+ [-AuthenticationLevelMatchType <NumericMatchType>] [-AuthenticationType <RpcAuthenticationType>]
+ [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>]
+ [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>]
  [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>] [-Weight <UInt64>]
  [-OperationNumber <UInt16>] [<CommonParameters>]
 ```
@@ -28,8 +29,9 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
  -WellKnownProtocol <WellKnownProtocol> -Action <RpcFilterAction> [-Audit]
- [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
- [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
+ [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationLevelMatchType <NumericMatchType>]
+ [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
+ [-SecurityDescriptor <RawSecurityDescriptor>] [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>]
  [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
  [-Weight <UInt64>] [-OperationNumber <UInt16>] [<CommonParameters>]
 ```
@@ -39,8 +41,9 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
  -WellKnownOperation <WellKnownOperation> -Action <RpcFilterAction> [-Audit]
- [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationType <RpcAuthenticationType>]
- [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>] [-RemoteAddress <IPAddress>]
+ [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationLevelMatchType <NumericMatchType>]
+ [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
+ [-SecurityDescriptor <RawSecurityDescriptor>] [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>]
  [-RemoteAddressMask <Byte>] [-LocalAddress <IPAddress>] [-LocalAddressMask <Byte>] [-LocalPort <UInt16>]
  [-Weight <UInt64>] [<CommonParameters>]
 ```
@@ -98,6 +101,21 @@ Type: RpcAuthenticationLevel
 Parameter Sets: (All)
 Aliases: AuthLevel
 Accepted values: Default, None, Connect, Call, Packet, PacketIntegrity, PacketPrivacy
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -AuthenticationLevelMatchType
+The match type (operator) for the authentication level.
+
+```yaml
+Type: NumericMatchType
+Parameter Sets: (All)
+Aliases: AuthLevelMatch, AuthLevelMatchType, AuthenticationLevelMatch
 
 Required: False
 Position: Named
@@ -374,6 +392,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -SecurityDescriptorNegativeMatch
+Indicates whether to match the security descriptor negatively (i.e., NOT match).
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: PermissionsNegativeMatch, SecurityDescriptorNegate, PermissionsNegate
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

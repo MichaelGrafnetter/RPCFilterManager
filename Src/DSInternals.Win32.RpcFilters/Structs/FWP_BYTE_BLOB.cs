@@ -18,7 +18,7 @@ internal readonly struct FWP_BYTE_BLOB_PTR
     /// </summary>
     private readonly IntPtr data;
 
-    public readonly byte[]? Data
+    public readonly byte[]? BinaryData
     {
         get
         {
@@ -30,6 +30,21 @@ internal readonly struct FWP_BYTE_BLOB_PTR
             byte[] array = new byte[this.size];
             Marshal.Copy(this.data, array, 0, (int)this.size);
             return array;
+        }
+    }
+
+    public readonly string? StringData
+    {
+        get
+        {
+            if (size % sizeof(char) != 0)
+            {
+                // This cannot be a unicode string, as the data has odd number of bytes.
+                return null;
+            }
+
+            // PtrToStringUni contains a null pointer check.
+            return Marshal.PtrToStringUni(this.data, (int)this.size);
         }
     }
 

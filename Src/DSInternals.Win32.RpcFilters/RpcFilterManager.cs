@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Net;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -31,6 +32,12 @@ public sealed class RpcFilterManager : IDisposable
     /// </summary>
     /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 or Windows Server 2025 (10.0.26100).</remarks>
     public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
+
+    /// <summary>
+    /// Indicates whether the IP address filter conditions work with RPC over named pipes on the current operating system.
+    /// </summary>
+    /// <remarks>IP address filter support for RPC over named pipes will probably be added in Windows 11 25H2 (10.0.26200).</remarks>
+    public static bool IsIpAddressFilterWithNamedPipesSupported => Environment.OSVersion.Version >= new Version(10, 0, 26200);
 
     private SafeFwpmEngineHandle? engineHandle;
 
@@ -104,7 +111,7 @@ public sealed class RpcFilterManager : IDisposable
                         }
 
                         var nativeFilter = Marshal.PtrToStructure<FWPM_FILTER0>(entryPointer);
-                        var filter = RpcFilter.Create(nativeFilter);
+                        var filter = CreateFilter(nativeFilter);
                         yield return filter;
                     }
                 }
@@ -169,7 +176,7 @@ public sealed class RpcFilterManager : IDisposable
 
         if (filter.AuthenticationLevel.HasValue)
         {
-            conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationLevel.Value));
+            conditions.Add(new FWPM_FILTER_CONDITION0(filter.AuthenticationLevel.Value, filter.AuthenticationLevelMatchType));
         }
 
         if (filter.AuthenticationType.HasValue)
@@ -232,7 +239,7 @@ public sealed class RpcFilterManager : IDisposable
 
         if (filter.SecurityDescriptor != null)
         {
-            (var condition, var handle1, var handle2) = FWPM_FILTER_CONDITION0.Create(filter.SecurityDescriptor);
+            (var condition, var handle1, var handle2) = FWPM_FILTER_CONDITION0.Create(filter.SecurityDescriptor, filter.SecurityDescriptorNegativeMatch);
             handles.Push(handle1);
             handles.Push(handle2);
             conditions.Add(condition);
@@ -240,7 +247,7 @@ public sealed class RpcFilterManager : IDisposable
 
         if (filter.LocalAddress != null)
         {
-            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.LocalAddress, filter.LocalAddressMask, false);
+            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.LocalAddress, filter.LocalAddressMask, isRemote: false);
 
             if (handle != null)
             {
@@ -252,7 +259,7 @@ public sealed class RpcFilterManager : IDisposable
 
         if (filter.RemoteAddress != null)
         {
-            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, filter.RemoteAddressMask, true);
+            (var condition, var handle) = FWPM_FILTER_CONDITION0.Create(filter.RemoteAddress, filter.RemoteAddressMask, isRemote: true);
 
             if (handle != null)
             {
@@ -333,7 +340,110 @@ public sealed class RpcFilterManager : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    private static void ValidateResult(WIN32_ERROR code)
+    /// <summary>
+    /// Creates a new <see cref="RpcFilter"/> object based on the native FWPM_FILTER0 structure.
+    /// </summary>
+    /// <param name="nativeFilter">The native FWPM_FILTER0 structure.</param>
+    /// <returns>A new <see cref="RpcFilter"/> object.</returns>
+    internal static RpcFilter CreateFilter(FWPM_FILTER0 nativeFilter)
+    {
+        // Process basic properties
+        RpcFilter filter = new()
+        {
+            FilterKey = nativeFilter.FilterKey,
+            FilterId = nativeFilter.FilterId,
+            Name = nativeFilter.DisplayData.Name ?? RpcFilter.DefaultName,
+            Description = nativeFilter.DisplayData.Description,
+            IsPersistent = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT),
+            IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
+            IsDisabled = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_DISABLED),
+            Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
+            ProviderKey = nativeFilter.ProviderKey,
+            Weight = nativeFilter.Weight.UIntValue,
+            Action = (RpcFilterAction)nativeFilter.Action.Type,
+            EffectiveWeight = nativeFilter.EffectiveWeight.UInt64Value,
+        };
+
+        // Deflate filter conditions
+        // Note: Drops info about the operators in the process, but EQUALS is used in most cases.
+        foreach (var condition in nativeFilter.FilterCondition)
+        {
+            if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_PROTOCOL)
+            {
+                filter.Transport = condition.Protocol;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_PIPE)
+            {
+                filter.NamedPipe = condition.NamedPipe;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_UUID)
+            {
+                filter.InterfaceUUID = condition.InterfaceUUID;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_VERSION)
+            {
+                filter.InterfaceVersion = condition.InterfaceVersion;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_IF_FLAG)
+            {
+                filter.InterfaceFlag = condition.InterfaceFlag;
+            }
+            else if (condition.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
+            {
+                filter.OperationNumber = condition.OperationNumber;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL)
+            {
+                filter.AuthenticationLevel = condition.AuthenticationLevel;
+                filter.AuthenticationLevelMatchType = condition.MatchType switch
+                {
+                    FWP_MATCH_TYPE.FWP_MATCH_EQUAL => NumericMatchType.Equals,
+                    FWP_MATCH_TYPE.FWP_MATCH_LESS => NumericMatchType.LessThan,
+                    FWP_MATCH_TYPE.FWP_MATCH_LESS_OR_EQUAL => NumericMatchType.LessOrEquals,
+                    FWP_MATCH_TYPE.FWP_MATCH_GREATER => NumericMatchType.GreaterThan,
+                    FWP_MATCH_TYPE.FWP_MATCH_GREATER_OR_EQUAL => NumericMatchType.GreaterOrEquals,
+                    _ => NumericMatchType.Equals // Default to Equals if unknown instead of throwing an error
+                };
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_AUTH_TYPE)
+            {
+                filter.AuthenticationType = condition.AuthenticationType;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN)
+            {
+                filter.SecurityDescriptor = condition.SecurityDescriptor;
+                filter.SecurityDescriptorNegativeMatch = condition.MatchType == FWP_MATCH_TYPE.FWP_MATCH_NOT_EQUAL;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_PORT)
+            {
+                filter.LocalPort = condition.LocalPort;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_REMOTE_ADDRESS_V6)
+            {
+                (filter.RemoteAddress, filter.RemoteAddressMask) = condition.RemoteAddressAndMask;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V4 || condition.FieldKey == PInvoke.FWPM_CONDITION_IP_LOCAL_ADDRESS_V6)
+            {
+                (filter.LocalAddress, filter.LocalAddressMask) = condition.LocalAddressAndMask;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_DCOM_APP_ID)
+            {
+                filter.DcomAppId = condition.DcomAppId;
+            }
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_IMAGE_NAME)
+            {
+                filter.ImageName = condition.ImageName;
+            }
+        }
+
+        return filter;
+    }
+
+    /// <summary>
+    /// Validates the result code returned by a Win32 API call and throws an appropriate exception if the call failed.
+    /// </summary>
+    /// <param name="code">The result code to validate.</param>
+    internal static void ValidateResult(WIN32_ERROR code)
     {
         if (code == WIN32_ERROR.ERROR_SUCCESS)
         {
@@ -348,12 +458,11 @@ public sealed class RpcFilterManager : IDisposable
             WIN32_ERROR.ERROR_NOT_ENOUGH_MEMORY or WIN32_ERROR.ERROR_OUTOFMEMORY => new OutOfMemoryException(genericException.Message, genericException),
             { } when (int)code == HRESULT.FWP_E_CONDITION_NOT_FOUND.Value => new PlatformNotSupportedException(genericException.Message, genericException),
             { } when (int)code == HRESULT.FWP_E_INVALID_FLAGS => new ArgumentException(genericException.Message, genericException),
+            { } when (int)code == HRESULT.FWP_E_INVALID_NET_MASK => new ArgumentException(genericException.Message, genericException),
+            { } when (int)code == HRESULT.FWP_E_INVALID_WEIGHT => new ArgumentException(genericException.Message, genericException),
+            // TODO: { } when unchecked((RPC_STATUS)code) == RPC_STATUS.RPC_S_SERVER_UNAVAILABLE =>
             // TODO: Handle HRESULT.FWP_E_FILTER_NOT_FOUND
             // TODO: Handle HRESULT.FWP_E_ALREADY_EXISTS
-            // TODO: Handle RPC_STATUS.RPC_S_SERVER_UNAVAILABLE.
-            // TODO: Handle FWP_E_INVALID_NET_MASK
-            // TODO: Handle FWP_E_FILTER_NOT_FOUND
-            // TODO: Handle FWP_E_INVALID_WEIGHT
             _ => genericException,
             // We were not able to translate the Win32Exception to a more specific type.
         };

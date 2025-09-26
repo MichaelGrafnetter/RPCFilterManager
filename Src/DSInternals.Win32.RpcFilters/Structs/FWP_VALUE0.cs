@@ -110,6 +110,12 @@ internal readonly struct FWP_VALUE0
         public IntPtr sd;
 
         /// <summary>
+        /// A pointer to a null-terminated unicode string.
+        /// </summary>
+        [FieldOffset(0)]
+        public IntPtr unicodeString;
+
+        /// <summary>
         /// A pointer to an IPv4 address structure.
         /// </summary>
         [FieldOffset(0)]
@@ -255,7 +261,7 @@ internal readonly struct FWP_VALUE0
             }
             else if (this.Type == FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE)
             {
-                return Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.byteBlob).Data;
+                return Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.byteBlob).BinaryData;
             }
             else
             {
@@ -271,7 +277,7 @@ internal readonly struct FWP_VALUE0
             if (this.Type == FWP_DATA_TYPE.FWP_SECURITY_DESCRIPTOR_TYPE)
             {
                 var blob = Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.sd);
-                byte[]? binaryForm = blob.Data;
+                byte[]? binaryForm = blob.BinaryData;
 
                 if (binaryForm != null)
                 {
@@ -288,19 +294,12 @@ internal readonly struct FWP_VALUE0
     {
         get
         {
-            if (this.Type == FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE)
+            return this.Type switch
             {
-                byte[]? data = this.ByteArrayValue;
-
-                if (data != null)
-                {
-                    // Remover the trailing null character
-                    return System.Text.Encoding.Unicode.GetString(data, 0, data.Length - sizeof(char));
-                }
-            }
-
-            // In all other cases
-            return null;
+                FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE => Marshal.PtrToStructure<FWP_BYTE_BLOB_PTR>(this.Value.byteBlob).StringData,
+                FWP_DATA_TYPE.FWP_UNICODE_STRING_TYPE => Marshal.PtrToStringUni(this.Value.unicodeString),
+                _ => null
+            };
         }
     }
 
@@ -341,14 +340,28 @@ internal readonly struct FWP_VALUE0
         return (valueWrapper, memoryHandle);
     }
 
-    public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(string value)
+    public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle) Allocate(string value, bool asBlob = true)
     {
-        var blob = new FWP_BYTE_BLOB_STRING(value);
-        var memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB_STRING>(blob);
-        var valueWrapper = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, memoryHandle);
+        FWP_VALUE0 nativeValue;
+        SafeHandle memoryHandle;
 
-        return (valueWrapper, memoryHandle);
+        if (asBlob)
+        {
+            // Serialize the string to a binary blob (string pointer prefixed with length)
+            var blob = new FWP_BYTE_BLOB_STRING(value);
+            memoryHandle = new SafeStructHandle<FWP_BYTE_BLOB_STRING>(blob);
+            nativeValue = new FWP_VALUE0(FWP_DATA_TYPE.FWP_BYTE_BLOB_TYPE, memoryHandle);
+        }
+        else
+        {
+            // Serialize the string to a plain string pointer
+            memoryHandle = new SafeUnicodeStringPointer(value);
+            nativeValue = new FWP_VALUE0(FWP_DATA_TYPE.FWP_UNICODE_STRING_TYPE, memoryHandle);
+        }
+
+        return (nativeValue, memoryHandle);
     }
+
     public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandleOuter, SafeHandle memoryHandleInner) Allocate(RawSecurityDescriptor value)
     {
         // Convert the string to binary

@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Security.AccessControl;
+using System.Text.RegularExpressions;
 
 namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
@@ -24,29 +25,36 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public SwitchParameter Persistent { get; set; } = default;
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
     public string? Name { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
     public string? Description { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
     public string? ImageName { get; set; }
 
     // The comparison is case-sensitive, as the underlaying filter is case sensitive.
     // Sample value: \PIPE\winreg
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
-    [ValidatePattern("^\\\\PIPE\\\\.+")]
+    [ValidatePattern("^\\\\PIPE\\\\.+", Options = RegexOptions.CultureInvariant)]
+    [ValidateNotNullOrEmpty()]
     [Alias("Pipe", "PipeName")]
     public string? NamedPipe { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     public Guid? FilterKey { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     public Guid? DcomAppId { get; set; }
 
     [Parameter(Mandatory = false, ParameterSetName = CustomProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
     [Alias("RpcProtocol", "Protocol", "ProtocolUUID")]
+    [ValidateNotNull()]
     public Guid? InterfaceUUID { get; set; }
 
     [Parameter(Mandatory = true, ParameterSetName = WellKnownProtocolParameterSet, ValueFromPipelineByPropertyName = true)]
@@ -63,43 +71,62 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public SwitchParameter Audit { get; set; } = default;
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [Alias("AuthLevel")]
     public RpcAuthenticationLevel? AuthenticationLevel { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
+    [Alias("AuthLevelMatch", "AuthLevelMatchType", "AuthenticationLevelMatch")]
+    public NumericMatchType? AuthenticationLevelMatchType { get; set; }
+
+    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [Alias("AuthType")]
     public RpcAuthenticationType? AuthenticationType { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [Alias("ProtSeq", "Binding", "ProtocolSequence")]
     public RpcProtocolSequence? Transport { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [Alias("SDDL", "Permissions", "DACL")]
     public RawSecurityDescriptor? SecurityDescriptor { get; set; }
 
-    [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [Parameter()]
+    [Alias("PermissionsNegativeMatch","SecurityDescriptorNegate", "PermissionsNegate")]
+    public SwitchParameter SecurityDescriptorNegativeMatch { get; set; }
+
+    [Parameter(ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNullOrEmpty()]
     [Alias("IPAddress", "Address")]
     public IPAddress? RemoteAddress { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [ValidateRange(1, 128)]
     [Alias("Mask", "PrefixLength", "Prefix", "RemoteAddressPrefix", "RemoteAddressPrefixLength")]
     public byte? RemoteAddressMask { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     public IPAddress? LocalAddress { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [ValidateRange(1, 128)]
     public byte? LocalAddressMask { get; set; }
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [ValidateRange(1, ushort.MaxValue)]
     public ushort? LocalPort { get; set; }
 
     // The .NET wrapper currently only supports weight ranges (0-15) instead of supporting the full UINT64 range as well.
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
+    [ValidateNotNull()]
     [ValidateRange(0, 15)]
     [Alias("WeightRange")]
     public ulong? Weight { get; set; }
@@ -130,12 +157,12 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
             bool namedPipesUsed = NamedPipe != null || Transport == RpcProtocolSequence.ncacn_np;
             bool ipAddressUsed = RemoteAddress != null || LocalAddress != null;
 
-            if (namedPipesUsed && ipAddressUsed)
+            if (namedPipesUsed && ipAddressUsed && !RpcFilterManager.IsIpAddressFilterWithNamedPipesSupported)
             {
-                WriteWarning("Filters with both IP address and named pipe conditions are ignored by Windows.");
+                WriteWarning("Filters with both IP address and named pipe conditions are ignored in the current version of Windows.");
             }
 
-            if (InterfaceUUID.SupportsNamedPipes() && ipAddressUsed)
+            if (InterfaceUUID.SupportsNamedPipes() && ipAddressUsed && !RpcFilterManager.IsIpAddressFilterWithNamedPipesSupported)
             {
                 WriteWarning("The target interface supports a named pipe binding. Only TCP/IP bindings work with IP address conditions.");
             }
@@ -160,6 +187,18 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
             if (BootTimeEnforced.IsPresent && Persistent.IsPresent)
             {
                 WriteError(new ErrorRecord(new ArgumentException("The BootTimeEnforced and Persistent switches cannot be used together."), "PersistenAndBootExclusive", ErrorCategory.InvalidArgument, null));
+                return;
+            }
+
+            if (AuthenticationLevelMatchType.HasValue && !AuthenticationLevel.HasValue)
+            {
+                WriteError(new ErrorRecord(new ArgumentException("AuthenticationLevelMatchType requires AuthenticationLevel to be set."), "AuthLevelMatchRequiresAuthLevel", ErrorCategory.InvalidArgument, null));
+                return;
+            }
+
+            if (SecurityDescriptorNegativeMatch.IsPresent && SecurityDescriptor == null)
+            {
+                WriteError(new ErrorRecord(new ArgumentException("SecurityDescriptorNegativeMatch requires SecurityDescriptor to be set."), "SDNegativeMatchRequiresSecurityDescriptor", ErrorCategory.InvalidArgument, null));
                 return;
             }
 
@@ -199,6 +238,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 Action = Action,
                 Audit = Audit.IsPresent,
                 AuthenticationLevel = AuthenticationLevel,
+                AuthenticationLevelMatchType = AuthenticationLevelMatchType ?? NumericMatchType.Equals,
                 AuthenticationType = AuthenticationType,
                 DcomAppId = DcomAppId,
                 ImageName = ImageName,
@@ -212,6 +252,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 RemoteAddress = RemoteAddress,
                 RemoteAddressMask = RemoteAddressMask,
                 SecurityDescriptor = SecurityDescriptor,
+                SecurityDescriptorNegativeMatch = SecurityDescriptorNegativeMatch.IsPresent,
                 Weight = Weight,
                 OperationNumber = OperationNumber,
                 NamedPipe = NamedPipe,

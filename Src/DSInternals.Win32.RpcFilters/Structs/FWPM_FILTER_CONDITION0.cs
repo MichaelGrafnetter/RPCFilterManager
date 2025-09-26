@@ -184,10 +184,21 @@ internal readonly struct FWPM_FILTER_CONDITION0
         this.ConditionValue = new FWP_CONDITION_VALUE0((byte)protocol);
     }
 
-    public FWPM_FILTER_CONDITION0(RpcAuthenticationLevel authenticationLevel)
+    public FWPM_FILTER_CONDITION0(RpcAuthenticationLevel authenticationLevel, NumericMatchType matchType = NumericMatchType.Equals)
     {
         this.FieldKey = PInvoke.FWPM_CONDITION_RPC_AUTH_LEVEL;
-        this.MatchType = FWP_MATCH_TYPE.FWP_MATCH_EQUAL;
+
+        // Map the NumericMatchType enum to the respective Win32 FWP_MATCH_TYPE constant.
+        this.MatchType = matchType switch
+        {
+            NumericMatchType.Equals => FWP_MATCH_TYPE.FWP_MATCH_EQUAL,
+            NumericMatchType.LessThan => FWP_MATCH_TYPE.FWP_MATCH_LESS,
+            NumericMatchType.LessOrEquals => FWP_MATCH_TYPE.FWP_MATCH_LESS_OR_EQUAL,
+            NumericMatchType.GreaterThan => FWP_MATCH_TYPE.FWP_MATCH_GREATER,
+            NumericMatchType.GreaterOrEquals => FWP_MATCH_TYPE.FWP_MATCH_GREATER_OR_EQUAL,
+            _ => throw new ArgumentOutOfRangeException(nameof(matchType), matchType, "Unexpected match type."),
+        };
+
         this.ConditionValue = new FWP_CONDITION_VALUE0((byte)authenticationLevel);
     }
 
@@ -201,8 +212,9 @@ internal readonly struct FWPM_FILTER_CONDITION0
     public FWPM_FILTER_CONDITION0(Guid fieldKey, ushort value)
     {
         if (fieldKey != PInvoke.FWPM_CONDITION_IP_LOCAL_PORT &&
-           fieldKey != PInvoke.FWPM_CONDITION_RPC_IF_VERSION &&
-           fieldKey != RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
+            fieldKey != PInvoke.FWPM_CONDITION_IP_REMOTE_PORT &&
+            fieldKey != PInvoke.FWPM_CONDITION_RPC_IF_VERSION &&
+            fieldKey != RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
         {
             throw new ArgumentOutOfRangeException(nameof(fieldKey), fieldKey, "The field key must be one of the predefined RPC conditions.");
         }
@@ -239,7 +251,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
         return (condition, memoryHandle);
     }
 
-    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, String value)
+    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandle) Create(Guid fieldKey, string value)
     {
         if (fieldKey != PInvoke.FWPM_CONDITION_IMAGE_NAME &&
             fieldKey != PInvoke.FWPM_CONDITION_PIPE)
@@ -247,17 +259,20 @@ internal readonly struct FWPM_FILTER_CONDITION0
             throw new ArgumentOutOfRangeException(nameof(fieldKey), fieldKey, "Unexpected condition type.");
         }
 
-        (var conditionValue, var memoryHandle) = FWP_CONDITION_VALUE0.Allocate(value);
-        // TODO: String matching should be case insensitive, but FWP_MATCH_TYPE.FWP_MATCH_EQUAL_CASE_INSENSITIVE is not accepted by the system here.
+        // All conditions seem to only accept strings as FWP_BYTE_BLOB_STRING instead of FWP_UNICODE_STRING_TYPE
+        (var conditionValue, var memoryHandle) = FWP_CONDITION_VALUE0.Allocate(value, asBlob: true);
+
+        // String matching should be case insensitive, but FWP_MATCH_TYPE.FWP_MATCH_EQUAL_CASE_INSENSITIVE is not accepted by the system here.
         // Example: Named pipe == "\PIPE\winreg" vs. "\pipe\winreg"
         var condition = new FWPM_FILTER_CONDITION0(fieldKey, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
         return (condition, memoryHandle);
     }
 
-    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandleOuter, SafeHandle memoryHandleInner) Create(RawSecurityDescriptor sd)
+    public static (FWPM_FILTER_CONDITION0 condition, SafeHandle memoryHandleOuter, SafeHandle memoryHandleInner) Create(RawSecurityDescriptor sd, bool negativeMatch = false)
     {
         (var conditionValue, var memoryHandleOuter, var memoryHandleInner) = FWP_CONDITION_VALUE0.Allocate(sd);
-        var condition = new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
+        FWP_MATCH_TYPE matchType = negativeMatch ? FWP_MATCH_TYPE.FWP_MATCH_NOT_EQUAL : FWP_MATCH_TYPE.FWP_MATCH_EQUAL;
+        var condition = new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_REMOTE_USER_TOKEN, matchType, conditionValue);
         return (condition, memoryHandleOuter, memoryHandleInner);
     }
 
@@ -284,7 +299,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
         }
 
         (FWP_CONDITION_VALUE0 conditionValue, SafeHandle? memoryHandle) = FWP_CONDITION_VALUE0.Allocate(address, mask);
-        var condition = new FWPM_FILTER_CONDITION0(fieldKey, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
+        FWPM_FILTER_CONDITION0 condition = new(fieldKey, FWP_MATCH_TYPE.FWP_MATCH_EQUAL, conditionValue);
         return (condition, memoryHandle);
     }
 }

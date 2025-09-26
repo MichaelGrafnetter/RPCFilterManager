@@ -188,12 +188,27 @@ named pipe names are unfortunately stored as blobs instead of strings and thus o
 
 ### Name Pipe IP Address Filtering
 
-Filters containing IP address conditions will never match RPC over named pipe traffic.
+Filters containing IP address conditions will never match RPC over named pipe traffic. This might finally change in Windows 11 25H2.
+
+### Named Pipe Authentication
+
+The filtering engine sometimes identifies authentication type as `RPC_C_AUTHN_NONE` instead of `RPC_C_AUTHN_WINNT`
+and authentication level as `RPC_C_AUTHN_LEVEL_DEFAULT` instead of `RPC_C_AUTHN_LEVEL_PKT_PRIVACY` for `ncacn_np` traffic.
+This seems to be the case of the `MS-SCMR` protocol, while `MS-TSCH` and `MS-EVEN` behave as expected. Further investigation is required.
 
 ### Local RPC Calls
 
-RPC filters do not apply to local RPC calls,
+RPC filters typically do not apply to local RPC calls,
 even when a filter condition explicitly targets the `ncalrpc` protocol sequence (transport layer).
+The exact behavior is application-specific and might not always be intuitive:
+
+```powershell
+# This will bypass RPC filters:
+Get-WinEvent -ListLog System
+
+# But this will actually be caught by RPC filters:
+Get-WinEvent -ComputerName localhost -ListLog System
+```
 
 ## Tool Limitations
 

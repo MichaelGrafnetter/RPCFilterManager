@@ -41,15 +41,23 @@ function Get-RpcFilterEvent {
     param(
         [Parameter(Mandatory = $false, ValueFromPipeline = $true)]
         [ValidateNotNullOrEmpty()]
-        [string] $ComputerName = 'localhost',
+        [string] $ComputerName,
 
         [Parameter(Mandatory = $false)]
         [long] $MaxEvents = [long]::MaxValue
     )
 
     process {
+        [hashtable] $computerNameParameter = @{}
+
+        if ($null -ne $ComputerName) {
+            # Use parameter splatting in order to support empty ComputerName
+            # The Get-WinEvent command behaves slightly differently with "localhost" as ComputerName value.
+            $computerNameParameter = @{ ComputerName = $ComputerName }
+        }
+
         # Fetch the corresponding events and convert them to a human-readable format.
-        Get-WinEvent -ComputerName $ComputerName -FilterHashtable @{
+        Get-WinEvent @computerNameParameter -FilterHashtable @{
             LogName = 'Security'
             ProviderName = 'Microsoft-Windows-Security-Auditing'
             Id = '5712' # Event ID 5712: A Remote Procedure Call (RPC) was attempted.

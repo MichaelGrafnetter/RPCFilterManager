@@ -191,6 +191,18 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevelMatch, AuthLevelMatchType, AuthenticationLevelMatch">
+          <maml:name>AuthenticationLevelMatchType</maml:name>
+          <maml:description>
+            <maml:para>The match type (operator) for the authentication level.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">NumericMatchType</command:parameterValue>
+          <dev:type>
+            <maml:name>NumericMatchType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthType">
           <maml:name>AuthenticationType</maml:name>
           <maml:description>
@@ -413,6 +425,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="PermissionsNegativeMatch, SecurityDescriptorNegate, PermissionsNegate">
+          <maml:name>SecurityDescriptorNegativeMatch</maml:name>
+          <maml:description>
+            <maml:para>Indicates whether to match the security descriptor negatively (i.e., NOT match).</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
           <maml:name>Transport</maml:name>
           <maml:description>
@@ -487,6 +510,18 @@
           <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
           <dev:type>
             <maml:name>RpcAuthenticationLevel</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevelMatch, AuthLevelMatchType, AuthenticationLevelMatch">
+          <maml:name>AuthenticationLevelMatchType</maml:name>
+          <maml:description>
+            <maml:para>The match type (operator) for the authentication level.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">NumericMatchType</command:parameterValue>
+          <dev:type>
+            <maml:name>NumericMatchType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -701,6 +736,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="PermissionsNegativeMatch, SecurityDescriptorNegate, PermissionsNegate">
+          <maml:name>SecurityDescriptorNegativeMatch</maml:name>
+          <maml:description>
+            <maml:para>Indicates whether to match the security descriptor negatively (i.e., NOT match).</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
           <maml:name>Transport</maml:name>
           <maml:description>
@@ -787,6 +833,18 @@
           <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
           <dev:type>
             <maml:name>RpcAuthenticationLevel</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevelMatch, AuthLevelMatchType, AuthenticationLevelMatch">
+          <maml:name>AuthenticationLevelMatchType</maml:name>
+          <maml:description>
+            <maml:para>The match type (operator) for the authentication level.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">NumericMatchType</command:parameterValue>
+          <dev:type>
+            <maml:name>NumericMatchType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -989,6 +1047,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="PermissionsNegativeMatch, SecurityDescriptorNegate, PermissionsNegate">
+          <maml:name>SecurityDescriptorNegativeMatch</maml:name>
+          <maml:description>
+            <maml:para>Indicates whether to match the security descriptor negatively (i.e., NOT match).</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
           <maml:name>Transport</maml:name>
           <maml:description>
@@ -1060,6 +1129,18 @@
         <command:parameterValue required="true" variableLength="false">RpcAuthenticationLevel</command:parameterValue>
         <dev:type>
           <maml:name>RpcAuthenticationLevel</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevelMatch, AuthLevelMatchType, AuthenticationLevelMatch">
+        <maml:name>AuthenticationLevelMatchType</maml:name>
+        <maml:description>
+          <maml:para>The match type (operator) for the authentication level.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">NumericMatchType</command:parameterValue>
+        <dev:type>
+          <maml:name>NumericMatchType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -1279,6 +1360,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="PermissionsNegativeMatch, SecurityDescriptorNegate, PermissionsNegate">
+        <maml:name>SecurityDescriptorNegativeMatch</maml:name>
+        <maml:description>
+          <maml:para>Indicates whether to match the security descriptor negatively (i.e., NOT match).</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ProtSeq, Binding, ProtocolSequence">
         <maml:name>Transport</maml:name>

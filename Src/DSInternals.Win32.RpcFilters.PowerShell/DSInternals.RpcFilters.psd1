@@ -8,7 +8,7 @@
 RootModule = 'DSInternals.RpcFilters.Bootstrap.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '1.1'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -109,7 +109,8 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
-Initial release.
+- The -AuthenticationLevelMatchType and -SecurityDescriptorNegativeMatch parameters have been added to the New-RpcFilter cmdlet.
+- The Get-RpcFilterEvent cmdlet now correctly bypasses firewall on localhost.
 '@
 
         # Prerelease string of this module

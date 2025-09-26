@@ -566,6 +566,62 @@ filterCondition[2]
         conditionValue: Type: FWP_BYTE_ARRAY16_TYPE Value: df1941c5 4e79fe89 364610bf 4df4ac57
 ```
 
+The EFS-related filters could be rewritten to use the `Block` action exclusively:
+
+```powershell
+New-RpcFilter `
+    -Name 'EFSR-Block-NTLM' `
+    -Description 'Block MS-EFSR over the efsrpc named pipe when NTLM is used' `
+    -WellKnownProtocol EncryptingFileSystem `
+    -AuthenticationType NTLM `
+    -Action Block `
+    -Persistent `
+    -Audit
+
+New-RpcFilter `
+    -Name 'EFSR-Block-Unencrypted' `
+    -Description 'Block unencrypted MS-EFSR traffic over the efsrpc named pipe' `
+    -WellKnownProtocol EncryptingFileSystem `
+    -AuthenticationLevel PacketPrivacy `
+    -AuthenticationLevelMatchType LessThan `
+    -Action Block `
+    -Persistent `
+    -Audit
+
+New-RpcFilter `
+    -Name 'EFSR-LSA-Block-NTLM' `
+    -Description 'Block MS-EFSR over the lsarpc named pipe when NTLM is used' `
+    -WellKnownProtocol EncryptingFileSystemLSA `
+    -AuthenticationType NTLM `
+    -Action Block `
+    -Persistent `
+    -Audit
+
+New-RpcFilter `
+    -Name 'EFSR-LSA-Block-Unencrypted' `
+    -Description 'Block unencrypted MS-EFSR traffic over the lsarpc named pipe' `
+    -WellKnownProtocol EncryptingFileSystemLSA `
+    -AuthenticationLevel PacketPrivacy `
+    -AuthenticationLevelMatchType LessThan `
+    -Action Block `
+    -Persistent `
+    -Audit
+```
+
+Similar approach could be taken for the DFS namespace management protocol:
+
+```powershell
+New-RpcFilter `
+    -Name 'DFSNM-Block-Non-DA' `
+    -Description 'Block MS-DFSNM for non-Domain Admins' `
+    -WellKnownProtocol NamespaceManagement `
+    -SecurityDescriptor 'D:(A;;CC;;;DA)' `
+    -SecurityDescriptorNegativeMatch `
+    -Action Block `
+    -Persistent `
+    -Audit
+```
+
 > [!TIP]
 > See the [Active Directory Firewall project](https://firewall.dsinternals.com) for more comprehensive guidelines
 > on configuring Windows Firewall on Domain Controllers.
