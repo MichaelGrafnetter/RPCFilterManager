@@ -232,8 +232,14 @@ Although [the WFP API supports a wide range of match types](https://learn.micros
 [![Blog](https://img.shields.io/badge/Blog-www.dsinternals.com-2A6496.svg)](https://www.dsinternals.com/en)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-grafnetter-0077B5.svg)](https://www.linkedin.com/in/grafnetter)
 
-## Acknowledgements
+> [!TIP]
+> See another project of mine, [Active Directory Firewall](https://firewall.dsinternals.com),
+> for comprehensive guidelines on configuring Windows Firewall on Domain Controllers, including RPC filters.
 
-- [Zero Networks: Stopping Lateral Movement via the RPC Firewall](https://zeronetworks.com/blog/stopping-lateral-movement-via-the-rpc-firewall)
-- [Akamai: A Definitive Guide to the Remote Procedure Call (RPC) Filter](https://www.akamai.com/blog/security/guide-rpc-filter)
-- [Google Project Zero: NtObjectManager](https://github.com/googleprojectzero/sandbox-attacksurface-analysis-tools)
+## References
+
+- [Ned Pyle (Microsoft): RPC over IT/Pro](https://techcommunity.microsoft.com/blog/askds/rpc-over-itpro/399898)
+- [Sagie Dulce (Zero Networks): Stopping Lateral Movement via the RPC Firewall](https://zeronetworks.com/blog/stopping-lateral-movement-via-the-rpc-firewall)
+- [Ophir Harpaz & Stiv Kupchik (Akamai): A Definitive Guide to the Remote Procedure Call (RPC) Filter](https://www.akamai.com/blog/security/guide-rpc-filter)
+- [James Spencer (CrowdStrike): Windows RPC Interface Database](https://blog.jcspencer.net/rpc-interfaces)
+- [James Forshaw (Google Project Zero): Calling Local Windows RPC Servers from .NET](https://googleprojectzero.blogspot.com/2019/12/calling-local-windows-rpc-servers-from.html)
