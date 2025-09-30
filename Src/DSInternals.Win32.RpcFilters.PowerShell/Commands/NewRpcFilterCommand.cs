@@ -96,7 +96,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public RawSecurityDescriptor? SecurityDescriptor { get; set; }
 
     [Parameter()]
-    [Alias("PermissionsNegativeMatch","SecurityDescriptorNegate", "PermissionsNegate")]
+    [Alias("PermissionsNegativeMatch", "SecurityDescriptorNegate", "PermissionsNegate")]
     public SwitchParameter SecurityDescriptorNegativeMatch { get; set; }
 
     [Parameter(ValueFromPipelineByPropertyName = true)]

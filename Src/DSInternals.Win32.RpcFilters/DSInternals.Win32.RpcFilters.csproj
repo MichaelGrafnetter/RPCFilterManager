@@ -59,4 +59,13 @@
     <None Include="$(MSBuildThisFileDirectory)PACKAGE.md" Pack="true" PackagePath="/README.md" Visible="true" />
   </ItemGroup>
 
+  <!-- Group source code files in Visual Studio -->
+  <ItemGroup>
+    <Compile Update="WellKnownProtocolTranslator.OpNums.cs">
+      <DependentUpon>WellKnownProtocolTranslator.cs</DependentUpon>
+    </Compile>
+    <Compile Update="WellKnownProtocolTranslator.Protocols.cs">
+      <DependentUpon>WellKnownProtocolTranslator.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

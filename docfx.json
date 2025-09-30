@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "Src",
+          "files": [
+            "DSInternals.Win32.RpcFilters/DSInternals.Win32.RpcFilters.csproj"
+          ]
+        }
+      ],
+      "output": "Documentation/DotNet",
+      "outputFormat": "markdown",
+      "noRestore": true
+    }
+  ]
+}
