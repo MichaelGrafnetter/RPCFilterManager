@@ -142,6 +142,9 @@ ulong id = fw.AddFilter(filter);
 fw.RemoveFilter(id);
 ```
 
+> [!TIP]
+> More information can be found in the [.NET API documentation](../Documentation/DotNet/README.md).
+
 ## Monitoring
 
 To monitor blocked or permitted RPC operations, auditing for RPC events must be enabled first.
