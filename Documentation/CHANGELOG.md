@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Added
+
+- Support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
+- More RPC protocols and operation numbers are now translated to human-readable names.
+
 ## [1.1] - 2025-09-26
 
 ### Added

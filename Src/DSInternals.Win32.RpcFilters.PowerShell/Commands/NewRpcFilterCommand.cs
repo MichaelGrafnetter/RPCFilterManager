@@ -68,7 +68,8 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
     public RpcFilterAction Action { get; set; }
 
     [Parameter(ValueFromPipelineByPropertyName = true)]
-    public SwitchParameter Audit { get; set; } = default;
+    [Alias("AuditOptions", "Auditing")]
+    public RpcFilterAuditOptions Audit { get; set; } = RpcFilterAuditOptions.Disabled;
 
     [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true)]
     [ValidateNotNull()]
@@ -159,17 +160,22 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
 
             if (namedPipesUsed && ipAddressUsed && !RpcFilterManager.IsIpAddressFilterWithNamedPipesSupported)
             {
-                WriteWarning("Filters with both IP address and named pipe conditions are ignored in the current version of Windows.");
+                WriteWarning("Filters with both IP address and named pipe conditions only work on Windows 11 25H2 and Windows Server 2025 or newer systems.");
             }
 
             if (InterfaceUUID.SupportsNamedPipes() && ipAddressUsed && !RpcFilterManager.IsIpAddressFilterWithNamedPipesSupported)
             {
-                WriteWarning("The target interface supports a named pipe binding. Only TCP/IP bindings work with IP address conditions.");
+                WriteWarning("The target interface supports a named pipe binding. Only TCP/IP bindings work with IP address conditions on systems prior to Windows 11 25H2.");
             }
 
             if (OperationNumber.HasValue && !RpcFilterManager.IsOpnumFilterSupported)
             {
                 WriteWarning("Filters with OpNum conditions only work on Windows 11 24H2 and Windows Server 2025 or newer systems.");
+            }
+
+            if (Audit.HasFlag(RpcFilterAuditOptions.Parameters) && !RpcFilterManager.IsAuditParametersSupported)
+            {
+                WriteWarning("Filters with parameter buffer auditing only work on Windows 11 25H2 or newer systems.");
             }
 
             if (RemoteAddressMask.HasValue && RemoteAddress == null)
@@ -236,7 +242,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
                 Description = Description ?? RpcFilter.DefaultDescription,
                 FilterKey = FilterKey ?? Guid.NewGuid(),
                 Action = Action,
-                Audit = Audit.IsPresent,
+                Audit = Audit,
                 AuthenticationLevel = AuthenticationLevel,
                 AuthenticationLevelMatchType = AuthenticationLevelMatchType ?? NumericMatchType.Equals,
                 AuthenticationType = AuthenticationType,

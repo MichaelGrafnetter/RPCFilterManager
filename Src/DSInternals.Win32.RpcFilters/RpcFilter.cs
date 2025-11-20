@@ -103,9 +103,9 @@ public sealed class RpcFilter
     public RpcFilterAction Action { get; set; }
 
     /// <summary>
-    /// Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.
+    /// Indicates whether incoming RPC calls and their parameters are audited as part of C2 and common criteria compliance.
     /// </summary>
-    public bool Audit { get; set; }
+    public RpcFilterAuditOptions Audit { get; set; }
 
     /// <summary>
     /// Indicates whether the filter is persistent, that is, it survives across BFE stop/start.

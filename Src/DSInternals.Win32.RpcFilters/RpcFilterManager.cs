@@ -25,7 +25,13 @@ public sealed class RpcFilterManager : IDisposable
     /// Context used in the RPC audit sublayer.
     /// </summary>
     // TODO: [Obsolete("Switch to the FWPM_CONTEXT_RPC_AUDIT_ENABLED system constant once it gets into the API.")]
-    private const ulong FWPM_CONTEXT_RPC_AUDIT_ENABLED = 1;
+    internal const ulong FWPM_CONTEXT_RPC_AUDIT_ENABLED = 1;
+
+    /// <summary>
+    /// Context used in the RPC audit sublayer.
+    /// </summary>
+    // TODO: [Obsolete("Switch to the FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED system constant once it gets into the API.")]
+    internal const ulong FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED  = 2;
 
     /// <summary>
     /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
@@ -36,8 +42,14 @@ public sealed class RpcFilterManager : IDisposable
     /// <summary>
     /// Indicates whether the IP address filter conditions work with RPC over named pipes on the current operating system.
     /// </summary>
-    /// <remarks>IP address filter support for RPC over named pipes will probably be added in Windows 11 25H2 (10.0.26200).</remarks>
+    /// <remarks>IP address filter support for RPC over named pipes was added in Windows 11 25H2 (10.0.26200).</remarks>
     public static bool IsIpAddressFilterWithNamedPipesSupported => Environment.OSVersion.Version >= new Version(10, 0, 26200);
+
+    /// <summary>
+    /// Indicates whether parameter buffer auditing is supported on the current operating system.
+    /// </summary>
+    /// <remarks>Parameter buffer auditing support was added in Windows 11 25H2 (10.0.26200).</remarks>
+    public static bool IsAuditParametersSupported => Environment.OSVersion.Version >= new Version(10, 0, 26200);
 
     private SafeFwpmEngineHandle? engineHandle;
 
@@ -157,7 +169,11 @@ public sealed class RpcFilterManager : IDisposable
         }
 
         FWP_VALUE0 nativeWeight = filter.Weight.HasValue ? new FWP_VALUE0((byte)filter.Weight.Value) : new FWP_VALUE0();
-        Guid subLayer = filter.Audit ? PInvoke.FWPM_SUBLAYER_RPC_AUDIT : PInvoke.FWPM_SUBLAYER_UNIVERSAL;
+
+        // Parameter auditing implies auditing
+        bool auditEnabled = filter.Audit.HasFlag(RpcFilterAuditOptions.Enabled) || filter.Audit.HasFlag(RpcFilterAuditOptions.Parameters);
+        Guid subLayer = auditEnabled ? PInvoke.FWPM_SUBLAYER_RPC_AUDIT : PInvoke.FWPM_SUBLAYER_UNIVERSAL;
+
         FWPM_ACTION0 action = new(filter.Action);
         FWPM_FILTER_FLAGS flags = FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_NONE;
 
@@ -280,10 +296,16 @@ public sealed class RpcFilterManager : IDisposable
             Flags = flags
         };
 
-        if (filter.Audit)
+        if (auditEnabled)
         {
             // Context is required to be set in addition to the sub-layer key.
-            nativeFilter.Context.rawContext = FWPM_CONTEXT_RPC_AUDIT_ENABLED;
+            nativeFilter.Context.rawContext |= FWPM_CONTEXT_RPC_AUDIT_ENABLED;
+        }
+
+        if (filter.Audit.HasFlag(RpcFilterAuditOptions.Parameters))
+        {
+            // Context is required to be set in addition to the sub-layer key.
+            nativeFilter.Context.rawContext |= FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED;
         }
 
         GCHandle conditionsHandle = nativeFilter.SetFilterConditions(conditions);
@@ -357,7 +379,7 @@ public sealed class RpcFilterManager : IDisposable
             IsPersistent = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_PERSISTENT),
             IsBootTimeEnforced = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_BOOTTIME),
             IsDisabled = nativeFilter.Flags.HasFlag(FWPM_FILTER_FLAGS.FWPM_FILTER_FLAG_DISABLED),
-            Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT,
+            Audit = nativeFilter.SubLayerKey == PInvoke.FWPM_SUBLAYER_RPC_AUDIT ? (RpcFilterAuditOptions)nativeFilter.Context.rawContext : RpcFilterAuditOptions.Disabled,
             ProviderKey = nativeFilter.ProviderKey,
             Weight = nativeFilter.Weight.UIntValue,
             Action = (RpcFilterAction)nativeFilter.Action.Type,

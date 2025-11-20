@@ -33,7 +33,7 @@ public class RPCFilterManagerTester
             SDDL = "D:(A;;CC;;;BA)",
             SecurityDescriptorNegativeMatch = true,
             Action = RpcFilterAction.Block,
-            Audit = true,
+            Audit = RpcFilterAuditOptions.Enabled,
             IsPersistent = true,
             AuthenticationLevel = RpcAuthenticationLevel.PacketPrivacy,
             AuthenticationLevelMatchType = NumericMatchType.LessThan,

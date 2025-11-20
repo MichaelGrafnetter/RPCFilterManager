@@ -6,10 +6,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyTitle>DSInternals RPC Filter Manager Assembly</AssemblyTitle>
     <Authors>Michael Grafnetter</Authors>
-    <Version>1.1</Version>
-    <AssemblyVersion>1.1</AssemblyVersion>
-    <ProductVersion>1.1</ProductVersion>
-    <FileVersion>1.1</FileVersion>
+    <Version>1.2</Version>
+    <AssemblyVersion>1.2</AssemblyVersion>
+    <ProductVersion>1.2</ProductVersion>
+    <FileVersion>1.2</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/MichaelGrafnetter/RpcFilterManager</PackageProjectUrl>
