@@ -159,16 +159,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuditOptions, Auditing">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance. Supported values are Disabled, Enabled, and EnabledWithParams.</maml:para>
           </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcFilterAuditOptions</command:parameterValue>
           <dev:type>
-            <maml:name>SwitchParameter</maml:name>
+            <maml:name>RpcFilterAuditOptions</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
+          <dev:defaultValue>Disabled</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
@@ -482,16 +483,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuditOptions, Auditing">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance. Supported values are Disabled, Enabled, and EnabledWithParams.</maml:para>
           </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcFilterAuditOptions</command:parameterValue>
           <dev:type>
-            <maml:name>SwitchParameter</maml:name>
+            <maml:name>RpcFilterAuditOptions</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
+          <dev:defaultValue>Disabled</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
@@ -805,16 +807,17 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuditOptions, Auditing">
           <maml:name>Audit</maml:name>
           <maml:description>
-            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
+            <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance. Supported values are Disabled, Enabled, and EnabledWithParams.</maml:para>
           </maml:description>
+          <command:parameterValue required="true" variableLength="false">RpcFilterAuditOptions</command:parameterValue>
           <dev:type>
-            <maml:name>SwitchParameter</maml:name>
+            <maml:name>RpcFilterAuditOptions</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
+          <dev:defaultValue>Disabled</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
           <maml:name>AuthenticationLevel</maml:name>
@@ -1109,17 +1112,17 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuditOptions, Auditing">
         <maml:name>Audit</maml:name>
         <maml:description>
-          <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.</maml:para>
+          <maml:para>Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance. Supported values are Disabled, Enabled, and EnabledWithParams.</maml:para>
         </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">RpcFilterAuditOptions</command:parameterValue>
         <dev:type>
-          <maml:name>SwitchParameter</maml:name>
+          <maml:name>RpcFilterAuditOptions</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
+        <dev:defaultValue>Disabled</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="AuthLevel">
         <maml:name>AuthenticationLevel</maml:name>
@@ -1538,7 +1541,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit</dev:code>
+        <dev:code>PS C:\&gt; New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit Enabled</dev:code>
         <dev:remarks>
           <maml:para>Creates a new RPC filter to block and audit service management (MS-SCMR) traffic over Named Pipes.</maml:para>
         </dev:remarks>

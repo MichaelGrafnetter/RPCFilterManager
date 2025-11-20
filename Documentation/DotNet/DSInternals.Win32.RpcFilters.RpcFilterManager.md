@@ -39,6 +39,22 @@ public RpcFilterManager()
 
 ## Properties
 
+### <a id="DSInternals_Win32_RpcFilters_RpcFilterManager_IsAuditParametersSupported"></a> IsAuditParametersSupported
+
+Indicates whether parameter buffer auditing is supported on the current operating system.
+
+```csharp
+public static bool IsAuditParametersSupported { get; }
+```
+
+#### Property Value
+
+ [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+
+#### Remarks
+
+Parameter buffer auditing support was added in Windows 11 25H2 (10.0.26200).
+
 ### <a id="DSInternals_Win32_RpcFilters_RpcFilterManager_IsIpAddressFilterWithNamedPipesSupported"></a> IsIpAddressFilterWithNamedPipesSupported
 
 Indicates whether the IP address filter conditions work with RPC over named pipes on the current operating system.
@@ -53,7 +69,7 @@ public static bool IsIpAddressFilterWithNamedPipesSupported { get; }
 
 #### Remarks
 
-IP address filter support for RPC over named pipes will probably be added in Windows 11 25H2 (10.0.26200).
+IP address filter support for RPC over named pipes was added in Windows 11 25H2 (10.0.26200).
 
 ### <a id="DSInternals_Win32_RpcFilters_RpcFilterManager_IsOpnumFilterSupported"></a> IsOpnumFilterSupported
 

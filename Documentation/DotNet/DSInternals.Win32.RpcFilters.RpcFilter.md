@@ -75,15 +75,15 @@ public RpcFilterAction Action { get; set; }
 
 ### <a id="DSInternals_Win32_RpcFilters_RpcFilter_Audit"></a> Audit
 
-Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.
+Indicates whether incoming RPC calls and their parameters are audited as part of C2 and common criteria compliance.
 
 ```csharp
-public bool Audit { get; set; }
+public RpcFilterAuditOptions Audit { get; set; }
 ```
 
 #### Property Value
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [RpcFilterAuditOptions](DSInternals.Win32.RpcFilters.RpcFilterAuditOptions.md)
 
 ### <a id="DSInternals_Win32_RpcFilters_RpcFilter_AuthenticationLevel"></a> AuthenticationLevel
 

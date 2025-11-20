@@ -32,6 +32,10 @@ Authentication service used for RPC connections.
 
 RPC filter action type.
 
+ [RpcFilterAuditOptions](DSInternals.Win32.RpcFilters.RpcFilterAuditOptions.md)
+
+Audit options for RPC filters.
+
  [RpcProtocolSequence](DSInternals.Win32.RpcFilters.RpcProtocolSequence.md)
 
 Microsoft RPC protocol sequences supported by the Windows Filtering Platform.

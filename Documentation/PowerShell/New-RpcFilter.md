@@ -16,7 +16,7 @@ Creates a new RPC filter for managing remote procedure call (RPC) traffic based 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>] [-InterfaceUUID <Guid>]
- -Action <RpcFilterAction> [-Audit] [-AuthenticationLevel <RpcAuthenticationLevel>]
+ -Action <RpcFilterAction> [-Audit <RpcFilterAuditOptions>] [-AuthenticationLevel <RpcAuthenticationLevel>]
  [-AuthenticationLevelMatchType <NumericMatchType>] [-AuthenticationType <RpcAuthenticationType>]
  [-Transport <RpcProtocolSequence>] [-SecurityDescriptor <RawSecurityDescriptor>]
  [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>] [-RemoteAddressMask <Byte>]
@@ -28,7 +28,7 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
- -WellKnownProtocol <WellKnownProtocol> -Action <RpcFilterAction> [-Audit]
+ -WellKnownProtocol <WellKnownProtocol> -Action <RpcFilterAction> [-Audit <RpcFilterAuditOptions>]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationLevelMatchType <NumericMatchType>]
  [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
  [-SecurityDescriptor <RawSecurityDescriptor>] [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>]
@@ -40,7 +40,7 @@ New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] 
 ```
 New-RpcFilter [-PassThrough] [-BootTimeEnforced] [-Persistent] [-Name <String>] [-Description <String>]
  [-ImageName <String>] [-NamedPipe <String>] [-FilterKey <Guid>] [-DcomAppId <Guid>]
- -WellKnownOperation <WellKnownOperation> -Action <RpcFilterAction> [-Audit]
+ -WellKnownOperation <WellKnownOperation> -Action <RpcFilterAction> [-Audit <RpcFilterAuditOptions>]
  [-AuthenticationLevel <RpcAuthenticationLevel>] [-AuthenticationLevelMatchType <NumericMatchType>]
  [-AuthenticationType <RpcAuthenticationType>] [-Transport <RpcProtocolSequence>]
  [-SecurityDescriptor <RawSecurityDescriptor>] [-SecurityDescriptorNegativeMatch] [-RemoteAddress <IPAddress>]
@@ -55,7 +55,7 @@ This cmdlet creates a new RPC filter for managing remote procedure call (RPC) tr
 
 ### Example 1
 ```powershell
-PS C:\> New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit
+PS C:\> New-RpcFilter -Name 'Block-SCMR-NP' -Description 'Block MS-SCMR over Named Pipes' -WellKnownProtocol ServiceControlManager -Transport ncacn_np -Action Block -Audit Enabled
 ```
 
 Creates a new RPC filter to block and audit service management (MS-SCMR) traffic over Named Pipes.
@@ -80,15 +80,16 @@ Accept wildcard characters: False
 
 ### -Audit
 Indicates whether incoming RPC calls are audited as part of C2 and common criteria compliance.
+Supported values are Disabled, Enabled, and EnabledWithParams.
 
 ```yaml
-Type: SwitchParameter
+Type: RpcFilterAuditOptions
 Parameter Sets: (All)
-Aliases:
+Aliases: AuditOptions, Auditing
 
 Required: False
 Position: Named
-Default value: None
+Default value: Disabled
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```

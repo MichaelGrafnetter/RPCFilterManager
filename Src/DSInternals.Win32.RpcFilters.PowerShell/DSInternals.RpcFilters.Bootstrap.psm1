@@ -93,6 +93,20 @@ function Disable-RpcFilterAuditing {
     auditpol.exe /set /subcategory:"RPC Events" /success:disable /failure:disable > $null
 }
 
+<#
+.SYNOPSIS
+    Gets the current auditing settings for RPC events.
+
+#>
+function Get-RpcFilterAuditing {
+    [CmdletBinding()]
+    [OutputType([PSCustomObject])]
+    param()
+
+    # Run the native command and convert the CSV output to objects
+    auditpol.exe /get /subcategory:"RPC Events" /r | ConvertFrom-Csv -Delimiter ','
+}
+
 #endregion Script cmdlets
 
 # Define cmdlet aliases
@@ -101,4 +115,4 @@ New-Alias -Name 'Add-RpcFilter' -Value 'New-RpcFilter' -Force
 # Export cmdlets
 Export-ModuleMember -Cmdlet @('Get-RpcFilter', 'New-RpcFilter', 'Remove-RpcFilter') `
                     -Alias @('Add-RpcFilter') `
-                    -Function @('Get-RpcFilterEvent', 'Enable-RpcFilterAuditing', 'Disable-RpcFilterAuditing')
+                    -Function @('Get-RpcFilterEvent', 'Enable-RpcFilterAuditing', 'Disable-RpcFilterAuditing', 'Get-RpcFilterAuditing')

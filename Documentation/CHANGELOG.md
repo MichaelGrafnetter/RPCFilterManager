@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. The format 
 ### Added
 
 - Support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
+- Added the `Get-RpcFilterAuditing` cmdlet to check the current auditing settings of RPC filter events.
 - More RPC protocols and operation numbers are now translated to human-readable names.
 
 ## [1.1] - 2025-09-26
