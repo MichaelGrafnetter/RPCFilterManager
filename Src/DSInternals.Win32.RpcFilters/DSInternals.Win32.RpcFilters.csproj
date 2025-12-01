@@ -22,7 +22,6 @@
     <PackageTags>RPC;Filter;WFP;Firewall;Windows;Interop</PackageTags>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Library for managing Windows RPC Filters.</Description>
@@ -45,7 +44,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.205">
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.252">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -61,10 +60,7 @@
 
   <!-- Group source code files in Visual Studio -->
   <ItemGroup>
-    <Compile Update="WellKnownProtocolTranslator.OpNums.cs">
-      <DependentUpon>WellKnownProtocolTranslator.cs</DependentUpon>
-    </Compile>
-    <Compile Update="WellKnownProtocolTranslator.Protocols.cs">
+    <Compile Update="WellKnownProtocolTranslator.*.cs">
       <DependentUpon>WellKnownProtocolTranslator.cs</DependentUpon>
     </Compile>
   </ItemGroup>

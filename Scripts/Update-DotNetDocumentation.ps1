@@ -17,4 +17,5 @@ docfx metadata "$parentDir/docfx.json"
 Remove-Item -Path "$parentDir/Documentation/DotNet/toc.yml" -ErrorAction SilentlyContinue
 
 # Rename the index file to README.md
+Remove-Item -Path "$parentDir/Documentation/DotNet/README.md" -ErrorAction SilentlyContinue
 Rename-Item -Path "$parentDir/Documentation/DotNet/DSInternals.Win32.RpcFilters.md" -NewName "README.md" -ErrorAction SilentlyContinue

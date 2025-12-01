@@ -12,7 +12,7 @@
         "--nologo"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/Src"
+        "cwd": "${workspaceFolder}"
       },
       "group": {
         "kind": "build",

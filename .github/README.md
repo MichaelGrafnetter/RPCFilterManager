@@ -21,7 +21,7 @@ part of the [Windows Filtering Platform (WFP)](https://learn.microsoft.com/en-us
 [![GitHub Downloads](https://img.shields.io/github/downloads/MichaelGrafnetter/RpcFilterManager/total.svg?label=GitHub%20Downloads&logo=GitHub)](https://github.com/MichaelGrafnetter/RpcFilterManager/releases)
 
 The [DSInternals.RpcFilters](https://www.powershellgallery.com/packages/DSInternals.RpcFilters) PowerShell module
-exposes the functionality of the `DSInternals.Win32.RpcFilters` through PowerShell cmdlets.
+exposes the functionality of the `DSInternals.Win32.RpcFilters` library through PowerShell cmdlets.
 
 ## Examples
 
@@ -193,13 +193,18 @@ named pipe names are unfortunately stored as blobs instead of strings and thus o
 
 ### Name Pipe IP Address Filtering
 
-Filters containing IP address conditions will never match RPC over named pipe traffic. This might finally change in Windows 11 25H2.
+Filters containing IP address conditions will never match RPC over named pipe traffic on system versions lower than Windows 11 25H2.
 
 ### Named Pipe Authentication
 
 The filtering engine sometimes identifies authentication type as `RPC_C_AUTHN_NONE` instead of `RPC_C_AUTHN_WINNT`
 and authentication level as `RPC_C_AUTHN_LEVEL_DEFAULT` instead of `RPC_C_AUTHN_LEVEL_PKT_PRIVACY` for `ncacn_np` traffic.
 This seems to be the case of the `MS-SCMR` protocol, while `MS-TSCH` and `MS-EVEN` behave as expected. Further investigation is required.
+
+### Authentication Level Matching
+
+Kerberos vs. Negotiate authentication type matching seems to be unreliable.
+
 
 ### Local RPC Calls
 
@@ -214,6 +219,17 @@ Get-WinEvent -ListLog System
 # But this will actually be caught by RPC filters:
 Get-WinEvent -ComputerName localhost -ListLog System
 ```
+
+### Parameter Buffer Auditing
+
+Since Windows 11 25H2 and Windows Server 2025, the API supports optional auditing of RPC call parameters through the new `FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED` flag.
+This feature is exposed through the .NET interop library and PowerShell module:
+
+```powershell
+New-RpcFilter -Name 'SCMR-Audit' -WellKnownProtocol ServiceControlManager -Action Permit -Audit EnabledWithParams
+```
+
+However, enabling this flag does not seem to have any effect yet.
 
 ## Tool Limitations
 
