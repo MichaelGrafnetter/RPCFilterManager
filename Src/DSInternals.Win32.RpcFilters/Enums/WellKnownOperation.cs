@@ -131,6 +131,11 @@ public enum WellKnownOperation
     LsarRetrievePrivateData,
 
     /// <summary>
+    /// The LsarRetrievePrivateData2 (MS-LSAD) method is invoked to retrieve a secret value.
+    /// </summary>
+    LsarRetrievePrivateData2,
+
+    /// <summary>
     /// The EfsRpcOpenFileRaw (MS-EFSR) method is used to open an encrypted object on the server for backup or restore.
     /// </summary>
     EfsRpcOpenFileRaw,

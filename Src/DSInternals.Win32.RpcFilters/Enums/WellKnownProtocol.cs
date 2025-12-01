@@ -203,5 +203,120 @@ public enum WellKnownProtocol
     /// <summary>
     /// MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD2)
     /// </summary>
-    ICertAdminD2
+    ICertAdminD2,
+
+    /// <summary>
+    /// MS-OCSPA: Microsoft OCSP Administration Protocol
+    /// </summary>
+    IOCSPAdminD,
+
+    /// <summary>
+    /// MS-WDSC: Windows Deployment Services Control Protocol
+    /// </summary>
+    WindowsDeploymentServices,
+
+    /// <summary>
+    /// MC-CCFG: Server Cluster: Configuration (ClusCfg) Protocol
+    /// </summary>
+    ClusterConfiguration,
+
+    /// <summary>
+    /// MS-CMRP: Failover Cluster: Management API (ClusAPI) Protocol
+    /// </summary>
+    ClusterManagement,
+
+    /// <summary>
+    /// MS-BPAU: Background Intelligent Transfer Service (BITS) Peer-Caching: Peer Authentication Protocol
+    /// </summary>
+    PeerCachingAuthentication,
+
+    /// <summary>
+    /// MS-CAPR: Central Access Policy Identifier (ID) Retrieval Protocol
+    /// </summary>
+    CentralAccessPolicyIdentifierRetrieval,
+
+    /// <summary>
+    /// MS-COM: Component Object Model Plus (COM+) Protocol
+    /// </summary>
+    ITransactionStream,
+
+    /// <summary>
+    /// MS-FASP: Firewall and Advanced Security Protocol
+    /// </summary>
+    Firewall,
+
+    /// <summary>
+    /// MS-GKDI: Group Key Distribution Protocol
+    /// </summary>
+    GroupKeyDistribution,
+
+    /// <summary>
+    /// MS-IISS: Internet Information Services (IIS) ServiceControl Protocol
+    /// </summary>
+    WebServiceControl,
+
+    /// <summary>
+    /// MS-IRP: Internet Information Services (IIS) Inetinfo Remote Protocol
+    /// </summary>
+    WebServiceInformation,
+
+    /// <summary>
+    /// MS-SWN: Service Witness Protocol
+    /// </summary>
+    Witness,
+
+    /// <summary>
+    /// MS-TSGU: Terminal Services Gateway Server Protocol
+    /// </summary>
+    TerminalServicesGateway,
+
+    /// <summary>
+    /// MS-TSRAP: Telnet Server Remote Administration Protocol
+    /// </summary>
+    TelnetServer,
+
+    /// <summary>
+    /// MS-RPCL: Remote Procedure Call Location Services Extensions
+    /// </summary>
+    RemoteProcedureCallLocator,
+
+    /// <summary>
+    /// MS-RAA: Remote Authorization API Protocol
+    /// </summary>
+    RemoteAuthorization,
+
+    /// <summary>
+    /// MS-PCQ: Performance Counter Query Protocol
+    /// </summary>
+    PerformanceCounters,
+
+    /// <summary>
+    /// MS-MQRR: Message Queuing (MSMQ): Queue Manager Remote Read Protocol
+    /// </summary>
+    MessageQueueRemoteRead,
+
+    /// <summary>
+    /// MS-MQQP: Message Queuing (MSMQ): Queue Manager to Queue Manager Protocol
+    /// </summary>
+    MessageQueueToMessageQueue,
+
+    /// <summary>
+    /// MS-MQMR: Message Queuing (MSMQ): Queue Manager Management Protocol
+    /// </summary>
+    MessageQueueManagement,
+
+    /// <summary>
+    /// MS-LREC: Live Remote Event Capture (LREC) Protocol
+    /// </summary>
+    LiveEventCapture,
+
+    /// <summary>
+    /// MS-OXABREF: Address Book Name Service Provider Interface (NSPI) Referral Protocol
+    /// </summary>
+    AddressBookReferral,
+
+    /// <summary>
+    /// MS-CMPO: MSDTC Connection Manager: OleTx Transports Protocol
+    /// </summary>
+    OleTxTransports,
 }

@@ -1206,16 +1206,6 @@ public static partial class WellKnownProtocolTranslator
     public static readonly Guid DSSP = new(DSSP_UUID);
 
     /// <summary>
-    /// MS-EERR: ExtendedError Remote Data Structure
-    /// </summary>
-    private const string EERR_UUID = "14a8831c-bc82-11d2-8a64-0008c7457e5d";
-
-    /// <summary>
-    /// MS-EERR: ExtendedError Remote Data Structure
-    /// </summary>
-    public static readonly Guid EERR = new(EERR_UUID);
-
-    /// <summary>
     /// MS-EFSR: Encrypting File System Remote (EFSRPC) Protocol (efsrpc interface)
     /// </summary>
     private const string EFSR_efsrpc_UUID = "df1941c5-fe89-4e79-bf10-463657acf44d";
@@ -1966,14 +1956,26 @@ public static partial class WellKnownProtocolTranslator
     public static readonly Guid LREC = new(LREC_UUID);
 
     /// <summary>
-    /// MS-LSAT: Local Security Authority (Translation Methods) Remote
+    /// MS-LSAT: Local Security Authority (Translation Methods) Remote Protocol
     /// </summary>
+    /// <remarks>The UUID is the same as MS-LSAD.</remarks>
     private const string LSAT_UUID = "12345778-1234-abcd-ef00-0123456789ab";
 
     /// <summary>
-    /// MS-LSAT: Local Security Authority (Translation Methods) Remote
+    /// MS-LSAT: Local Security Authority (Translation Methods) Remote Protocol
     /// </summary>
     public static readonly Guid LSAT = new(LSAT_UUID);
+
+    /// <summary>
+    /// MS-LSAD: Local Security Authority (Domain Policy) Remote Protocol
+    /// </summary>
+    /// <remarks>The UUID is the same as MS-LSAT.</remarks>
+    private const string LSAD_UUID = "12345778-1234-abcd-ef00-0123456789ab";
+
+    /// <summary>
+    /// MS-LSAD: Local Security Authority (Domain Policy) Remote Protocol
+    /// </summary>
+    public static readonly Guid LSAD = new(LSAD_UUID);
 
     /// <summary>
     /// MS-MQDS: Message Queuing (MSMQ): Directory Service Protocol (dscomm2 interface)

@@ -22,16 +22,6 @@ public static partial class WellKnownProtocolTranslator
     public const ushort ElfrClearELFA = 12;
 
     /// <summary>
-    /// MS-DRSR: IDL_DRSGetNCChanges
-    /// </summary>
-    public const ushort IDL_DRSGetNCChanges = 3;
-
-    /// <summary>
-    /// MS-DRSR: IDL_DRSReplicaAdd
-    /// </summary>
-    public const ushort IDL_DRSReplicaAdd = 5;
-
-    /// <summary>
     /// MS-TSCH: SchRpcRegisterTask
     /// </summary>
     public const ushort SchRpcRegisterTask = 1;
@@ -80,11 +70,6 @@ public static partial class WellKnownProtocolTranslator
     /// MS-RPRN: RpcRemoteFindFirstPrinterChangeNotification
     /// </summary>
     public const ushort RpcRemoteFindFirstPrinterChangeNotificationEx = 65;
-
-    /// <summary>
-    /// MS-LSAD: LsarRetrievePrivateData
-    /// </summary>
-    public const ushort LsarRetrievePrivateData = 43;
 
     /// <summary>
     /// MS-EFSR: EfsRpcOpenFileRaw
@@ -1263,4 +1248,1143 @@ public static partial class WellKnownProtocolTranslator
     public const ushort BaseRegDeleteKeyEx = 35;
 
     #endregion // MS-RRP
+    #region MS-DRSR
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSBind
+    /// </summary>
+    public const ushort IDL_DRSBind = 0;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSUnbind
+    /// </summary>
+    public const ushort IDL_DRSUnbind = 1;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaSync
+    /// </summary>
+    public const ushort IDL_DRSReplicaSync = 2;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetNCChanges
+    /// </summary>
+    public const ushort IDL_DRSGetNCChanges = 3;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSUpdateRefs
+    /// </summary>
+    public const ushort IDL_DRSUpdateRefs = 4;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaAdd
+    /// </summary>
+    public const ushort IDL_DRSReplicaAdd = 5;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaDel
+    /// </summary>
+    public const ushort IDL_DRSReplicaDel = 6;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaModify
+    /// </summary>
+    public const ushort IDL_DRSReplicaModify = 7;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSVerifyNames
+    /// </summary>
+    public const ushort IDL_DRSVerifyNames = 8;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetMemberships
+    /// </summary>
+    public const ushort IDL_DRSGetMemberships = 9;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSInterDomainMove
+    /// </summary>
+    public const ushort IDL_DRSInterDomainMove = 10;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetNT4ChangeLog
+    /// </summary>
+    public const ushort IDL_DRSGetNT4ChangeLog = 11;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSCrackNames
+    /// </summary>
+    public const ushort IDL_DRSCrackNames = 12;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSWriteSPN
+    /// </summary>
+    public const ushort IDL_DRSWriteSPN = 13;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSRemoveDsServer
+    /// </summary>
+    public const ushort IDL_DRSRemoveDsServer = 14;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSRemoveDsDomain
+    /// </summary>
+    public const ushort IDL_DRSRemoveDsDomain = 15;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSDomainControllerInfo
+    /// </summary>
+    public const ushort IDL_DRSDomainControllerInfo = 16;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSAddEntry
+    /// </summary>
+    public const ushort IDL_DRSAddEntry = 17;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSExecuteKCC
+    /// </summary>
+    public const ushort IDL_DRSExecuteKCC = 18;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetReplInfo
+    /// </summary>
+    public const ushort IDL_DRSGetReplInfo = 19;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSAddSidHistory
+    /// </summary>
+    public const ushort IDL_DRSAddSidHistory = 20;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetMemberships2
+    /// </summary>
+    public const ushort IDL_DRSGetMemberships2 = 21;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaVerifyObjects
+    /// </summary>
+    public const ushort IDL_DRSReplicaVerifyObjects = 22;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSGetObjectExistence
+    /// </summary>
+    public const ushort IDL_DRSGetObjectExistence = 23;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSQuerySitesByCost
+    /// </summary>
+    public const ushort IDL_DRSQuerySitesByCost = 24;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSInitDemotion
+    /// </summary>
+    public const ushort IDL_DRSInitDemotion = 25;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReplicaDemotion
+    /// </summary>
+    public const ushort IDL_DRSReplicaDemotion = 26;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSFinishDemotion
+    /// </summary>
+    public const ushort IDL_DRSFinishDemotion = 27;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSAddCloneDC
+    /// </summary>
+    public const ushort IDL_DRSAddCloneDC = 28;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSWriteNgcKey
+    /// </summary>
+    public const ushort IDL_DRSWriteNgcKey = 29;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DRSReadNgcKey
+    /// </summary>
+    public const ushort IDL_DRSReadNgcKey = 30;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DSAPrepareScript
+    /// </summary>
+    public const ushort IDL_DSAPrepareScript = 0;
+
+    /// <summary>
+    /// MS-DRSR: IDL_DSAExecuteScript
+    /// </summary>
+    public const ushort IDL_DSAExecuteScript = 1;
+
+    #endregion // MS-DRSR
+    #region MS-LSAD
+
+    /// <summary>
+    /// MS-LSAD: LsarClose
+    /// </summary>
+    public const ushort LsarClose = 0;
+
+    /// <summary>
+    /// MS-LSAD: Opnum1NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumeratePrivileges
+    /// </summary>
+    public const ushort LsarEnumeratePrivileges = 2;
+
+    /// <summary>
+    /// MS-LSAD: LsarQuerySecurityObject
+    /// </summary>
+    public const ushort LsarQuerySecurityObject = 3;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetSecurityObject
+    /// </summary>
+    public const ushort LsarSetSecurityObject = 4;
+
+    /// <summary>
+    /// MS-LSAD: Opnum5NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum5NotUsedOnWire = 5;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenPolicy
+    /// </summary>
+    public const ushort LsarOpenPolicy = 6;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryInformationPolicy
+    /// </summary>
+    public const ushort LsarQueryInformationPolicy = 7;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetInformationPolicy
+    /// </summary>
+    public const ushort LsarSetInformationPolicy = 8;
+
+    /// <summary>
+    /// MS-LSAD: Opnum9NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum9NotUsedOnWire = 9;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateAccount
+    /// </summary>
+    public const ushort LsarCreateAccount = 10;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumerateAccounts
+    /// </summary>
+    public const ushort LsarEnumerateAccounts = 11;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateTrustedDomain
+    /// </summary>
+    public const ushort LsarCreateTrustedDomain = 12;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumerateTrustedDomains
+    /// </summary>
+    public const ushort LsarEnumerateTrustedDomains = 13;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_14
+    /// </summary>
+    public const ushort Lsar_LSA_TM_14 = 14;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_15
+    /// </summary>
+    public const ushort Lsar_LSA_TM_15 = 15;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateSecret
+    /// </summary>
+    public const ushort LsarCreateSecret = 16;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenAccount
+    /// </summary>
+    public const ushort LsarOpenAccount = 17;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumeratePrivilegesAccount
+    /// </summary>
+    public const ushort LsarEnumeratePrivilegesAccount = 18;
+
+    /// <summary>
+    /// MS-LSAD: LsarAddPrivilegesToAccount
+    /// </summary>
+    public const ushort LsarAddPrivilegesToAccount = 19;
+
+    /// <summary>
+    /// MS-LSAD: LsarRemovePrivilegesFromAccount
+    /// </summary>
+    public const ushort LsarRemovePrivilegesFromAccount = 20;
+
+    /// <summary>
+    /// MS-LSAD: Opnum21NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum21NotUsedOnWire = 21;
+
+    /// <summary>
+    /// MS-LSAD: Opnum22NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum22NotUsedOnWire = 22;
+
+    /// <summary>
+    /// MS-LSAD: LsarGetSystemAccessAccount
+    /// </summary>
+    public const ushort LsarGetSystemAccessAccount = 23;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetSystemAccessAccount
+    /// </summary>
+    public const ushort LsarSetSystemAccessAccount = 24;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenTrustedDomain
+    /// </summary>
+    public const ushort LsarOpenTrustedDomain = 25;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryInfoTrustedDomain
+    /// </summary>
+    public const ushort LsarQueryInfoTrustedDomain = 26;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetInformationTrustedDomain
+    /// </summary>
+    public const ushort LsarSetInformationTrustedDomain = 27;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenSecret
+    /// </summary>
+    public const ushort LsarOpenSecret = 28;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetSecret
+    /// </summary>
+    public const ushort LsarSetSecret = 29;
+
+    /// <summary>
+    /// MS-LSAD: LsarQuerySecret
+    /// </summary>
+    public const ushort LsarQuerySecret = 30;
+
+    /// <summary>
+    /// MS-LSAD: LsarLookupPrivilegeValue
+    /// </summary>
+    public const ushort LsarLookupPrivilegeValue = 31;
+
+    /// <summary>
+    /// MS-LSAD: LsarLookupPrivilegeName
+    /// </summary>
+    public const ushort LsarLookupPrivilegeName = 32;
+
+    /// <summary>
+    /// MS-LSAD: LsarLookupPrivilegeDisplayName
+    /// </summary>
+    public const ushort LsarLookupPrivilegeDisplayName = 33;
+
+    /// <summary>
+    /// MS-LSAD: LsarDeleteObject
+    /// </summary>
+    public const ushort LsarDeleteObject = 34;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumerateAccountsWithUserRight
+    /// </summary>
+    public const ushort LsarEnumerateAccountsWithUserRight = 35;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumerateAccountRights
+    /// </summary>
+    public const ushort LsarEnumerateAccountRights = 36;
+
+    /// <summary>
+    /// MS-LSAD: LsarAddAccountRights
+    /// </summary>
+    public const ushort LsarAddAccountRights = 37;
+
+    /// <summary>
+    /// MS-LSAD: LsarRemoveAccountRights
+    /// </summary>
+    public const ushort LsarRemoveAccountRights = 38;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryTrustedDomainInfo
+    /// </summary>
+    public const ushort LsarQueryTrustedDomainInfo = 39;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetTrustedDomainInfo
+    /// </summary>
+    public const ushort LsarSetTrustedDomainInfo = 40;
+
+    /// <summary>
+    /// MS-LSAD: LsarDeleteTrustedDomain
+    /// </summary>
+    public const ushort LsarDeleteTrustedDomain = 41;
+
+    /// <summary>
+    /// MS-LSAD: LsarStorePrivateData
+    /// </summary>
+    public const ushort LsarStorePrivateData = 42;
+
+    /// <summary>
+    /// MS-LSAD: LsarRetrievePrivateData
+    /// </summary>
+    public const ushort LsarRetrievePrivateData = 43;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenPolicy2
+    /// </summary>
+    public const ushort LsarOpenPolicy2 = 44;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_45
+    /// </summary>
+    public const ushort Lsar_LSA_TM_45 = 45;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryInformationPolicy2
+    /// </summary>
+    public const ushort LsarQueryInformationPolicy2 = 46;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetInformationPolicy2
+    /// </summary>
+    public const ushort LsarSetInformationPolicy2 = 47;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryTrustedDomainInfoByName
+    /// </summary>
+    public const ushort LsarQueryTrustedDomainInfoByName = 48;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetTrustedDomainInfoByName
+    /// </summary>
+    public const ushort LsarSetTrustedDomainInfoByName = 49;
+
+    /// <summary>
+    /// MS-LSAD: LsarEnumerateTrustedDomainsEx
+    /// </summary>
+    public const ushort LsarEnumerateTrustedDomainsEx = 50;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateTrustedDomainEx
+    /// </summary>
+    public const ushort LsarCreateTrustedDomainEx = 51;
+
+    /// <summary>
+    /// MS-LSAD: Opnum52NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum52NotUsedOnWire = 52;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryDomainInformationPolicy
+    /// </summary>
+    public const ushort LsarQueryDomainInformationPolicy = 53;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetDomainInformationPolicy
+    /// </summary>
+    public const ushort LsarSetDomainInformationPolicy = 54;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenTrustedDomainByName
+    /// </summary>
+    public const ushort LsarOpenTrustedDomainByName = 55;
+
+    /// <summary>
+    /// MS-LSAD: Opnum56NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum56NotUsedOnWire = 56;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_57
+    /// </summary>
+    public const ushort Lsar_LSA_TM_57 = 57;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_58
+    /// </summary>
+    public const ushort Lsar_LSA_TM_58 = 58;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateTrustedDomainEx2
+    /// </summary>
+    public const ushort LsarCreateTrustedDomainEx2 = 59;
+
+    /// <summary>
+    /// MS-LSAD: Opnum60NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum60NotUsedOnWire = 60;
+
+    /// <summary>
+    /// MS-LSAD: Opnum61NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum61NotUsedOnWire = 61;
+
+    /// <summary>
+    /// MS-LSAD: Opnum62NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum62NotUsedOnWire = 62;
+
+    /// <summary>
+    /// MS-LSAD: Opnum63NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum63NotUsedOnWire = 63;
+
+    /// <summary>
+    /// MS-LSAD: Opnum64NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum64NotUsedOnWire = 64;
+
+    /// <summary>
+    /// MS-LSAD: Opnum65NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum65NotUsedOnWire = 65;
+
+    /// <summary>
+    /// MS-LSAD: Opnum66NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum66NotUsedOnWire = 66;
+
+    /// <summary>
+    /// MS-LSAD: Opnum67NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum67NotUsedOnWire = 67;
+
+    /// <summary>
+    /// MS-LSAD: Lsar_LSA_TM_68
+    /// </summary>
+    public const ushort Lsar_LSA_TM_68 = 68;
+
+    /// <summary>
+    /// MS-LSAD: Opnum69NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum69NotUsedOnWire = 69;
+
+    /// <summary>
+    /// MS-LSAD: Opnum70NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum70NotUsedOnWire = 70;
+
+    /// <summary>
+    /// MS-LSAD: Opnum71NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum71NotUsedOnWire = 71;
+
+    /// <summary>
+    /// MS-LSAD: Opnum72NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum72NotUsedOnWire = 72;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryForestTrustInformation
+    /// </summary>
+    public const ushort LsarQueryForestTrustInformation = 73;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetForestTrustInformation
+    /// </summary>
+    public const ushort LsarSetForestTrustInformation = 74;
+
+    /// <summary>
+    /// MS-LSAD: Opnum75NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum75NotUsedOnWire = 75;
+
+    /// <summary>
+    /// MS-LSAD: LsarLookupSids3
+    /// </summary>
+    public const ushort LsarLookupSids3 = 76;
+
+    /// <summary>
+    /// MS-LSAD: LsarLookupNames4
+    /// </summary>
+    public const ushort LsarLookupNames4 = 77;
+
+    /// <summary>
+    /// MS-LSAD: Opnum78NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum78NotUsedOnWire = 78;
+
+    /// <summary>
+    /// MS-LSAD: Opnum79NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum79NotUsedOnWire = 79;
+
+    /// <summary>
+    /// MS-LSAD: Opnum80NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum80NotUsedOnWire = 80;
+
+    /// <summary>
+    /// MS-LSAD: Opnum81NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum81NotUsedOnWire = 81;
+
+    /// <summary>
+    /// MS-LSAD: Opnum82NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum82NotUsedOnWire = 82;
+
+    /// <summary>
+    /// MS-LSAD: Opnum83NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum83NotUsedOnWire = 83;
+
+    /// <summary>
+    /// MS-LSAD: Opnum84NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum84NotUsedOnWire = 84;
+
+    /// <summary>
+    /// MS-LSAD: Opnum85NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum85NotUsedOnWire = 85;
+
+    /// <summary>
+    /// MS-LSAD: Opnum86NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum86NotUsedOnWire = 86;
+
+    /// <summary>
+    /// MS-LSAD: Opnum87NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum87NotUsedOnWire = 87;
+
+    /// <summary>
+    /// MS-LSAD: Opnum88NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum88NotUsedOnWire = 88;
+
+    /// <summary>
+    /// MS-LSAD: Opnum89NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum89NotUsedOnWire = 89;
+
+    /// <summary>
+    /// MS-LSAD: Opnum90NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum90NotUsedOnWire = 90;
+
+    /// <summary>
+    /// MS-LSAD: Opnum91NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum91NotUsedOnWire = 91;
+
+    /// <summary>
+    /// MS-LSAD: Opnum92NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum92NotUsedOnWire = 92;
+
+    /// <summary>
+    /// MS-LSAD: Opnum93NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum93NotUsedOnWire = 93;
+
+    /// <summary>
+    /// MS-LSAD: Opnum94NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum94NotUsedOnWire = 94;
+
+    /// <summary>
+    /// MS-LSAD: Opnum95NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum95NotUsedOnWire = 95;
+
+    /// <summary>
+    /// MS-LSAD: Opnum96NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum96NotUsedOnWire = 96;
+
+    /// <summary>
+    /// MS-LSAD: Opnum97NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum97NotUsedOnWire = 97;
+
+    /// <summary>
+    /// MS-LSAD: Opnum98NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum98NotUsedOnWire = 98;
+
+    /// <summary>
+    /// MS-LSAD: Opnum99NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum99NotUsedOnWire = 99;
+
+    /// <summary>
+    /// MS-LSAD: Opnum100NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum100NotUsedOnWire = 100;
+
+    /// <summary>
+    /// MS-LSAD: Opnum101NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum101NotUsedOnWire = 101;
+
+    /// <summary>
+    /// MS-LSAD: Opnum102NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum102NotUsedOnWire = 102;
+
+    /// <summary>
+    /// MS-LSAD: Opnum103NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum103NotUsedOnWire = 103;
+
+    /// <summary>
+    /// MS-LSAD: Opnum104NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum104NotUsedOnWire = 104;
+
+    /// <summary>
+    /// MS-LSAD: Opnum105NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum105NotUsedOnWire = 105;
+
+    /// <summary>
+    /// MS-LSAD: Opnum106NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum106NotUsedOnWire = 106;
+
+    /// <summary>
+    /// MS-LSAD: Opnum107NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum107NotUsedOnWire = 107;
+
+    /// <summary>
+    /// MS-LSAD: Opnum108NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum108NotUsedOnWire = 108;
+
+    /// <summary>
+    /// MS-LSAD: Opnum109NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum109NotUsedOnWire = 109;
+
+    /// <summary>
+    /// MS-LSAD: Opnum110NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum110NotUsedOnWire = 110;
+
+    /// <summary>
+    /// MS-LSAD: Opnum111NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum111NotUsedOnWire = 111;
+
+    /// <summary>
+    /// MS-LSAD: Opnum112NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum112NotUsedOnWire = 112;
+
+    /// <summary>
+    /// MS-LSAD: Opnum113NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum113NotUsedOnWire = 113;
+
+    /// <summary>
+    /// MS-LSAD: Opnum114NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum114NotUsedOnWire = 114;
+
+    /// <summary>
+    /// MS-LSAD: Opnum115NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum115NotUsedOnWire = 115;
+
+    /// <summary>
+    /// MS-LSAD: Opnum116NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum116NotUsedOnWire = 116;
+
+    /// <summary>
+    /// MS-LSAD: Opnum117NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum117NotUsedOnWire = 117;
+
+    /// <summary>
+    /// MS-LSAD: Opnum118NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum118NotUsedOnWire = 118;
+
+    /// <summary>
+    /// MS-LSAD: Opnum119NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum119NotUsedOnWire = 119;
+
+    /// <summary>
+    /// MS-LSAD: Opnum120NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum120NotUsedOnWire = 120;
+
+    /// <summary>
+    /// MS-LSAD: Opnum121NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum121NotUsedOnWire = 121;
+
+    /// <summary>
+    /// MS-LSAD: Opnum122NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum122NotUsedOnWire = 122;
+
+    /// <summary>
+    /// MS-LSAD: Opnum123NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum123NotUsedOnWire = 123;
+
+    /// <summary>
+    /// MS-LSAD: Opnum124NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum124NotUsedOnWire = 124;
+
+    /// <summary>
+    /// MS-LSAD: Opnum125NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum125NotUsedOnWire = 125;
+
+    /// <summary>
+    /// MS-LSAD: Opnum126NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum126NotUsedOnWire = 126;
+
+    /// <summary>
+    /// MS-LSAD: Opnum127NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum127NotUsedOnWire = 127;
+
+    /// <summary>
+    /// MS-LSAD: Opnum128NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum128NotUsedOnWire = 128;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateTrustedDomainEx3
+    /// </summary>
+    public const ushort LsarCreateTrustedDomainEx3 = 129;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenPolicy3
+    /// </summary>
+    public const ushort LsarOpenPolicy3 = 130;
+
+    /// <summary>
+    /// MS-LSAD: Opnum131NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum131NotUsedOnWire = 131;
+
+    /// <summary>
+    /// MS-LSAD: LsarQueryForestTrustInformation2
+    /// </summary>
+    public const ushort LsarQueryForestTrustInformation2 = 132;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetForestTrustInformation2
+    /// </summary>
+    public const ushort LsarSetForestTrustInformation2 = 133;
+
+    /// <summary>
+    /// MS-LSAD: Opnum134NotUsedOnWire
+    /// </summary>
+    public const ushort LSAD_Opnum134NotUsedOnWire = 134;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenPolicyWithCreds
+    /// </summary>
+    public const ushort LsarOpenPolicyWithCreds = 135;
+
+    /// <summary>
+    /// MS-LSAD: LsarOpenSecret2
+    /// </summary>
+    public const ushort LsarOpenSecret2 = 136;
+
+    /// <summary>
+    /// MS-LSAD: LsarCreateSecret2
+    /// </summary>
+    public const ushort LsarCreateSecret2 = 137;
+
+    /// <summary>
+    /// MS-LSAD: LsarSetSecret2
+    /// </summary>
+    public const ushort LsarSetSecret2 = 138;
+
+    /// <summary>
+    /// MS-LSAD: LsarQuerySecret2
+    /// </summary>
+    public const ushort LsarQuerySecret2 = 139;
+
+    /// <summary>
+    /// MS-LSAD: LsarStorePrivateData2
+    /// </summary>
+    public const ushort LsarStorePrivateData2 = 140;
+
+    /// <summary>
+    /// MS-LSAD: LsarRetrievePrivateData2
+    /// </summary>
+    public const ushort LsarRetrievePrivateData2 = 141;
+
+    #endregion // MS-LSAD
+    #region MS-NRPC
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonUasLogon
+    /// </summary>
+    public const ushort NetrLogonUasLogon = 0;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonUasLogoff
+    /// </summary>
+    public const ushort NetrLogonUasLogoff = 1;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSamLogon
+    /// </summary>
+    public const ushort NetrLogonSamLogon = 2;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSamLogoff
+    /// </summary>
+    public const ushort NetrLogonSamLogoff = 3;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerReqChallenge
+    /// </summary>
+    public const ushort NetrServerReqChallenge = 4;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerAuthenticate
+    /// </summary>
+    public const ushort NetrServerAuthenticate = 5;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerPasswordSet
+    /// </summary>
+    public const ushort NetrServerPasswordSet = 6;
+
+    /// <summary>
+    /// MS-NRPC: NetrDatabaseDeltas
+    /// </summary>
+    public const ushort NetrDatabaseDeltas = 7;
+
+    /// <summary>
+    /// MS-NRPC: NetrDatabaseSync
+    /// </summary>
+    public const ushort NetrDatabaseSync = 8;
+
+    /// <summary>
+    /// MS-NRPC: NetrAccountDeltas
+    /// </summary>
+    public const ushort NetrAccountDeltas = 9;
+
+    /// <summary>
+    /// MS-NRPC: NetrAccountSync
+    /// </summary>
+    public const ushort NetrAccountSync = 10;
+
+    /// <summary>
+    /// MS-NRPC: NetrGetDCName
+    /// </summary>
+    public const ushort NetrGetDCName = 11;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonControl
+    /// </summary>
+    public const ushort NetrLogonControl = 12;
+
+    /// <summary>
+    /// MS-NRPC: NetrGetAnyDCName
+    /// </summary>
+    public const ushort NetrGetAnyDCName = 13;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonControl2
+    /// </summary>
+    public const ushort NetrLogonControl2 = 14;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerAuthenticate2
+    /// </summary>
+    public const ushort NetrServerAuthenticate2 = 15;
+
+    /// <summary>
+    /// MS-NRPC: NetrDatabaseSync2
+    /// </summary>
+    public const ushort NetrDatabaseSync2 = 16;
+
+    /// <summary>
+    /// MS-NRPC: NetrDatabaseRedo
+    /// </summary>
+    public const ushort NetrDatabaseRedo = 17;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonControl2Ex
+    /// </summary>
+    public const ushort NetrLogonControl2Ex = 18;
+
+    /// <summary>
+    /// MS-NRPC: NetrEnumerateTrustedDomains
+    /// </summary>
+    public const ushort NetrEnumerateTrustedDomains = 19;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetDcName
+    /// </summary>
+    public const ushort DsrGetDcName = 20;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonGetCapabilities
+    /// </summary>
+    public const ushort NetrLogonGetCapabilities = 21;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSetServiceBits
+    /// </summary>
+    public const ushort NetrLogonSetServiceBits = 22;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonGetTrustRid
+    /// </summary>
+    public const ushort NetrLogonGetTrustRid = 23;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonComputeServerDigest
+    /// </summary>
+    public const ushort NetrLogonComputeServerDigest = 24;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonComputeClientDigest
+    /// </summary>
+    public const ushort NetrLogonComputeClientDigest = 25;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerAuthenticate3
+    /// </summary>
+    public const ushort NetrServerAuthenticate3 = 26;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetDcNameEx
+    /// </summary>
+    public const ushort DsrGetDcNameEx = 27;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetSiteName
+    /// </summary>
+    public const ushort DsrGetSiteName = 28;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonGetDomainInfo
+    /// </summary>
+    public const ushort NetrLogonGetDomainInfo = 29;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerPasswordSet2
+    /// </summary>
+    public const ushort NetrServerPasswordSet2 = 30;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerPasswordGet
+    /// </summary>
+    public const ushort NetrServerPasswordGet = 31;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSendToSam
+    /// </summary>
+    public const ushort NetrLogonSendToSam = 32;
+
+    /// <summary>
+    /// MS-NRPC: DsrAddressToSiteNamesW
+    /// </summary>
+    public const ushort DsrAddressToSiteNamesW = 33;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetDcNameEx2
+    /// </summary>
+    public const ushort DsrGetDcNameEx2 = 34;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonGetTimeServiceParentDomain
+    /// </summary>
+    public const ushort NetrLogonGetTimeServiceParentDomain = 35;
+
+    /// <summary>
+    /// MS-NRPC: NetrEnumerateTrustedDomainsEx
+    /// </summary>
+    public const ushort NetrEnumerateTrustedDomainsEx = 36;
+
+    /// <summary>
+    /// MS-NRPC: DsrAddressToSiteNamesExW
+    /// </summary>
+    public const ushort DsrAddressToSiteNamesExW = 37;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetDcSiteCoverageW
+    /// </summary>
+    public const ushort DsrGetDcSiteCoverageW = 38;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSamLogonEx
+    /// </summary>
+    public const ushort NetrLogonSamLogonEx = 39;
+
+    /// <summary>
+    /// MS-NRPC: DsrEnumerateDomainTrusts
+    /// </summary>
+    public const ushort DsrEnumerateDomainTrusts = 40;
+
+    /// <summary>
+    /// MS-NRPC: DsrDeregisterDnsHostRecords
+    /// </summary>
+    public const ushort DsrDeregisterDnsHostRecords = 41;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerTrustPasswordsGet
+    /// </summary>
+    public const ushort NetrServerTrustPasswordsGet = 42;
+
+    /// <summary>
+    /// MS-NRPC: DsrGetForestTrustInformation
+    /// </summary>
+    public const ushort DsrGetForestTrustInformation = 43;
+
+    /// <summary>
+    /// MS-NRPC: NetrGetForestTrustInformation
+    /// </summary>
+    public const ushort NetrGetForestTrustInformation = 44;
+
+    /// <summary>
+    /// MS-NRPC: NetrLogonSamLogonWithFlags
+    /// </summary>
+    public const ushort NetrLogonSamLogonWithFlags = 45;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerGetTrustInfo
+    /// </summary>
+    public const ushort NetrServerGetTrustInfo = 46;
+
+    /// <summary>
+    /// MS-NRPC: OpnumUnused47
+    /// </summary>
+    public const ushort NRPC_OpnumUnused47 = 47;
+
+    /// <summary>
+    /// MS-NRPC: DsrUpdateReadOnlyServerDnsRecords
+    /// </summary>
+    public const ushort DsrUpdateReadOnlyServerDnsRecords = 48;
+
+    /// <summary>
+    /// MS-NRPC: NetrChainSetClientAttributes
+    /// </summary>
+    public const ushort NetrChainSetClientAttributes = 49;
+
+    /// <summary>
+    /// MS-NRPC: NetrServerAuthenticateKerberos
+    /// </summary>
+    public const ushort NetrServerAuthenticateKerberos = 59;
+
+    #endregion // MS-NRPC
 }
