@@ -7,10 +7,7 @@ internal sealed class SafeByteArrayHandle : SafeHandleZeroOrMinusOneIsInvalid
 {
     public SafeByteArrayHandle(byte[] value) : base(true)
     {
-        if (value == null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         this.handle = Marshal.AllocHGlobal(value.Length);
         GCHandle pinnedArray = GCHandle.Alloc(value, GCHandleType.Pinned);

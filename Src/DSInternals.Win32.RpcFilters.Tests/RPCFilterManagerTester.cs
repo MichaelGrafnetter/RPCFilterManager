@@ -114,33 +114,38 @@ public class RPCFilterManagerTester
     }
 
     [TestMethod]
-    [ExpectedException(typeof(Win32Exception))]
     public void RPCFilterManager_Delete_NonExisting()
     {
         using var fw = new RpcFilterManager();
-        fw.RemoveFilter(123456789);
+
+        Assert.ThrowsExactly<Win32Exception>(() => {
+            fw.RemoveFilter(123456789);
+        });
     }
 
     [TestMethod]
-    [ExpectedException(typeof(InvalidOperationException))]
     public void RPCFilterManager_Dispose_List()
     {
         var fw = new RpcFilterManager();
         fw.Dispose();
-        fw.GetFilters().ToList();
+
+        Assert.ThrowsExactly<ObjectDisposedException>(() => {
+            fw.GetFilters().ToList();
+        });
     }
 
     [TestMethod]
-    [ExpectedException(typeof(InvalidOperationException))]
     public void RPCFilterManager_Dispose_Delete()
     {
         var fw = new RpcFilterManager();
         fw.Dispose();
-        fw.RemoveFilter(123456789);
+
+        Assert.ThrowsExactly<ObjectDisposedException>(() => {
+            fw.RemoveFilter(123456789);
+        });
     }
 
     [TestMethod]
-    [ExpectedException(typeof(InvalidOperationException))]
     public void RPCFilterManager_Dispose_Add()
     {
         var fw = new RpcFilterManager();
@@ -151,7 +156,10 @@ public class RPCFilterManagerTester
             Name = "TestFilter"
         };
 
-        fw.AddFilter(filter);
+        Assert.ThrowsExactly<ObjectDisposedException>(() => 
+        {
+            fw.AddFilter(filter);
+        });
     }
 
     [TestMethod]

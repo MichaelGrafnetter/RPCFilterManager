@@ -165,7 +165,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
     /// The RPC OpNum for an RPC call made to an RPC listener.
     /// </summary>
     public readonly ushort? OperationNumber =>
-            this.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM ? this.ConditionValue.UInt16Value : null;
+            this.FieldKey == PInvoke.FWPM_CONDITION_RPC_OPNUM ? this.ConditionValue.UInt16Value : null;
 
     /// <summary>
     /// The name of the remote named pipe.
@@ -214,7 +214,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
         if (fieldKey != PInvoke.FWPM_CONDITION_IP_LOCAL_PORT &&
             fieldKey != PInvoke.FWPM_CONDITION_IP_REMOTE_PORT &&
             fieldKey != PInvoke.FWPM_CONDITION_RPC_IF_VERSION &&
-            fieldKey != RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
+            fieldKey != PInvoke.FWPM_CONDITION_RPC_OPNUM)
         {
             throw new ArgumentOutOfRangeException(nameof(fieldKey), fieldKey, "The field key must be one of the predefined RPC conditions.");
         }
@@ -279,10 +279,7 @@ internal readonly struct FWPM_FILTER_CONDITION0
     public static (FWPM_FILTER_CONDITION0 condition, SafeHandle? memoryHandle) Create(IPAddress address, byte? mask = null, bool isRemote = true)
     {
         // Validate the input
-        if (address == null)
-        {
-            throw new ArgumentNullException(nameof(address));
-        }
+        ArgumentNullException.ThrowIfNull(address);
 
         Guid fieldKey;
         if (address.AddressFamily == AddressFamily.InterNetwork)

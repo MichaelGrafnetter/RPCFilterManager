@@ -33,14 +33,11 @@ internal struct FWP_V6_ADDR_AND_MASK
         readonly get => new(this.addr);
         set
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
+            ArgumentNullException.ThrowIfNull(value);
 
             if (value.AddressFamily != AddressFamily.InterNetworkV6)
             {
-                throw new ArgumentException("Address must be IPv6.", nameof(value));
+                throw new ArgumentOutOfRangeException(nameof(value), "Address must be IPv6.");
             }
 
             this.addr = value.GetAddressBytes();

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Net;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -14,12 +13,6 @@ public sealed class RpcFilterManager : IDisposable
 {
     private const int DefaultWaitTimeoutInMSec = 10000;
     private const uint FilterEnumBatchSize = 100;
-
-    /// <summary>
-    /// The RPC OpNum for an RPC call made to an RPC listener.
-    /// </summary>
-    // TODO: [Obsolete("Switch to the FWPM_CONDITION_RPC_OPNUM system constant once it gets into the API.")]
-    internal static readonly Guid FWPM_CONDITION_RPC_OPNUM = Guid.Parse("d58efb76-aab7-4148-a87e-9581134129b9");
 
     /// <summary>
     /// Context used in the RPC audit sublayer.
@@ -72,13 +65,10 @@ public sealed class RpcFilterManager : IDisposable
     /// </summary>
     /// <param name="providerKey">Unique identifier of the provider associated with the filters to be returned.</param>
     /// <returns>List of RPC filters.</returns>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="ObjectDisposedException"></exception>
     public IEnumerable<RpcFilter> GetFilters(Guid? providerKey = null)
     {
-        if (this.engineHandle == null || this.engineHandle.IsInvalid)
-        {
-            throw new InvalidOperationException("The filter engine handle is invalid.");
-        }
+        ObjectDisposedException.ThrowIf(this.engineHandle == null || this.engineHandle.IsInvalid, this);
 
         var enumTemplate = new FWPM_FILTER_ENUM_TEMPLATE0()
         {
@@ -146,27 +136,17 @@ public sealed class RpcFilterManager : IDisposable
     /// </summary>
     /// <param name="filter">The filter object to be added.</param>
     /// <returns>The runtime identifier for the newly created filter.</returns>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="ObjectDisposedException"></exception>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     /// <exception cref="PlatformNotSupportedException"></exception>
     public ulong AddFilter(RpcFilter filter)
     {
-        if (this.engineHandle == null || this.engineHandle.IsInvalid)
-        {
-            throw new InvalidOperationException("The filter engine handle is invalid.");
-        }
-
-        if (filter == null)
-        {
-            throw new ArgumentNullException(nameof(filter));
-        }
+        ObjectDisposedException.ThrowIf(this.engineHandle == null || this.engineHandle.IsInvalid, this);
+        ArgumentNullException.ThrowIfNull(filter);
 
         // Weight must be in the range [0, 15]
-        if (filter.Weight.HasValue && filter.Weight.Value > 15)
-        {
-            throw new ArgumentOutOfRangeException(nameof(filter), filter.Weight.Value, "The weight must be in the range [0, 15].");
-        }
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(filter.Weight ?? 0, (ulong)15, nameof(filter));
 
         FWP_VALUE0 nativeWeight = filter.Weight.HasValue ? new FWP_VALUE0((byte)filter.Weight.Value) : new FWP_VALUE0();
 
@@ -236,7 +216,7 @@ public sealed class RpcFilterManager : IDisposable
         if (filter.OperationNumber.HasValue)
         {
             // This filter condition is not supported on older OS version.
-            conditions.Add(new FWPM_FILTER_CONDITION0(RpcFilterManager.FWPM_CONDITION_RPC_OPNUM, filter.OperationNumber.Value));
+            conditions.Add(new FWPM_FILTER_CONDITION0(PInvoke.FWPM_CONDITION_RPC_OPNUM, filter.OperationNumber.Value));
         }
 
         if (filter.NamedPipe != null)
@@ -340,13 +320,10 @@ public sealed class RpcFilterManager : IDisposable
     /// Removes a filter object from the system.
     /// </summary>
     /// <param name="id">Runtime identifier for the object being removed from the system.</param>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="ObjectDisposedException"></exception>
     public void RemoveFilter(ulong id)
     {
-        if (this.engineHandle == null || this.engineHandle.IsInvalid)
-        {
-            throw new InvalidOperationException("The filter engine handle is invalid.");
-        }
+        ObjectDisposedException.ThrowIf(this.engineHandle == null || this.engineHandle.IsInvalid, this);
 
         WIN32_ERROR result = NativeMethods.FwpmFilterDeleteById0(this.engineHandle, id);
         ValidateResult(result);
@@ -410,7 +387,7 @@ public sealed class RpcFilterManager : IDisposable
             {
                 filter.InterfaceFlag = condition.InterfaceFlag;
             }
-            else if (condition.FieldKey == RpcFilterManager.FWPM_CONDITION_RPC_OPNUM)
+            else if (condition.FieldKey == PInvoke.FWPM_CONDITION_RPC_OPNUM)
             {
                 filter.OperationNumber = condition.OperationNumber;
             }

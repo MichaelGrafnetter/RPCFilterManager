@@ -423,10 +423,7 @@ internal readonly struct FWP_VALUE0
 
     public static (FWP_VALUE0 nativeValue, SafeHandle memoryHandle1, SafeHandle? memoryHandle2) Allocate(byte[] value)
     {
-        if (value == null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         var dataHandle = new SafeByteArrayHandle(value);
 

@@ -35,4 +35,17 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Expose new .NET features like ThrowIf to .NET Framework. -->
+    <PackageReference Include="Polyfill" Version="9.6.0" Condition="'$(TargetFramework)' == 'net48'">
+      <!-- Do not publish the dependency in NuGet package metadata -->
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Enable Polyfill argument exception improvements for .NET Framework -->
+  <PropertyGroup Condition="'$(TargetFramework)'=='net48'">
+    <PolyArgumentExceptions>true</PolyArgumentExceptions>
+  </PropertyGroup>
+
 </Project>

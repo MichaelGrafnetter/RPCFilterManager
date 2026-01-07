@@ -135,10 +135,7 @@ internal struct FWPM_FILTER0
 
     public GCHandle SetFilterConditions(IReadOnlyList<FWPM_FILTER_CONDITION0> conditions)
     {
-        if (conditions == null)
-        {
-            throw new ArgumentNullException(nameof(conditions));
-        }
+        ArgumentNullException.ThrowIfNull(conditions);
 
         this.numFilterConditions = conditions.Count;
 

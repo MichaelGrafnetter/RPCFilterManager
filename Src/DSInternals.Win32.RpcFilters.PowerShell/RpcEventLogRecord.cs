@@ -107,18 +107,11 @@ public class RpcEventLogRecord
     /// Creates a new instance of the <see cref="RpcEventLogRecord"/> class from a generic <see cref="EventLogRecord" /> instance.
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public RpcEventLogRecord(EventLogRecord record)
     {
-        if (record == null)
-        {
-            throw new ArgumentNullException(nameof(record));
-        }
-
-        if (record.Id != RpcEventId)
-        {
-            throw new ArgumentException($"Event ID {RpcEventId} expected.", nameof(record));
-        }
+        ArgumentNullException.ThrowIfNull(record);
+        ArgumentOutOfRangeException.ThrowIfNotEqual(record.Id, RpcEventId, nameof(record));
 
         // Process system properties
         this.TimeCreated = record.TimeCreated;

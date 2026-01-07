@@ -3,4 +3,17 @@
   <Project Path="Src/DSInternals.Win32.RpcFilters/DSInternals.Win32.RpcFilters.csproj" />
   <Project Path="Src/DSInternals.Win32.RpcFilters.PowerShell/DSInternals.Win32.RpcFilters.PowerShell.csproj" DefaultStartup="true" />
   <Project Path="Src/DSInternals.Win32.RpcFilters.Tests/DSInternals.Win32.RpcFilters.Tests.csproj" />
+
+  <!-- Additional files -->
+  <Folder Name="/Config/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="global.json" />
+    <File Path="Src/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/Workflows/">
+    <File Path=".github/workflows/autobuild.yml" />
+    <File Path=".github/workflows/release.yml" />
+    <File Path=".github/workflows/codeql.yml" />
+  </Folder>
 </Solution>

@@ -31,10 +31,7 @@ internal struct FWP_V4_ADDR_AND_MASK
         readonly get => new(this.addr);
         set
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
+            ArgumentNullException.ThrowIfNull(nameof(value));
 
             if (value.AddressFamily != AddressFamily.InterNetwork)
             {
