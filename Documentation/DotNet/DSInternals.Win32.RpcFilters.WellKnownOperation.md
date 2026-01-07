@@ -27,43 +27,43 @@ The BaseRegSetValue (MS-RRP) method sets the data for the specified value of a r
 
 
 
-`EfsRpcAddUsersToFile = 31` 
+`EfsRpcAddUsersToFile = 32` 
 
 The EfsRpcAddUsersToFile (MS-EFSR) method is used to grant the possessors of the private keys corresponding to certain X.509 certificates the ability to decrypt the object.
 
 
 
-`EfsRpcDecryptFileSrv = 27` 
+`EfsRpcDecryptFileSrv = 28` 
 
 The EfsRpcDecryptFileSrv (MS-EFSR) method is used to convert an existing encrypted object to the unencrypted state in the server's data store.
 
 
 
-`EfsRpcEncryptFileSrv = 26` 
+`EfsRpcEncryptFileSrv = 27` 
 
 The EfsRpcEncryptFileSrv (MS-EFSR) method is used to convert a given object on the server to an encrypted state in the server's data store.
 
 
 
-`EfsRpcOpenFileRaw = 25` 
+`EfsRpcOpenFileRaw = 26` 
 
 The EfsRpcOpenFileRaw (MS-EFSR) method is used to open an encrypted object on the server for backup or restore.
 
 
 
-`EfsRpcQueryRecoveryAgents = 29` 
+`EfsRpcQueryRecoveryAgents = 30` 
 
 The EfsRpcQueryRecoveryAgents (MS-EFSR) method is used to query the EFSRPC Metadata of an encrypted object for the X.509 certificates of the data recovery agents whose private keys can be used to decrypt the object.
 
 
 
-`EfsRpcQueryUsersOnFile = 28` 
+`EfsRpcQueryUsersOnFile = 29` 
 
 The EfsRpcQueryUsersOnFile (MS-EFSR) method is used by the client to query the metadata of an encrypted object for the X.509 certificates whose associated private keys can be used to decrypt the object.
 
 
 
-`EfsRpcRemoveUsersFromFile = 30` 
+`EfsRpcRemoveUsersFromFile = 31` 
 
 The EfsRpcRemoveUsersFromFile (MS-EFSR) method is used to revoke a user's access to an encrypted object.
 
@@ -99,13 +99,13 @@ The IDL_DRSReplicaAdd (MS-DRSR) method adds a replication source reference for t
 
 
 
-`IsPathShadowCopied = 33` 
+`IsPathShadowCopied = 34` 
 
 The IsPathShadowCopied (MS-FSRVP) method is invoked by the client to query if any shadow copy for a share already exists.
 
 
 
-`IsPathSupported = 32` 
+`IsPathSupported = 33` 
 
 The IsPathSupported (MS-FSRVP) method is invoked by the client to query if a given share is supported by the server for shadow copy operations.
 
@@ -117,31 +117,37 @@ The LsarRetrievePrivateData (MS-LSAD) method is invoked to retrieve a secret val
 
 
 
+`LsarRetrievePrivateData2 = 25` 
+
+The LsarRetrievePrivateData2 (MS-LSAD) method is invoked to retrieve a secret value.
+
+
+
 `NetrConnectionEnum = 17` 
 
 The NetrConnectionEnum (MS-SRVS) method lists the treeconnects made to a shared resource on the server.
 
 
 
-`NetrDfsAddRootTarget = 36` 
+`NetrDfsAddRootTarget = 37` 
 
 The NetrDfsAddRootTarget (MS-DFSNM) method is used to create a stand-alone DFS namespace, a domainv1-based DFS namespace, or a domainv2-based DFS namespace.
 
 
 
-`NetrDfsAddStdRoot = 34` 
+`NetrDfsAddStdRoot = 35` 
 
 The NetrDfsAddStdRoot (MS-DFSNM) method creates a new stand-alone DFS namespace.
 
 
 
-`NetrDfsRemoveRootTarget = 37` 
+`NetrDfsRemoveRootTarget = 38` 
 
 The NetrDfsRemoveRootTarget (MS-DFSNM) method is the unified DFS namespace deletion method.
 
 
 
-`NetrDfsRemoveStdRoot = 35` 
+`NetrDfsRemoveStdRoot = 36` 
 
 The NetrDfsRemoveStdRoot (MS-DFSNM) method deletes the specified stand-alone DFS namespace.
 

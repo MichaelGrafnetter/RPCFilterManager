@@ -1550,17 +1550,137 @@ public static readonly Guid DSSP
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
 
-### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_EERR"></a> EERR
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrAddressToSiteNamesExW"></a> DsrAddressToSiteNamesExW
 
-MS-EERR: ExtendedError Remote Data Structure
+MS-NRPC: DsrAddressToSiteNamesExW
 
 ```csharp
-public static readonly Guid EERR
+public const ushort DsrAddressToSiteNamesExW = 37
 ```
 
 #### Field Value
 
- [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrAddressToSiteNamesW"></a> DsrAddressToSiteNamesW
+
+MS-NRPC: DsrAddressToSiteNamesW
+
+```csharp
+public const ushort DsrAddressToSiteNamesW = 33
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrDeregisterDnsHostRecords"></a> DsrDeregisterDnsHostRecords
+
+MS-NRPC: DsrDeregisterDnsHostRecords
+
+```csharp
+public const ushort DsrDeregisterDnsHostRecords = 41
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrEnumerateDomainTrusts"></a> DsrEnumerateDomainTrusts
+
+MS-NRPC: DsrEnumerateDomainTrusts
+
+```csharp
+public const ushort DsrEnumerateDomainTrusts = 40
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetDcName"></a> DsrGetDcName
+
+MS-NRPC: DsrGetDcName
+
+```csharp
+public const ushort DsrGetDcName = 20
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetDcNameEx"></a> DsrGetDcNameEx
+
+MS-NRPC: DsrGetDcNameEx
+
+```csharp
+public const ushort DsrGetDcNameEx = 27
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetDcNameEx2"></a> DsrGetDcNameEx2
+
+MS-NRPC: DsrGetDcNameEx2
+
+```csharp
+public const ushort DsrGetDcNameEx2 = 34
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetDcSiteCoverageW"></a> DsrGetDcSiteCoverageW
+
+MS-NRPC: DsrGetDcSiteCoverageW
+
+```csharp
+public const ushort DsrGetDcSiteCoverageW = 38
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetForestTrustInformation"></a> DsrGetForestTrustInformation
+
+MS-NRPC: DsrGetForestTrustInformation
+
+```csharp
+public const ushort DsrGetForestTrustInformation = 43
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrGetSiteName"></a> DsrGetSiteName
+
+MS-NRPC: DsrGetSiteName
+
+```csharp
+public const ushort DsrGetSiteName = 28
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_DsrUpdateReadOnlyServerDnsRecords"></a> DsrUpdateReadOnlyServerDnsRecords
+
+MS-NRPC: DsrUpdateReadOnlyServerDnsRecords
+
+```csharp
+public const ushort DsrUpdateReadOnlyServerDnsRecords = 48
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_EFSR_efsrpc"></a> EFSR\_efsrpc
 
@@ -2462,6 +2582,126 @@ public static readonly Guid ICPR
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSAddCloneDC"></a> IDL\_DRSAddCloneDC
+
+MS-DRSR: IDL_DRSAddCloneDC
+
+```csharp
+public const ushort IDL_DRSAddCloneDC = 28
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSAddEntry"></a> IDL\_DRSAddEntry
+
+MS-DRSR: IDL_DRSAddEntry
+
+```csharp
+public const ushort IDL_DRSAddEntry = 17
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSAddSidHistory"></a> IDL\_DRSAddSidHistory
+
+MS-DRSR: IDL_DRSAddSidHistory
+
+```csharp
+public const ushort IDL_DRSAddSidHistory = 20
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSBind"></a> IDL\_DRSBind
+
+MS-DRSR: IDL_DRSBind
+
+```csharp
+public const ushort IDL_DRSBind = 0
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSCrackNames"></a> IDL\_DRSCrackNames
+
+MS-DRSR: IDL_DRSCrackNames
+
+```csharp
+public const ushort IDL_DRSCrackNames = 12
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSDomainControllerInfo"></a> IDL\_DRSDomainControllerInfo
+
+MS-DRSR: IDL_DRSDomainControllerInfo
+
+```csharp
+public const ushort IDL_DRSDomainControllerInfo = 16
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSExecuteKCC"></a> IDL\_DRSExecuteKCC
+
+MS-DRSR: IDL_DRSExecuteKCC
+
+```csharp
+public const ushort IDL_DRSExecuteKCC = 18
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSFinishDemotion"></a> IDL\_DRSFinishDemotion
+
+MS-DRSR: IDL_DRSFinishDemotion
+
+```csharp
+public const ushort IDL_DRSFinishDemotion = 27
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetMemberships"></a> IDL\_DRSGetMemberships
+
+MS-DRSR: IDL_DRSGetMemberships
+
+```csharp
+public const ushort IDL_DRSGetMemberships = 9
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetMemberships2"></a> IDL\_DRSGetMemberships2
+
+MS-DRSR: IDL_DRSGetMemberships2
+
+```csharp
+public const ushort IDL_DRSGetMemberships2 = 21
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetNCChanges"></a> IDL\_DRSGetNCChanges
 
 MS-DRSR: IDL_DRSGetNCChanges
@@ -2474,12 +2714,264 @@ public const ushort IDL_DRSGetNCChanges = 3
 
  [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetNT4ChangeLog"></a> IDL\_DRSGetNT4ChangeLog
+
+MS-DRSR: IDL_DRSGetNT4ChangeLog
+
+```csharp
+public const ushort IDL_DRSGetNT4ChangeLog = 11
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetObjectExistence"></a> IDL\_DRSGetObjectExistence
+
+MS-DRSR: IDL_DRSGetObjectExistence
+
+```csharp
+public const ushort IDL_DRSGetObjectExistence = 23
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSGetReplInfo"></a> IDL\_DRSGetReplInfo
+
+MS-DRSR: IDL_DRSGetReplInfo
+
+```csharp
+public const ushort IDL_DRSGetReplInfo = 19
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSInitDemotion"></a> IDL\_DRSInitDemotion
+
+MS-DRSR: IDL_DRSInitDemotion
+
+```csharp
+public const ushort IDL_DRSInitDemotion = 25
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSInterDomainMove"></a> IDL\_DRSInterDomainMove
+
+MS-DRSR: IDL_DRSInterDomainMove
+
+```csharp
+public const ushort IDL_DRSInterDomainMove = 10
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSQuerySitesByCost"></a> IDL\_DRSQuerySitesByCost
+
+MS-DRSR: IDL_DRSQuerySitesByCost
+
+```csharp
+public const ushort IDL_DRSQuerySitesByCost = 24
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReadNgcKey"></a> IDL\_DRSReadNgcKey
+
+MS-DRSR: IDL_DRSReadNgcKey
+
+```csharp
+public const ushort IDL_DRSReadNgcKey = 30
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSRemoveDsDomain"></a> IDL\_DRSRemoveDsDomain
+
+MS-DRSR: IDL_DRSRemoveDsDomain
+
+```csharp
+public const ushort IDL_DRSRemoveDsDomain = 15
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSRemoveDsServer"></a> IDL\_DRSRemoveDsServer
+
+MS-DRSR: IDL_DRSRemoveDsServer
+
+```csharp
+public const ushort IDL_DRSRemoveDsServer = 14
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaAdd"></a> IDL\_DRSReplicaAdd
 
 MS-DRSR: IDL_DRSReplicaAdd
 
 ```csharp
 public const ushort IDL_DRSReplicaAdd = 5
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaDel"></a> IDL\_DRSReplicaDel
+
+MS-DRSR: IDL_DRSReplicaDel
+
+```csharp
+public const ushort IDL_DRSReplicaDel = 6
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaDemotion"></a> IDL\_DRSReplicaDemotion
+
+MS-DRSR: IDL_DRSReplicaDemotion
+
+```csharp
+public const ushort IDL_DRSReplicaDemotion = 26
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaModify"></a> IDL\_DRSReplicaModify
+
+MS-DRSR: IDL_DRSReplicaModify
+
+```csharp
+public const ushort IDL_DRSReplicaModify = 7
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaSync"></a> IDL\_DRSReplicaSync
+
+MS-DRSR: IDL_DRSReplicaSync
+
+```csharp
+public const ushort IDL_DRSReplicaSync = 2
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSReplicaVerifyObjects"></a> IDL\_DRSReplicaVerifyObjects
+
+MS-DRSR: IDL_DRSReplicaVerifyObjects
+
+```csharp
+public const ushort IDL_DRSReplicaVerifyObjects = 22
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSUnbind"></a> IDL\_DRSUnbind
+
+MS-DRSR: IDL_DRSUnbind
+
+```csharp
+public const ushort IDL_DRSUnbind = 1
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSUpdateRefs"></a> IDL\_DRSUpdateRefs
+
+MS-DRSR: IDL_DRSUpdateRefs
+
+```csharp
+public const ushort IDL_DRSUpdateRefs = 4
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSVerifyNames"></a> IDL\_DRSVerifyNames
+
+MS-DRSR: IDL_DRSVerifyNames
+
+```csharp
+public const ushort IDL_DRSVerifyNames = 8
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSWriteNgcKey"></a> IDL\_DRSWriteNgcKey
+
+MS-DRSR: IDL_DRSWriteNgcKey
+
+```csharp
+public const ushort IDL_DRSWriteNgcKey = 29
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DRSWriteSPN"></a> IDL\_DRSWriteSPN
+
+MS-DRSR: IDL_DRSWriteSPN
+
+```csharp
+public const ushort IDL_DRSWriteSPN = 13
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DSAExecuteScript"></a> IDL\_DSAExecuteScript
+
+MS-DRSR: IDL_DSAExecuteScript
+
+```csharp
+public const ushort IDL_DSAExecuteScript = 1
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_IDL_DSAPrepareScript"></a> IDL\_DSAPrepareScript
+
+MS-DRSR: IDL_DSAPrepareScript
+
+```csharp
+public const ushort IDL_DSAPrepareScript = 0
 ```
 
 #### Field Value
@@ -3050,9 +3542,897 @@ public static readonly Guid LREC
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD"></a> LSAD
+
+MS-LSAD: Local Security Authority (Domain Policy) Remote Protocol
+
+```csharp
+public static readonly Guid LSAD
+```
+
+#### Field Value
+
+ [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum100NotUsedOnWire"></a> LSAD\_Opnum100NotUsedOnWire
+
+MS-LSAD: Opnum100NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum100NotUsedOnWire = 100
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum101NotUsedOnWire"></a> LSAD\_Opnum101NotUsedOnWire
+
+MS-LSAD: Opnum101NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum101NotUsedOnWire = 101
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum102NotUsedOnWire"></a> LSAD\_Opnum102NotUsedOnWire
+
+MS-LSAD: Opnum102NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum102NotUsedOnWire = 102
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum103NotUsedOnWire"></a> LSAD\_Opnum103NotUsedOnWire
+
+MS-LSAD: Opnum103NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum103NotUsedOnWire = 103
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum104NotUsedOnWire"></a> LSAD\_Opnum104NotUsedOnWire
+
+MS-LSAD: Opnum104NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum104NotUsedOnWire = 104
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum105NotUsedOnWire"></a> LSAD\_Opnum105NotUsedOnWire
+
+MS-LSAD: Opnum105NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum105NotUsedOnWire = 105
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum106NotUsedOnWire"></a> LSAD\_Opnum106NotUsedOnWire
+
+MS-LSAD: Opnum106NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum106NotUsedOnWire = 106
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum107NotUsedOnWire"></a> LSAD\_Opnum107NotUsedOnWire
+
+MS-LSAD: Opnum107NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum107NotUsedOnWire = 107
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum108NotUsedOnWire"></a> LSAD\_Opnum108NotUsedOnWire
+
+MS-LSAD: Opnum108NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum108NotUsedOnWire = 108
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum109NotUsedOnWire"></a> LSAD\_Opnum109NotUsedOnWire
+
+MS-LSAD: Opnum109NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum109NotUsedOnWire = 109
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum110NotUsedOnWire"></a> LSAD\_Opnum110NotUsedOnWire
+
+MS-LSAD: Opnum110NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum110NotUsedOnWire = 110
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum111NotUsedOnWire"></a> LSAD\_Opnum111NotUsedOnWire
+
+MS-LSAD: Opnum111NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum111NotUsedOnWire = 111
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum112NotUsedOnWire"></a> LSAD\_Opnum112NotUsedOnWire
+
+MS-LSAD: Opnum112NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum112NotUsedOnWire = 112
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum113NotUsedOnWire"></a> LSAD\_Opnum113NotUsedOnWire
+
+MS-LSAD: Opnum113NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum113NotUsedOnWire = 113
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum114NotUsedOnWire"></a> LSAD\_Opnum114NotUsedOnWire
+
+MS-LSAD: Opnum114NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum114NotUsedOnWire = 114
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum115NotUsedOnWire"></a> LSAD\_Opnum115NotUsedOnWire
+
+MS-LSAD: Opnum115NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum115NotUsedOnWire = 115
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum116NotUsedOnWire"></a> LSAD\_Opnum116NotUsedOnWire
+
+MS-LSAD: Opnum116NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum116NotUsedOnWire = 116
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum117NotUsedOnWire"></a> LSAD\_Opnum117NotUsedOnWire
+
+MS-LSAD: Opnum117NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum117NotUsedOnWire = 117
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum118NotUsedOnWire"></a> LSAD\_Opnum118NotUsedOnWire
+
+MS-LSAD: Opnum118NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum118NotUsedOnWire = 118
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum119NotUsedOnWire"></a> LSAD\_Opnum119NotUsedOnWire
+
+MS-LSAD: Opnum119NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum119NotUsedOnWire = 119
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum120NotUsedOnWire"></a> LSAD\_Opnum120NotUsedOnWire
+
+MS-LSAD: Opnum120NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum120NotUsedOnWire = 120
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum121NotUsedOnWire"></a> LSAD\_Opnum121NotUsedOnWire
+
+MS-LSAD: Opnum121NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum121NotUsedOnWire = 121
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum122NotUsedOnWire"></a> LSAD\_Opnum122NotUsedOnWire
+
+MS-LSAD: Opnum122NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum122NotUsedOnWire = 122
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum123NotUsedOnWire"></a> LSAD\_Opnum123NotUsedOnWire
+
+MS-LSAD: Opnum123NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum123NotUsedOnWire = 123
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum124NotUsedOnWire"></a> LSAD\_Opnum124NotUsedOnWire
+
+MS-LSAD: Opnum124NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum124NotUsedOnWire = 124
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum125NotUsedOnWire"></a> LSAD\_Opnum125NotUsedOnWire
+
+MS-LSAD: Opnum125NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum125NotUsedOnWire = 125
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum126NotUsedOnWire"></a> LSAD\_Opnum126NotUsedOnWire
+
+MS-LSAD: Opnum126NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum126NotUsedOnWire = 126
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum127NotUsedOnWire"></a> LSAD\_Opnum127NotUsedOnWire
+
+MS-LSAD: Opnum127NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum127NotUsedOnWire = 127
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum128NotUsedOnWire"></a> LSAD\_Opnum128NotUsedOnWire
+
+MS-LSAD: Opnum128NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum128NotUsedOnWire = 128
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum131NotUsedOnWire"></a> LSAD\_Opnum131NotUsedOnWire
+
+MS-LSAD: Opnum131NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum131NotUsedOnWire = 131
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum134NotUsedOnWire"></a> LSAD\_Opnum134NotUsedOnWire
+
+MS-LSAD: Opnum134NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum134NotUsedOnWire = 134
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum1NotUsedOnWire"></a> LSAD\_Opnum1NotUsedOnWire
+
+MS-LSAD: Opnum1NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum1NotUsedOnWire = 1
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum21NotUsedOnWire"></a> LSAD\_Opnum21NotUsedOnWire
+
+MS-LSAD: Opnum21NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum21NotUsedOnWire = 21
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum22NotUsedOnWire"></a> LSAD\_Opnum22NotUsedOnWire
+
+MS-LSAD: Opnum22NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum22NotUsedOnWire = 22
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum52NotUsedOnWire"></a> LSAD\_Opnum52NotUsedOnWire
+
+MS-LSAD: Opnum52NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum52NotUsedOnWire = 52
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum56NotUsedOnWire"></a> LSAD\_Opnum56NotUsedOnWire
+
+MS-LSAD: Opnum56NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum56NotUsedOnWire = 56
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum5NotUsedOnWire"></a> LSAD\_Opnum5NotUsedOnWire
+
+MS-LSAD: Opnum5NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum5NotUsedOnWire = 5
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum60NotUsedOnWire"></a> LSAD\_Opnum60NotUsedOnWire
+
+MS-LSAD: Opnum60NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum60NotUsedOnWire = 60
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum61NotUsedOnWire"></a> LSAD\_Opnum61NotUsedOnWire
+
+MS-LSAD: Opnum61NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum61NotUsedOnWire = 61
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum62NotUsedOnWire"></a> LSAD\_Opnum62NotUsedOnWire
+
+MS-LSAD: Opnum62NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum62NotUsedOnWire = 62
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum63NotUsedOnWire"></a> LSAD\_Opnum63NotUsedOnWire
+
+MS-LSAD: Opnum63NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum63NotUsedOnWire = 63
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum64NotUsedOnWire"></a> LSAD\_Opnum64NotUsedOnWire
+
+MS-LSAD: Opnum64NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum64NotUsedOnWire = 64
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum65NotUsedOnWire"></a> LSAD\_Opnum65NotUsedOnWire
+
+MS-LSAD: Opnum65NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum65NotUsedOnWire = 65
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum66NotUsedOnWire"></a> LSAD\_Opnum66NotUsedOnWire
+
+MS-LSAD: Opnum66NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum66NotUsedOnWire = 66
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum67NotUsedOnWire"></a> LSAD\_Opnum67NotUsedOnWire
+
+MS-LSAD: Opnum67NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum67NotUsedOnWire = 67
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum69NotUsedOnWire"></a> LSAD\_Opnum69NotUsedOnWire
+
+MS-LSAD: Opnum69NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum69NotUsedOnWire = 69
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum70NotUsedOnWire"></a> LSAD\_Opnum70NotUsedOnWire
+
+MS-LSAD: Opnum70NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum70NotUsedOnWire = 70
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum71NotUsedOnWire"></a> LSAD\_Opnum71NotUsedOnWire
+
+MS-LSAD: Opnum71NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum71NotUsedOnWire = 71
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum72NotUsedOnWire"></a> LSAD\_Opnum72NotUsedOnWire
+
+MS-LSAD: Opnum72NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum72NotUsedOnWire = 72
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum75NotUsedOnWire"></a> LSAD\_Opnum75NotUsedOnWire
+
+MS-LSAD: Opnum75NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum75NotUsedOnWire = 75
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum78NotUsedOnWire"></a> LSAD\_Opnum78NotUsedOnWire
+
+MS-LSAD: Opnum78NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum78NotUsedOnWire = 78
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum79NotUsedOnWire"></a> LSAD\_Opnum79NotUsedOnWire
+
+MS-LSAD: Opnum79NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum79NotUsedOnWire = 79
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum80NotUsedOnWire"></a> LSAD\_Opnum80NotUsedOnWire
+
+MS-LSAD: Opnum80NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum80NotUsedOnWire = 80
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum81NotUsedOnWire"></a> LSAD\_Opnum81NotUsedOnWire
+
+MS-LSAD: Opnum81NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum81NotUsedOnWire = 81
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum82NotUsedOnWire"></a> LSAD\_Opnum82NotUsedOnWire
+
+MS-LSAD: Opnum82NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum82NotUsedOnWire = 82
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum83NotUsedOnWire"></a> LSAD\_Opnum83NotUsedOnWire
+
+MS-LSAD: Opnum83NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum83NotUsedOnWire = 83
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum84NotUsedOnWire"></a> LSAD\_Opnum84NotUsedOnWire
+
+MS-LSAD: Opnum84NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum84NotUsedOnWire = 84
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum85NotUsedOnWire"></a> LSAD\_Opnum85NotUsedOnWire
+
+MS-LSAD: Opnum85NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum85NotUsedOnWire = 85
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum86NotUsedOnWire"></a> LSAD\_Opnum86NotUsedOnWire
+
+MS-LSAD: Opnum86NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum86NotUsedOnWire = 86
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum87NotUsedOnWire"></a> LSAD\_Opnum87NotUsedOnWire
+
+MS-LSAD: Opnum87NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum87NotUsedOnWire = 87
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum88NotUsedOnWire"></a> LSAD\_Opnum88NotUsedOnWire
+
+MS-LSAD: Opnum88NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum88NotUsedOnWire = 88
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum89NotUsedOnWire"></a> LSAD\_Opnum89NotUsedOnWire
+
+MS-LSAD: Opnum89NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum89NotUsedOnWire = 89
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum90NotUsedOnWire"></a> LSAD\_Opnum90NotUsedOnWire
+
+MS-LSAD: Opnum90NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum90NotUsedOnWire = 90
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum91NotUsedOnWire"></a> LSAD\_Opnum91NotUsedOnWire
+
+MS-LSAD: Opnum91NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum91NotUsedOnWire = 91
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum92NotUsedOnWire"></a> LSAD\_Opnum92NotUsedOnWire
+
+MS-LSAD: Opnum92NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum92NotUsedOnWire = 92
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum93NotUsedOnWire"></a> LSAD\_Opnum93NotUsedOnWire
+
+MS-LSAD: Opnum93NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum93NotUsedOnWire = 93
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum94NotUsedOnWire"></a> LSAD\_Opnum94NotUsedOnWire
+
+MS-LSAD: Opnum94NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum94NotUsedOnWire = 94
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum95NotUsedOnWire"></a> LSAD\_Opnum95NotUsedOnWire
+
+MS-LSAD: Opnum95NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum95NotUsedOnWire = 95
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum96NotUsedOnWire"></a> LSAD\_Opnum96NotUsedOnWire
+
+MS-LSAD: Opnum96NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum96NotUsedOnWire = 96
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum97NotUsedOnWire"></a> LSAD\_Opnum97NotUsedOnWire
+
+MS-LSAD: Opnum97NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum97NotUsedOnWire = 97
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum98NotUsedOnWire"></a> LSAD\_Opnum98NotUsedOnWire
+
+MS-LSAD: Opnum98NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum98NotUsedOnWire = 98
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum99NotUsedOnWire"></a> LSAD\_Opnum99NotUsedOnWire
+
+MS-LSAD: Opnum99NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum99NotUsedOnWire = 99
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAD_Opnum9NotUsedOnWire"></a> LSAD\_Opnum9NotUsedOnWire
+
+MS-LSAD: Opnum9NotUsedOnWire
+
+```csharp
+public const ushort LSAD_Opnum9NotUsedOnWire = 9
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LSAT"></a> LSAT
 
-MS-LSAT: Local Security Authority (Translation Methods) Remote
+MS-LSAT: Local Security Authority (Translation Methods) Remote Protocol
 
 ```csharp
 public static readonly Guid LSAT
@@ -3061,6 +4441,234 @@ public static readonly Guid LSAT
 #### Field Value
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarAddAccountRights"></a> LsarAddAccountRights
+
+MS-LSAD: LsarAddAccountRights
+
+```csharp
+public const ushort LsarAddAccountRights = 37
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarAddPrivilegesToAccount"></a> LsarAddPrivilegesToAccount
+
+MS-LSAD: LsarAddPrivilegesToAccount
+
+```csharp
+public const ushort LsarAddPrivilegesToAccount = 19
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarClose"></a> LsarClose
+
+MS-LSAD: LsarClose
+
+```csharp
+public const ushort LsarClose = 0
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateAccount"></a> LsarCreateAccount
+
+MS-LSAD: LsarCreateAccount
+
+```csharp
+public const ushort LsarCreateAccount = 10
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateSecret"></a> LsarCreateSecret
+
+MS-LSAD: LsarCreateSecret
+
+```csharp
+public const ushort LsarCreateSecret = 16
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateSecret2"></a> LsarCreateSecret2
+
+MS-LSAD: LsarCreateSecret2
+
+```csharp
+public const ushort LsarCreateSecret2 = 137
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateTrustedDomain"></a> LsarCreateTrustedDomain
+
+MS-LSAD: LsarCreateTrustedDomain
+
+```csharp
+public const ushort LsarCreateTrustedDomain = 12
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateTrustedDomainEx"></a> LsarCreateTrustedDomainEx
+
+MS-LSAD: LsarCreateTrustedDomainEx
+
+```csharp
+public const ushort LsarCreateTrustedDomainEx = 51
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateTrustedDomainEx2"></a> LsarCreateTrustedDomainEx2
+
+MS-LSAD: LsarCreateTrustedDomainEx2
+
+```csharp
+public const ushort LsarCreateTrustedDomainEx2 = 59
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarCreateTrustedDomainEx3"></a> LsarCreateTrustedDomainEx3
+
+MS-LSAD: LsarCreateTrustedDomainEx3
+
+```csharp
+public const ushort LsarCreateTrustedDomainEx3 = 129
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarDeleteObject"></a> LsarDeleteObject
+
+MS-LSAD: LsarDeleteObject
+
+```csharp
+public const ushort LsarDeleteObject = 34
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarDeleteTrustedDomain"></a> LsarDeleteTrustedDomain
+
+MS-LSAD: LsarDeleteTrustedDomain
+
+```csharp
+public const ushort LsarDeleteTrustedDomain = 41
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumerateAccountRights"></a> LsarEnumerateAccountRights
+
+MS-LSAD: LsarEnumerateAccountRights
+
+```csharp
+public const ushort LsarEnumerateAccountRights = 36
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumerateAccounts"></a> LsarEnumerateAccounts
+
+MS-LSAD: LsarEnumerateAccounts
+
+```csharp
+public const ushort LsarEnumerateAccounts = 11
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumerateAccountsWithUserRight"></a> LsarEnumerateAccountsWithUserRight
+
+MS-LSAD: LsarEnumerateAccountsWithUserRight
+
+```csharp
+public const ushort LsarEnumerateAccountsWithUserRight = 35
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumeratePrivileges"></a> LsarEnumeratePrivileges
+
+MS-LSAD: LsarEnumeratePrivileges
+
+```csharp
+public const ushort LsarEnumeratePrivileges = 2
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumeratePrivilegesAccount"></a> LsarEnumeratePrivilegesAccount
+
+MS-LSAD: LsarEnumeratePrivilegesAccount
+
+```csharp
+public const ushort LsarEnumeratePrivilegesAccount = 18
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumerateTrustedDomains"></a> LsarEnumerateTrustedDomains
+
+MS-LSAD: LsarEnumerateTrustedDomains
+
+```csharp
+public const ushort LsarEnumerateTrustedDomains = 13
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarEnumerateTrustedDomainsEx"></a> LsarEnumerateTrustedDomainsEx
+
+MS-LSAD: LsarEnumerateTrustedDomainsEx
+
+```csharp
+public const ushort LsarEnumerateTrustedDomainsEx = 50
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarGetAvailableCAPIDs"></a> LsarGetAvailableCAPIDs
 
@@ -3074,12 +4682,600 @@ public const ushort LsarGetAvailableCAPIDs = 0
 
  [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarGetSystemAccessAccount"></a> LsarGetSystemAccessAccount
+
+MS-LSAD: LsarGetSystemAccessAccount
+
+```csharp
+public const ushort LsarGetSystemAccessAccount = 23
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarLookupNames4"></a> LsarLookupNames4
+
+MS-LSAD: LsarLookupNames4
+
+```csharp
+public const ushort LsarLookupNames4 = 77
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarLookupPrivilegeDisplayName"></a> LsarLookupPrivilegeDisplayName
+
+MS-LSAD: LsarLookupPrivilegeDisplayName
+
+```csharp
+public const ushort LsarLookupPrivilegeDisplayName = 33
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarLookupPrivilegeName"></a> LsarLookupPrivilegeName
+
+MS-LSAD: LsarLookupPrivilegeName
+
+```csharp
+public const ushort LsarLookupPrivilegeName = 32
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarLookupPrivilegeValue"></a> LsarLookupPrivilegeValue
+
+MS-LSAD: LsarLookupPrivilegeValue
+
+```csharp
+public const ushort LsarLookupPrivilegeValue = 31
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarLookupSids3"></a> LsarLookupSids3
+
+MS-LSAD: LsarLookupSids3
+
+```csharp
+public const ushort LsarLookupSids3 = 76
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenAccount"></a> LsarOpenAccount
+
+MS-LSAD: LsarOpenAccount
+
+```csharp
+public const ushort LsarOpenAccount = 17
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenPolicy"></a> LsarOpenPolicy
+
+MS-LSAD: LsarOpenPolicy
+
+```csharp
+public const ushort LsarOpenPolicy = 6
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenPolicy2"></a> LsarOpenPolicy2
+
+MS-LSAD: LsarOpenPolicy2
+
+```csharp
+public const ushort LsarOpenPolicy2 = 44
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenPolicy3"></a> LsarOpenPolicy3
+
+MS-LSAD: LsarOpenPolicy3
+
+```csharp
+public const ushort LsarOpenPolicy3 = 130
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenPolicyWithCreds"></a> LsarOpenPolicyWithCreds
+
+MS-LSAD: LsarOpenPolicyWithCreds
+
+```csharp
+public const ushort LsarOpenPolicyWithCreds = 135
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenSecret"></a> LsarOpenSecret
+
+MS-LSAD: LsarOpenSecret
+
+```csharp
+public const ushort LsarOpenSecret = 28
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenSecret2"></a> LsarOpenSecret2
+
+MS-LSAD: LsarOpenSecret2
+
+```csharp
+public const ushort LsarOpenSecret2 = 136
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenTrustedDomain"></a> LsarOpenTrustedDomain
+
+MS-LSAD: LsarOpenTrustedDomain
+
+```csharp
+public const ushort LsarOpenTrustedDomain = 25
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarOpenTrustedDomainByName"></a> LsarOpenTrustedDomainByName
+
+MS-LSAD: LsarOpenTrustedDomainByName
+
+```csharp
+public const ushort LsarOpenTrustedDomainByName = 55
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryDomainInformationPolicy"></a> LsarQueryDomainInformationPolicy
+
+MS-LSAD: LsarQueryDomainInformationPolicy
+
+```csharp
+public const ushort LsarQueryDomainInformationPolicy = 53
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryForestTrustInformation"></a> LsarQueryForestTrustInformation
+
+MS-LSAD: LsarQueryForestTrustInformation
+
+```csharp
+public const ushort LsarQueryForestTrustInformation = 73
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryForestTrustInformation2"></a> LsarQueryForestTrustInformation2
+
+MS-LSAD: LsarQueryForestTrustInformation2
+
+```csharp
+public const ushort LsarQueryForestTrustInformation2 = 132
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryInfoTrustedDomain"></a> LsarQueryInfoTrustedDomain
+
+MS-LSAD: LsarQueryInfoTrustedDomain
+
+```csharp
+public const ushort LsarQueryInfoTrustedDomain = 26
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryInformationPolicy"></a> LsarQueryInformationPolicy
+
+MS-LSAD: LsarQueryInformationPolicy
+
+```csharp
+public const ushort LsarQueryInformationPolicy = 7
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryInformationPolicy2"></a> LsarQueryInformationPolicy2
+
+MS-LSAD: LsarQueryInformationPolicy2
+
+```csharp
+public const ushort LsarQueryInformationPolicy2 = 46
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQuerySecret"></a> LsarQuerySecret
+
+MS-LSAD: LsarQuerySecret
+
+```csharp
+public const ushort LsarQuerySecret = 30
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQuerySecret2"></a> LsarQuerySecret2
+
+MS-LSAD: LsarQuerySecret2
+
+```csharp
+public const ushort LsarQuerySecret2 = 139
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQuerySecurityObject"></a> LsarQuerySecurityObject
+
+MS-LSAD: LsarQuerySecurityObject
+
+```csharp
+public const ushort LsarQuerySecurityObject = 3
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryTrustedDomainInfo"></a> LsarQueryTrustedDomainInfo
+
+MS-LSAD: LsarQueryTrustedDomainInfo
+
+```csharp
+public const ushort LsarQueryTrustedDomainInfo = 39
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarQueryTrustedDomainInfoByName"></a> LsarQueryTrustedDomainInfoByName
+
+MS-LSAD: LsarQueryTrustedDomainInfoByName
+
+```csharp
+public const ushort LsarQueryTrustedDomainInfoByName = 48
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarRemoveAccountRights"></a> LsarRemoveAccountRights
+
+MS-LSAD: LsarRemoveAccountRights
+
+```csharp
+public const ushort LsarRemoveAccountRights = 38
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarRemovePrivilegesFromAccount"></a> LsarRemovePrivilegesFromAccount
+
+MS-LSAD: LsarRemovePrivilegesFromAccount
+
+```csharp
+public const ushort LsarRemovePrivilegesFromAccount = 20
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarRetrievePrivateData"></a> LsarRetrievePrivateData
 
 MS-LSAD: LsarRetrievePrivateData
 
 ```csharp
 public const ushort LsarRetrievePrivateData = 43
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarRetrievePrivateData2"></a> LsarRetrievePrivateData2
+
+MS-LSAD: LsarRetrievePrivateData2
+
+```csharp
+public const ushort LsarRetrievePrivateData2 = 141
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetDomainInformationPolicy"></a> LsarSetDomainInformationPolicy
+
+MS-LSAD: LsarSetDomainInformationPolicy
+
+```csharp
+public const ushort LsarSetDomainInformationPolicy = 54
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetForestTrustInformation"></a> LsarSetForestTrustInformation
+
+MS-LSAD: LsarSetForestTrustInformation
+
+```csharp
+public const ushort LsarSetForestTrustInformation = 74
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetForestTrustInformation2"></a> LsarSetForestTrustInformation2
+
+MS-LSAD: LsarSetForestTrustInformation2
+
+```csharp
+public const ushort LsarSetForestTrustInformation2 = 133
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetInformationPolicy"></a> LsarSetInformationPolicy
+
+MS-LSAD: LsarSetInformationPolicy
+
+```csharp
+public const ushort LsarSetInformationPolicy = 8
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetInformationPolicy2"></a> LsarSetInformationPolicy2
+
+MS-LSAD: LsarSetInformationPolicy2
+
+```csharp
+public const ushort LsarSetInformationPolicy2 = 47
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetInformationTrustedDomain"></a> LsarSetInformationTrustedDomain
+
+MS-LSAD: LsarSetInformationTrustedDomain
+
+```csharp
+public const ushort LsarSetInformationTrustedDomain = 27
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetSecret"></a> LsarSetSecret
+
+MS-LSAD: LsarSetSecret
+
+```csharp
+public const ushort LsarSetSecret = 29
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetSecret2"></a> LsarSetSecret2
+
+MS-LSAD: LsarSetSecret2
+
+```csharp
+public const ushort LsarSetSecret2 = 138
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetSecurityObject"></a> LsarSetSecurityObject
+
+MS-LSAD: LsarSetSecurityObject
+
+```csharp
+public const ushort LsarSetSecurityObject = 4
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetSystemAccessAccount"></a> LsarSetSystemAccessAccount
+
+MS-LSAD: LsarSetSystemAccessAccount
+
+```csharp
+public const ushort LsarSetSystemAccessAccount = 24
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetTrustedDomainInfo"></a> LsarSetTrustedDomainInfo
+
+MS-LSAD: LsarSetTrustedDomainInfo
+
+```csharp
+public const ushort LsarSetTrustedDomainInfo = 40
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarSetTrustedDomainInfoByName"></a> LsarSetTrustedDomainInfoByName
+
+MS-LSAD: LsarSetTrustedDomainInfoByName
+
+```csharp
+public const ushort LsarSetTrustedDomainInfoByName = 49
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarStorePrivateData"></a> LsarStorePrivateData
+
+MS-LSAD: LsarStorePrivateData
+
+```csharp
+public const ushort LsarStorePrivateData = 42
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_LsarStorePrivateData2"></a> LsarStorePrivateData2
+
+MS-LSAD: LsarStorePrivateData2
+
+```csharp
+public const ushort LsarStorePrivateData2 = 140
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_14"></a> Lsar\_LSA\_TM\_14
+
+MS-LSAD: Lsar_LSA_TM_14
+
+```csharp
+public const ushort Lsar_LSA_TM_14 = 14
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_15"></a> Lsar\_LSA\_TM\_15
+
+MS-LSAD: Lsar_LSA_TM_15
+
+```csharp
+public const ushort Lsar_LSA_TM_15 = 15
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_45"></a> Lsar\_LSA\_TM\_45
+
+MS-LSAD: Lsar_LSA_TM_45
+
+```csharp
+public const ushort Lsar_LSA_TM_45 = 45
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_57"></a> Lsar\_LSA\_TM\_57
+
+MS-LSAD: Lsar_LSA_TM_57
+
+```csharp
+public const ushort Lsar_LSA_TM_57 = 57
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_58"></a> Lsar\_LSA\_TM\_58
+
+MS-LSAD: Lsar_LSA_TM_58
+
+```csharp
+public const ushort Lsar_LSA_TM_58 = 58
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_Lsar_LSA_TM_68"></a> Lsar\_LSA\_TM\_68
+
+MS-LSAD: Lsar_LSA_TM_68
+
+```csharp
+public const ushort Lsar_LSA_TM_68 = 68
 ```
 
 #### Field Value
@@ -3206,6 +5402,18 @@ public static readonly Guid NRPC
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NRPC_OpnumUnused47"></a> NRPC\_OpnumUnused47
+
+MS-NRPC: OpnumUnused47
+
+```csharp
+public const ushort NRPC_OpnumUnused47 = 47
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NSPI"></a> NSPI
 
 MS-NSPI: Name Service Provider Interface (NSPI) Protocol
@@ -3218,12 +5426,96 @@ public static readonly Guid NSPI
 
  [Guid](https://learn.microsoft.com/dotnet/api/system.guid)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrAccountDeltas"></a> NetrAccountDeltas
+
+MS-NRPC: NetrAccountDeltas
+
+```csharp
+public const ushort NetrAccountDeltas = 9
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrAccountSync"></a> NetrAccountSync
+
+MS-NRPC: NetrAccountSync
+
+```csharp
+public const ushort NetrAccountSync = 10
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrChainSetClientAttributes"></a> NetrChainSetClientAttributes
+
+MS-NRPC: NetrChainSetClientAttributes
+
+```csharp
+public const ushort NetrChainSetClientAttributes = 49
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrConnectionEnum"></a> NetrConnectionEnum
 
 MS-SRVS: NetrConnectionEnum
 
 ```csharp
 public const ushort NetrConnectionEnum = 8
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrDatabaseDeltas"></a> NetrDatabaseDeltas
+
+MS-NRPC: NetrDatabaseDeltas
+
+```csharp
+public const ushort NetrDatabaseDeltas = 7
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrDatabaseRedo"></a> NetrDatabaseRedo
+
+MS-NRPC: NetrDatabaseRedo
+
+```csharp
+public const ushort NetrDatabaseRedo = 17
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrDatabaseSync"></a> NetrDatabaseSync
+
+MS-NRPC: NetrDatabaseSync
+
+```csharp
+public const ushort NetrDatabaseSync = 8
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrDatabaseSync2"></a> NetrDatabaseSync2
+
+MS-NRPC: NetrDatabaseSync2
+
+```csharp
+public const ushort NetrDatabaseSync2 = 16
 ```
 
 #### Field Value
@@ -3506,6 +5798,30 @@ public const ushort NetrDfsSetInfo2 = 22
 
  [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrEnumerateTrustedDomains"></a> NetrEnumerateTrustedDomains
+
+MS-NRPC: NetrEnumerateTrustedDomains
+
+```csharp
+public const ushort NetrEnumerateTrustedDomains = 19
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrEnumerateTrustedDomainsEx"></a> NetrEnumerateTrustedDomainsEx
+
+MS-NRPC: NetrEnumerateTrustedDomainsEx
+
+```csharp
+public const ushort NetrEnumerateTrustedDomainsEx = 36
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrFileEnum"></a> NetrFileEnum
 
 MS-SRVS: NetrFileEnum
@@ -3518,12 +5834,372 @@ public const ushort NetrFileEnum = 9
 
  [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
 
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrGetAnyDCName"></a> NetrGetAnyDCName
+
+MS-NRPC: NetrGetAnyDCName
+
+```csharp
+public const ushort NetrGetAnyDCName = 13
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrGetDCName"></a> NetrGetDCName
+
+MS-NRPC: NetrGetDCName
+
+```csharp
+public const ushort NetrGetDCName = 11
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrGetForestTrustInformation"></a> NetrGetForestTrustInformation
+
+MS-NRPC: NetrGetForestTrustInformation
+
+```csharp
+public const ushort NetrGetForestTrustInformation = 44
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
 ### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrJobAdd"></a> NetrJobAdd
 
 MS-TSCH: NetrJobAdd
 
 ```csharp
 public const ushort NetrJobAdd = 0
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonComputeClientDigest"></a> NetrLogonComputeClientDigest
+
+MS-NRPC: NetrLogonComputeClientDigest
+
+```csharp
+public const ushort NetrLogonComputeClientDigest = 25
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonComputeServerDigest"></a> NetrLogonComputeServerDigest
+
+MS-NRPC: NetrLogonComputeServerDigest
+
+```csharp
+public const ushort NetrLogonComputeServerDigest = 24
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonControl"></a> NetrLogonControl
+
+MS-NRPC: NetrLogonControl
+
+```csharp
+public const ushort NetrLogonControl = 12
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonControl2"></a> NetrLogonControl2
+
+MS-NRPC: NetrLogonControl2
+
+```csharp
+public const ushort NetrLogonControl2 = 14
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonControl2Ex"></a> NetrLogonControl2Ex
+
+MS-NRPC: NetrLogonControl2Ex
+
+```csharp
+public const ushort NetrLogonControl2Ex = 18
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonGetCapabilities"></a> NetrLogonGetCapabilities
+
+MS-NRPC: NetrLogonGetCapabilities
+
+```csharp
+public const ushort NetrLogonGetCapabilities = 21
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonGetDomainInfo"></a> NetrLogonGetDomainInfo
+
+MS-NRPC: NetrLogonGetDomainInfo
+
+```csharp
+public const ushort NetrLogonGetDomainInfo = 29
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonGetTimeServiceParentDomain"></a> NetrLogonGetTimeServiceParentDomain
+
+MS-NRPC: NetrLogonGetTimeServiceParentDomain
+
+```csharp
+public const ushort NetrLogonGetTimeServiceParentDomain = 35
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonGetTrustRid"></a> NetrLogonGetTrustRid
+
+MS-NRPC: NetrLogonGetTrustRid
+
+```csharp
+public const ushort NetrLogonGetTrustRid = 23
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSamLogoff"></a> NetrLogonSamLogoff
+
+MS-NRPC: NetrLogonSamLogoff
+
+```csharp
+public const ushort NetrLogonSamLogoff = 3
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSamLogon"></a> NetrLogonSamLogon
+
+MS-NRPC: NetrLogonSamLogon
+
+```csharp
+public const ushort NetrLogonSamLogon = 2
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSamLogonEx"></a> NetrLogonSamLogonEx
+
+MS-NRPC: NetrLogonSamLogonEx
+
+```csharp
+public const ushort NetrLogonSamLogonEx = 39
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSamLogonWithFlags"></a> NetrLogonSamLogonWithFlags
+
+MS-NRPC: NetrLogonSamLogonWithFlags
+
+```csharp
+public const ushort NetrLogonSamLogonWithFlags = 45
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSendToSam"></a> NetrLogonSendToSam
+
+MS-NRPC: NetrLogonSendToSam
+
+```csharp
+public const ushort NetrLogonSendToSam = 32
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonSetServiceBits"></a> NetrLogonSetServiceBits
+
+MS-NRPC: NetrLogonSetServiceBits
+
+```csharp
+public const ushort NetrLogonSetServiceBits = 22
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonUasLogoff"></a> NetrLogonUasLogoff
+
+MS-NRPC: NetrLogonUasLogoff
+
+```csharp
+public const ushort NetrLogonUasLogoff = 1
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrLogonUasLogon"></a> NetrLogonUasLogon
+
+MS-NRPC: NetrLogonUasLogon
+
+```csharp
+public const ushort NetrLogonUasLogon = 0
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerAuthenticate"></a> NetrServerAuthenticate
+
+MS-NRPC: NetrServerAuthenticate
+
+```csharp
+public const ushort NetrServerAuthenticate = 5
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerAuthenticate2"></a> NetrServerAuthenticate2
+
+MS-NRPC: NetrServerAuthenticate2
+
+```csharp
+public const ushort NetrServerAuthenticate2 = 15
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerAuthenticate3"></a> NetrServerAuthenticate3
+
+MS-NRPC: NetrServerAuthenticate3
+
+```csharp
+public const ushort NetrServerAuthenticate3 = 26
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerAuthenticateKerberos"></a> NetrServerAuthenticateKerberos
+
+MS-NRPC: NetrServerAuthenticateKerberos
+
+```csharp
+public const ushort NetrServerAuthenticateKerberos = 59
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerGetTrustInfo"></a> NetrServerGetTrustInfo
+
+MS-NRPC: NetrServerGetTrustInfo
+
+```csharp
+public const ushort NetrServerGetTrustInfo = 46
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerPasswordGet"></a> NetrServerPasswordGet
+
+MS-NRPC: NetrServerPasswordGet
+
+```csharp
+public const ushort NetrServerPasswordGet = 31
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerPasswordSet"></a> NetrServerPasswordSet
+
+MS-NRPC: NetrServerPasswordSet
+
+```csharp
+public const ushort NetrServerPasswordSet = 6
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerPasswordSet2"></a> NetrServerPasswordSet2
+
+MS-NRPC: NetrServerPasswordSet2
+
+```csharp
+public const ushort NetrServerPasswordSet2 = 30
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerReqChallenge"></a> NetrServerReqChallenge
+
+MS-NRPC: NetrServerReqChallenge
+
+```csharp
+public const ushort NetrServerReqChallenge = 4
+```
+
+#### Field Value
+
+ [ushort](https://learn.microsoft.com/dotnet/api/system.uint16)
+
+### <a id="DSInternals_Win32_RpcFilters_WellKnownProtocolTranslator_NetrServerTrustPasswordsGet"></a> NetrServerTrustPasswordsGet
+
+MS-NRPC: NetrServerTrustPasswordsGet
+
+```csharp
+public const ushort NetrServerTrustPasswordsGet = 42
 ```
 
 #### Field Value

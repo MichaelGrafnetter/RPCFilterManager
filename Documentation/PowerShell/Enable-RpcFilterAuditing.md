@@ -43,6 +43,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
+[Get-RpcFilterAuditing](Get-RpcFilterAuditing.md)
 [Disable-RpcFilterAuditing](Disable-RpcFilterAuditing.md)
 [Get-RpcFilterEvent](Get-RpcFilterEvent.md)
 [New-RpcFilter](New-RpcFilter.md)

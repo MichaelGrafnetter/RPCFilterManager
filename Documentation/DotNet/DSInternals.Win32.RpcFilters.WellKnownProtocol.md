@@ -15,9 +15,33 @@ public enum WellKnownProtocol
 
 ## Fields
 
+`AddressBookReferral = 61` 
+
+MS-OXABREF: Address Book Name Service Provider Interface (NSPI) Referral Protocol
+
+
+
 `BackupKey = 24` 
 
 MS-BKRP: BackupKey Remote Protocol
+
+
+
+`CentralAccessPolicyIdentifierRetrieval = 45` 
+
+MS-CAPR: Central Access Policy Identifier (ID) Retrieval Protocol
+
+
+
+`ClusterConfiguration = 42` 
+
+MC-CCFG: Server Cluster: Configuration (ClusCfg) Protocol
+
+
+
+`ClusterManagement = 43` 
+
+MS-CMRP: Failover Cluster: Management API (ClusAPI) Protocol
 
 
 
@@ -99,6 +123,18 @@ MS-FRS1: File Replication Service Protocol
 
 
 
+`Firewall = 47` 
+
+MS-FASP: Firewall and Advanced Security Protocol
+
+
+
+`GroupKeyDistribution = 48` 
+
+MS-GKDI: Group Key Distribution Protocol
+
+
+
 `ICertAdminD = 38` 
 
 MS-CSRA: Certificate Services Remote Administration Protocol (ICertAdminD)
@@ -129,9 +165,27 @@ MS-WCCE: Windows Client Certificate Enrollment Protocol (ICertRequestD2)
 
 
 
+`IOCSPAdminD = 40` 
+
+MS-OCSPA: Microsoft OCSP Administration Protocol
+
+
+
+`ITransactionStream = 46` 
+
+MS-COM: Component Object Model Plus (COM+) Protocol
+
+
+
 `InitShutdown = 10` 
 
 MS-RSP: Remote Shutdown Protocol
+
+
+
+`LiveEventCapture = 60` 
+
+MS-LREC: Live Remote Event Capture (LREC) Protocol
 
 
 
@@ -144,6 +198,24 @@ MS-LSAD: Local Security Authority (LSA) Remote Protocol
 `MasterBrowser = 29` 
 
 MS-BRWSA: Common Internet File System (CIFS) Browser Auxiliary Protocol
+
+
+
+`MessageQueueManagement = 59` 
+
+MS-MQMR: Message Queuing (MSMQ): Queue Manager Management Protocol
+
+
+
+`MessageQueueRemoteRead = 57` 
+
+MS-MQRR: Message Queuing (MSMQ): Queue Manager Remote Read Protocol
+
+
+
+`MessageQueueToMessageQueue = 58` 
+
+MS-MQQP: Message Queuing (MSMQ): Queue Manager to Queue Manager Protocol
 
 
 
@@ -177,6 +249,24 @@ MS-NRPC: Netlogon Remote Protocol
 
 
 
+`OleTxTransports = 62` 
+
+MS-CMPO: MSDTC Connection Manager: OleTx Transports Protocol
+
+
+
+`PeerCachingAuthentication = 44` 
+
+MS-BPAU: Background Intelligent Transfer Service (BITS) Peer-Caching: Peer Authentication Protocol
+
+
+
+`PerformanceCounters = 56` 
+
+MS-PCQ: Performance Counter Query Protocol
+
+
+
 `PrintSpooler = 13` 
 
 MS-RPRN: Print System Remote Protocol
@@ -192,6 +282,18 @@ MS-PAR: Print System Asynchronous Remote Protocol
 `RemoteAccessManagement = 33` 
 
 MS-RRASM: Routing and Remote Access Server (RRAS) Management Protocol
+
+
+
+`RemoteAuthorization = 55` 
+
+MS-RAA: Remote Authorization API Protocol
+
+
+
+`RemoteProcedureCallLocator = 54` 
+
+MS-RPCL: Remote Procedure Call Location Services Extensions
 
 
 
@@ -231,9 +333,39 @@ MS-TSCH: Task Scheduler Service Remoting Protocol (ITaskSchedulerService)
 
 
 
+`TelnetServer = 53` 
+
+MS-TSRAP: Telnet Server Remote Administration Protocol
+
+
+
+`TerminalServicesGateway = 52` 
+
+MS-TSGU: Terminal Services Gateway Server Protocol
+
+
+
 `VolumeShadowCopy = 18` 
 
 MS-FSRVP: File Server Remote VSS Protocol
+
+
+
+`WebServiceControl = 49` 
+
+MS-IISS: Internet Information Services (IIS) ServiceControl Protocol
+
+
+
+`WebServiceInformation = 50` 
+
+MS-IRP: Internet Information Services (IIS) Inetinfo Remote Protocol
+
+
+
+`WindowsDeploymentServices = 41` 
+
+MS-WDSC: Windows Deployment Services Control Protocol
 
 
 
@@ -246,6 +378,12 @@ MS-RSP: Remote Shutdown Protocol
 `WindowsTime = 30` 
 
 MS-W32T: W32Time Remote Protocol
+
+
+
+`Witness = 51` 
+
+MS-SWN: Service Witness Protocol
 
 
 

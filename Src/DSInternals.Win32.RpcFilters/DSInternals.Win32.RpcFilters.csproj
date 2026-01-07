@@ -26,7 +26,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Library for managing Windows RPC Filters.</Description>
     <PackageReleaseNotes>
-- Added support for authentication level and security descriptor match operators.
+- Added support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
+- More RPC protocols and operation numbers are now translated to human-readable names.
     </PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <AnalysisMode>Recommended</AnalysisMode>

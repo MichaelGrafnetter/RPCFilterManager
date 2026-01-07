@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.2] - 2026-01-08
 
 ### Added
 
@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file. The format 
 
 - Initial release
 
-[Unreleased]: https://github.com/MichaelGrafnetter/RPCFilterManager/compare/v1.1...HEAD
+[Unreleased]: https://github.com/MichaelGrafnetter/RPCFilterManager/compare/v1.2...HEAD
+[1.2]: https://github.com/MichaelGrafnetter/RPCFilterManager/compare/v1.1...1.2
 [1.1]: https://github.com/MichaelGrafnetter/RPCFilterManager/compare/v1.0...1.1
 [1.0]: https://github.com/MichaelGrafnetter/RPCFilterManager/releases/tag/v1.0

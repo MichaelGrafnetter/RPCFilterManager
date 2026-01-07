@@ -11,7 +11,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
 
     <!-- Set assembly properties -->
-    <Copyright>Copyright (c) 2024-2025 Michael Grafnetter. All rights reserved.</Copyright>
+    <Copyright>Copyright (c) 2024-2026 Michael Grafnetter. All rights reserved.</Copyright>
     <Product>DSInternals RPC Filter Manager</Product>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
 

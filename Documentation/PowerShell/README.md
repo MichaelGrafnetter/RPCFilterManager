@@ -53,7 +53,7 @@ New-RpcFilter `
     -Transport ncacn_np `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Block remote scheduled task management (MS-TSCH) over SMB named pipes:
 New-RpcFilter `
@@ -62,7 +62,7 @@ New-RpcFilter `
     -NamedPipe '\PIPE\atsvc' `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Block remote event log access (MS-EVEN6) over SMB named pipes:
 New-RpcFilter `
@@ -72,7 +72,7 @@ New-RpcFilter `
     -Transport ncacn_np `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Block the legacy MS-EVEN protocol traffic:
 New-RpcFilter `
@@ -81,7 +81,7 @@ New-RpcFilter `
     -WellKnownProtocol EventLog `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Allow DFS namespace management (MS-DFSNM) for Domain Admins, but block it for everyone else:
 New-RpcFilter `
@@ -98,8 +98,9 @@ New-RpcFilter `
     -WellKnownProtocol NamespaceManagement `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
+# [bool] $x = Get-Printer | Where-Object Shared -eq $false | Measure-Object | Select-Object -ExpandProperty Count
 # Block the Print System Remote Protocol (MS-RPRN) over SMB named pipes:
 New-RpcFilter `
     -Name 'RPRN-Block-NP' `
@@ -108,7 +109,9 @@ New-RpcFilter `
     -Transport ncacn_np `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
+
+# Other print prot: MS-PAR, MS-PAN
 
 # Enforce Kerberos and packet encryption for the Encrypting File System Remote Protocol (MS-EFSR):
 New-RpcFilter `
@@ -126,7 +129,7 @@ New-RpcFilter `
     -WellKnownProtocol EncryptingFileSystem `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 New-RpcFilter `
     -Name 'EFSR-LSA-Permit-KRB' `
@@ -143,7 +146,7 @@ New-RpcFilter `
     -WellKnownProtocol EncryptingFileSystemLSA `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Block DNS server management (MS-DNSP) over SMB named pipes:
 New-RpcFilter `
@@ -153,7 +156,7 @@ New-RpcFilter `
     -Transport ncacn_np `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 # Block the Mimikatz Command and Control (C2) channel:
 New-RpcFilter `
@@ -576,7 +579,7 @@ New-RpcFilter `
     -AuthenticationType NTLM `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 New-RpcFilter `
     -Name 'EFSR-Block-Unencrypted' `
@@ -586,7 +589,7 @@ New-RpcFilter `
     -AuthenticationLevelMatchType LessThan `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 New-RpcFilter `
     -Name 'EFSR-LSA-Block-NTLM' `
@@ -595,7 +598,7 @@ New-RpcFilter `
     -AuthenticationType NTLM `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 
 New-RpcFilter `
     -Name 'EFSR-LSA-Block-Unencrypted' `
@@ -605,7 +608,7 @@ New-RpcFilter `
     -AuthenticationLevelMatchType LessThan `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 ```
 
 Similar approach could be taken for the DFS namespace management protocol:
@@ -619,7 +622,7 @@ New-RpcFilter `
     -SecurityDescriptorNegativeMatch `
     -Action Block `
     -Persistent `
-    -Audit
+    -Audit Enabled
 ```
 
 > [!TIP]
@@ -754,3 +757,50 @@ Get-RpcFilter | Sort-Object -Property Name | Out-GridView
 ```
 
 ![DCSync Filters](../Screenshots/dcsync-filters.png)
+
+### Blocking DPAPI Backup Key Theft
+
+The following filter can help mitigate [DPAPI backup key theft attacks](https://www.dsinternals.com/en/dpapi-backup-key-theft-auditing/)
+by blocking the `LsarRetrievePrivateData` operation:
+
+```powershell
+New-RpcFilter `
+    -Name 'LSAD-Block-LsarRetrievePrivateData' `
+    -Description 'Block DPAPI backup key theft using the LsarRetrievePrivateData operation' `
+    -WellKnownOperation LsarRetrievePrivateData `
+    -Action Block `
+    -Audit Enabled `
+    -Persistent `
+    -PassThrough
+
+New-RpcFilter `
+    -Name 'LSAD-Block-LsarRetrievePrivateData' `
+    -Description 'Block DPAPI backup key theft using the LsarRetrievePrivateData2 operation' `
+    -WellKnownOperation LsarRetrievePrivateData2 `
+    -Action Block `
+    -Audit Enabled `
+    -Persistent `
+    -PassThrough
+```
+
+```txt
+Name: LSAD-Block-LsarRetrievePrivateData
+Description: Block DPAPI backup key theft using the LsarRetrievePrivateData operation
+FilterId: 68792, FilterKey: 3f88d940-bad1-4334-9ebb-b5b12830d0b8, ProviderKey: N/A
+Action: Block
+Audit: Enabled, Persistent: True, BootTimeEnforced: False, Disabled: False
+EffectiveWeight: 0x, Weight: N/A
+Conditions:
+  Protocol = MS-LSAD - {12345778-1234-abcd-ef00-0123456789ab}
+  Operation = LsarRetrievePrivateData (43)
+
+Name: LSAD-Block-LsarRetrievePrivateData
+Description: Block DPAPI backup key theft using the LsarRetrievePrivateData operation
+FilterId: 68792, FilterKey: 3f88d940-bad1-4334-9ebb-b5b12830d0b8, ProviderKey: N/A
+Action: Block
+Audit: Enabled, Persistent: True, BootTimeEnforced: False, Disabled: False
+EffectiveWeight: 0x, Weight: N/A
+Conditions:
+  Protocol = MS-LSAD - {12345778-1234-abcd-ef00-0123456789ab}
+  Operation = LsarRetrievePrivateData2 (141)
+```

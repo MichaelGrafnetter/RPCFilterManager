@@ -23,7 +23,7 @@ Author = 'Michael Grafnetter'
 CompanyName = 'DSInternals'
 
 # Copyright statement for this module
-Copyright = 'Copyright (c) 2024-2025 Michael Grafnetter. All rights reserved.'
+Copyright = 'Copyright (c) 2024-2026 Michael Grafnetter. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Commands for managing RPC filters in the Windows Filtering Platform.'
@@ -110,8 +110,9 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
-- The -AuthenticationLevelMatchType and -SecurityDescriptorNegativeMatch parameters have been added to the New-RpcFilter cmdlet.
-- The Get-RpcFilterEvent cmdlet now correctly bypasses firewall on localhost.
+- Added support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
+- The new Get-RpcFilterAuditing cmdlet can be used to check the current auditing settings of RPC filter events.
+- More RPC protocols and operation numbers are now translated to human-readable names.
 '@
 
         # Prerelease string of this module

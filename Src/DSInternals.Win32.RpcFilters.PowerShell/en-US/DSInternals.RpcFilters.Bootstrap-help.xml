@@ -49,6 +49,10 @@
         <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Disable-RpcFilterAuditing.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
+        <maml:linkText>Get-RpcFilterAuditing</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Enable-RpcFilterAuditing</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -103,6 +107,10 @@
         <maml:uri>https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Enable-RpcFilterAuditing.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
+        <maml:linkText>Get-RpcFilterAuditing</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Disable-RpcFilterAuditing</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
@@ -112,6 +120,64 @@
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>New-RpcFilter</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-RpcFilterAuditing</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>RpcFilterAuditing</command:noun>
+      <maml:description>
+        <maml:para>Gets the current auditing settings for RPC events.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet retrieves the current auditing settings for RPC events on the local machine. It provides information about whether auditing is enabled or disabled for RPC-related activities, helping administrators monitor and manage RPC traffic effectively.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-RpcFilterAuditing</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-RpcFilterAuditing
+&lt;# Sample Output:
+Machine Name      : PC01
+Policy Target     : System
+Subcategory       : RPC Events
+Subcategory GUID  : {0CCE922E-69AE-11D9-BED3-505054503030}
+Inclusion Setting : No Auditing
+Exclusion Setting :
+#&gt;</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the current auditing settings for RPC events on the local machine.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Enable-RpcFilterAuditing</maml:linkText>
         <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>

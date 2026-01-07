@@ -8,15 +8,21 @@
 #Requires -Version 5.1
 #Requires -Modules @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 
+[CmdletBinding(DefaultParameterSetName = 'Configuration')]
 param(
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, ParameterSetName = 'ModulePath')]
     [ValidateNotNullOrEmpty()]
-    [string] $ModulePath
+    [string] $ModulePath,
+
+    [Parameter(Mandatory = $false, ParameterSetName = 'Configuration')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateSet('Debug', 'Release')]
+    [string] $Configuration = 'Debug'
 )
 
 if ([string]::IsNullOrWhiteSpace($ModulePath)) {
     # No path has been provided, so use a the default value
-    $ModulePath = Join-Path -Path $PSScriptRoot -ChildPath '..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\Release\DSInternals.RpcFilters' -Resolve -ErrorAction Stop
+    $ModulePath = Join-Path -Path $PSScriptRoot -ChildPath "..\..\Build\bin\DSInternals.Win32.RpcFilters.PowerShell\$Configuration\DSInternals.RpcFilters" -Resolve -ErrorAction Stop
 } else {
     [bool] $isFile = Test-Path -Path $ModulePath -PathType Leaf -ErrorAction SilentlyContinue
     if ($isFile) {
