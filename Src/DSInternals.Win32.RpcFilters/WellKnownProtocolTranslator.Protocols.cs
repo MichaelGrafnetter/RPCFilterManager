@@ -1,4 +1,7 @@
-﻿namespace DSInternals.Win32.RpcFilters;
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+#pragma warning disable CA1711 // Identifiers should not have incorrect suffix
+
+namespace DSInternals.Win32.RpcFilters;
 
 /// <summary>
 /// Well-known RPC protocol translator.

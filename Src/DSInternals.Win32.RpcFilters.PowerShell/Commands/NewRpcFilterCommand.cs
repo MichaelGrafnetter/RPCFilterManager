@@ -265,10 +265,7 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
             };
 
             WriteVerbose($"Creating filter {filter.Name} with key {filter.FilterKey}.");
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             ulong filterId = RpcFilterManager.AddFilter(filter);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             if (PassThrough.IsPresent)
             {

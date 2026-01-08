@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -24,7 +25,7 @@ public sealed class RpcFilterManager : IDisposable
     /// Context used in the RPC audit sublayer.
     /// </summary>
     // TODO: [Obsolete("Switch to the FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED system constant once it gets into the API.")]
-    internal const ulong FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED  = 2;
+    internal const ulong FWPM_CONTEXT_RPC_AUDIT_BUFFER_ENABLED = 2;
 
     /// <summary>
     /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
@@ -442,6 +443,12 @@ public sealed class RpcFilterManager : IDisposable
     /// Validates the result code returned by a Win32 API call and throws an appropriate exception if the call failed.
     /// </summary>
     /// <param name="code">The result code to validate.</param>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="UnauthorizedAccessException"></exception>
+    /// <exception cref="OutOfMemoryException"></exception>
+    /// <exception cref="PlatformNotSupportedException"></exception>
+    /// <exception cref="Win32Exception"></exception>
+    [SuppressMessage("Usage", "CA2201:Do not raise reserved exception types", Justification = "The OutOfMemoryException is thrown as a result of Win32 API calls.")]
     internal static void ValidateResult(WIN32_ERROR code)
     {
         if (code == WIN32_ERROR.ERROR_SUCCESS)

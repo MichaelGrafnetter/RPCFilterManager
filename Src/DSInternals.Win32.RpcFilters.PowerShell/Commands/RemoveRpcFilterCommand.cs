@@ -37,9 +37,7 @@ public class RemoveRpcFilterCommand : RpcFilterCommandBase
 
             try
             {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 RpcFilterManager.RemoveFilter(filterId.Value);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             catch (UnauthorizedAccessException ex)
             {

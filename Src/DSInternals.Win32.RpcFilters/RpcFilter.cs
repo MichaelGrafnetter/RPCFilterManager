@@ -91,9 +91,7 @@ public sealed class RpcFilter
         }
         set
         {
-#pragma warning disable CS8604 // Possible null reference argument.
             this.SecurityDescriptor = string.IsNullOrEmpty(value) ? null : new RawSecurityDescriptor(value);
-#pragma warning restore CS8604 // Possible null reference argument.
         }
     }
 

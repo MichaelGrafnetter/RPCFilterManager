@@ -118,7 +118,8 @@ public class RPCFilterManagerTester
     {
         using var fw = new RpcFilterManager();
 
-        Assert.ThrowsExactly<Win32Exception>(() => {
+        Assert.ThrowsExactly<Win32Exception>(() =>
+        {
             fw.RemoveFilter(123456789);
         });
     }
@@ -129,7 +130,8 @@ public class RPCFilterManagerTester
         var fw = new RpcFilterManager();
         fw.Dispose();
 
-        Assert.ThrowsExactly<ObjectDisposedException>(() => {
+        Assert.ThrowsExactly<ObjectDisposedException>(() =>
+        {
             fw.GetFilters().ToList();
         });
     }
@@ -140,7 +142,8 @@ public class RPCFilterManagerTester
         var fw = new RpcFilterManager();
         fw.Dispose();
 
-        Assert.ThrowsExactly<ObjectDisposedException>(() => {
+        Assert.ThrowsExactly<ObjectDisposedException>(() =>
+        {
             fw.RemoveFilter(123456789);
         });
     }
@@ -156,7 +159,7 @@ public class RPCFilterManagerTester
             Name = "TestFilter"
         };
 
-        Assert.ThrowsExactly<ObjectDisposedException>(() => 
+        Assert.ThrowsExactly<ObjectDisposedException>(() =>
         {
             fw.AddFilter(filter);
         });

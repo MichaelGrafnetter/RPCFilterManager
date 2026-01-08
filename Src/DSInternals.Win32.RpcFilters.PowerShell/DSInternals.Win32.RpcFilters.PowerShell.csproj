@@ -57,7 +57,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DSInternals.Win32.RpcFilters\DSInternals.Win32.RpcFilters.csproj" />
-     <!-- Include the common GlobalSuppressions file -->
-    <Compile Include="..\DSInternals.Win32.RpcFilters\GlobalSuppressions.cs" />
   </ItemGroup>
 </Project>

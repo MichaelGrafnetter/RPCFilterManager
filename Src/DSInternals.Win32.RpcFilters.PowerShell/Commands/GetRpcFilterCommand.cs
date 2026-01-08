@@ -34,9 +34,7 @@ public class GetRpcFilterCommand : RpcFilterCommandBase
 
         try
         {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var filterEnumerator = RpcFilterManager.GetFilters(ProviderKey);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             foreach (var filter in filterEnumerator)
             {

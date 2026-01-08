@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using Windows.Win32;
@@ -31,6 +32,8 @@ internal struct FWP_V6_ADDR_AND_MASK
     public IPAddress Address
     {
         readonly get => new(this.addr);
+
+        [MemberNotNull(nameof(addr))]
         set
         {
             ArgumentNullException.ThrowIfNull(value);
@@ -61,9 +64,7 @@ internal struct FWP_V6_ADDR_AND_MASK
         }
     }
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public FWP_V6_ADDR_AND_MASK(IPAddress address, byte prefixLength)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     {
         this.Address = address;
         this.PrefixLength = prefixLength;

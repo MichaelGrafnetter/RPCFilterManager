@@ -1,4 +1,5 @@
-﻿using System.Management.Automation;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Management.Automation;
 
 namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
@@ -20,13 +21,16 @@ public abstract class RpcFilterCommandBase : PSCmdlet, IDisposable
         }
     }
 
+    [MemberNotNull(nameof(RpcFilterManager))]
     protected override void ProcessRecord()
     {
         base.ProcessRecord();
 
         if (RpcFilterManager == null)
         {
-            ThrowTerminatingError(new ErrorRecord(new InvalidOperationException("RpcFilterManager is not initialized."), "RpcFilterManagerNotInitialized", ErrorCategory.InvalidOperation, null));
+            var ex = new InvalidOperationException("RpcFilterManager is not initialized.");
+            ThrowTerminatingError(new ErrorRecord(ex, "RpcFilterManagerNotInitialized", ErrorCategory.InvalidOperation, null));
+            throw ex; // This will never be reached. Only to satisfy the compiler regarding nullability.
         }
     }
 
