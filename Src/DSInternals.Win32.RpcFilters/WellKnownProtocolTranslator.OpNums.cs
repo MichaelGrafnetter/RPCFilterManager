@@ -4826,7 +4826,7 @@ public static partial class WellKnownProtocolTranslator
     /// <summary>
     /// MS-WCCE (ICertRequestD): Ping - Performs a request response test (ping) to the CA
     /// </summary>
-    public const ushort Ping = 5;
+    public const ushort WCCE_Ping = 5;
 
     /// <summary>
     /// MS-WCCE (ICertRequestD2): Request2 - Requests a certificate from the CA
@@ -4846,7 +4846,2962 @@ public static partial class WellKnownProtocolTranslator
     /// <summary>
     /// MS-WCCE (ICertRequestD2): Ping2 - Pings the CA
     /// </summary>
-    public const ushort Ping2 = 9;
+    public const ushort WCCE_Ping2 = 9;
 
     #endregion // MS-WCCE
+    #region MS-CSRA
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): SetExtension - Sets extensions for a specific request
+    /// </summary>
+    public const ushort ICertAdminD_SetExtension = 3;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): SetAttributes - Sets attributes for a specific request
+    /// </summary>
+    public const ushort ICertAdminD_SetAttributes = 4;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): ResubmitRequest - Resubmits a specific pending or denied request
+    /// </summary>
+    public const ushort ICertAdminD_ResubmitRequest = 5;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): DenyRequest - Denies a pending certificate request
+    /// </summary>
+    public const ushort ICertAdminD_DenyRequest = 6;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): IsValidCertificate - Verifies the certificate against the CA key
+    /// </summary>
+    public const ushort ICertAdminD_IsValidCertificate = 7;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): PublishCRL - Instructs a CA to publish a CRL
+    /// </summary>
+    public const ushort ICertAdminD_PublishCRL = 8;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): GetCRL - Retrieves the latest base or delta CRL
+    /// </summary>
+    public const ushort ICertAdminD_GetCRL = 9;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): RevokeCertificate - Revokes a certificate
+    /// </summary>
+    public const ushort ICertAdminD_RevokeCertificate = 10;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): EnumViewColumn - Enumerates the columns in a schema
+    /// </summary>
+    public const ushort ICertAdminD_EnumViewColumn = 11;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): GetViewDefaultColumnSet - Retrieves the default column set
+    /// </summary>
+    public const ushort ICertAdminD_GetViewDefaultColumnSet = 12;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): EnumAttributesOrExtensions - Enumerates attributes or extensions
+    /// </summary>
+    public const ushort ICertAdminD_EnumAttributesOrExtensions = 13;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): OpenView - Opens a view into the CA database
+    /// </summary>
+    public const ushort ICertAdminD_OpenView = 14;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): EnumView - Enumerates an open view
+    /// </summary>
+    public const ushort ICertAdminD_EnumView = 15;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): CloseView - Closes an open view
+    /// </summary>
+    public const ushort ICertAdminD_CloseView = 16;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): ServerControl - Controls the CA server
+    /// </summary>
+    public const ushort ICertAdminD_ServerControl = 17;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): Ping - Performs a request response test to the CA
+    /// </summary>
+    public const ushort ICertAdminD_Ping = 18;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): GetServerState - Retrieves the server state
+    /// </summary>
+    public const ushort ICertAdminD_GetServerState = 19;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupPrepare - Prepares a CA database backup
+    /// </summary>
+    public const ushort ICertAdminD_BackupPrepare = 20;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupEnd - Ends a CA database backup
+    /// </summary>
+    public const ushort ICertAdminD_BackupEnd = 21;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupGetAttachmentInformation - Returns backup attachment information
+    /// </summary>
+    public const ushort ICertAdminD_BackupGetAttachmentInformation = 22;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupGetBackupLogs - Returns backup log information
+    /// </summary>
+    public const ushort ICertAdminD_BackupGetBackupLogs = 23;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupOpenFile - Opens a backup file for read
+    /// </summary>
+    public const ushort ICertAdminD_BackupOpenFile = 24;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupReadFile - Reads data from an open backup file
+    /// </summary>
+    public const ushort ICertAdminD_BackupReadFile = 25;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupCloseFile - Closes an open backup file
+    /// </summary>
+    public const ushort ICertAdminD_BackupCloseFile = 26;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupTruncateLogs - Truncates CA database backup logs
+    /// </summary>
+    public const ushort ICertAdminD_BackupTruncateLogs = 27;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): ImportCertificate - Imports a certificate into the CA database
+    /// </summary>
+    public const ushort ICertAdminD_ImportCertificate = 28;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): BackupGetDynamicFiles - Returns dynamic file names for backup
+    /// </summary>
+    public const ushort ICertAdminD_BackupGetDynamicFiles = 29;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD): RestoreGetDatabaseLocations - Returns database restore locations
+    /// </summary>
+    public const ushort ICertAdminD_RestoreGetDatabaseLocations = 30;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): PublishCRLs - Instructs a CA to publish CRLs and delta CRLs
+    /// </summary>
+    public const ushort ICertAdminD2_PublishCRLs = 31;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetCAProperty - Retrieves a property value from the CA
+    /// </summary>
+    public const ushort ICertAdminD2_GetCAProperty = 32;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): SetCAProperty - Sets a property value on the CA
+    /// </summary>
+    public const ushort ICertAdminD2_SetCAProperty = 33;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetCAPropertyInfo - Retrieves CA property information
+    /// </summary>
+    public const ushort ICertAdminD2_GetCAPropertyInfo = 34;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): EnumViewColumnTable - Enumerates columns in a table view
+    /// </summary>
+    public const ushort ICertAdminD2_EnumViewColumnTable = 35;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetCASecurity - Retrieves CA security descriptor
+    /// </summary>
+    public const ushort ICertAdminD2_GetCASecurity = 36;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): SetCASecurity - Sets CA security descriptor
+    /// </summary>
+    public const ushort ICertAdminD2_SetCASecurity = 37;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): Ping2 - Performs a request response test to the CA
+    /// </summary>
+    public const ushort ICertAdminD2_Ping2 = 38;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetArchivedKey - Retrieves archived private key
+    /// </summary>
+    public const ushort ICertAdminD2_GetArchivedKey = 39;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetAuditFilter - Retrieves audit filter settings
+    /// </summary>
+    public const ushort ICertAdminD2_GetAuditFilter = 40;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): SetAuditFilter - Sets audit filter settings
+    /// </summary>
+    public const ushort ICertAdminD2_SetAuditFilter = 41;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetOfficerRights - Retrieves officer rights
+    /// </summary>
+    public const ushort ICertAdminD2_GetOfficerRights = 42;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): SetOfficerRights - Sets officer rights
+    /// </summary>
+    public const ushort ICertAdminD2_SetOfficerRights = 43;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetConfigEntry - Retrieves a configuration entry
+    /// </summary>
+    public const ushort ICertAdminD2_GetConfigEntry = 44;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): SetConfigEntry - Sets a configuration entry
+    /// </summary>
+    public const ushort ICertAdminD2_SetConfigEntry = 45;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): ImportKey - Imports a key into the CA
+    /// </summary>
+    public const ushort ICertAdminD2_ImportKey = 46;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): GetMyRoles - Retrieves the caller's roles
+    /// </summary>
+    public const ushort ICertAdminD2_GetMyRoles = 47;
+
+    /// <summary>
+    /// MS-CSRA (ICertAdminD2): DeleteRow - Deletes a row from the CA database
+    /// </summary>
+    public const ushort ICertAdminD2_DeleteRow = 48;
+
+    #endregion // MS-CSRA
+    #region MS-ICPR
+
+    /// <summary>
+    /// MS-ICPR (ICertPassage): CertServerRequest - Requests certificate services
+    /// </summary>
+    public const ushort CertServerRequest = 0;
+
+    #endregion // MS-ICPR
+    #region MS-DNSP
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvOperation - Performs DNS server operations
+    /// </summary>
+    public const ushort R_DnssrvOperation = 0;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvQuery - Queries DNS server information
+    /// </summary>
+    public const ushort R_DnssrvQuery = 1;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvComplexOperation - Performs complex DNS server operations
+    /// </summary>
+    public const ushort R_DnssrvComplexOperation = 2;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvEnumRecords - Enumerates DNS records
+    /// </summary>
+    public const ushort R_DnssrvEnumRecords = 3;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvUpdateRecord - Updates DNS records
+    /// </summary>
+    public const ushort R_DnssrvUpdateRecord = 4;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvOperation2 - Performs DNS server operations (version 2)
+    /// </summary>
+    public const ushort R_DnssrvOperation2 = 5;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvQuery2 - Queries DNS server information (version 2)
+    /// </summary>
+    public const ushort R_DnssrvQuery2 = 6;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvComplexOperation2 - Performs complex operations (version 2)
+    /// </summary>
+    public const ushort R_DnssrvComplexOperation2 = 7;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvEnumRecords2 - Enumerates DNS records (version 2)
+    /// </summary>
+    public const ushort R_DnssrvEnumRecords2 = 8;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvUpdateRecord2 - Updates DNS records (version 2)
+    /// </summary>
+    public const ushort R_DnssrvUpdateRecord2 = 9;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvUpdateRecord3 - Updates DNS records (version 3)
+    /// </summary>
+    public const ushort R_DnssrvUpdateRecord3 = 10;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvEnumRecords3 - Enumerates DNS records (version 3)
+    /// </summary>
+    public const ushort R_DnssrvEnumRecords3 = 11;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvOperation3 - Performs DNS server operations (version 3)
+    /// </summary>
+    public const ushort R_DnssrvOperation3 = 12;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvQuery3 - Queries DNS server information (version 3)
+    /// </summary>
+    public const ushort R_DnssrvQuery3 = 13;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvComplexOperation3 - Performs complex operations (version 3)
+    /// </summary>
+    public const ushort R_DnssrvComplexOperation3 = 14;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvOperation4 - Performs DNS server operations (version 4)
+    /// </summary>
+    public const ushort R_DnssrvOperation4 = 15;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvQuery4 - Queries DNS server information (version 4)
+    /// </summary>
+    public const ushort R_DnssrvQuery4 = 16;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvUpdateRecord4 - Updates DNS records (version 4)
+    /// </summary>
+    public const ushort R_DnssrvUpdateRecord4 = 17;
+
+    /// <summary>
+    /// MS-DNSP (DnsServer): R_DnssrvEnumRecords4 - Enumerates DNS records (version 4)
+    /// </summary>
+    public const ushort R_DnssrvEnumRecords4 = 18;
+
+    #endregion // MS-DNSP
+    #region MS-RSP
+
+    /// <summary>
+    /// MS-RSP (InitShutdown): BaseInitiateShutdown - Initiates system shutdown
+    /// </summary>
+    public const ushort BaseInitiateShutdown = 0;
+
+    /// <summary>
+    /// MS-RSP (InitShutdown): BaseAbortShutdown - Aborts a pending system shutdown
+    /// </summary>
+    public const ushort BaseAbortShutdown = 1;
+
+    /// <summary>
+    /// MS-RSP (InitShutdown): BaseInitiateShutdownEx - Initiates system shutdown with extended options
+    /// </summary>
+    public const ushort BaseInitiateShutdownEx = 2;
+
+    /// <summary>
+    /// MS-RSP (WindowsShutdown): WsdrInitiateShutdown - Initiates system shutdown
+    /// </summary>
+    public const ushort WsdrInitiateShutdown = 0;
+
+    /// <summary>
+    /// MS-RSP (WindowsShutdown): WsdrAbortShutdown - Aborts a pending system shutdown
+    /// </summary>
+    public const ushort WsdrAbortShutdown = 1;
+
+    /// <summary>
+    /// MS-RSP (WinReg): BaseInitiateSystemShutdown - Initiates system shutdown via WinReg
+    /// </summary>
+    public const ushort BaseInitiateSystemShutdown = 24;
+
+    /// <summary>
+    /// MS-RSP (WinReg): BaseAbortSystemShutdown - Aborts system shutdown via WinReg
+    /// </summary>
+    public const ushort BaseAbortSystemShutdown = 25;
+
+    /// <summary>
+    /// MS-RSP (WinReg): BaseInitiateSystemShutdownEx - Initiates system shutdown with extended options via WinReg
+    /// </summary>
+    public const ushort BaseInitiateSystemShutdownEx = 30;
+
+    #endregion // MS-RSP
+    #region MS-W32T
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeSync - Synchronizes time with a time source
+    /// </summary>
+    public const ushort W32TimeSync = 0;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeGetNetlogonServiceBits - Gets Netlogon service bits
+    /// </summary>
+    public const ushort W32TimeGetNetlogonServiceBits = 1;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeQueryProviderStatus - Queries time provider status
+    /// </summary>
+    public const ushort W32TimeQueryProviderStatus = 2;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeQuerySource - Queries the current time source
+    /// </summary>
+    public const ushort W32TimeQuerySource = 3;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeQueryProviderConfiguration - Queries provider configuration
+    /// </summary>
+    public const ushort W32TimeQueryProviderConfiguration = 4;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeQueryConfiguration - Queries time service configuration
+    /// </summary>
+    public const ushort W32TimeQueryConfiguration = 5;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeQueryStatus - Queries time service status
+    /// </summary>
+    public const ushort W32TimeQueryStatus = 6;
+
+    /// <summary>
+    /// MS-W32T (W32Time): W32TimeLog - Sends diagnostic information to the service
+    /// </summary>
+    public const ushort W32TimeLog = 7;
+
+    #endregion // MS-W32T
+    #region MS-DHCPM (dhcpsrv)
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpCreateSubnet - Creates a subnet
+    /// </summary>
+    public const ushort R_DhcpCreateSubnet = 0;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpSetSubnetInfo - Sets subnet information
+    /// </summary>
+    public const ushort R_DhcpSetSubnetInfo = 1;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetSubnetInfo - Gets subnet information
+    /// </summary>
+    public const ushort R_DhcpGetSubnetInfo = 2;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpEnumSubnets - Enumerates subnets
+    /// </summary>
+    public const ushort R_DhcpEnumSubnets = 3;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpAddSubnetElement - Adds a subnet element
+    /// </summary>
+    public const ushort R_DhcpAddSubnetElement = 4;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpEnumSubnetElements - Enumerates subnet elements
+    /// </summary>
+    public const ushort R_DhcpEnumSubnetElements = 5;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpRemoveSubnetElement - Removes a subnet element
+    /// </summary>
+    public const ushort R_DhcpRemoveSubnetElement = 6;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpDeleteSubnet - Deletes a subnet
+    /// </summary>
+    public const ushort R_DhcpDeleteSubnet = 7;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpCreateOption - Creates an option definition
+    /// </summary>
+    public const ushort R_DhcpCreateOption = 8;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpSetOptionInfo - Sets option information
+    /// </summary>
+    public const ushort R_DhcpSetOptionInfo = 9;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetOptionInfo - Gets option information
+    /// </summary>
+    public const ushort R_DhcpGetOptionInfo = 10;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpRemoveOption - Removes an option definition
+    /// </summary>
+    public const ushort R_DhcpRemoveOption = 11;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpSetOptionValue - Sets an option value
+    /// </summary>
+    public const ushort R_DhcpSetOptionValue = 12;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetOptionValue - Gets an option value
+    /// </summary>
+    public const ushort R_DhcpGetOptionValue = 13;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpEnumOptionValues - Enumerates option values
+    /// </summary>
+    public const ushort R_DhcpEnumOptionValues = 14;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpRemoveOptionValue - Removes an option value
+    /// </summary>
+    public const ushort R_DhcpRemoveOptionValue = 15;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpCreateClientInfo - Creates client information
+    /// </summary>
+    public const ushort R_DhcpCreateClientInfo = 16;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpSetClientInfo - Sets client information
+    /// </summary>
+    public const ushort R_DhcpSetClientInfo = 17;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetClientInfo - Gets client information
+    /// </summary>
+    public const ushort R_DhcpGetClientInfo = 18;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpDeleteClientInfo - Deletes client information
+    /// </summary>
+    public const ushort R_DhcpDeleteClientInfo = 19;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpEnumSubnetClients - Enumerates subnet clients
+    /// </summary>
+    public const ushort R_DhcpEnumSubnetClients = 20;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetClientOptions - Gets client options
+    /// </summary>
+    public const ushort R_DhcpGetClientOptions = 21;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetMibInfo - Gets MIB information
+    /// </summary>
+    public const ushort R_DhcpGetMibInfo = 22;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpEnumOptions - Enumerates options
+    /// </summary>
+    public const ushort R_DhcpEnumOptions = 23;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpSetOptionValues - Sets option values
+    /// </summary>
+    public const ushort R_DhcpSetOptionValues = 24;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpServerSetConfig - Sets server configuration
+    /// </summary>
+    public const ushort R_DhcpServerSetConfig = 25;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpServerGetConfig - Gets server configuration
+    /// </summary>
+    public const ushort R_DhcpServerGetConfig = 26;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpScanDatabase - Scans database for inconsistencies
+    /// </summary>
+    public const ushort R_DhcpScanDatabase = 27;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv): R_DhcpGetVersion - Gets DHCP server version
+    /// </summary>
+    public const ushort R_DhcpGetVersion = 28;
+
+    #endregion // MS-DHCPM (dhcpsrv)
+    #region MS-DHCPM (dhcpsrv2)
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpEnumSubnetClientsV5 - Enumerates subnet clients (version 5)
+    /// </summary>
+    public const ushort R_DhcpEnumSubnetClientsV5 = 0;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpSetMScopeInfo - Sets multicast scope information
+    /// </summary>
+    public const ushort R_DhcpSetMScopeInfo = 1;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpGetMScopeInfo - Gets multicast scope information
+    /// </summary>
+    public const ushort R_DhcpGetMScopeInfo = 2;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpEnumMScopes - Enumerates multicast scopes
+    /// </summary>
+    public const ushort R_DhcpEnumMScopes = 3;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpCreateSubnetV6 - Creates an IPv6 subnet
+    /// </summary>
+    public const ushort R_DhcpCreateSubnetV6 = 57;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpEnumSubnetsV6 - Enumerates IPv6 subnets
+    /// </summary>
+    public const ushort R_DhcpEnumSubnetsV6 = 58;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4FailoverCreateRelationship - Creates a failover relationship
+    /// </summary>
+    public const ushort R_DhcpV4FailoverCreateRelationship = 89;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4FailoverDeleteRelationship - Deletes a failover relationship
+    /// </summary>
+    public const ushort R_DhcpV4FailoverDeleteRelationship = 91;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4CreatePolicy - Creates a DHCP policy
+    /// </summary>
+    public const ushort R_DhcpV4CreatePolicy = 108;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4GetPolicy - Gets a DHCP policy
+    /// </summary>
+    public const ushort R_DhcpV4GetPolicy = 109;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4SetPolicy - Sets a DHCP policy
+    /// </summary>
+    public const ushort R_DhcpV4SetPolicy = 110;
+
+    /// <summary>
+    /// MS-DHCPM (dhcpsrv2): R_DhcpV4DeletePolicy - Deletes a DHCP policy
+    /// </summary>
+    public const ushort R_DhcpV4DeletePolicy = 111;
+
+    #endregion // MS-DHCPM (dhcpsrv2)
+    #region MS-FAX
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetServicePrinters - Gets service printers
+    /// </summary>
+    public const ushort FAX_GetServicePrinters = 0;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_ConnectionRefCount - Manages connection reference count
+    /// </summary>
+    public const ushort FAX_ConnectionRefCount = 1;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_OpenPort - Opens a fax port
+    /// </summary>
+    public const ushort FAX_OpenPort = 2;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_ClosePort - Closes a fax port
+    /// </summary>
+    public const ushort FAX_ClosePort = 3;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_EnumJobs - Enumerates fax jobs
+    /// </summary>
+    public const ushort FAX_EnumJobs = 4;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetJob - Gets fax job information
+    /// </summary>
+    public const ushort FAX_GetJob = 5;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SetJob - Sets fax job information
+    /// </summary>
+    public const ushort FAX_SetJob = 6;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetPageData - Gets page data
+    /// </summary>
+    public const ushort FAX_GetPageData = 7;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetDeviceStatus - Gets device status
+    /// </summary>
+    public const ushort FAX_GetDeviceStatus = 8;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_Abort - Aborts a fax operation
+    /// </summary>
+    public const ushort FAX_Abort = 9;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_EnumPorts - Enumerates fax ports
+    /// </summary>
+    public const ushort FAX_EnumPorts = 10;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetPort - Gets fax port information
+    /// </summary>
+    public const ushort FAX_GetPort = 11;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SetPort - Sets fax port information
+    /// </summary>
+    public const ushort FAX_SetPort = 12;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_EnumRoutingMethods - Enumerates routing methods
+    /// </summary>
+    public const ushort FAX_EnumRoutingMethods = 13;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_EnableRoutingMethod - Enables a routing method
+    /// </summary>
+    public const ushort FAX_EnableRoutingMethod = 14;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetRoutingInfo - Gets routing information
+    /// </summary>
+    public const ushort FAX_GetRoutingInfo = 15;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SetRoutingInfo - Sets routing information
+    /// </summary>
+    public const ushort FAX_SetRoutingInfo = 16;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SendDocumentEx - Sends a fax document (extended)
+    /// </summary>
+    public const ushort FAX_SendDocumentEx = 27;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetConfiguration - Gets fax configuration
+    /// </summary>
+    public const ushort FAX_GetConfiguration = 19;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SetConfiguration - Sets fax configuration
+    /// </summary>
+    public const ushort FAX_SetConfiguration = 20;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_GetSecurity - Gets security information
+    /// </summary>
+    public const ushort FAX_GetSecurity = 23;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_SetSecurity - Sets security information
+    /// </summary>
+    public const ushort FAX_SetSecurity = 24;
+
+    /// <summary>
+    /// MS-FAX (fax): FAX_ConnectFaxServer - Connects to fax server
+    /// </summary>
+    public const ushort FAX_ConnectFaxServer = 80;
+
+    #endregion // MS-FAX
+    #region MS-FRS2
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): CheckConnectivity - Checks connectivity to the server
+    /// </summary>
+    public const ushort CheckConnectivity = 0;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): EstablishConnection - Establishes a connection to the server
+    /// </summary>
+    public const ushort EstablishConnection = 1;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): EstablishSession - Establishes a replication session
+    /// </summary>
+    public const ushort EstablishSession = 2;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RequestUpdates - Requests replication updates
+    /// </summary>
+    public const ushort RequestUpdates = 3;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RequestVersionVector - Requests version vector
+    /// </summary>
+    public const ushort RequestVersionVector = 4;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): AsyncPoll - Asynchronous polling for updates
+    /// </summary>
+    public const ushort AsyncPoll = 5;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RequestRecords - Requests replication records
+    /// </summary>
+    public const ushort RequestRecords = 6;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): UpdateCancel - Cancels an update request
+    /// </summary>
+    public const ushort UpdateCancel = 7;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RawGetFileData - Gets raw file data
+    /// </summary>
+    public const ushort RawGetFileData = 8;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcGetSignatures - Gets RDC signatures
+    /// </summary>
+    public const ushort RdcGetSignatures = 9;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcPushSourceNeeds - Pushes RDC source needs
+    /// </summary>
+    public const ushort RdcPushSourceNeeds = 10;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcGetFileData - Gets RDC file data
+    /// </summary>
+    public const ushort RdcGetFileData = 11;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcClose - Closes RDC transfer
+    /// </summary>
+    public const ushort RdcClose = 12;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): InitializeFileTransferAsync - Initializes async file transfer
+    /// </summary>
+    public const ushort InitializeFileTransferAsync = 13;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): Opnum14NotUsedOnWire - Reserved
+    /// </summary>
+    public const ushort FRS2_Opnum14NotUsedOnWire = 14;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RawGetFileDataAsync - Gets raw file data asynchronously
+    /// </summary>
+    public const ushort RawGetFileDataAsync = 15;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcGetFileDataAsync - Gets RDC file data asynchronously
+    /// </summary>
+    public const ushort RdcGetFileDataAsync = 16;
+
+    /// <summary>
+    /// MS-FRS2 (FrsTransport): RdcFileDataTransferKeepAlive - Keep alive for RDC file transfer
+    /// </summary>
+    public const ushort RdcFileDataTransferKeepAlive = 17;
+
+    #endregion // MS-FRS2
+    #region MS-NSPI
+
+    /// <summary>
+    /// MS-NSPI: NspiBind - Initiates a session with the server
+    /// </summary>
+    public const ushort NspiBind = 0;
+
+    /// <summary>
+    /// MS-NSPI: NspiUnbind - Terminates a session with the server
+    /// </summary>
+    public const ushort NspiUnbind = 1;
+
+    /// <summary>
+    /// MS-NSPI: NspiUpdateStat - Updates the STAT block
+    /// </summary>
+    public const ushort NspiUpdateStat = 2;
+
+    /// <summary>
+    /// MS-NSPI: NspiQueryRows - Returns rows from a table
+    /// </summary>
+    public const ushort NspiQueryRows = 3;
+
+    /// <summary>
+    /// MS-NSPI: NspiSeekEntries - Seeks to an entry in a table
+    /// </summary>
+    public const ushort NspiSeekEntries = 4;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetMatches - Returns rows matching a restriction
+    /// </summary>
+    public const ushort NspiGetMatches = 5;
+
+    /// <summary>
+    /// MS-NSPI: NspiResortRestriction - Applies a different sort order
+    /// </summary>
+    public const ushort NspiResortRestriction = 6;
+
+    /// <summary>
+    /// MS-NSPI: NspiDNToMId - Maps a DN to a Minimal Entry ID
+    /// </summary>
+    public const ushort NspiDNToMId = 7;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetPropList - Returns a list of properties
+    /// </summary>
+    public const ushort NspiGetPropList = 8;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetProps - Returns specific properties
+    /// </summary>
+    public const ushort NspiGetProps = 9;
+
+    /// <summary>
+    /// MS-NSPI: NspiCompareMIds - Compares two Minimal Entry IDs
+    /// </summary>
+    public const ushort NspiCompareMIds = 10;
+
+    /// <summary>
+    /// MS-NSPI: NspiModProps - Modifies properties of an object
+    /// </summary>
+    public const ushort NspiModProps = 11;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetSpecialTable - Returns a special table
+    /// </summary>
+    public const ushort NspiGetSpecialTable = 12;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetTemplateInfo - Returns template information
+    /// </summary>
+    public const ushort NspiGetTemplateInfo = 13;
+
+    /// <summary>
+    /// MS-NSPI: NspiModLinkAtt - Modifies link attribute values
+    /// </summary>
+    public const ushort NspiModLinkAtt = 14;
+
+    /// <summary>
+    /// MS-NSPI: Opnum15NotUsedOnWire - Reserved
+    /// </summary>
+    public const ushort NSPI_Opnum15NotUsedOnWire = 15;
+
+    /// <summary>
+    /// MS-NSPI: NspiQueryColumns - Returns a list of all columns
+    /// </summary>
+    public const ushort NspiQueryColumns = 16;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetNamesFromIDs - Returns property names for property IDs
+    /// </summary>
+    public const ushort NspiGetNamesFromIDs = 17;
+
+    /// <summary>
+    /// MS-NSPI: NspiGetIDsFromNames - Returns property IDs for property names
+    /// </summary>
+    public const ushort NspiGetIDsFromNames = 18;
+
+    /// <summary>
+    /// MS-NSPI: NspiResolveNames - Resolves names to address book entries
+    /// </summary>
+    public const ushort NspiResolveNames = 19;
+
+    /// <summary>
+    /// MS-NSPI: NspiResolveNamesW - Resolves names (Unicode) to address book entries
+    /// </summary>
+    public const ushort NspiResolveNamesW = 20;
+
+    #endregion // MS-NSPI
+    #region MS-SWN
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrGetInterfaceList - Gets list of available interfaces
+    /// </summary>
+    public const ushort WitnessrGetInterfaceList = 0;
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrRegister - Registers for notifications
+    /// </summary>
+    public const ushort WitnessrRegister = 1;
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrUnRegister - Unregisters from notifications
+    /// </summary>
+    public const ushort WitnessrUnRegister = 2;
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrAsyncNotify - Receives notifications asynchronously
+    /// </summary>
+    public const ushort WitnessrAsyncNotify = 3;
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrRegisterEx - Extended registration for notifications
+    /// </summary>
+    public const ushort WitnessrRegisterEx = 4;
+
+    /// <summary>
+    /// MS-SWN (Witness): WitnessrUnRegisterEx - Extended unregistration (reserved)
+    /// </summary>
+    public const ushort WitnessrUnRegisterEx = 5;
+
+    #endregion // MS-SWN
+    #region MS-CMPO
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): Poke - Signals the partner to examine the state of the session
+    /// </summary>
+    public const ushort IXnRemote_Poke = 0;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): BuildContext - Initializes session context between partners
+    /// </summary>
+    public const ushort IXnRemote_BuildContext = 1;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): NegotiateResources - Negotiates resources for a transaction
+    /// </summary>
+    public const ushort IXnRemote_NegotiateResources = 2;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): SendReceive - Sends a message to the transaction manager partner
+    /// </summary>
+    public const ushort IXnRemote_SendReceive = 3;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): TearDownContext - Releases session context between partners
+    /// </summary>
+    public const ushort IXnRemote_TearDownContext = 4;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): BeginTearDown - Begins asynchronous release of session context
+    /// </summary>
+    public const ushort IXnRemote_BeginTearDown = 5;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): PokeW - Signals partner to examine session state (Unicode)
+    /// </summary>
+    public const ushort IXnRemote_PokeW = 6;
+
+    /// <summary>
+    /// MS-CMPO (IXnRemote): BuildContextW - Initializes session context (Unicode)
+    /// </summary>
+    public const ushort IXnRemote_BuildContextW = 7;
+
+    #endregion // MS-CMPO
+    #region MS-DLTM
+
+    /// <summary>
+    /// MS-DLTM: LnkSvrMessage - Primary message processing method for Central Manager
+    /// </summary>
+    public const ushort LnkSvrMessage = 0;
+
+    /// <summary>
+    /// MS-DLTM: LnkSvrMessageCallback - Callback for receiving asynchronous messages
+    /// </summary>
+    public const ushort LnkSvrMessageCallback = 1;
+
+    #endregion // MS-DLTM
+    #region MS-DLTW
+
+    /// <summary>
+    /// MS-DLTW: Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-DLTW: Opnum1NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-DLTW: Opnum2NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum2NotUsedOnWire = 2;
+
+    /// <summary>
+    /// MS-DLTW: Opnum3NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum3NotUsedOnWire = 3;
+
+    /// <summary>
+    /// MS-DLTW: Opnum4NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum4NotUsedOnWire = 4;
+
+    /// <summary>
+    /// MS-DLTW: Opnum5NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum5NotUsedOnWire = 5;
+
+    /// <summary>
+    /// MS-DLTW: Opnum6NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum6NotUsedOnWire = 6;
+
+    /// <summary>
+    /// MS-DLTW: Opnum7NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum7NotUsedOnWire = 7;
+
+    /// <summary>
+    /// MS-DLTW: Opnum8NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum8NotUsedOnWire = 8;
+
+    /// <summary>
+    /// MS-DLTW: Opnum9NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum9NotUsedOnWire = 9;
+
+    /// <summary>
+    /// MS-DLTW: Opnum10NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum10NotUsedOnWire = 10;
+
+    /// <summary>
+    /// MS-DLTW: Opnum11NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort DLTW_Opnum11NotUsedOnWire = 11;
+
+    /// <summary>
+    /// MS-DLTW: LnkSearchMachine - Searches for file link on the workstation
+    /// </summary>
+    public const ushort LnkSearchMachine = 12;
+
+    #endregion // MS-DLTW
+    #region MS-FRS1 (NtFrsApi)
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort NtFrsApi_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): Opnum1NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort NtFrsApi_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): Opnum2NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort NtFrsApi_Opnum2NotUsedOnWire = 2;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): Opnum3NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort NtFrsApi_Opnum3NotUsedOnWire = 3;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_StartPromotionParent - Starts promotion operation
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_StartPromotionParent = 4;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_PromotionStatusW - Gets promotion status
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_PromotionStatusW = 5;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): Opnum6NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort NtFrsApi_Opnum6NotUsedOnWire = 6;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_WriterCommand - Sends a command to the FRS writer
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_WriterCommand = 7;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_Set_DsPollingIntervalW - Sets DS polling interval
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_Set_DsPollingIntervalW = 8;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_Get_DsPollingIntervalW - Gets DS polling interval
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_Get_DsPollingIntervalW = 9;
+
+    /// <summary>
+    /// MS-FRS1 (NtFrsApi): NtFrsApi_Rpc_InfoW - Gets replication information
+    /// </summary>
+    public const ushort NtFrsApi_Rpc_InfoW = 10;
+
+    #endregion // MS-FRS1 (NtFrsApi)
+    #region MS-FRS1 (frsrpc)
+
+    /// <summary>
+    /// MS-FRS1 (frsrpc): FrsRpcSendCommPkt - Sends a communication packet to a replication partner
+    /// </summary>
+    public const ushort FrsRpcSendCommPkt = 0;
+
+    /// <summary>
+    /// MS-FRS1 (frsrpc): FrsRpcVerifyPromotionParent - Verifies promotion parent configuration
+    /// </summary>
+    public const ushort FrsRpcVerifyPromotionParent = 1;
+
+    /// <summary>
+    /// MS-FRS1 (frsrpc): FrsRpcStartPromotionParent - Starts the promotion parent operation
+    /// </summary>
+    public const ushort FrsRpcStartPromotionParent = 2;
+
+    /// <summary>
+    /// MS-FRS1 (frsrpc): FrsNOP - No operation (reserved)
+    /// </summary>
+    public const ushort FrsNOP = 3;
+
+    #endregion // MS-FRS1 (frsrpc)
+    #region MS-IRP
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoGetVersion - Gets the version of the internet information server
+    /// </summary>
+    public const ushort R_InetInfoGetVersion = 0;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoGetAdminInformation - Gets admin information for a service
+    /// </summary>
+    public const ushort R_InetInfoGetAdminInformation = 1;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoGetSites - Gets the list of sites
+    /// </summary>
+    public const ushort R_InetInfoGetSites = 2;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoSetAdminInformation - Sets admin information for a service
+    /// </summary>
+    public const ushort R_InetInfoSetAdminInformation = 3;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoGetGlobalAdminInformation - Gets global admin information
+    /// </summary>
+    public const ushort R_InetInfoGetGlobalAdminInformation = 4;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoSetGlobalAdminInformation - Sets global admin information
+    /// </summary>
+    public const ushort R_InetInfoSetGlobalAdminInformation = 5;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoQueryStatistics - Queries service statistics
+    /// </summary>
+    public const ushort R_InetInfoQueryStatistics = 6;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoClearStatistics - Clears service statistics
+    /// </summary>
+    public const ushort R_InetInfoClearStatistics = 7;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoFlushMemoryCache - Flushes the memory cache
+    /// </summary>
+    public const ushort R_InetInfoFlushMemoryCache = 8;
+
+    /// <summary>
+    /// MS-IRP: R_InetInfoGetServerCapabilities - Gets server capabilities
+    /// </summary>
+    public const ushort R_InetInfoGetServerCapabilities = 9;
+
+    /// <summary>
+    /// MS-IRP: R_W3QueryStatistics2 - Queries W3 service statistics (version 2)
+    /// </summary>
+    public const ushort R_W3QueryStatistics2 = 10;
+
+    /// <summary>
+    /// MS-IRP: R_W3ClearStatistics2 - Clears W3 service statistics (version 2)
+    /// </summary>
+    public const ushort R_W3ClearStatistics2 = 11;
+
+    /// <summary>
+    /// MS-IRP: R_FtpQueryStatistics2 - Queries FTP service statistics (version 2)
+    /// </summary>
+    public const ushort R_FtpQueryStatistics2 = 12;
+
+    /// <summary>
+    /// MS-IRP: R_FtpClearStatistics2 - Clears FTP service statistics (version 2)
+    /// </summary>
+    public const ushort R_FtpClearStatistics2 = 13;
+
+    /// <summary>
+    /// MS-IRP: R_IISEnumerateUsers - Enumerates connected users
+    /// </summary>
+    public const ushort R_IISEnumerateUsers = 14;
+
+    /// <summary>
+    /// MS-IRP: R_IISDisconnectUser - Disconnects a user
+    /// </summary>
+    public const ushort R_IISDisconnectUser = 15;
+
+    #endregion // MS-IRP
+    #region MS-LREC
+
+    /// <summary>
+    /// MS-LREC: RpcNetEventOpenSession - Opens a live event capture session
+    /// </summary>
+    public const ushort RpcNetEventOpenSession = 0;
+
+    /// <summary>
+    /// MS-LREC: RpcNetEventReceiveData - Receives event data from the session
+    /// </summary>
+    public const ushort RpcNetEventReceiveData = 1;
+
+    /// <summary>
+    /// MS-LREC: RpcNetEventCloseSession - Closes the event capture session
+    /// </summary>
+    public const ushort RpcNetEventCloseSession = 2;
+
+    #endregion // MS-LREC
+    #region MS-MQDS (dscomm)
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSCreateObject - Creates an MSMQ directory object
+    /// </summary>
+    public const ushort S_DSCreateObject = 0;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSDeleteObject - Deletes an MSMQ directory object
+    /// </summary>
+    public const ushort S_DSDeleteObject = 1;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSGetProps - Gets properties of an MSMQ object
+    /// </summary>
+    public const ushort S_DSGetProps = 2;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSSetProps - Sets properties of an MSMQ object
+    /// </summary>
+    public const ushort S_DSSetProps = 3;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSGetObjectSecurity - Gets security descriptor of an object
+    /// </summary>
+    public const ushort S_DSGetObjectSecurity = 4;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSSetObjectSecurity - Sets security descriptor of an object
+    /// </summary>
+    public const ushort S_DSSetObjectSecurity = 5;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSLookupBegin - Begins a lookup operation
+    /// </summary>
+    public const ushort S_DSLookupBegin = 6;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSLookupNext - Gets next result in a lookup
+    /// </summary>
+    public const ushort S_DSLookupNext = 7;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSLookupEnd - Ends a lookup operation
+    /// </summary>
+    public const ushort S_DSLookupEnd = 8;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum9NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum9NotUsedOnWire = 9;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSDeleteObjectGuid - Deletes an object by GUID
+    /// </summary>
+    public const ushort S_DSDeleteObjectGuid = 10;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSGetPropsGuid - Gets properties by GUID
+    /// </summary>
+    public const ushort S_DSGetPropsGuid = 11;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSSetPropsGuid - Sets properties by GUID
+    /// </summary>
+    public const ushort S_DSSetPropsGuid = 12;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSGetObjectSecurityGuid - Gets security by GUID
+    /// </summary>
+    public const ushort S_DSGetObjectSecurityGuid = 13;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSSetObjectSecurityGuid - Sets security by GUID
+    /// </summary>
+    public const ushort S_DSSetObjectSecurityGuid = 14;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum15NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum15NotUsedOnWire = 15;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum16NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum16NotUsedOnWire = 16;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum17NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum17NotUsedOnWire = 17;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum18NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum18NotUsedOnWire = 18;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSQMSetMachineProperties - Sets machine properties for QM
+    /// </summary>
+    public const ushort S_DSQMSetMachineProperties = 19;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSCreateServersCache - Creates server cache
+    /// </summary>
+    public const ushort S_DSCreateServersCache = 20;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSQMGetObjectSecurity - Gets object security for QM
+    /// </summary>
+    public const ushort S_DSQMGetObjectSecurity = 21;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSValidateServer - Validates server
+    /// </summary>
+    public const ushort S_DSValidateServer = 22;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSCloseServerHandle - Closes server handle
+    /// </summary>
+    public const ushort S_DSCloseServerHandle = 23;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum24NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum24NotUsedOnWire = 24;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum25NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum25NotUsedOnWire = 25;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): Opnum26NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQDS_Opnum26NotUsedOnWire = 26;
+
+    /// <summary>
+    /// MS-MQDS (dscomm): S_DSGetServerPort - Gets server port number
+    /// </summary>
+    public const ushort S_DSGetServerPort = 27;
+
+    #endregion // MS-MQDS (dscomm)
+    #region MS-MQMP (qmcomm)
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQMP_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetRemoteQueueName - Gets remote queue name
+    /// </summary>
+    public const ushort R_QMGetRemoteQueueName = 1;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMOpenRemoteQueue - Opens a remote queue
+    /// </summary>
+    public const ushort R_QMOpenRemoteQueue = 2;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMCloseRemoteQueueContext - Closes remote queue context
+    /// </summary>
+    public const ushort R_QMCloseRemoteQueueContext = 3;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMCreateRemoteCursor - Creates a cursor on a remote queue
+    /// </summary>
+    public const ushort R_QMCreateRemoteCursor = 4;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMCreateObjectInternal - Creates an MSMQ object
+    /// </summary>
+    public const ushort R_QMCreateObjectInternal = 5;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMSetObjectSecurityInternal - Sets object security
+    /// </summary>
+    public const ushort R_QMSetObjectSecurityInternal = 6;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetObjectSecurityInternal - Gets object security
+    /// </summary>
+    public const ushort R_QMGetObjectSecurityInternal = 7;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMDeleteObject - Deletes an object
+    /// </summary>
+    public const ushort R_QMDeleteObject = 8;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetObjectProperties - Gets object properties
+    /// </summary>
+    public const ushort R_QMGetObjectProperties = 9;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMSetObjectProperties - Sets object properties
+    /// </summary>
+    public const ushort R_QMSetObjectProperties = 10;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMObjectPathToObjectFormat - Converts path to format name
+    /// </summary>
+    public const ushort R_QMObjectPathToObjectFormat = 11;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetTmWhereabouts - Gets TM whereabouts for transactions
+    /// </summary>
+    public const ushort R_QMGetTmWhereabouts = 12;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMEnlistTransaction - Enlists in a transaction
+    /// </summary>
+    public const ushort R_QMEnlistTransaction = 13;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMEnlistInternalTransaction - Enlists in internal transaction
+    /// </summary>
+    public const ushort R_QMEnlistInternalTransaction = 14;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMCommitTransaction - Commits a transaction
+    /// </summary>
+    public const ushort R_QMCommitTransaction = 15;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMAbortTransaction - Aborts a transaction
+    /// </summary>
+    public const ushort R_QMAbortTransaction = 16;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_QMOpenQueueInternal - Opens a queue internally
+    /// </summary>
+    public const ushort rpc_QMOpenQueueInternal = 17;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACCloseHandle - Closes an access control handle
+    /// </summary>
+    public const ushort rpc_ACCloseHandle = 18;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACSetCursorProperties - Sets cursor properties
+    /// </summary>
+    public const ushort rpc_ACSetCursorProperties = 19;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACHandleToFormatName - Converts handle to format name
+    /// </summary>
+    public const ushort rpc_ACHandleToFormatName = 20;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACPurgeQueue - Purges a queue
+    /// </summary>
+    public const ushort rpc_ACPurgeQueue = 21;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMQueryQMRegistryInternal - Queries QM registry
+    /// </summary>
+    public const ushort R_QMQueryQMRegistryInternal = 22;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetRTQMServerPort - Gets RTQM server port
+    /// </summary>
+    public const ushort R_QMGetRTQMServerPort = 23;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMAttachProcess - Attaches a process
+    /// </summary>
+    public const ushort R_QMAttachProcess = 24;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMGetSecurityContext - Gets security context
+    /// </summary>
+    public const ushort R_QMGetSecurityContext = 25;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMOpenRemoteQueue2 - Opens remote queue (version 2)
+    /// </summary>
+    public const ushort R_QMOpenRemoteQueue2 = 26;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMCreateRemoteCursor2 - Creates remote cursor (version 2)
+    /// </summary>
+    public const ushort R_QMCreateRemoteCursor2 = 27;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): R_QMSetCursorProperties2 - Sets cursor properties (version 2)
+    /// </summary>
+    public const ushort R_QMSetCursorProperties2 = 28;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACSetCursorProperties2 - AC set cursor properties (version 2)
+    /// </summary>
+    public const ushort rpc_ACSetCursorProperties2 = 29;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACSendMessage - Sends a message
+    /// </summary>
+    public const ushort rpc_ACSendMessage = 30;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm): rpc_ACReceiveMessage - Receives a message
+    /// </summary>
+    public const ushort rpc_ACReceiveMessage = 31;
+
+    #endregion // MS-MQMP (qmcomm)
+    #region MS-MQMP (qmcomm2)
+
+    /// <summary>
+    /// MS-MQMP (qmcomm2): QMSendMessageInternalEx - Sends message (extended)
+    /// </summary>
+    public const ushort QMSendMessageInternalEx = 0;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm2): rpc_ACSendMessageEx - AC send message (extended)
+    /// </summary>
+    public const ushort rpc_ACSendMessageEx = 1;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm2): rpc_ACReceiveMessageEx - AC receive message (extended)
+    /// </summary>
+    public const ushort rpc_ACReceiveMessageEx = 2;
+
+    /// <summary>
+    /// MS-MQMP (qmcomm2): rpc_ACCreateCursorEx - AC create cursor (extended)
+    /// </summary>
+    public const ushort rpc_ACCreateCursorEx = 3;
+
+    #endregion // MS-MQMP (qmcomm2)
+    #region MS-MQMR
+
+    /// <summary>
+    /// MS-MQMR (qmmgmt): R_QMMgmtGetInfo - Gets management information
+    /// </summary>
+    public const ushort R_QMMgmtGetInfo = 0;
+
+    /// <summary>
+    /// MS-MQMR (qmmgmt): R_QMMgmtAction - Performs a management action
+    /// </summary>
+    public const ushort R_QMMgmtAction = 1;
+
+    #endregion // MS-MQMR
+    #region MS-MQQP
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMStartReceive - Starts receiving messages
+    /// </summary>
+    public const ushort RemoteQMStartReceive = 0;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMEndReceive - Ends receiving messages
+    /// </summary>
+    public const ushort RemoteQMEndReceive = 1;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMOpenQueue - Opens a queue remotely
+    /// </summary>
+    public const ushort RemoteQMOpenQueue = 2;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMCloseQueue - Closes a queue remotely
+    /// </summary>
+    public const ushort RemoteQMCloseQueue = 3;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMCloseCursor - Closes a cursor remotely
+    /// </summary>
+    public const ushort RemoteQMCloseCursor = 4;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMCancelReceive - Cancels a pending receive
+    /// </summary>
+    public const ushort RemoteQMCancelReceive = 5;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMPurgeQueue - Purges a queue remotely
+    /// </summary>
+    public const ushort RemoteQMPurgeQueue = 6;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMGetQMQMServerPort - Gets QM-to-QM server port
+    /// </summary>
+    public const ushort RemoteQMGetQMQMServerPort = 7;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMStartReceive2 - Starts receiving (version 2)
+    /// </summary>
+    public const ushort RemoteQMStartReceive2 = 8;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMStartReceiveByLookupId - Starts receive by lookup ID
+    /// </summary>
+    public const ushort RemoteQMStartReceiveByLookupId = 9;
+
+    /// <summary>
+    /// MS-MQQP (qm2qm): RemoteQMStartReceiveByLookupId2 - Starts receive by lookup ID (version 2)
+    /// </summary>
+    public const ushort RemoteQMStartReceiveByLookupId2 = 10;
+
+    #endregion // MS-MQQP
+    #region MS-MQRR
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_GetServerPort - Gets the server port
+    /// </summary>
+    public const ushort R_GetServerPort = 0;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_OpenQueue - Opens a queue
+    /// </summary>
+    public const ushort R_OpenQueue = 1;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_CloseQueue - Closes a queue
+    /// </summary>
+    public const ushort R_CloseQueue = 2;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_CreateCursor - Creates a cursor
+    /// </summary>
+    public const ushort R_CreateCursor = 3;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_CloseCursor - Closes a cursor
+    /// </summary>
+    public const ushort R_CloseCursor = 4;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_PurgeQueue - Purges a queue
+    /// </summary>
+    public const ushort R_PurgeQueue = 5;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): Opnum6NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQRR_Opnum6NotUsedOnWire = 6;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_StartReceive - Starts receiving messages
+    /// </summary>
+    public const ushort R_StartReceive = 7;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_CancelReceive - Cancels a pending receive
+    /// </summary>
+    public const ushort R_CancelReceive = 8;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_EndReceive - Ends receiving messages
+    /// </summary>
+    public const ushort R_EndReceive = 9;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_MoveMessage - Moves a message between queues
+    /// </summary>
+    public const ushort R_MoveMessage = 10;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): Opnum11NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQRR_Opnum11NotUsedOnWire = 11;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): Opnum12NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort MQRR_Opnum12NotUsedOnWire = 12;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_StartTransactionalReceive - Starts transactional receive
+    /// </summary>
+    public const ushort R_StartTransactionalReceive = 13;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_SetUserAcknowledgementClass - Sets user acknowledgement class
+    /// </summary>
+    public const ushort R_SetUserAcknowledgementClass = 14;
+
+    /// <summary>
+    /// MS-MQRR (RemoteRead): R_EndTransactionalReceive - Ends transactional receive
+    /// </summary>
+    public const ushort R_EndTransactionalReceive = 15;
+
+    #endregion // MS-MQRR
+    #region MS-MSRP (msgsvc)
+
+    /// <summary>
+    /// MS-MSRP (msgsvc): NetrMessageNameAdd - Adds a message name
+    /// </summary>
+    public const ushort NetrMessageNameAdd = 0;
+
+    /// <summary>
+    /// MS-MSRP (msgsvc): NetrMessageNameEnum - Enumerates message names
+    /// </summary>
+    public const ushort NetrMessageNameEnum = 1;
+
+    /// <summary>
+    /// MS-MSRP (msgsvc): NetrMessageNameGetInfo - Gets message name info
+    /// </summary>
+    public const ushort NetrMessageNameGetInfo = 2;
+
+    /// <summary>
+    /// MS-MSRP (msgsvc): NetrMessageNameDel - Deletes a message name
+    /// </summary>
+    public const ushort NetrMessageNameDel = 3;
+
+    #endregion // MS-MSRP (msgsvc)
+    #region MS-MSRP (msgsvcsend)
+
+    /// <summary>
+    /// MS-MSRP (msgsvcsend): NetrSendMessage - Sends a message
+    /// </summary>
+    public const ushort NetrSendMessage = 0;
+
+    #endregion // MS-MSRP (msgsvcsend)
+    #region MS-OCSPA
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): Opnum0NotUsedOnWire - Reserved (QueryInterface)
+    /// </summary>
+    public const ushort IOCSPAdminD_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): Opnum1NotUsedOnWire - Reserved (AddRef)
+    /// </summary>
+    public const ushort IOCSPAdminD_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): Opnum2NotUsedOnWire - Reserved (Release)
+    /// </summary>
+    public const ushort IOCSPAdminD_Opnum2NotUsedOnWire = 2;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetOCSPProperty - Gets an OCSP property
+    /// </summary>
+    public const ushort GetOCSPProperty = 3;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): SetOCSPProperty - Sets an OCSP property
+    /// </summary>
+    public const ushort SetOCSPProperty = 4;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetCAConfigInformation - Gets CA config information
+    /// </summary>
+    public const ushort GetCAConfigInformation = 5;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): SetCAConfigInformation - Sets CA config information
+    /// </summary>
+    public const ushort SetCAConfigInformation = 6;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetSecurity - Gets security descriptor
+    /// </summary>
+    public const ushort OCSPA_GetSecurity = 7;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): SetSecurity - Sets security descriptor
+    /// </summary>
+    public const ushort OCSPA_SetSecurity = 8;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetSigningCertificates - Gets signing certificates
+    /// </summary>
+    public const ushort GetSigningCertificates = 9;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetHashAlgorithms - Gets supported hash algorithms
+    /// </summary>
+    public const ushort GetHashAlgorithms = 10;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): GetMyRoles - Gets caller's roles
+    /// </summary>
+    public const ushort GetMyRoles = 11;
+
+    /// <summary>
+    /// MS-OCSPA (IOCSPAdminD): Ping - Pings the OCSP server
+    /// </summary>
+    public const ushort OCSPA_Ping = 12;
+
+    #endregion // MS-OCSPA
+    #region MS-PCQ
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2EnumerateCounterSet - Enumerates counter sets
+    /// </summary>
+    public const ushort PerflibV2EnumerateCounterSet = 0;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2QueryCounterSetRegistrationInfo - Queries registration info
+    /// </summary>
+    public const ushort PerflibV2QueryCounterSetRegistrationInfo = 1;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2EnumerateCounterSetInstances - Enumerates counter set instances
+    /// </summary>
+    public const ushort PerflibV2EnumerateCounterSetInstances = 2;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2OpenQueryHandle - Opens a query handle
+    /// </summary>
+    public const ushort PerflibV2OpenQueryHandle = 3;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2CloseQueryHandle - Closes a query handle
+    /// </summary>
+    public const ushort PerflibV2CloseQueryHandle = 4;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2QueryCounterInfo - Queries counter information
+    /// </summary>
+    public const ushort PerflibV2QueryCounterInfo = 5;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2QueryCounterData - Queries counter data
+    /// </summary>
+    public const ushort PerflibV2QueryCounterData = 6;
+
+    /// <summary>
+    /// MS-PCQ (PerflibV2): PerflibV2ValidateCounters - Validates counter paths
+    /// </summary>
+    public const ushort PerflibV2ValidateCounters = 7;
+
+    #endregion // MS-PCQ
+    #region MS-RAA
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrFreeContext - Frees an authorization context
+    /// </summary>
+    public const ushort AuthzrFreeContext = 0;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrInitializeContextFromSid - Initializes context from SID
+    /// </summary>
+    public const ushort AuthzrInitializeContextFromSid = 1;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrInitializeCompoundContext - Initializes compound context
+    /// </summary>
+    public const ushort AuthzrInitializeCompoundContext = 2;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrAccessCheck - Performs access check
+    /// </summary>
+    public const ushort AuthzrAccessCheck = 3;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzGetInformationFromContext - Gets context information
+    /// </summary>
+    public const ushort AuthzGetInformationFromContext = 4;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrModifyClaims - Modifies claims in context
+    /// </summary>
+    public const ushort AuthzrModifyClaims = 5;
+
+    /// <summary>
+    /// MS-RAA (authzr): AuthzrModifySids - Modifies SIDs in context
+    /// </summary>
+    public const ushort AuthzrModifySids = 6;
+
+    #endregion // MS-RAA
+    #region MS-RAIW (winsif)
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsRecordAction - Performs record action
+    /// </summary>
+    public const ushort R_WinsRecordAction = 0;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsStatus - Gets WINS status
+    /// </summary>
+    public const ushort R_WinsStatus = 1;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsTrigger - Triggers replication
+    /// </summary>
+    public const ushort R_WinsTrigger = 2;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsDoStaticInit - Performs static initialization
+    /// </summary>
+    public const ushort R_WinsDoStaticInit = 3;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsDoScavenging - Performs scavenging
+    /// </summary>
+    public const ushort R_WinsDoScavenging = 4;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsGetDbRecs - Gets database records
+    /// </summary>
+    public const ushort R_WinsGetDbRecs = 5;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsTerm - Terminates WINS
+    /// </summary>
+    public const ushort R_WinsTerm = 6;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsBackup - Backs up WINS database
+    /// </summary>
+    public const ushort R_WinsBackup = 7;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsDelDbRecs - Deletes database records
+    /// </summary>
+    public const ushort R_WinsDelDbRecs = 8;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsPullRange - Pulls records in a range
+    /// </summary>
+    public const ushort R_WinsPullRange = 9;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsSetPriorityClass - Sets priority class
+    /// </summary>
+    public const ushort R_WinsSetPriorityClass = 10;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsResetCounters - Resets counters
+    /// </summary>
+    public const ushort R_WinsResetCounters = 11;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsWorkerThdUpd - Updates worker thread
+    /// </summary>
+    public const ushort R_WinsWorkerThdUpd = 12;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsGetNameAndAdd - Gets name and address
+    /// </summary>
+    public const ushort R_WinsGetNameAndAdd = 13;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsGetBrowserNames_Old - Gets browser names (old)
+    /// </summary>
+    public const ushort R_WinsGetBrowserNames_Old = 14;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsDeleteWins - Deletes WINS records
+    /// </summary>
+    public const ushort R_WinsDeleteWins = 15;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsSetFlags - Sets WINS flags
+    /// </summary>
+    public const ushort R_WinsSetFlags = 16;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsGetBrowserNames - Gets browser names
+    /// </summary>
+    public const ushort R_WinsGetBrowserNames = 17;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsGetDbRecsByName - Gets database records by name
+    /// </summary>
+    public const ushort R_WinsGetDbRecsByName = 18;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsStatusNew - Gets WINS status (new)
+    /// </summary>
+    public const ushort R_WinsStatusNew = 19;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsStatusWHdl - Gets WINS status with handle
+    /// </summary>
+    public const ushort R_WinsStatusWHdl = 20;
+
+    /// <summary>
+    /// MS-RAIW (winsif): R_WinsDoScavengingNew - Performs scavenging (new)
+    /// </summary>
+    public const ushort R_WinsDoScavengingNew = 21;
+
+    #endregion // MS-RAIW (winsif)
+    #region MS-RAIW (winsi2)
+
+    /// <summary>
+    /// MS-RAIW (winsi2): R_WinsTombstoneDbRecs - Tombstones database records
+    /// </summary>
+    public const ushort R_WinsTombstoneDbRecs = 0;
+
+    /// <summary>
+    /// MS-RAIW (winsi2): R_WinsCheckAccess - Checks access rights
+    /// </summary>
+    public const ushort R_WinsCheckAccess = 1;
+
+    #endregion // MS-RAIW (winsi2)
+    #region MS-RPCL
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_lookup_begin - Begins a name service lookup
+    /// </summary>
+    public const ushort I_nsi_lookup_begin = 0;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_lookup_done - Completes a name service lookup
+    /// </summary>
+    public const ushort I_nsi_lookup_done = 1;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_lookup_next - Gets next lookup result
+    /// </summary>
+    public const ushort I_nsi_lookup_next = 2;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_entry_object_inq_next - Gets next object inquiry result
+    /// </summary>
+    public const ushort I_nsi_entry_object_inq_next = 3;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_ping_locator - Pings the locator
+    /// </summary>
+    public const ushort I_nsi_ping_locator = 4;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_entry_object_inq_done - Completes object inquiry
+    /// </summary>
+    public const ushort I_nsi_entry_object_inq_done = 5;
+
+    /// <summary>
+    /// MS-RPCL (LocToLoc): I_nsi_entry_object_inq_begin - Begins object inquiry
+    /// </summary>
+    public const ushort I_nsi_entry_object_inq_begin = 6;
+
+    #endregion // MS-RPCL
+    #region MS-RRASM (dimsvc)
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMprAdminServerGetInfo - Gets server info
+    /// </summary>
+    public const ushort RMprAdminServerGetInfo = 0;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionEnum - Enumerates connections
+    /// </summary>
+    public const ushort RRasAdminConnectionEnum = 1;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionGetInfo - Gets connection info
+    /// </summary>
+    public const ushort RRasAdminConnectionGetInfo = 2;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionClearStats - Clears connection stats
+    /// </summary>
+    public const ushort RRasAdminConnectionClearStats = 3;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminPortEnum - Enumerates ports
+    /// </summary>
+    public const ushort RRasAdminPortEnum = 4;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminPortGetInfo - Gets port info
+    /// </summary>
+    public const ushort RRasAdminPortGetInfo = 5;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminPortClearStats - Clears port stats
+    /// </summary>
+    public const ushort RRasAdminPortClearStats = 6;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminPortReset - Resets a port
+    /// </summary>
+    public const ushort RRasAdminPortReset = 7;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminPortDisconnect - Disconnects a port
+    /// </summary>
+    public const ushort RRasAdminPortDisconnect = 8;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportSetGlobalInfo - Sets global transport info
+    /// </summary>
+    public const ushort RRouterInterfaceTransportSetGlobalInfo = 9;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportGetGlobalInfo - Gets global transport info
+    /// </summary>
+    public const ushort RRouterInterfaceTransportGetGlobalInfo = 10;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceGetHandle - Gets interface handle
+    /// </summary>
+    public const ushort RRouterInterfaceGetHandle = 11;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceCreate - Creates an interface
+    /// </summary>
+    public const ushort RRouterInterfaceCreate = 12;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceGetInfo - Gets interface info
+    /// </summary>
+    public const ushort RRouterInterfaceGetInfo = 13;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceSetInfo - Sets interface info
+    /// </summary>
+    public const ushort RRouterInterfaceSetInfo = 14;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceDelete - Deletes an interface
+    /// </summary>
+    public const ushort RRouterInterfaceDelete = 15;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportRemove - Removes interface transport
+    /// </summary>
+    public const ushort RRouterInterfaceTransportRemove = 16;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportAdd - Adds interface transport
+    /// </summary>
+    public const ushort RRouterInterfaceTransportAdd = 17;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportGetInfo - Gets interface transport info
+    /// </summary>
+    public const ushort RRouterInterfaceTransportGetInfo = 18;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportSetInfo - Sets interface transport info
+    /// </summary>
+    public const ushort RRouterInterfaceTransportSetInfo = 19;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceEnum - Enumerates interfaces
+    /// </summary>
+    public const ushort RRouterInterfaceEnum = 20;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceConnect - Connects an interface
+    /// </summary>
+    public const ushort RRouterInterfaceConnect = 21;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceDisconnect - Disconnects an interface
+    /// </summary>
+    public const ushort RRouterInterfaceDisconnect = 22;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceUpdateRoutes - Updates interface routes
+    /// </summary>
+    public const ushort RRouterInterfaceUpdateRoutes = 23;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceQueryUpdateResult - Queries update result
+    /// </summary>
+    public const ushort RRouterInterfaceQueryUpdateResult = 24;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceUpdatePhonebookInfo - Updates phonebook info
+    /// </summary>
+    public const ushort RRouterInterfaceUpdatePhonebookInfo = 25;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntryCreate - Creates MIB entry
+    /// </summary>
+    public const ushort RMIBEntryCreate = 26;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntryDelete - Deletes MIB entry
+    /// </summary>
+    public const ushort RMIBEntryDelete = 27;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntrySet - Sets MIB entry
+    /// </summary>
+    public const ushort RMIBEntrySet = 28;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntryGet - Gets MIB entry
+    /// </summary>
+    public const ushort RMIBEntryGet = 29;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntryGetFirst - Gets first MIB entry
+    /// </summary>
+    public const ushort RMIBEntryGetFirst = 30;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBEntryGetNext - Gets next MIB entry
+    /// </summary>
+    public const ushort RMIBEntryGetNext = 31;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBGetTrapInfo - Gets MIB trap info
+    /// </summary>
+    public const ushort RMIBGetTrapInfo = 32;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMIBSetTrapInfo - Sets MIB trap info
+    /// </summary>
+    public const ushort RMIBSetTrapInfo = 33;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionNotification - Connection notification
+    /// </summary>
+    public const ushort RRasAdminConnectionNotification = 34;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminSendUserMessage - Sends user message
+    /// </summary>
+    public const ushort RRasAdminSendUserMessage = 35;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterDeviceEnum - Enumerates devices
+    /// </summary>
+    public const ushort RRouterDeviceEnum = 36;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceTransportCreate - Creates interface transport
+    /// </summary>
+    public const ushort RRouterInterfaceTransportCreate = 37;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceDeviceGetInfo - Gets interface device info
+    /// </summary>
+    public const ushort RRouterInterfaceDeviceGetInfo = 38;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceDeviceSetInfo - Sets interface device info
+    /// </summary>
+    public const ushort RRouterInterfaceDeviceSetInfo = 39;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceSetCredentialsEx - Sets credentials (extended)
+    /// </summary>
+    public const ushort RRouterInterfaceSetCredentialsEx = 40;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceGetCredentialsEx - Gets credentials (extended)
+    /// </summary>
+    public const ushort RRouterInterfaceGetCredentialsEx = 41;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionRemoveQuarantine - Removes quarantine
+    /// </summary>
+    public const ushort RRasAdminConnectionRemoveQuarantine = 42;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMprAdminServerSetInfo - Sets server info
+    /// </summary>
+    public const ushort RMprAdminServerSetInfo = 43;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMprAdminServerGetInfoEx - Gets server info (extended)
+    /// </summary>
+    public const ushort RMprAdminServerGetInfoEx = 44;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionEnumEx - Enumerates connections (extended)
+    /// </summary>
+    public const ushort RRasAdminConnectionEnumEx = 45;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminConnectionGetInfoEx - Gets connection info (extended)
+    /// </summary>
+    public const ushort RRasAdminConnectionGetInfoEx = 46;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RMprAdminServerSetInfoEx - Sets server info (extended)
+    /// </summary>
+    public const ushort RMprAdminServerSetInfoEx = 47;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRasAdminUpdateConnection - Updates connection
+    /// </summary>
+    public const ushort RRasAdminUpdateConnection = 48;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceSetCredentialsLocal - Sets local credentials
+    /// </summary>
+    public const ushort RRouterInterfaceSetCredentialsLocal = 49;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceGetCredentialsLocal - Gets local credentials
+    /// </summary>
+    public const ushort RRouterInterfaceGetCredentialsLocal = 50;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceGetCustomInfoEx - Gets custom info (extended)
+    /// </summary>
+    public const ushort RRouterInterfaceGetCustomInfoEx = 51;
+
+    /// <summary>
+    /// MS-RRASM (dimsvc): RRouterInterfaceSetCustomInfoEx - Sets custom info (extended)
+    /// </summary>
+    public const ushort RRouterInterfaceSetCustomInfoEx = 52;
+
+    #endregion // MS-RRASM (dimsvc)
+    #region MS-RRASM (rasrpc)
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum1NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum2NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum2NotUsedOnWire = 2;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum3NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum3NotUsedOnWire = 3;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum4NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum4NotUsedOnWire = 4;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcDeleteEntry - Deletes a phonebook entry
+    /// </summary>
+    public const ushort RasRpcDeleteEntry = 5;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum6NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum6NotUsedOnWire = 6;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum7NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum7NotUsedOnWire = 7;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum8NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum8NotUsedOnWire = 8;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcGetUserPreferences - Gets user preferences
+    /// </summary>
+    public const ushort RasRpcGetUserPreferences = 9;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcSetUserPreferences - Sets user preferences
+    /// </summary>
+    public const ushort RasRpcSetUserPreferences = 10;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcGetSystemDirectory - Gets system directory
+    /// </summary>
+    public const ushort RasRpcGetSystemDirectory = 11;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcSubmitRequest - Submits a request
+    /// </summary>
+    public const ushort RasRpcSubmitRequest = 12;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): Opnum13NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort RASRPC_Opnum13NotUsedOnWire = 13;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcGetInstalledProtocolsEx - Gets installed protocols
+    /// </summary>
+    public const ushort RasRpcGetInstalledProtocolsEx = 14;
+
+    /// <summary>
+    /// MS-RRASM (rasrpc): RasRpcGetVersion - Gets RAS version
+    /// </summary>
+    public const ushort RasRpcGetVersion = 15;
+
+    #endregion // MS-RRASM (rasrpc)
+    #region MS-TRP (tapsrv)
+
+    /// <summary>
+    /// MS-TRP (tapsrv): ClientAttach - Attaches client to telephony server
+    /// </summary>
+    public const ushort ClientAttach = 0;
+
+    /// <summary>
+    /// MS-TRP (tapsrv): ClientRequest - Sends request from client to server
+    /// </summary>
+    public const ushort ClientRequest = 1;
+
+    /// <summary>
+    /// MS-TRP (tapsrv): ClientDetach - Detaches client from telephony server
+    /// </summary>
+    public const ushort ClientDetach = 2;
+
+    #endregion // MS-TRP (tapsrv)
+    #region MS-TRP (remotesp)
+
+    /// <summary>
+    /// MS-TRP (remotesp): RemoteSPAttach - Attaches remote service provider
+    /// </summary>
+    public const ushort RemoteSPAttach = 0;
+
+    /// <summary>
+    /// MS-TRP (remotesp): RemoteSPEventProc - Event procedure for remote SP
+    /// </summary>
+    public const ushort RemoteSPEventProc = 1;
+
+    /// <summary>
+    /// MS-TRP (remotesp): RemoteSPDetach - Detaches remote service provider
+    /// </summary>
+    public const ushort RemoteSPDetach = 2;
+
+    #endregion // MS-TRP (remotesp)
+    #region MS-TSGU
+
+    /// <summary>
+    /// MS-TSGU: Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSGU_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyCreateTunnel - Creates a tunnel
+    /// </summary>
+    public const ushort TsProxyCreateTunnel = 1;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyAuthorizeTunnel - Authorizes a tunnel
+    /// </summary>
+    public const ushort TsProxyAuthorizeTunnel = 2;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyMakeTunnelCall - Makes a tunnel call
+    /// </summary>
+    public const ushort TsProxyMakeTunnelCall = 3;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyCreateChannel - Creates a channel
+    /// </summary>
+    public const ushort TsProxyCreateChannel = 4;
+
+    /// <summary>
+    /// MS-TSGU: Opnum5NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSGU_Opnum5NotUsedOnWire = 5;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyCloseChannel - Closes a channel
+    /// </summary>
+    public const ushort TsProxyCloseChannel = 6;
+
+    /// <summary>
+    /// MS-TSGU: TsProxyCloseTunnel - Closes a tunnel
+    /// </summary>
+    public const ushort TsProxyCloseTunnel = 7;
+
+    /// <summary>
+    /// MS-TSGU: TsProxySetupReceivePipe - Sets up receive pipe
+    /// </summary>
+    public const ushort TsProxySetupReceivePipe = 8;
+
+    /// <summary>
+    /// MS-TSGU: TsProxySendToServer - Sends data to server
+    /// </summary>
+    public const ushort TsProxySendToServer = 9;
+
+    #endregion // MS-TSGU
+    #region MS-TSRAP
+
+    /// <summary>
+    /// MS-TSRAP: Opnum0NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum0NotUsedOnWire = 0;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum1NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum1NotUsedOnWire = 1;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum2NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum2NotUsedOnWire = 2;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum3NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum3NotUsedOnWire = 3;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum4NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum4NotUsedOnWire = 4;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum5NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum5NotUsedOnWire = 5;
+
+    /// <summary>
+    /// MS-TSRAP: Opnum6NotUsedOnWire - Reserved for local use
+    /// </summary>
+    public const ushort TSRAP_Opnum6NotUsedOnWire = 6;
+
+    /// <summary>
+    /// MS-TSRAP: GetTelnetSessions - Gets telnet sessions
+    /// </summary>
+    public const ushort GetTelnetSessions = 7;
+
+    /// <summary>
+    /// MS-TSRAP: TerminateSession - Terminates a session
+    /// </summary>
+    public const ushort TerminateSession = 8;
+
+    /// <summary>
+    /// MS-TSRAP: SendMsgToASession - Sends message to a session
+    /// </summary>
+    public const ushort SendMsgToASession = 9;
+
+    #endregion // MS-TSRAP
+    #region MS-WDSC
+
+    /// <summary>
+    /// MS-WDSC: WdsRpcMessage - Processes WDS RPC message
+    /// </summary>
+    public const ushort WdsRpcMessage = 0;
+
+    #endregion // MS-WDSC
+    #region MS-FASP
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWOpenPolicyStore - Opens policy store
+    /// </summary>
+    public const ushort RRPC_FWOpenPolicyStore = 0;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWClosePolicyStore - Closes policy store
+    /// </summary>
+    public const ushort RRPC_FWClosePolicyStore = 1;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWRestoreDefaults - Restores default settings
+    /// </summary>
+    public const ushort RRPC_FWRestoreDefaults = 2;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWGetGlobalConfig - Gets global configuration
+    /// </summary>
+    public const ushort RRPC_FWGetGlobalConfig = 3;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetGlobalConfig - Sets global configuration
+    /// </summary>
+    public const ushort RRPC_FWSetGlobalConfig = 4;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWAddFirewallRule - Adds a firewall rule
+    /// </summary>
+    public const ushort RRPC_FWAddFirewallRule = 5;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetFirewallRule - Sets a firewall rule
+    /// </summary>
+    public const ushort RRPC_FWSetFirewallRule = 6;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteFirewallRule - Deletes a firewall rule
+    /// </summary>
+    public const ushort RRPC_FWDeleteFirewallRule = 7;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAllFirewallRules - Deletes all firewall rules
+    /// </summary>
+    public const ushort RRPC_FWDeleteAllFirewallRules = 8;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumFirewallRules - Enumerates firewall rules
+    /// </summary>
+    public const ushort RRPC_FWEnumFirewallRules = 9;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWGetConfig - Gets configuration
+    /// </summary>
+    public const ushort RRPC_FWGetConfig = 10;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetConfig - Sets configuration
+    /// </summary>
+    public const ushort RRPC_FWSetConfig = 11;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWAddConnectionSecurityRule - Adds connection security rule
+    /// </summary>
+    public const ushort RRPC_FWAddConnectionSecurityRule = 12;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetConnectionSecurityRule - Sets connection security rule
+    /// </summary>
+    public const ushort RRPC_FWSetConnectionSecurityRule = 13;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteConnectionSecurityRule - Deletes connection security rule
+    /// </summary>
+    public const ushort RRPC_FWDeleteConnectionSecurityRule = 14;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAllConnectionSecurityRules - Deletes all connection security rules
+    /// </summary>
+    public const ushort RRPC_FWDeleteAllConnectionSecurityRules = 15;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumConnectionSecurityRules - Enumerates connection security rules
+    /// </summary>
+    public const ushort RRPC_FWEnumConnectionSecurityRules = 16;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWAddAuthenticationSet - Adds authentication set
+    /// </summary>
+    public const ushort RRPC_FWAddAuthenticationSet = 17;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetAuthenticationSet - Sets authentication set
+    /// </summary>
+    public const ushort RRPC_FWSetAuthenticationSet = 18;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAuthenticationSet - Deletes authentication set
+    /// </summary>
+    public const ushort RRPC_FWDeleteAuthenticationSet = 19;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAllAuthenticationSets - Deletes all authentication sets
+    /// </summary>
+    public const ushort RRPC_FWDeleteAllAuthenticationSets = 20;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumAuthenticationSets - Enumerates authentication sets
+    /// </summary>
+    public const ushort RRPC_FWEnumAuthenticationSets = 21;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWAddCryptoSet - Adds crypto set
+    /// </summary>
+    public const ushort RRPC_FWAddCryptoSet = 22;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetCryptoSet - Sets crypto set
+    /// </summary>
+    public const ushort RRPC_FWSetCryptoSet = 23;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteCryptoSet - Deletes crypto set
+    /// </summary>
+    public const ushort RRPC_FWDeleteCryptoSet = 24;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAllCryptoSets - Deletes all crypto sets
+    /// </summary>
+    public const ushort RRPC_FWDeleteAllCryptoSets = 25;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumCryptoSets - Enumerates crypto sets
+    /// </summary>
+    public const ushort RRPC_FWEnumCryptoSets = 26;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumPhase1SAs - Enumerates phase 1 SAs
+    /// </summary>
+    public const ushort RRPC_FWEnumPhase1SAs = 27;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumPhase2SAs - Enumerates phase 2 SAs
+    /// </summary>
+    public const ushort RRPC_FWEnumPhase2SAs = 28;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeletePhase1SAs - Deletes phase 1 SAs
+    /// </summary>
+    public const ushort RRPC_FWDeletePhase1SAs = 29;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeletePhase2SAs - Deletes phase 2 SAs
+    /// </summary>
+    public const ushort RRPC_FWDeletePhase2SAs = 30;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumProducts - Enumerates firewall products
+    /// </summary>
+    public const ushort RRPC_FWEnumProducts = 31;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWAddMainModeRule - Adds main mode rule
+    /// </summary>
+    public const ushort RRPC_FWAddMainModeRule = 32;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWSetMainModeRule - Sets main mode rule
+    /// </summary>
+    public const ushort RRPC_FWSetMainModeRule = 33;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteMainModeRule - Deletes main mode rule
+    /// </summary>
+    public const ushort RRPC_FWDeleteMainModeRule = 34;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWDeleteAllMainModeRules - Deletes all main mode rules
+    /// </summary>
+    public const ushort RRPC_FWDeleteAllMainModeRules = 35;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumMainModeRules - Enumerates main mode rules
+    /// </summary>
+    public const ushort RRPC_FWEnumMainModeRules = 36;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWQueryFirewallRules - Queries firewall rules
+    /// </summary>
+    public const ushort RRPC_FWQueryFirewallRules = 37;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWQueryConnectionSecurityRules2_10 - Queries connection security rules (2.10)
+    /// </summary>
+    public const ushort RRPC_FWQueryConnectionSecurityRules2_10 = 38;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWQueryMainModeRules - Queries main mode rules
+    /// </summary>
+    public const ushort RRPC_FWQueryMainModeRules = 39;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWQueryAuthenticationSets - Queries authentication sets
+    /// </summary>
+    public const ushort RRPC_FWQueryAuthenticationSets = 40;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWQueryCryptoSets - Queries crypto sets
+    /// </summary>
+    public const ushort RRPC_FWQueryCryptoSets = 41;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumNetworks - Enumerates networks
+    /// </summary>
+    public const ushort RRPC_FWEnumNetworks = 42;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWEnumAdapters - Enumerates adapters
+    /// </summary>
+    public const ushort RRPC_FWEnumAdapters = 43;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWGetGlobalConfig2_10 - Gets global configuration (2.10)
+    /// </summary>
+    public const ushort RRPC_FWGetGlobalConfig2_10 = 44;
+
+    /// <summary>
+    /// MS-FASP (RemoteFW): RRPC_FWGetConfig2_10 - Gets configuration (2.10)
+    /// </summary>
+    public const ushort RRPC_FWGetConfig2_10 = 45;
+
+    #endregion // MS-FASP
+    #region MS-PLA (ITraceDataProvider)
+
+    // ITraceDataProvider interface methods (IDispatch base ends at opnum 6)
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_DisplayName - Gets provider display name
+    /// </summary>
+    public const ushort get_DisplayName = 7;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): put_DisplayName - Sets provider display name
+    /// </summary>
+    public const ushort put_DisplayName = 8;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_Guid - Gets provider GUID
+    /// </summary>
+    public const ushort get_Guid = 9;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): put_Guid - Sets provider GUID
+    /// </summary>
+    public const ushort put_Guid = 10;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_Level - Gets trace level
+    /// </summary>
+    public const ushort get_Level = 11;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_KeywordsAny - Gets keywords any mask
+    /// </summary>
+    public const ushort get_KeywordsAny = 12;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_KeywordsAll - Gets keywords all mask
+    /// </summary>
+    public const ushort get_KeywordsAll = 13;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_Properties - Gets provider properties
+    /// </summary>
+    public const ushort get_Properties = 14;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_FilterEnabled - Gets filter enabled state
+    /// </summary>
+    public const ushort get_FilterEnabled = 15;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): put_FilterEnabled - Sets filter enabled state
+    /// </summary>
+    public const ushort put_FilterEnabled = 16;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_FilterType - Gets filter type
+    /// </summary>
+    public const ushort get_FilterType = 17;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): put_FilterType - Sets filter type
+    /// </summary>
+    public const ushort put_FilterType = 18;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): get_FilterData - Gets filter data
+    /// </summary>
+    public const ushort get_FilterData = 19;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): put_FilterData - Sets filter data
+    /// </summary>
+    public const ushort put_FilterData = 20;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): Query - Queries provider by name
+    /// </summary>
+    public const ushort Query = 21;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): Resolve - Resolves provider from another object
+    /// </summary>
+    public const ushort Resolve = 22;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): SetSecurity - Sets security descriptor
+    /// </summary>
+    public const ushort PLA_SetSecurity = 23;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): GetSecurity - Gets security descriptor
+    /// </summary>
+    public const ushort PLA_GetSecurity = 24;
+
+    /// <summary>
+    /// MS-PLA (ITraceDataProvider): GetRegisteredProcesses - Gets registered processes
+    /// </summary>
+    public const ushort GetRegisteredProcesses = 25;
+
+    #endregion // MS-PLA
 }

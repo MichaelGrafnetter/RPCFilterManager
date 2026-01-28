@@ -2271,14 +2271,14 @@ public static partial class WellKnownProtocolTranslator
     public static readonly Guid PLA_IValueMapItem = new(PLA_IValueMapItem_UUID);
 
     /// <summary>
-    /// MS-PLA: Performance Logs and Alerts Protocol (03837541 interface)
+    /// MS-PLA: Performance Logs and Alerts Protocol (IDataManager interface)
     /// </summary>
-    private const string PLA_03837541_UUID = "03837541-098b-11d8-9414-505054503030";
+    private const string PLA_IDataManager_UUID = "03837541-098b-11d8-9414-505054503030";
 
     /// <summary>
-    /// MS-PLA: Performance Logs and Alerts Protocol (03837541 interface)
+    /// MS-PLA: Performance Logs and Alerts Protocol (IDataManager interface)
     /// </summary>
-    public static readonly Guid PLA_03837541 = new(PLA_03837541_UUID);
+    public static readonly Guid PLA_IDataManager = new(PLA_IDataManager_UUID);
 
     /// <summary>
     /// MS-PLA: Performance Logs and Alerts Protocol (IFolderActionCollection interface)

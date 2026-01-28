@@ -152,59 +152,84 @@ public static partial class WellKnownProtocolTranslator
 
         switch (interfaceUUIDString)
         {
-            case SCMR_UUID:
-            case TSCH_ITaskSchedulerService_UUID:
-            case TSCH_ATSvc_UUID:
-            case TSCH_SASec_UUID:
-            case EVEN_UUID:
-            case EVEN6_UUID:
-            case RRP_UUID:
-            case RSP_InitShutdown_UUID:
-            case RSP_WindowsShutdown_UUID:
-            case SAMR_UUID:
-            case RPRN_UUID:
-            case DFSNM_UUID:
-            case EFSR_efsrpc_UUID:
-            case EFSR_lsarpc_UUID:
-            case SRVS_UUID:
-            case WKST_UUID:
-            case FSRVP_UUID:
-            case BKRP_UUID:
-            case LSAT_UUID:
-            case DNSP_UUID:
-            case EPMAP_UUID:
-            case DSSP_UUID:
-            case BRWSA_UUID:
-            case NRPC_UUID:
-            case W32T_UUID:
-            case DLTW_UUID:
-            case RRASM_dimsvc_UUID:
-            case RRASM_rasrpc_UUID:
-            case RRASM_IRemoteNetworkConfig_UUID:
-            case RRASM_IRemoteRouterRestart_UUID:
-            case RRASM_IRemoteSetDnsConfig_UUID:
-            case RRASM_IRemoteICFICSConfig_UUID:
-            case RRASM_IRemoteStringIdConfig_UUID:
-            case RRASM_IRemoteIPV6Config_UUID:
-            case RRASM_IRemoteSstpCertCheck_UUID:
-            case TSTS_TermSrvSession_UUID:
-            case TSTS_TermSrvNotification_UUID:
-            case TSTS_TermSrvEnumeration_UUID:
-            case TSTS_IcaApi_UUID:
-            case TSTS_RCMListener_UUID:
-            case TSTS_RCMPublic_UUID:
-            case TSTS_TSVIPPublic_UUID:
-            case TSTS_SessEnvPublicRpc_UUID:
-            case RAIW_winsif_UUID:
-            case RAIW_winsi2_UUID:
+            case SCMR_UUID: // \PIPE\svcctl
+            case TSCH_ITaskSchedulerService_UUID: // \PIPE\atsvc
+            case TSCH_ATSvc_UUID: // \PIPE\atsvc
+            case TSCH_SASec_UUID: // \PIPE\atsvc
+            case EVEN_UUID: // \PIPE\eventlog
+            case EVEN6_UUID: // \PIPE\eventlog
+            case RRP_UUID: // \PIPE\winreg
+            case RSP_InitShutdown_UUID: // \PIPE\InitShutdown
+            case RSP_WindowsShutdown_UUID: // \PIPE\InitShutdown
+            case SAMR_UUID: // \PIPE\samr
+            case RPRN_UUID: // \PIPE\spoolss
+            case DFSNM_UUID: // \PIPE\netdfs
+            case EFSR_efsrpc_UUID: // \PIPE\efsrpc
+            case EFSR_lsarpc_UUID: // \PIPE\lsarpc
+            case SRVS_UUID: // \PIPE\srvsvc
+            case WKST_UUID: // \PIPE\wkssvc
+            case FSRVP_UUID: // \PIPE\FssagentRpc
+            case BKRP_UUID: // \PIPE\protected_storage
+            case LSAT_UUID: // \PIPE\lsarpc
+            case DNSP_UUID: // \PIPE\dnsserver
+            case EPMAP_UUID: // \PIPE\epmapper
+            case DSSP_UUID: // \PIPE\lsarpc
+            case BRWSA_UUID: // \PIPE\browser
+            case NRPC_UUID: // \PIPE\netlogon
+            case W32T_UUID: // \PIPE\W32TIME_ALT
+            case DLTW_UUID: // \PIPE\trkwks
+            case RRASM_dimsvc_UUID: // \PIPE\ROUTER
+            case RRASM_rasrpc_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteNetworkConfig_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteRouterRestart_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteSetDnsConfig_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteICFICSConfig_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteStringIdConfig_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteIPV6Config_UUID: // \PIPE\ROUTER
+            case RRASM_IRemoteSstpCertCheck_UUID: // \PIPE\ROUTER
+            case TSTS_TermSrvSession_UUID: // \PIPE\LSM_API_service
+            case TSTS_TermSrvNotification_UUID: // \PIPE\LSM_API_service
+            case TSTS_TermSrvEnumeration_UUID: // \PIPE\LSM_API_service
+            case TSTS_IcaApi_UUID: // \PIPE\Ctx_WinStation_API_service
+            case TSTS_RCMListener_UUID: // \PIPE\TermSrv_API_service
+            case TSTS_RCMPublic_UUID: // \PIPE\TermSrv_API_service
+            case TSTS_TSVIPPublic_UUID: // \PIPE\TSVIPSrv
+            case TSTS_SessEnvPublicRpc_UUID: // \PIPE\SessEnvPublicRpc
+            case RAIW_winsif_UUID: // \PIPE\winsserver
+            case RAIW_winsi2_UUID: // \PIPE\winsserver
+            case DLTM_UUID: // \PIPE\trksvr
+            case IRP_UUID: // \PIPE\inetinfo
+            case MQDS_dscomm_UUID: // \PIPE\mqis
+            case MQDS_dscomm2_UUID: // \PIPE\mqis
+            case MQMP_qmcomm_UUID: // \PIPE\qmcomm
+            case MQMP_qmcomm2_UUID: // \PIPE\qmcomm
+            case MSRP_msgsvc_UUID: // \PIPE\msgsvc
+            case MSRP_msgsvcsend_UUID: // \PIPE\msgsvc
+            case RAA_UUID: // \PIPE\lsarpc
+            case RPCL_UUID: // \PIPE\locator
+            case TRP_tapsrv_UUID: // \PIPE\tapsrv
+            case TRP_remotesp_UUID: // \PIPE\tapsrv
+            case TSRAP_UUID: // \PIPE\TlntSvr
+            case WDSC_UUID: // \PIPE\WDSServer
+            case FASP_UUID: // \PIPE\FW_APIs
                 return true;
-            case DRSR_drsuapi_UUID:
-            case DRSR_dsaop_UUID:
-            case FRS1_frsrpc_UUID:
-            case FRS1_NtFrsApi_UUID:
-            case FRS2_UUID:
+            // Protocols that do not support named pipes (TCP/IP or HTTP only):
+            case CMPO_UUID: // MS-CMPO: TCP/IP only
+            case LREC_UUID: // MS-LREC: TCP/IP only
+            case MQMR_UUID: // MS-MQMR: TCP/IP only
+            case MQQP_UUID: // MS-MQQP: TCP/IP only
+            case MQRR_UUID: // MS-MQRR: TCP/IP only
+            case OCSPA_UUID: // MS-OCSPA: TCP/IP only
+            case PCQ_UUID: // MS-PCQ: TCP/IP only
+            case TSGU_UUID: // MS-TSGU: HTTP/RPC only
+            case DRSR_drsuapi_UUID: // MS-DRSR: TCP/IP only
+            case DRSR_dsaop_UUID: // MS-DRSR: TCP/IP only
+            case FRS1_frsrpc_UUID: // MS-FRS1: TCP/IP only
+            case FRS1_NtFrsApi_UUID: // MS-FRS1: TCP/IP only
+            case FRS2_UUID: // MS-FRS2: TCP/IP only
+                return false;
             default:
-                // We either do not know the protocol or it does not use named pipes.
+                // We do not know the protocol
                 return false;
         }
     }
@@ -494,7 +519,7 @@ public static partial class WellKnownProtocolTranslator
             PLA_ITraceDataProviderCollection_UUID => "MS-PLA (ITraceDataProviderCollection)",
             PLA_IFolderAction_UUID => "MS-PLA (IFolderAction)",
             PLA_IValueMapItem_UUID => "MS-PLA (IValueMapItem)",
-            PLA_03837541_UUID => "MS-PLA (03837541)",
+            PLA_IDataManager_UUID => "MS-PLA (IDataManager)",
             PLA_IFolderActionCollection_UUID => "MS-PLA (IFolderActionCollection)",
             PLA_IDataCollectorSetCollection_UUID => "MS-PLA (IDataCollectorSetCollection)",
             PLA_ISchedule_UUID => "MS-PLA (ISchedule)",
@@ -1303,15 +1328,601 @@ public static partial class WellKnownProtocolTranslator
             // MS-WCCE (ICertRequestD)
             (WCCE_ICertRequestD_UUID, Request) => nameof(Request),
             (WCCE_ICertRequestD_UUID, GetCACert) => nameof(GetCACert),
-            (WCCE_ICertRequestD_UUID, Ping) => nameof(Ping),
+            (WCCE_ICertRequestD_UUID, WCCE_Ping) => "Ping",
             // MS-WCCE (ICertRequestD2)
             (WCCE_ICertRequestD2_UUID, Request) => nameof(Request),
             (WCCE_ICertRequestD2_UUID, GetCACert) => nameof(GetCACert),
-            (WCCE_ICertRequestD2_UUID, Ping) => nameof(Ping),
+            (WCCE_ICertRequestD2_UUID, WCCE_Ping) => "Ping",
             (WCCE_ICertRequestD2_UUID, Request2) => nameof(Request2),
             (WCCE_ICertRequestD2_UUID, GetCAProperty) => nameof(GetCAProperty),
             (WCCE_ICertRequestD2_UUID, GetCAPropertyInfo) => nameof(GetCAPropertyInfo),
-            (WCCE_ICertRequestD2_UUID, Ping2) => nameof(Ping2),
+            (WCCE_ICertRequestD2_UUID, WCCE_Ping2) => "Ping2",
+            // MS-CSRA (ICertAdminD)
+            (CSRA_ICertAdminD_UUID, ICertAdminD_SetExtension) => "SetExtension",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_SetAttributes) => "SetAttributes",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_ResubmitRequest) => "ResubmitRequest",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_DenyRequest) => "DenyRequest",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_IsValidCertificate) => "IsValidCertificate",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_PublishCRL) => "PublishCRL",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_GetCRL) => "GetCRL",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_RevokeCertificate) => "RevokeCertificate",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_EnumViewColumn) => "EnumViewColumn",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_GetViewDefaultColumnSet) => "GetViewDefaultColumnSet",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_EnumAttributesOrExtensions) => "EnumAttributesOrExtensions",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_OpenView) => "OpenView",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_EnumView) => "EnumView",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_CloseView) => "CloseView",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_ServerControl) => "ServerControl",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_Ping) => "Ping",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_GetServerState) => "GetServerState",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupPrepare) => "BackupPrepare",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupEnd) => "BackupEnd",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupGetAttachmentInformation) => "BackupGetAttachmentInformation",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupGetBackupLogs) => "BackupGetBackupLogs",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupOpenFile) => "BackupOpenFile",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupReadFile) => "BackupReadFile",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupCloseFile) => "BackupCloseFile",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupTruncateLogs) => "BackupTruncateLogs",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_ImportCertificate) => "ImportCertificate",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_BackupGetDynamicFiles) => "BackupGetDynamicFiles",
+            (CSRA_ICertAdminD_UUID, ICertAdminD_RestoreGetDatabaseLocations) => "RestoreGetDatabaseLocations",
+            // MS-CSRA (ICertAdminD2)
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_SetExtension) => "SetExtension",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_SetAttributes) => "SetAttributes",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_ResubmitRequest) => "ResubmitRequest",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_DenyRequest) => "DenyRequest",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_IsValidCertificate) => "IsValidCertificate",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_PublishCRL) => "PublishCRL",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_GetCRL) => "GetCRL",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_RevokeCertificate) => "RevokeCertificate",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_EnumViewColumn) => "EnumViewColumn",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_GetViewDefaultColumnSet) => "GetViewDefaultColumnSet",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_EnumAttributesOrExtensions) => "EnumAttributesOrExtensions",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_OpenView) => "OpenView",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_EnumView) => "EnumView",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_CloseView) => "CloseView",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_ServerControl) => "ServerControl",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_Ping) => "Ping",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_GetServerState) => "GetServerState",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupPrepare) => "BackupPrepare",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupEnd) => "BackupEnd",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupGetAttachmentInformation) => "BackupGetAttachmentInformation",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupGetBackupLogs) => "BackupGetBackupLogs",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupOpenFile) => "BackupOpenFile",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupReadFile) => "BackupReadFile",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupCloseFile) => "BackupCloseFile",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupTruncateLogs) => "BackupTruncateLogs",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_ImportCertificate) => "ImportCertificate",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_BackupGetDynamicFiles) => "BackupGetDynamicFiles",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD_RestoreGetDatabaseLocations) => "RestoreGetDatabaseLocations",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_PublishCRLs) => "PublishCRLs",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetCAProperty) => "GetCAProperty",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_SetCAProperty) => "SetCAProperty",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetCAPropertyInfo) => "GetCAPropertyInfo",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_EnumViewColumnTable) => "EnumViewColumnTable",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetCASecurity) => "GetCASecurity",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_SetCASecurity) => "SetCASecurity",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_Ping2) => "Ping2",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetArchivedKey) => "GetArchivedKey",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetAuditFilter) => "GetAuditFilter",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_SetAuditFilter) => "SetAuditFilter",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetOfficerRights) => "GetOfficerRights",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_SetOfficerRights) => "SetOfficerRights",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetConfigEntry) => "GetConfigEntry",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_SetConfigEntry) => "SetConfigEntry",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_ImportKey) => "ImportKey",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_GetMyRoles) => "GetMyRoles",
+            (CSRA_ICertAdminD2_UUID, ICertAdminD2_DeleteRow) => "DeleteRow",
+            // MS-ICPR
+            (ICPR_UUID, CertServerRequest) => nameof(CertServerRequest),
+            // MS-DNSP
+            (DNSP_UUID, R_DnssrvOperation) => nameof(R_DnssrvOperation),
+            (DNSP_UUID, R_DnssrvQuery) => nameof(R_DnssrvQuery),
+            (DNSP_UUID, R_DnssrvComplexOperation) => nameof(R_DnssrvComplexOperation),
+            (DNSP_UUID, R_DnssrvEnumRecords) => nameof(R_DnssrvEnumRecords),
+            (DNSP_UUID, R_DnssrvUpdateRecord) => nameof(R_DnssrvUpdateRecord),
+            (DNSP_UUID, R_DnssrvOperation2) => nameof(R_DnssrvOperation2),
+            (DNSP_UUID, R_DnssrvQuery2) => nameof(R_DnssrvQuery2),
+            (DNSP_UUID, R_DnssrvComplexOperation2) => nameof(R_DnssrvComplexOperation2),
+            (DNSP_UUID, R_DnssrvEnumRecords2) => nameof(R_DnssrvEnumRecords2),
+            (DNSP_UUID, R_DnssrvUpdateRecord2) => nameof(R_DnssrvUpdateRecord2),
+            (DNSP_UUID, R_DnssrvUpdateRecord3) => nameof(R_DnssrvUpdateRecord3),
+            (DNSP_UUID, R_DnssrvEnumRecords3) => nameof(R_DnssrvEnumRecords3),
+            (DNSP_UUID, R_DnssrvOperation3) => nameof(R_DnssrvOperation3),
+            (DNSP_UUID, R_DnssrvQuery3) => nameof(R_DnssrvQuery3),
+            (DNSP_UUID, R_DnssrvComplexOperation3) => nameof(R_DnssrvComplexOperation3),
+            (DNSP_UUID, R_DnssrvOperation4) => nameof(R_DnssrvOperation4),
+            (DNSP_UUID, R_DnssrvQuery4) => nameof(R_DnssrvQuery4),
+            (DNSP_UUID, R_DnssrvUpdateRecord4) => nameof(R_DnssrvUpdateRecord4),
+            (DNSP_UUID, R_DnssrvEnumRecords4) => nameof(R_DnssrvEnumRecords4),
+            // MS-RSP (InitShutdown)
+            (RSP_InitShutdown_UUID, BaseInitiateShutdown) => nameof(BaseInitiateShutdown),
+            (RSP_InitShutdown_UUID, BaseAbortShutdown) => nameof(BaseAbortShutdown),
+            (RSP_InitShutdown_UUID, BaseInitiateShutdownEx) => nameof(BaseInitiateShutdownEx),
+            // MS-RSP (WindowsShutdown)
+            (RSP_WindowsShutdown_UUID, WsdrInitiateShutdown) => nameof(WsdrInitiateShutdown),
+            (RSP_WindowsShutdown_UUID, WsdrAbortShutdown) => nameof(WsdrAbortShutdown),
+            // MS-RSP (WinReg shutdown methods)
+            (RRP_UUID, BaseInitiateSystemShutdown) => nameof(BaseInitiateSystemShutdown),
+            (RRP_UUID, BaseAbortSystemShutdown) => nameof(BaseAbortSystemShutdown),
+            (RRP_UUID, BaseInitiateSystemShutdownEx) => nameof(BaseInitiateSystemShutdownEx),
+            // MS-W32T
+            (W32T_UUID, W32TimeSync) => nameof(W32TimeSync),
+            (W32T_UUID, W32TimeGetNetlogonServiceBits) => nameof(W32TimeGetNetlogonServiceBits),
+            (W32T_UUID, W32TimeQueryProviderStatus) => nameof(W32TimeQueryProviderStatus),
+            (W32T_UUID, W32TimeQuerySource) => nameof(W32TimeQuerySource),
+            (W32T_UUID, W32TimeQueryProviderConfiguration) => nameof(W32TimeQueryProviderConfiguration),
+            (W32T_UUID, W32TimeQueryConfiguration) => nameof(W32TimeQueryConfiguration),
+            (W32T_UUID, W32TimeQueryStatus) => nameof(W32TimeQueryStatus),
+            (W32T_UUID, W32TimeLog) => nameof(W32TimeLog),
+            // MS-DHCPM (dhcpsrv)
+            (DHCPM_dhcpsrv_UUID, R_DhcpCreateSubnet) => nameof(R_DhcpCreateSubnet),
+            (DHCPM_dhcpsrv_UUID, R_DhcpSetSubnetInfo) => nameof(R_DhcpSetSubnetInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetSubnetInfo) => nameof(R_DhcpGetSubnetInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpEnumSubnets) => nameof(R_DhcpEnumSubnets),
+            (DHCPM_dhcpsrv_UUID, R_DhcpAddSubnetElement) => nameof(R_DhcpAddSubnetElement),
+            (DHCPM_dhcpsrv_UUID, R_DhcpEnumSubnetElements) => nameof(R_DhcpEnumSubnetElements),
+            (DHCPM_dhcpsrv_UUID, R_DhcpRemoveSubnetElement) => nameof(R_DhcpRemoveSubnetElement),
+            (DHCPM_dhcpsrv_UUID, R_DhcpDeleteSubnet) => nameof(R_DhcpDeleteSubnet),
+            (DHCPM_dhcpsrv_UUID, R_DhcpCreateOption) => nameof(R_DhcpCreateOption),
+            (DHCPM_dhcpsrv_UUID, R_DhcpSetOptionInfo) => nameof(R_DhcpSetOptionInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetOptionInfo) => nameof(R_DhcpGetOptionInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpRemoveOption) => nameof(R_DhcpRemoveOption),
+            (DHCPM_dhcpsrv_UUID, R_DhcpSetOptionValue) => nameof(R_DhcpSetOptionValue),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetOptionValue) => nameof(R_DhcpGetOptionValue),
+            (DHCPM_dhcpsrv_UUID, R_DhcpEnumOptionValues) => nameof(R_DhcpEnumOptionValues),
+            (DHCPM_dhcpsrv_UUID, R_DhcpRemoveOptionValue) => nameof(R_DhcpRemoveOptionValue),
+            (DHCPM_dhcpsrv_UUID, R_DhcpCreateClientInfo) => nameof(R_DhcpCreateClientInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpSetClientInfo) => nameof(R_DhcpSetClientInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetClientInfo) => nameof(R_DhcpGetClientInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpDeleteClientInfo) => nameof(R_DhcpDeleteClientInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpEnumSubnetClients) => nameof(R_DhcpEnumSubnetClients),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetClientOptions) => nameof(R_DhcpGetClientOptions),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetMibInfo) => nameof(R_DhcpGetMibInfo),
+            (DHCPM_dhcpsrv_UUID, R_DhcpEnumOptions) => nameof(R_DhcpEnumOptions),
+            (DHCPM_dhcpsrv_UUID, R_DhcpSetOptionValues) => nameof(R_DhcpSetOptionValues),
+            (DHCPM_dhcpsrv_UUID, R_DhcpServerSetConfig) => nameof(R_DhcpServerSetConfig),
+            (DHCPM_dhcpsrv_UUID, R_DhcpServerGetConfig) => nameof(R_DhcpServerGetConfig),
+            (DHCPM_dhcpsrv_UUID, R_DhcpScanDatabase) => nameof(R_DhcpScanDatabase),
+            (DHCPM_dhcpsrv_UUID, R_DhcpGetVersion) => nameof(R_DhcpGetVersion),
+            // MS-DHCPM (dhcpsrv2)
+            (DHCPM_dhcpsrv2_UUID, R_DhcpEnumSubnetClientsV5) => nameof(R_DhcpEnumSubnetClientsV5),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpSetMScopeInfo) => nameof(R_DhcpSetMScopeInfo),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpGetMScopeInfo) => nameof(R_DhcpGetMScopeInfo),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpEnumMScopes) => nameof(R_DhcpEnumMScopes),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpCreateSubnetV6) => nameof(R_DhcpCreateSubnetV6),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpEnumSubnetsV6) => nameof(R_DhcpEnumSubnetsV6),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4FailoverCreateRelationship) => nameof(R_DhcpV4FailoverCreateRelationship),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4FailoverDeleteRelationship) => nameof(R_DhcpV4FailoverDeleteRelationship),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4CreatePolicy) => nameof(R_DhcpV4CreatePolicy),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4GetPolicy) => nameof(R_DhcpV4GetPolicy),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4SetPolicy) => nameof(R_DhcpV4SetPolicy),
+            (DHCPM_dhcpsrv2_UUID, R_DhcpV4DeletePolicy) => nameof(R_DhcpV4DeletePolicy),
+            // MS-FAX
+            (FAX_sharedfax_UUID, FAX_GetServicePrinters) => nameof(FAX_GetServicePrinters),
+            (FAX_sharedfax_UUID, FAX_ConnectionRefCount) => nameof(FAX_ConnectionRefCount),
+            (FAX_sharedfax_UUID, FAX_OpenPort) => nameof(FAX_OpenPort),
+            (FAX_sharedfax_UUID, FAX_ClosePort) => nameof(FAX_ClosePort),
+            (FAX_sharedfax_UUID, FAX_EnumJobs) => nameof(FAX_EnumJobs),
+            (FAX_sharedfax_UUID, FAX_GetJob) => nameof(FAX_GetJob),
+            (FAX_sharedfax_UUID, FAX_SetJob) => nameof(FAX_SetJob),
+            (FAX_sharedfax_UUID, FAX_GetPageData) => nameof(FAX_GetPageData),
+            (FAX_sharedfax_UUID, FAX_GetDeviceStatus) => nameof(FAX_GetDeviceStatus),
+            (FAX_sharedfax_UUID, FAX_Abort) => nameof(FAX_Abort),
+            (FAX_sharedfax_UUID, FAX_EnumPorts) => nameof(FAX_EnumPorts),
+            (FAX_sharedfax_UUID, FAX_GetPort) => nameof(FAX_GetPort),
+            (FAX_sharedfax_UUID, FAX_SetPort) => nameof(FAX_SetPort),
+            (FAX_sharedfax_UUID, FAX_EnumRoutingMethods) => nameof(FAX_EnumRoutingMethods),
+            (FAX_sharedfax_UUID, FAX_EnableRoutingMethod) => nameof(FAX_EnableRoutingMethod),
+            (FAX_sharedfax_UUID, FAX_GetRoutingInfo) => nameof(FAX_GetRoutingInfo),
+            (FAX_sharedfax_UUID, FAX_SetRoutingInfo) => nameof(FAX_SetRoutingInfo),
+            (FAX_sharedfax_UUID, FAX_SendDocumentEx) => nameof(FAX_SendDocumentEx),
+            (FAX_sharedfax_UUID, FAX_GetConfiguration) => nameof(FAX_GetConfiguration),
+            (FAX_sharedfax_UUID, FAX_SetConfiguration) => nameof(FAX_SetConfiguration),
+            (FAX_sharedfax_UUID, FAX_GetSecurity) => nameof(FAX_GetSecurity),
+            (FAX_sharedfax_UUID, FAX_SetSecurity) => nameof(FAX_SetSecurity),
+            (FAX_sharedfax_UUID, FAX_ConnectFaxServer) => nameof(FAX_ConnectFaxServer),
+            // MS-FRS2
+            (FRS2_UUID, CheckConnectivity) => nameof(CheckConnectivity),
+            (FRS2_UUID, EstablishConnection) => nameof(EstablishConnection),
+            (FRS2_UUID, EstablishSession) => nameof(EstablishSession),
+            (FRS2_UUID, RequestUpdates) => nameof(RequestUpdates),
+            (FRS2_UUID, RequestVersionVector) => nameof(RequestVersionVector),
+            (FRS2_UUID, AsyncPoll) => nameof(AsyncPoll),
+            (FRS2_UUID, RequestRecords) => nameof(RequestRecords),
+            (FRS2_UUID, UpdateCancel) => nameof(UpdateCancel),
+            (FRS2_UUID, RawGetFileData) => nameof(RawGetFileData),
+            (FRS2_UUID, RdcGetSignatures) => nameof(RdcGetSignatures),
+            (FRS2_UUID, RdcPushSourceNeeds) => nameof(RdcPushSourceNeeds),
+            (FRS2_UUID, RdcGetFileData) => nameof(RdcGetFileData),
+            (FRS2_UUID, RdcClose) => nameof(RdcClose),
+            (FRS2_UUID, InitializeFileTransferAsync) => nameof(InitializeFileTransferAsync),
+            (FRS2_UUID, RawGetFileDataAsync) => nameof(RawGetFileDataAsync),
+            (FRS2_UUID, RdcGetFileDataAsync) => nameof(RdcGetFileDataAsync),
+            (FRS2_UUID, RdcFileDataTransferKeepAlive) => nameof(RdcFileDataTransferKeepAlive),
+            // MS-NSPI
+            (NSPI_UUID, NspiBind) => nameof(NspiBind),
+            (NSPI_UUID, NspiUnbind) => nameof(NspiUnbind),
+            (NSPI_UUID, NspiUpdateStat) => nameof(NspiUpdateStat),
+            (NSPI_UUID, NspiQueryRows) => nameof(NspiQueryRows),
+            (NSPI_UUID, NspiSeekEntries) => nameof(NspiSeekEntries),
+            (NSPI_UUID, NspiGetMatches) => nameof(NspiGetMatches),
+            (NSPI_UUID, NspiResortRestriction) => nameof(NspiResortRestriction),
+            (NSPI_UUID, NspiDNToMId) => nameof(NspiDNToMId),
+            (NSPI_UUID, NspiGetPropList) => nameof(NspiGetPropList),
+            (NSPI_UUID, NspiGetProps) => nameof(NspiGetProps),
+            (NSPI_UUID, NspiCompareMIds) => nameof(NspiCompareMIds),
+            (NSPI_UUID, NspiModProps) => nameof(NspiModProps),
+            (NSPI_UUID, NspiGetSpecialTable) => nameof(NspiGetSpecialTable),
+            (NSPI_UUID, NspiGetTemplateInfo) => nameof(NspiGetTemplateInfo),
+            (NSPI_UUID, NspiModLinkAtt) => nameof(NspiModLinkAtt),
+            (NSPI_UUID, NspiQueryColumns) => nameof(NspiQueryColumns),
+            (NSPI_UUID, NspiGetNamesFromIDs) => nameof(NspiGetNamesFromIDs),
+            (NSPI_UUID, NspiGetIDsFromNames) => nameof(NspiGetIDsFromNames),
+            (NSPI_UUID, NspiResolveNames) => nameof(NspiResolveNames),
+            (NSPI_UUID, NspiResolveNamesW) => nameof(NspiResolveNamesW),
+            // MS-SWN
+            (SWN_UUID, WitnessrGetInterfaceList) => nameof(WitnessrGetInterfaceList),
+            (SWN_UUID, WitnessrRegister) => nameof(WitnessrRegister),
+            (SWN_UUID, WitnessrUnRegister) => nameof(WitnessrUnRegister),
+            (SWN_UUID, WitnessrAsyncNotify) => nameof(WitnessrAsyncNotify),
+            (SWN_UUID, WitnessrRegisterEx) => nameof(WitnessrRegisterEx),
+            (SWN_UUID, WitnessrUnRegisterEx) => nameof(WitnessrUnRegisterEx),
+            // MS-CMPO (IXnRemote)
+            (CMPO_UUID, IXnRemote_Poke) => "Poke",
+            (CMPO_UUID, IXnRemote_BuildContext) => "BuildContext",
+            (CMPO_UUID, IXnRemote_NegotiateResources) => "NegotiateResources",
+            (CMPO_UUID, IXnRemote_SendReceive) => "SendReceive",
+            (CMPO_UUID, IXnRemote_TearDownContext) => "TearDownContext",
+            (CMPO_UUID, IXnRemote_BeginTearDown) => "BeginTearDown",
+            (CMPO_UUID, IXnRemote_PokeW) => "PokeW",
+            (CMPO_UUID, IXnRemote_BuildContextW) => "BuildContextW",
+            // MS-DLTM
+            (DLTM_UUID, LnkSvrMessage) => nameof(LnkSvrMessage),
+            (DLTM_UUID, LnkSvrMessageCallback) => nameof(LnkSvrMessageCallback),
+            // MS-DLTW
+            (DLTW_UUID, LnkSearchMachine) => nameof(LnkSearchMachine),
+            // MS-FRS1 (NtFrsApi)
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_StartPromotionParent) => nameof(NtFrsApi_Rpc_StartPromotionParent),
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_PromotionStatusW) => nameof(NtFrsApi_Rpc_PromotionStatusW),
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_WriterCommand) => nameof(NtFrsApi_Rpc_WriterCommand),
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_Set_DsPollingIntervalW) => nameof(NtFrsApi_Rpc_Set_DsPollingIntervalW),
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_Get_DsPollingIntervalW) => nameof(NtFrsApi_Rpc_Get_DsPollingIntervalW),
+            (FRS1_NtFrsApi_UUID, NtFrsApi_Rpc_InfoW) => nameof(NtFrsApi_Rpc_InfoW),
+            // MS-FRS1 (frsrpc)
+            (FRS1_frsrpc_UUID, FrsRpcSendCommPkt) => nameof(FrsRpcSendCommPkt),
+            (FRS1_frsrpc_UUID, FrsRpcVerifyPromotionParent) => nameof(FrsRpcVerifyPromotionParent),
+            (FRS1_frsrpc_UUID, FrsRpcStartPromotionParent) => nameof(FrsRpcStartPromotionParent),
+            (FRS1_frsrpc_UUID, FrsNOP) => nameof(FrsNOP),
+            // MS-IRP
+            (IRP_UUID, R_InetInfoGetVersion) => nameof(R_InetInfoGetVersion),
+            (IRP_UUID, R_InetInfoGetAdminInformation) => nameof(R_InetInfoGetAdminInformation),
+            (IRP_UUID, R_InetInfoGetSites) => nameof(R_InetInfoGetSites),
+            (IRP_UUID, R_InetInfoSetAdminInformation) => nameof(R_InetInfoSetAdminInformation),
+            (IRP_UUID, R_InetInfoGetGlobalAdminInformation) => nameof(R_InetInfoGetGlobalAdminInformation),
+            (IRP_UUID, R_InetInfoSetGlobalAdminInformation) => nameof(R_InetInfoSetGlobalAdminInformation),
+            (IRP_UUID, R_InetInfoQueryStatistics) => nameof(R_InetInfoQueryStatistics),
+            (IRP_UUID, R_InetInfoClearStatistics) => nameof(R_InetInfoClearStatistics),
+            (IRP_UUID, R_InetInfoFlushMemoryCache) => nameof(R_InetInfoFlushMemoryCache),
+            (IRP_UUID, R_InetInfoGetServerCapabilities) => nameof(R_InetInfoGetServerCapabilities),
+            (IRP_UUID, R_W3QueryStatistics2) => nameof(R_W3QueryStatistics2),
+            (IRP_UUID, R_W3ClearStatistics2) => nameof(R_W3ClearStatistics2),
+            (IRP_UUID, R_FtpQueryStatistics2) => nameof(R_FtpQueryStatistics2),
+            (IRP_UUID, R_FtpClearStatistics2) => nameof(R_FtpClearStatistics2),
+            (IRP_UUID, R_IISEnumerateUsers) => nameof(R_IISEnumerateUsers),
+            (IRP_UUID, R_IISDisconnectUser) => nameof(R_IISDisconnectUser),
+            // MS-LREC
+            (LREC_UUID, RpcNetEventOpenSession) => nameof(RpcNetEventOpenSession),
+            (LREC_UUID, RpcNetEventReceiveData) => nameof(RpcNetEventReceiveData),
+            (LREC_UUID, RpcNetEventCloseSession) => nameof(RpcNetEventCloseSession),
+            // MS-MQDS (dscomm)
+            (MQDS_dscomm_UUID, S_DSCreateObject) => nameof(S_DSCreateObject),
+            (MQDS_dscomm_UUID, S_DSDeleteObject) => nameof(S_DSDeleteObject),
+            (MQDS_dscomm_UUID, S_DSGetProps) => nameof(S_DSGetProps),
+            (MQDS_dscomm_UUID, S_DSSetProps) => nameof(S_DSSetProps),
+            (MQDS_dscomm_UUID, S_DSGetObjectSecurity) => nameof(S_DSGetObjectSecurity),
+            (MQDS_dscomm_UUID, S_DSSetObjectSecurity) => nameof(S_DSSetObjectSecurity),
+            (MQDS_dscomm_UUID, S_DSLookupBegin) => nameof(S_DSLookupBegin),
+            (MQDS_dscomm_UUID, S_DSLookupNext) => nameof(S_DSLookupNext),
+            (MQDS_dscomm_UUID, S_DSLookupEnd) => nameof(S_DSLookupEnd),
+            (MQDS_dscomm_UUID, S_DSDeleteObjectGuid) => nameof(S_DSDeleteObjectGuid),
+            (MQDS_dscomm_UUID, S_DSGetPropsGuid) => nameof(S_DSGetPropsGuid),
+            (MQDS_dscomm_UUID, S_DSSetPropsGuid) => nameof(S_DSSetPropsGuid),
+            (MQDS_dscomm_UUID, S_DSGetObjectSecurityGuid) => nameof(S_DSGetObjectSecurityGuid),
+            (MQDS_dscomm_UUID, S_DSSetObjectSecurityGuid) => nameof(S_DSSetObjectSecurityGuid),
+            (MQDS_dscomm_UUID, S_DSQMSetMachineProperties) => nameof(S_DSQMSetMachineProperties),
+            (MQDS_dscomm_UUID, S_DSCreateServersCache) => nameof(S_DSCreateServersCache),
+            (MQDS_dscomm_UUID, S_DSQMGetObjectSecurity) => nameof(S_DSQMGetObjectSecurity),
+            (MQDS_dscomm_UUID, S_DSValidateServer) => nameof(S_DSValidateServer),
+            (MQDS_dscomm_UUID, S_DSCloseServerHandle) => nameof(S_DSCloseServerHandle),
+            (MQDS_dscomm_UUID, S_DSGetServerPort) => nameof(S_DSGetServerPort),
+            // MS-MQMP (qmcomm)
+            (MQMP_qmcomm_UUID, R_QMGetRemoteQueueName) => nameof(R_QMGetRemoteQueueName),
+            (MQMP_qmcomm_UUID, R_QMOpenRemoteQueue) => nameof(R_QMOpenRemoteQueue),
+            (MQMP_qmcomm_UUID, R_QMCloseRemoteQueueContext) => nameof(R_QMCloseRemoteQueueContext),
+            (MQMP_qmcomm_UUID, R_QMCreateRemoteCursor) => nameof(R_QMCreateRemoteCursor),
+            (MQMP_qmcomm_UUID, R_QMCreateObjectInternal) => nameof(R_QMCreateObjectInternal),
+            (MQMP_qmcomm_UUID, R_QMSetObjectSecurityInternal) => nameof(R_QMSetObjectSecurityInternal),
+            (MQMP_qmcomm_UUID, R_QMGetObjectSecurityInternal) => nameof(R_QMGetObjectSecurityInternal),
+            (MQMP_qmcomm_UUID, R_QMDeleteObject) => nameof(R_QMDeleteObject),
+            (MQMP_qmcomm_UUID, R_QMGetObjectProperties) => nameof(R_QMGetObjectProperties),
+            (MQMP_qmcomm_UUID, R_QMSetObjectProperties) => nameof(R_QMSetObjectProperties),
+            (MQMP_qmcomm_UUID, R_QMObjectPathToObjectFormat) => nameof(R_QMObjectPathToObjectFormat),
+            (MQMP_qmcomm_UUID, R_QMGetTmWhereabouts) => nameof(R_QMGetTmWhereabouts),
+            (MQMP_qmcomm_UUID, R_QMEnlistTransaction) => nameof(R_QMEnlistTransaction),
+            (MQMP_qmcomm_UUID, R_QMEnlistInternalTransaction) => nameof(R_QMEnlistInternalTransaction),
+            (MQMP_qmcomm_UUID, R_QMCommitTransaction) => nameof(R_QMCommitTransaction),
+            (MQMP_qmcomm_UUID, R_QMAbortTransaction) => nameof(R_QMAbortTransaction),
+            (MQMP_qmcomm_UUID, rpc_QMOpenQueueInternal) => nameof(rpc_QMOpenQueueInternal),
+            (MQMP_qmcomm_UUID, rpc_ACCloseHandle) => nameof(rpc_ACCloseHandle),
+            (MQMP_qmcomm_UUID, rpc_ACSetCursorProperties) => nameof(rpc_ACSetCursorProperties),
+            (MQMP_qmcomm_UUID, rpc_ACHandleToFormatName) => nameof(rpc_ACHandleToFormatName),
+            (MQMP_qmcomm_UUID, rpc_ACPurgeQueue) => nameof(rpc_ACPurgeQueue),
+            (MQMP_qmcomm_UUID, R_QMQueryQMRegistryInternal) => nameof(R_QMQueryQMRegistryInternal),
+            (MQMP_qmcomm_UUID, R_QMGetRTQMServerPort) => nameof(R_QMGetRTQMServerPort),
+            (MQMP_qmcomm_UUID, R_QMAttachProcess) => nameof(R_QMAttachProcess),
+            (MQMP_qmcomm_UUID, R_QMGetSecurityContext) => nameof(R_QMGetSecurityContext),
+            (MQMP_qmcomm_UUID, R_QMOpenRemoteQueue2) => nameof(R_QMOpenRemoteQueue2),
+            (MQMP_qmcomm_UUID, R_QMCreateRemoteCursor2) => nameof(R_QMCreateRemoteCursor2),
+            (MQMP_qmcomm_UUID, R_QMSetCursorProperties2) => nameof(R_QMSetCursorProperties2),
+            (MQMP_qmcomm_UUID, rpc_ACSetCursorProperties2) => nameof(rpc_ACSetCursorProperties2),
+            (MQMP_qmcomm_UUID, rpc_ACSendMessage) => nameof(rpc_ACSendMessage),
+            (MQMP_qmcomm_UUID, rpc_ACReceiveMessage) => nameof(rpc_ACReceiveMessage),
+            // MS-MQMP (qmcomm2)
+            (MQMP_qmcomm2_UUID, QMSendMessageInternalEx) => nameof(QMSendMessageInternalEx),
+            (MQMP_qmcomm2_UUID, rpc_ACSendMessageEx) => nameof(rpc_ACSendMessageEx),
+            (MQMP_qmcomm2_UUID, rpc_ACReceiveMessageEx) => nameof(rpc_ACReceiveMessageEx),
+            (MQMP_qmcomm2_UUID, rpc_ACCreateCursorEx) => nameof(rpc_ACCreateCursorEx),
+            // MS-MQMR (qmmgmt)
+            (MQMR_UUID, R_QMMgmtGetInfo) => nameof(R_QMMgmtGetInfo),
+            (MQMR_UUID, R_QMMgmtAction) => nameof(R_QMMgmtAction),
+            // MS-MQQP (qm2qm)
+            (MQQP_UUID, RemoteQMStartReceive) => nameof(RemoteQMStartReceive),
+            (MQQP_UUID, RemoteQMEndReceive) => nameof(RemoteQMEndReceive),
+            (MQQP_UUID, RemoteQMOpenQueue) => nameof(RemoteQMOpenQueue),
+            (MQQP_UUID, RemoteQMCloseQueue) => nameof(RemoteQMCloseQueue),
+            (MQQP_UUID, RemoteQMCloseCursor) => nameof(RemoteQMCloseCursor),
+            (MQQP_UUID, RemoteQMCancelReceive) => nameof(RemoteQMCancelReceive),
+            (MQQP_UUID, RemoteQMPurgeQueue) => nameof(RemoteQMPurgeQueue),
+            (MQQP_UUID, RemoteQMGetQMQMServerPort) => nameof(RemoteQMGetQMQMServerPort),
+            (MQQP_UUID, RemoteQMStartReceive2) => nameof(RemoteQMStartReceive2),
+            (MQQP_UUID, RemoteQMStartReceiveByLookupId) => nameof(RemoteQMStartReceiveByLookupId),
+            (MQQP_UUID, RemoteQMStartReceiveByLookupId2) => nameof(RemoteQMStartReceiveByLookupId2),
+            // MS-MQRR (RemoteRead)
+            (MQRR_UUID, R_GetServerPort) => nameof(R_GetServerPort),
+            (MQRR_UUID, R_OpenQueue) => nameof(R_OpenQueue),
+            (MQRR_UUID, R_CloseQueue) => nameof(R_CloseQueue),
+            (MQRR_UUID, R_CreateCursor) => nameof(R_CreateCursor),
+            (MQRR_UUID, R_CloseCursor) => nameof(R_CloseCursor),
+            (MQRR_UUID, R_PurgeQueue) => nameof(R_PurgeQueue),
+            (MQRR_UUID, R_StartReceive) => nameof(R_StartReceive),
+            (MQRR_UUID, R_CancelReceive) => nameof(R_CancelReceive),
+            (MQRR_UUID, R_EndReceive) => nameof(R_EndReceive),
+            (MQRR_UUID, R_MoveMessage) => nameof(R_MoveMessage),
+            (MQRR_UUID, R_StartTransactionalReceive) => nameof(R_StartTransactionalReceive),
+            (MQRR_UUID, R_SetUserAcknowledgementClass) => nameof(R_SetUserAcknowledgementClass),
+            (MQRR_UUID, R_EndTransactionalReceive) => nameof(R_EndTransactionalReceive),
+            // MS-MSRP (msgsvc)
+            (MSRP_msgsvc_UUID, NetrMessageNameAdd) => nameof(NetrMessageNameAdd),
+            (MSRP_msgsvc_UUID, NetrMessageNameEnum) => nameof(NetrMessageNameEnum),
+            (MSRP_msgsvc_UUID, NetrMessageNameGetInfo) => nameof(NetrMessageNameGetInfo),
+            (MSRP_msgsvc_UUID, NetrMessageNameDel) => nameof(NetrMessageNameDel),
+            // MS-MSRP (msgsvcsend)
+            (MSRP_msgsvcsend_UUID, NetrSendMessage) => nameof(NetrSendMessage),
+            // MS-OCSPA (IOCSPAdminD)
+            (OCSPA_UUID, GetOCSPProperty) => nameof(GetOCSPProperty),
+            (OCSPA_UUID, SetOCSPProperty) => nameof(SetOCSPProperty),
+            (OCSPA_UUID, GetCAConfigInformation) => nameof(GetCAConfigInformation),
+            (OCSPA_UUID, SetCAConfigInformation) => nameof(SetCAConfigInformation),
+            (OCSPA_UUID, OCSPA_GetSecurity) => "GetSecurity",
+            (OCSPA_UUID, OCSPA_SetSecurity) => "SetSecurity",
+            (OCSPA_UUID, GetSigningCertificates) => nameof(GetSigningCertificates),
+            (OCSPA_UUID, GetHashAlgorithms) => nameof(GetHashAlgorithms),
+            (OCSPA_UUID, GetMyRoles) => nameof(GetMyRoles),
+            (OCSPA_UUID, OCSPA_Ping) => "Ping",
+            // MS-PCQ (PerflibV2)
+            (PCQ_UUID, PerflibV2EnumerateCounterSet) => nameof(PerflibV2EnumerateCounterSet),
+            (PCQ_UUID, PerflibV2QueryCounterSetRegistrationInfo) => nameof(PerflibV2QueryCounterSetRegistrationInfo),
+            (PCQ_UUID, PerflibV2EnumerateCounterSetInstances) => nameof(PerflibV2EnumerateCounterSetInstances),
+            (PCQ_UUID, PerflibV2OpenQueryHandle) => nameof(PerflibV2OpenQueryHandle),
+            (PCQ_UUID, PerflibV2CloseQueryHandle) => nameof(PerflibV2CloseQueryHandle),
+            (PCQ_UUID, PerflibV2QueryCounterInfo) => nameof(PerflibV2QueryCounterInfo),
+            (PCQ_UUID, PerflibV2QueryCounterData) => nameof(PerflibV2QueryCounterData),
+            (PCQ_UUID, PerflibV2ValidateCounters) => nameof(PerflibV2ValidateCounters),
+            // MS-RAA (authzr)
+            (RAA_UUID, AuthzrFreeContext) => nameof(AuthzrFreeContext),
+            (RAA_UUID, AuthzrInitializeContextFromSid) => nameof(AuthzrInitializeContextFromSid),
+            (RAA_UUID, AuthzrInitializeCompoundContext) => nameof(AuthzrInitializeCompoundContext),
+            (RAA_UUID, AuthzrAccessCheck) => nameof(AuthzrAccessCheck),
+            (RAA_UUID, AuthzGetInformationFromContext) => nameof(AuthzGetInformationFromContext),
+            (RAA_UUID, AuthzrModifyClaims) => nameof(AuthzrModifyClaims),
+            (RAA_UUID, AuthzrModifySids) => nameof(AuthzrModifySids),
+            // MS-RAIW (winsif)
+            (RAIW_winsif_UUID, R_WinsRecordAction) => nameof(R_WinsRecordAction),
+            (RAIW_winsif_UUID, R_WinsStatus) => nameof(R_WinsStatus),
+            (RAIW_winsif_UUID, R_WinsTrigger) => nameof(R_WinsTrigger),
+            (RAIW_winsif_UUID, R_WinsDoStaticInit) => nameof(R_WinsDoStaticInit),
+            (RAIW_winsif_UUID, R_WinsDoScavenging) => nameof(R_WinsDoScavenging),
+            (RAIW_winsif_UUID, R_WinsGetDbRecs) => nameof(R_WinsGetDbRecs),
+            (RAIW_winsif_UUID, R_WinsTerm) => nameof(R_WinsTerm),
+            (RAIW_winsif_UUID, R_WinsBackup) => nameof(R_WinsBackup),
+            (RAIW_winsif_UUID, R_WinsDelDbRecs) => nameof(R_WinsDelDbRecs),
+            (RAIW_winsif_UUID, R_WinsPullRange) => nameof(R_WinsPullRange),
+            (RAIW_winsif_UUID, R_WinsSetPriorityClass) => nameof(R_WinsSetPriorityClass),
+            (RAIW_winsif_UUID, R_WinsResetCounters) => nameof(R_WinsResetCounters),
+            (RAIW_winsif_UUID, R_WinsWorkerThdUpd) => nameof(R_WinsWorkerThdUpd),
+            (RAIW_winsif_UUID, R_WinsGetNameAndAdd) => nameof(R_WinsGetNameAndAdd),
+            (RAIW_winsif_UUID, R_WinsGetBrowserNames_Old) => nameof(R_WinsGetBrowserNames_Old),
+            (RAIW_winsif_UUID, R_WinsDeleteWins) => nameof(R_WinsDeleteWins),
+            (RAIW_winsif_UUID, R_WinsSetFlags) => nameof(R_WinsSetFlags),
+            (RAIW_winsif_UUID, R_WinsGetBrowserNames) => nameof(R_WinsGetBrowserNames),
+            (RAIW_winsif_UUID, R_WinsGetDbRecsByName) => nameof(R_WinsGetDbRecsByName),
+            (RAIW_winsif_UUID, R_WinsStatusNew) => nameof(R_WinsStatusNew),
+            (RAIW_winsif_UUID, R_WinsStatusWHdl) => nameof(R_WinsStatusWHdl),
+            (RAIW_winsif_UUID, R_WinsDoScavengingNew) => nameof(R_WinsDoScavengingNew),
+            // MS-RAIW (winsi2)
+            (RAIW_winsi2_UUID, R_WinsTombstoneDbRecs) => nameof(R_WinsTombstoneDbRecs),
+            (RAIW_winsi2_UUID, R_WinsCheckAccess) => nameof(R_WinsCheckAccess),
+            // MS-RPCL (LocToLoc)
+            (RPCL_UUID, I_nsi_lookup_begin) => nameof(I_nsi_lookup_begin),
+            (RPCL_UUID, I_nsi_lookup_done) => nameof(I_nsi_lookup_done),
+            (RPCL_UUID, I_nsi_lookup_next) => nameof(I_nsi_lookup_next),
+            (RPCL_UUID, I_nsi_entry_object_inq_next) => nameof(I_nsi_entry_object_inq_next),
+            (RPCL_UUID, I_nsi_ping_locator) => nameof(I_nsi_ping_locator),
+            (RPCL_UUID, I_nsi_entry_object_inq_done) => nameof(I_nsi_entry_object_inq_done),
+            (RPCL_UUID, I_nsi_entry_object_inq_begin) => nameof(I_nsi_entry_object_inq_begin),
+            // MS-RRASM (dimsvc)
+            (RRASM_dimsvc_UUID, RMprAdminServerGetInfo) => nameof(RMprAdminServerGetInfo),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionEnum) => nameof(RRasAdminConnectionEnum),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionGetInfo) => nameof(RRasAdminConnectionGetInfo),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionClearStats) => nameof(RRasAdminConnectionClearStats),
+            (RRASM_dimsvc_UUID, RRasAdminPortEnum) => nameof(RRasAdminPortEnum),
+            (RRASM_dimsvc_UUID, RRasAdminPortGetInfo) => nameof(RRasAdminPortGetInfo),
+            (RRASM_dimsvc_UUID, RRasAdminPortClearStats) => nameof(RRasAdminPortClearStats),
+            (RRASM_dimsvc_UUID, RRasAdminPortReset) => nameof(RRasAdminPortReset),
+            (RRASM_dimsvc_UUID, RRasAdminPortDisconnect) => nameof(RRasAdminPortDisconnect),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportSetGlobalInfo) => nameof(RRouterInterfaceTransportSetGlobalInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportGetGlobalInfo) => nameof(RRouterInterfaceTransportGetGlobalInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceGetHandle) => nameof(RRouterInterfaceGetHandle),
+            (RRASM_dimsvc_UUID, RRouterInterfaceCreate) => nameof(RRouterInterfaceCreate),
+            (RRASM_dimsvc_UUID, RRouterInterfaceGetInfo) => nameof(RRouterInterfaceGetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceSetInfo) => nameof(RRouterInterfaceSetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceDelete) => nameof(RRouterInterfaceDelete),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportRemove) => nameof(RRouterInterfaceTransportRemove),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportAdd) => nameof(RRouterInterfaceTransportAdd),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportGetInfo) => nameof(RRouterInterfaceTransportGetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportSetInfo) => nameof(RRouterInterfaceTransportSetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceEnum) => nameof(RRouterInterfaceEnum),
+            (RRASM_dimsvc_UUID, RRouterInterfaceConnect) => nameof(RRouterInterfaceConnect),
+            (RRASM_dimsvc_UUID, RRouterInterfaceDisconnect) => nameof(RRouterInterfaceDisconnect),
+            (RRASM_dimsvc_UUID, RRouterInterfaceUpdateRoutes) => nameof(RRouterInterfaceUpdateRoutes),
+            (RRASM_dimsvc_UUID, RRouterInterfaceQueryUpdateResult) => nameof(RRouterInterfaceQueryUpdateResult),
+            (RRASM_dimsvc_UUID, RRouterInterfaceUpdatePhonebookInfo) => nameof(RRouterInterfaceUpdatePhonebookInfo),
+            (RRASM_dimsvc_UUID, RMIBEntryCreate) => nameof(RMIBEntryCreate),
+            (RRASM_dimsvc_UUID, RMIBEntryDelete) => nameof(RMIBEntryDelete),
+            (RRASM_dimsvc_UUID, RMIBEntrySet) => nameof(RMIBEntrySet),
+            (RRASM_dimsvc_UUID, RMIBEntryGet) => nameof(RMIBEntryGet),
+            (RRASM_dimsvc_UUID, RMIBEntryGetFirst) => nameof(RMIBEntryGetFirst),
+            (RRASM_dimsvc_UUID, RMIBEntryGetNext) => nameof(RMIBEntryGetNext),
+            (RRASM_dimsvc_UUID, RMIBGetTrapInfo) => nameof(RMIBGetTrapInfo),
+            (RRASM_dimsvc_UUID, RMIBSetTrapInfo) => nameof(RMIBSetTrapInfo),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionNotification) => nameof(RRasAdminConnectionNotification),
+            (RRASM_dimsvc_UUID, RRasAdminSendUserMessage) => nameof(RRasAdminSendUserMessage),
+            (RRASM_dimsvc_UUID, RRouterDeviceEnum) => nameof(RRouterDeviceEnum),
+            (RRASM_dimsvc_UUID, RRouterInterfaceTransportCreate) => nameof(RRouterInterfaceTransportCreate),
+            (RRASM_dimsvc_UUID, RRouterInterfaceDeviceGetInfo) => nameof(RRouterInterfaceDeviceGetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceDeviceSetInfo) => nameof(RRouterInterfaceDeviceSetInfo),
+            (RRASM_dimsvc_UUID, RRouterInterfaceSetCredentialsEx) => nameof(RRouterInterfaceSetCredentialsEx),
+            (RRASM_dimsvc_UUID, RRouterInterfaceGetCredentialsEx) => nameof(RRouterInterfaceGetCredentialsEx),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionRemoveQuarantine) => nameof(RRasAdminConnectionRemoveQuarantine),
+            (RRASM_dimsvc_UUID, RMprAdminServerSetInfo) => nameof(RMprAdminServerSetInfo),
+            (RRASM_dimsvc_UUID, RMprAdminServerGetInfoEx) => nameof(RMprAdminServerGetInfoEx),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionEnumEx) => nameof(RRasAdminConnectionEnumEx),
+            (RRASM_dimsvc_UUID, RRasAdminConnectionGetInfoEx) => nameof(RRasAdminConnectionGetInfoEx),
+            (RRASM_dimsvc_UUID, RMprAdminServerSetInfoEx) => nameof(RMprAdminServerSetInfoEx),
+            (RRASM_dimsvc_UUID, RRasAdminUpdateConnection) => nameof(RRasAdminUpdateConnection),
+            (RRASM_dimsvc_UUID, RRouterInterfaceSetCredentialsLocal) => nameof(RRouterInterfaceSetCredentialsLocal),
+            (RRASM_dimsvc_UUID, RRouterInterfaceGetCredentialsLocal) => nameof(RRouterInterfaceGetCredentialsLocal),
+            (RRASM_dimsvc_UUID, RRouterInterfaceGetCustomInfoEx) => nameof(RRouterInterfaceGetCustomInfoEx),
+            (RRASM_dimsvc_UUID, RRouterInterfaceSetCustomInfoEx) => nameof(RRouterInterfaceSetCustomInfoEx),
+            // MS-RRASM (rasrpc)
+            (RRASM_rasrpc_UUID, RasRpcDeleteEntry) => nameof(RasRpcDeleteEntry),
+            (RRASM_rasrpc_UUID, RasRpcGetUserPreferences) => nameof(RasRpcGetUserPreferences),
+            (RRASM_rasrpc_UUID, RasRpcSetUserPreferences) => nameof(RasRpcSetUserPreferences),
+            (RRASM_rasrpc_UUID, RasRpcGetSystemDirectory) => nameof(RasRpcGetSystemDirectory),
+            (RRASM_rasrpc_UUID, RasRpcSubmitRequest) => nameof(RasRpcSubmitRequest),
+            (RRASM_rasrpc_UUID, RasRpcGetInstalledProtocolsEx) => nameof(RasRpcGetInstalledProtocolsEx),
+            (RRASM_rasrpc_UUID, RasRpcGetVersion) => nameof(RasRpcGetVersion),
+            // MS-TRP (tapsrv)
+            (TRP_tapsrv_UUID, ClientAttach) => nameof(ClientAttach),
+            (TRP_tapsrv_UUID, ClientRequest) => nameof(ClientRequest),
+            (TRP_tapsrv_UUID, ClientDetach) => nameof(ClientDetach),
+            // MS-TRP (remotesp)
+            (TRP_remotesp_UUID, RemoteSPAttach) => nameof(RemoteSPAttach),
+            (TRP_remotesp_UUID, RemoteSPEventProc) => nameof(RemoteSPEventProc),
+            (TRP_remotesp_UUID, RemoteSPDetach) => nameof(RemoteSPDetach),
+            // MS-TSGU
+            (TSGU_UUID, TsProxyCreateTunnel) => nameof(TsProxyCreateTunnel),
+            (TSGU_UUID, TsProxyAuthorizeTunnel) => nameof(TsProxyAuthorizeTunnel),
+            (TSGU_UUID, TsProxyMakeTunnelCall) => nameof(TsProxyMakeTunnelCall),
+            (TSGU_UUID, TsProxyCreateChannel) => nameof(TsProxyCreateChannel),
+            (TSGU_UUID, TsProxyCloseChannel) => nameof(TsProxyCloseChannel),
+            (TSGU_UUID, TsProxyCloseTunnel) => nameof(TsProxyCloseTunnel),
+            (TSGU_UUID, TsProxySetupReceivePipe) => nameof(TsProxySetupReceivePipe),
+            (TSGU_UUID, TsProxySendToServer) => nameof(TsProxySendToServer),
+            // MS-TSRAP
+            (TSRAP_UUID, GetTelnetSessions) => nameof(GetTelnetSessions),
+            (TSRAP_UUID, TerminateSession) => nameof(TerminateSession),
+            (TSRAP_UUID, SendMsgToASession) => nameof(SendMsgToASession),
+            // MS-WDSC
+            (WDSC_UUID, WdsRpcMessage) => nameof(WdsRpcMessage),
+            // MS-FASP (RemoteFW)
+            (FASP_UUID, RRPC_FWOpenPolicyStore) => nameof(RRPC_FWOpenPolicyStore),
+            (FASP_UUID, RRPC_FWClosePolicyStore) => nameof(RRPC_FWClosePolicyStore),
+            (FASP_UUID, RRPC_FWRestoreDefaults) => nameof(RRPC_FWRestoreDefaults),
+            (FASP_UUID, RRPC_FWGetGlobalConfig) => nameof(RRPC_FWGetGlobalConfig),
+            (FASP_UUID, RRPC_FWSetGlobalConfig) => nameof(RRPC_FWSetGlobalConfig),
+            (FASP_UUID, RRPC_FWAddFirewallRule) => nameof(RRPC_FWAddFirewallRule),
+            (FASP_UUID, RRPC_FWSetFirewallRule) => nameof(RRPC_FWSetFirewallRule),
+            (FASP_UUID, RRPC_FWDeleteFirewallRule) => nameof(RRPC_FWDeleteFirewallRule),
+            (FASP_UUID, RRPC_FWDeleteAllFirewallRules) => nameof(RRPC_FWDeleteAllFirewallRules),
+            (FASP_UUID, RRPC_FWEnumFirewallRules) => nameof(RRPC_FWEnumFirewallRules),
+            (FASP_UUID, RRPC_FWGetConfig) => nameof(RRPC_FWGetConfig),
+            (FASP_UUID, RRPC_FWSetConfig) => nameof(RRPC_FWSetConfig),
+            (FASP_UUID, RRPC_FWAddConnectionSecurityRule) => nameof(RRPC_FWAddConnectionSecurityRule),
+            (FASP_UUID, RRPC_FWSetConnectionSecurityRule) => nameof(RRPC_FWSetConnectionSecurityRule),
+            (FASP_UUID, RRPC_FWDeleteConnectionSecurityRule) => nameof(RRPC_FWDeleteConnectionSecurityRule),
+            (FASP_UUID, RRPC_FWDeleteAllConnectionSecurityRules) => nameof(RRPC_FWDeleteAllConnectionSecurityRules),
+            (FASP_UUID, RRPC_FWEnumConnectionSecurityRules) => nameof(RRPC_FWEnumConnectionSecurityRules),
+            (FASP_UUID, RRPC_FWAddAuthenticationSet) => nameof(RRPC_FWAddAuthenticationSet),
+            (FASP_UUID, RRPC_FWSetAuthenticationSet) => nameof(RRPC_FWSetAuthenticationSet),
+            (FASP_UUID, RRPC_FWDeleteAuthenticationSet) => nameof(RRPC_FWDeleteAuthenticationSet),
+            (FASP_UUID, RRPC_FWDeleteAllAuthenticationSets) => nameof(RRPC_FWDeleteAllAuthenticationSets),
+            (FASP_UUID, RRPC_FWEnumAuthenticationSets) => nameof(RRPC_FWEnumAuthenticationSets),
+            (FASP_UUID, RRPC_FWAddCryptoSet) => nameof(RRPC_FWAddCryptoSet),
+            (FASP_UUID, RRPC_FWSetCryptoSet) => nameof(RRPC_FWSetCryptoSet),
+            (FASP_UUID, RRPC_FWDeleteCryptoSet) => nameof(RRPC_FWDeleteCryptoSet),
+            (FASP_UUID, RRPC_FWDeleteAllCryptoSets) => nameof(RRPC_FWDeleteAllCryptoSets),
+            (FASP_UUID, RRPC_FWEnumCryptoSets) => nameof(RRPC_FWEnumCryptoSets),
+            (FASP_UUID, RRPC_FWEnumPhase1SAs) => nameof(RRPC_FWEnumPhase1SAs),
+            (FASP_UUID, RRPC_FWEnumPhase2SAs) => nameof(RRPC_FWEnumPhase2SAs),
+            (FASP_UUID, RRPC_FWDeletePhase1SAs) => nameof(RRPC_FWDeletePhase1SAs),
+            (FASP_UUID, RRPC_FWDeletePhase2SAs) => nameof(RRPC_FWDeletePhase2SAs),
+            (FASP_UUID, RRPC_FWEnumProducts) => nameof(RRPC_FWEnumProducts),
+            (FASP_UUID, RRPC_FWAddMainModeRule) => nameof(RRPC_FWAddMainModeRule),
+            (FASP_UUID, RRPC_FWSetMainModeRule) => nameof(RRPC_FWSetMainModeRule),
+            (FASP_UUID, RRPC_FWDeleteMainModeRule) => nameof(RRPC_FWDeleteMainModeRule),
+            (FASP_UUID, RRPC_FWDeleteAllMainModeRules) => nameof(RRPC_FWDeleteAllMainModeRules),
+            (FASP_UUID, RRPC_FWEnumMainModeRules) => nameof(RRPC_FWEnumMainModeRules),
+            (FASP_UUID, RRPC_FWQueryFirewallRules) => nameof(RRPC_FWQueryFirewallRules),
+            (FASP_UUID, RRPC_FWQueryConnectionSecurityRules2_10) => nameof(RRPC_FWQueryConnectionSecurityRules2_10),
+            (FASP_UUID, RRPC_FWQueryMainModeRules) => nameof(RRPC_FWQueryMainModeRules),
+            (FASP_UUID, RRPC_FWQueryAuthenticationSets) => nameof(RRPC_FWQueryAuthenticationSets),
+            (FASP_UUID, RRPC_FWQueryCryptoSets) => nameof(RRPC_FWQueryCryptoSets),
+            (FASP_UUID, RRPC_FWEnumNetworks) => nameof(RRPC_FWEnumNetworks),
+            (FASP_UUID, RRPC_FWEnumAdapters) => nameof(RRPC_FWEnumAdapters),
+            (FASP_UUID, RRPC_FWGetGlobalConfig2_10) => nameof(RRPC_FWGetGlobalConfig2_10),
+            (FASP_UUID, RRPC_FWGetConfig2_10) => nameof(RRPC_FWGetConfig2_10),
+            // MS-PLA (ITraceDataProvider)
+            (PLA_ITraceDataProvider_UUID, get_DisplayName) => nameof(get_DisplayName),
+            (PLA_ITraceDataProvider_UUID, put_DisplayName) => nameof(put_DisplayName),
+            (PLA_ITraceDataProvider_UUID, get_Guid) => nameof(get_Guid),
+            (PLA_ITraceDataProvider_UUID, put_Guid) => nameof(put_Guid),
+            (PLA_ITraceDataProvider_UUID, get_Level) => nameof(get_Level),
+            (PLA_ITraceDataProvider_UUID, get_KeywordsAny) => nameof(get_KeywordsAny),
+            (PLA_ITraceDataProvider_UUID, get_KeywordsAll) => nameof(get_KeywordsAll),
+            (PLA_ITraceDataProvider_UUID, get_Properties) => nameof(get_Properties),
+            (PLA_ITraceDataProvider_UUID, get_FilterEnabled) => nameof(get_FilterEnabled),
+            (PLA_ITraceDataProvider_UUID, put_FilterEnabled) => nameof(put_FilterEnabled),
+            (PLA_ITraceDataProvider_UUID, get_FilterType) => nameof(get_FilterType),
+            (PLA_ITraceDataProvider_UUID, put_FilterType) => nameof(put_FilterType),
+            (PLA_ITraceDataProvider_UUID, get_FilterData) => nameof(get_FilterData),
+            (PLA_ITraceDataProvider_UUID, put_FilterData) => nameof(put_FilterData),
+            (PLA_ITraceDataProvider_UUID, Query) => nameof(Query),
+            (PLA_ITraceDataProvider_UUID, Resolve) => nameof(Resolve),
+            (PLA_ITraceDataProvider_UUID, PLA_SetSecurity) => "SetSecurity",
+            (PLA_ITraceDataProvider_UUID, PLA_GetSecurity) => "GetSecurity",
+            (PLA_ITraceDataProvider_UUID, GetRegisteredProcesses) => nameof(GetRegisteredProcesses),
             _ => null
         };
 
