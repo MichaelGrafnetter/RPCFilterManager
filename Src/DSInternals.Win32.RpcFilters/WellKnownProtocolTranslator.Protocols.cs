@@ -4101,6 +4101,36 @@ public static partial class WellKnownProtocolTranslator
     public static readonly Guid WMI_IWbemBackupRestore = new(WMI_IWbemBackupRestore_UUID);
 
     /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemShutdown interface)
+    /// </summary>
+    private const string WMI_IWbemShutdown_UUID = "b7b31df9-d515-11d3-a11c-00105a1f515a";
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemShutdown interface)
+    /// </summary>
+    public static readonly Guid WMI_IWbemShutdown = new(WMI_IWbemShutdown_UUID);
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IUnsecuredApartment interface)
+    /// </summary>
+    private const string WMI_IUnsecuredApartment_UUID = "1cfaba8c-1523-11d1-ad79-00c04fd8fdff";
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IUnsecuredApartment interface)
+    /// </summary>
+    public static readonly Guid WMI_IUnsecuredApartment = new(WMI_IUnsecuredApartment_UUID);
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemUnsecuredApartment interface)
+    /// </summary>
+    private const string WMI_IWbemUnsecuredApartment_UUID = "31739d04-3471-4cf4-9a7c-57a44ae71956";
+
+    /// <summary>
+    /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemUnsecuredApartment interface)
+    /// </summary>
+    public static readonly Guid WMI_IWbemUnsecuredApartment = new(WMI_IWbemUnsecuredApartment_UUID);
+
+    /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginClientID interface)
     /// </summary>
     private const string WMI_IWbemLoginClientID_UUID = "d4781cd6-e5d3-44df-ad94-930efe48a887";
@@ -4109,6 +4139,16 @@ public static partial class WellKnownProtocolTranslator
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemLoginClientID interface)
     /// </summary>
     public static readonly Guid WMI_IWbemLoginClientID = new(WMI_IWbemLoginClientID_UUID);
+
+    /// <summary>
+    /// Windows Management Instrumentation Remote Protocol (IWbemLoginClientIDEx interface) (Undocumented)
+    /// </summary>
+    private const string WMI_IWbemLoginClientIDEx_UUID = "9f6c78ef-fce5-42fa-abea-3e7df91921dc";
+
+    /// <summary>
+    /// Windows Management Instrumentation Remote Protocol (IWbemLoginClientIDEx interface) (Undocumented)
+    /// </summary>
+    public static readonly Guid WMI_IWbemLoginClientIDEx = new(WMI_IWbemLoginClientIDEx_UUID);
 
     /// <summary>
     /// MS-WMI: Windows Management Instrumentation Remote Protocol (IWbemClassObject interface)
