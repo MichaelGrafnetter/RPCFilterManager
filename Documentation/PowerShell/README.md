@@ -164,7 +164,7 @@ New-RpcFilter `
     -Description 'Block Mimikatz C2' `
     -WellKnownProtocol MimiCom `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 ```
 
@@ -643,7 +643,7 @@ New-RpcFilter `
     -Description 'Block remote event log clearing over MS-EVEN6' `
     -WellKnownOperation EvtRpcClearLog `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent `
     -PassThrough
 ```
@@ -701,7 +701,7 @@ New-RpcFilter `
     -Description 'Block remote service creation using the RCreateServiceW call' `
     -WellKnownOperation RCreateServiceW `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 
 New-RpcFilter `
@@ -709,7 +709,7 @@ New-RpcFilter `
     -Description 'Block remote service creation using the RCreateServiceA call' `
     -WellKnownOperation RCreateServiceA `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 
 New-RpcFilter `
@@ -717,7 +717,7 @@ New-RpcFilter `
     -Description 'Block remote service creation using the RCreateServiceWOW64W call' `
     -WellKnownOperation RCreateServiceWOW64W `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 
 New-RpcFilter `
@@ -725,7 +725,7 @@ New-RpcFilter `
     -Description 'Block remote service creation using the RCreateServiceWOW64A call' `
     -WellKnownOperation RCreateServiceWOW64A `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 
 New-RpcFilter `
@@ -733,7 +733,7 @@ New-RpcFilter `
     -Description 'Block remote service creation using the RCreateWowService call' `
     -WellKnownOperation RCreateWowService `
     -Action Block `
-    -Audit `
+    -Audit Enabled `
     -Persistent
 ```
 

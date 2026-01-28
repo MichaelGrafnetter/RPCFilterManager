@@ -8,7 +8,7 @@
 RootModule = 'DSInternals.RpcFilters.Bootstrap.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.2'
+ModuleVersion = '1.3'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -110,9 +110,8 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
-- Added support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
-- The new Get-RpcFilterAuditing cmdlet can be used to check the current auditing settings of RPC filter events.
 - More RPC protocols and operation numbers are now translated to human-readable names.
+- The process name is now displayed by default when auditing RPC filter events.
 '@
 
         # Prerelease string of this module

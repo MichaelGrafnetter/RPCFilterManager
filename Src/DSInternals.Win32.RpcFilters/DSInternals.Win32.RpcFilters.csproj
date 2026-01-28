@@ -6,10 +6,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyTitle>DSInternals RPC Filter Manager Assembly</AssemblyTitle>
     <Authors>Michael Grafnetter</Authors>
-    <Version>1.2</Version>
-    <AssemblyVersion>1.2</AssemblyVersion>
-    <ProductVersion>1.2</ProductVersion>
-    <FileVersion>1.2</FileVersion>
+    <Version>1.3</Version>
+    <AssemblyVersion>1.3</AssemblyVersion>
+    <ProductVersion>1.3</ProductVersion>
+    <FileVersion>1.3</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/MichaelGrafnetter/RpcFilterManager</PackageProjectUrl>
@@ -26,7 +26,6 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Library for managing Windows RPC Filters.</Description>
     <PackageReleaseNotes>
-- Added support for auditing RPC parameter buffers in filters. This feature requires Windows 11 25H2 or newer.
 - More RPC protocols and operation numbers are now translated to human-readable names.
     </PackageReleaseNotes>
     <IsPackable>true</IsPackable>
