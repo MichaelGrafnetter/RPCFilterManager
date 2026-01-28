@@ -30,19 +30,19 @@ public sealed class RpcFilterManager : IDisposable
     /// <summary>
     /// Indicates whether the RPC OpNum filter condition is supported on the current operating system.
     /// </summary>
-    /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 or Windows Server 2025 (10.0.26100).</remarks>
+    /// <remarks>The FWPM_CONDITION_RPC_OPNUM filter condition is supported since Windows 11 24H2 or Windows Server 2025 (10.0.26100). The October 2025 Cumulative Update backports this feature to Windows 10, Windows Server 2019, and Windows Server 2022.</remarks>
     public static bool IsOpnumFilterSupported => Environment.OSVersion.Version >= new Version(10, 0, 26100);
 
     /// <summary>
     /// Indicates whether the IP address filter conditions work with RPC over named pipes on the current operating system.
     /// </summary>
-    /// <remarks>IP address filter support for RPC over named pipes was added in Windows 11 25H2 (10.0.26200).</remarks>
+    /// <remarks>IP address filter support for RPC over named pipes was added in Windows 11 25H2 (10.0.26200) and Windows Server 2025.</remarks>
     public static bool IsIpAddressFilterWithNamedPipesSupported => Environment.OSVersion.Version >= new Version(10, 0, 26200);
 
     /// <summary>
     /// Indicates whether parameter buffer auditing is supported on the current operating system.
     /// </summary>
-    /// <remarks>Parameter buffer auditing support was added in Windows 11 25H2 (10.0.26200).</remarks>
+    /// <remarks>Parameter buffer auditing support was added in Windows 11 25H2 and Windows Server 2025 (10.0.26200).</remarks>
     public static bool IsAuditParametersSupported => Environment.OSVersion.Version >= new Version(10, 0, 26200);
 
     private SafeFwpmEngineHandle? engineHandle;

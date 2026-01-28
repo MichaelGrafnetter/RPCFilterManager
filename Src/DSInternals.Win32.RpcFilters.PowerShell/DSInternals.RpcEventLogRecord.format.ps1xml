@@ -21,6 +21,9 @@
             <Label>User</Label>
           </TableColumnHeader>
           <TableColumnHeader>
+            <Label>Process</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
             <Label>Protocol</Label>
           </TableColumnHeader>
           <TableColumnHeader>
@@ -53,6 +56,9 @@
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>[System.Security.Principal.NTAccount]::new($PSItem.UserDomain, $PSItem.UserName).Value</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ProcessName</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Protocol</PropertyName>

@@ -171,9 +171,10 @@ and to translate most identifiers into human-readable names:
 
 ### OpNum Filtering
 
-The ability to filter RPC operations by their operation number is only available on Windows 11 24H2 and Windows Server 2025 or later.
-Although the underlying [FWPM_CONDITION_RPC_OPNUM](https://learn.microsoft.com/en-us/windows/win32/fwp/filtering-condition-identifiers-) filter condition
-has been backported to Windows versions down to Windows Server 2019, it is ignored by the filtering engine on these older OS versions.
+The ability to filter RPC operations by their operation number is only available on Windows 11 24H2 and Windows Server 2025 or later by default.
+However, the October 2025 Cumulative Update backports this feature to Windows 10, Windows Server 2022, and Windows Server 2019 as well.
+Without this update, the underlying [FWPM_CONDITION_RPC_OPNUM](https://learn.microsoft.com/en-us/windows/win32/fwp/filtering-condition-identifiers-) filter condition
+is ignored by the filtering engine on these OS versions.
 
 Windows Server 2016 and older systems do not even support operation number filtering at the API level
 and reject attempts to create such filters by returning the `FWP_E_CONDITION_NOT_FOUND` error.
@@ -205,7 +206,6 @@ This seems to be the case of the `MS-SCMR` protocol, while `MS-TSCH` and `MS-EVE
 
 Kerberos vs. Negotiate authentication type matching seems to be unreliable.
 
-
 ### Local RPC Calls
 
 RPC filters typically do not apply to local RPC calls,
@@ -230,6 +230,15 @@ New-RpcFilter -Name 'SCMR-Audit' -WellKnownProtocol ServiceControlManager -Actio
 ```
 
 However, enabling this flag does not seem to have any effect yet.
+
+### Blank Interface UUIDs
+
+The filtering engine is unable to identity a couple of well-known RPC protocols
+and only sees a blank interface UUID (`00000000-0000-0000-0000-000000000000`).
+We have observed this behavior for the [MS-WCCE](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce/446a0fca-7f27-4436-965d-191635518466)
+and [MS-VDSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vds/90977af2-515e-4fbd-809c-fdb280ab48db) protocols so far.
+
+![Blank Interface UUID in Event Log](../Documentation/Screenshots/event-log-blank-uuid.png)
 
 ## Tool Limitations
 

@@ -165,17 +165,17 @@ public class NewRpcFilterCommand : RpcFilterCommandBase
 
             if (InterfaceUUID.SupportsNamedPipes() && ipAddressUsed && !RpcFilterManager.IsIpAddressFilterWithNamedPipesSupported)
             {
-                WriteWarning("The target interface supports a named pipe binding. Only TCP/IP bindings work with IP address conditions on systems prior to Windows 11 25H2.");
+                WriteWarning("The target interface supports a named pipe binding. IP address conditions with named pipes only work on Windows 11 25H2 and Windows Server 2025 or newer.");
             }
 
             if (OperationNumber.HasValue && !RpcFilterManager.IsOpnumFilterSupported)
             {
-                WriteWarning("Filters with OpNum conditions only work on Windows 11 24H2 and Windows Server 2025 or newer systems.");
+                WriteWarning("Filters with OpNum conditions only work on Windows 11 24H2, Windows Server 2025, or older systems with the October 2025 Cumulative Update.");
             }
 
             if (Audit.HasFlag(RpcFilterAuditOptions.Parameters) && !RpcFilterManager.IsAuditParametersSupported)
             {
-                WriteWarning("Filters with parameter buffer auditing only work on Windows 11 25H2 or newer systems.");
+                WriteWarning("Filters with parameter buffer auditing only work on Windows 11 25H2 and Windows Server 2025 or newer systems.");
             }
 
             if (RemoteAddressMask.HasValue && RemoteAddress == null)
