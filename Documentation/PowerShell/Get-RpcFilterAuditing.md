@@ -1,5 +1,5 @@
 ---
-external help file: DSInternals.RpcFilters.Bootstrap-help.xml
+external help file: DSInternals.RpcFilters.Auditing-help.xml
 Module Name: DSInternals.RpcFilters
 online version: https://github.com/MichaelGrafnetter/RPCFilterManager/blob/main/Documentation/PowerShell/Get-RpcFilterAuditing.md
 schema: 2.0.0

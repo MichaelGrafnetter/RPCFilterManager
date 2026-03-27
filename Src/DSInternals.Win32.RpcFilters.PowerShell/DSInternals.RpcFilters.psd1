@@ -5,7 +5,11 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'DSInternals.RpcFilters.Bootstrap.psm1'
+RootModule = if ($PSEdition -eq 'Core') {
+    'net8.0-windows\DSInternals.Win32.RpcFilters.PowerShell.dll'
+} else {
+    'net48\DSInternals.Win32.RpcFilters.PowerShell.dll'
+}
 
 # Version number of this module.
 ModuleVersion = '1.3'
@@ -49,6 +53,9 @@ FormatsToProcess = @(
     'DSInternals.RpcEventLogRecord.format.ps1xml'
 )
 
+# Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
+NestedModules = @('DSInternals.RpcFilters.Auditing.psm1')
+
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
     'Get-RpcFilterEvent',
@@ -87,7 +94,7 @@ FileList = @(
     'net48\System.Buffers.dll',
     'net48\System.Memory.dll',
     'en-US\about_DSInternals.RpcFilters.help.txt',
-    'en-US\DSInternals.RpcFilters.Bootstrap-help.xml',
+    'en-US\DSInternals.RpcFilters.Auditing-help.xml',
     'en-US\DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml'
 )
 

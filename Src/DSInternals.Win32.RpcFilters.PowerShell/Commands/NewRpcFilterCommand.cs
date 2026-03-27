@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 namespace DSInternals.Win32.RpcFilters.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.New, "RpcFilter", DefaultParameterSetName = CustomProtocolParameterSet)]
+[Alias("Add-RpcFilter")]
 [OutputType(typeof(RpcFilter))]
 public class NewRpcFilterCommand : RpcFilterCommandBase
 {

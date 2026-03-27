@@ -34,12 +34,6 @@ Describe 'PowerShell Module' {
             [hashtable[]] $BundledFiles =
                 Get-ChildItem -Path $ModulePath -Recurse -File -Exclude *.pdb,*.psd1 |
                 ForEach-Object { @{ FileName = $PSItem.Name } }
-
-            [string] $bootstrapPath = Join-Path -Path $ModulePath -ChildPath 'DSInternals.RpcFilters.Bootstrap.psm1'
-
-            [hashtable[]] $ModuleAliases =
-                Select-String -Path $bootstrapPath -Pattern 'New-Alias -Name ([a-zA-Z\-]+) ' |
-                ForEach-Object { @{ AliasName = $PSItem.Matches.Groups[1].Value } }
         }
 
         It 'exists' {
@@ -73,12 +67,6 @@ Describe 'PowerShell Module' {
 
             $ModuleManifestPath | Should -FileContentMatch $FileName
         }
-
-        It 'exports alias <AliasName>.' -TestCases $ModuleAliases -Test {
-            param([string] $AliasName)
-
-            $moduleManifestPath | Should -FileContentMatch "'$AliasName'"
-        }
     }
 
     Context 'Directory Structure' {
@@ -91,7 +79,7 @@ Describe 'PowerShell Module' {
         }
 
         It 'contains MAML help' {
-            Join-Path -Path $ModulePath -ChildPath 'en-US\DSInternals.RpcFilters.Bootstrap-help.xml' | Should -Exist
+            Join-Path -Path $ModulePath -ChildPath 'en-US\DSInternals.RpcFilters.Auditing-help.xml' | Should -Exist
             Join-Path -Path $ModulePath -ChildPath 'en-US\DSInternals.Win32.RpcFilters.PowerShell.dll-Help.xml' | Should -Exist
         }
 

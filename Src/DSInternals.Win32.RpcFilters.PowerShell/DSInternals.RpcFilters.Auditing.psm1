@@ -10,18 +10,6 @@ if ($env:OS -ne 'Windows_NT') {
                 -Category ([System.Management.Automation.ErrorCategory]::NotImplemented)
 }
 
-# Load the platform-specific binaries.
-# Note: This operation cannot be done in the module manifest,
-#       as it only supports restricted language mode.
-if ($PSVersionTable.PSVersion.Major -ge 6) {
-    [string] $coreModulePath = "$PSScriptRoot/net8.0-windows/DSInternals.Win32.RpcFilters.PowerShell.dll"
-    Import-Module -Name $coreModulePath -ErrorAction Stop
-}
-else {
-    [string] $desktopModulePath = "$PSScriptRoot/net48/DSInternals.Win32.RpcFilters.PowerShell.dll"
-    Import-Module -Name $desktopModulePath -ErrorAction Stop
-}
-
 #region Script cmdlets
 
 <#
@@ -109,10 +97,5 @@ function Get-RpcFilterAuditing {
 
 #endregion Script cmdlets
 
-# Define cmdlet aliases
-New-Alias -Name 'Add-RpcFilter' -Value 'New-RpcFilter' -Force
-
-# Export cmdlets
-Export-ModuleMember -Cmdlet @('Get-RpcFilter', 'New-RpcFilter', 'Remove-RpcFilter') `
-                    -Alias @('Add-RpcFilter') `
-                    -Function @('Get-RpcFilterEvent', 'Enable-RpcFilterAuditing', 'Disable-RpcFilterAuditing', 'Get-RpcFilterAuditing')
+# Export script functions
+Export-ModuleMember -Function @('Get-RpcFilterEvent', 'Enable-RpcFilterAuditing', 'Disable-RpcFilterAuditing', 'Get-RpcFilterAuditing')
