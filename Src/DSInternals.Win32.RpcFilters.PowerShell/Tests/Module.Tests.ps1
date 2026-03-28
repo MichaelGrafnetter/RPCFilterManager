@@ -49,9 +49,9 @@ Describe 'PowerShell Module' {
             [string] $assemblyPath = Join-Path -Path $ModulePath -ChildPath 'net48\DSInternals.Win32.RpcFilters.PowerShell.dll'
             [System.Reflection.AssemblyName] $assembly = [System.Reflection.AssemblyName]::GetAssemblyName($assemblyPath)
 
-            # Load the module manifest
-            [hashtable] $manifest =  Import-PowerShellDataFile -Path $ModuleManifestPath
-            [version] $moduleVersion = [version]::Parse($manifest.ModuleVersion)
+            # Load and evaluate the module manifest
+            [System.Management.Automation.PSModuleInfo] $manifest = Test-ModuleManifest -Path $ModuleManifestPath -ErrorAction Stop
+            [version] $moduleVersion = $manifest.Version
             # Parser uses -1 instead of 0 for unused numbers, so we need to fix that
             if ($moduleVersion.Build -eq -1) {
                 $moduleVersion = [version]::new($moduleVersion.Major, $moduleVersion.Minor, 0, 0)
